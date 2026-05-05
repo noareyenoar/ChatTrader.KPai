@@ -1,0 +1,146 @@
+[
+  {
+    "architecture_name": "Autoencoder_StatArb_v1",
+    "archetype": "statistical_arbitrage",
+    "weights_path": "models/checkpoints_verify/stat_arb/Autoencoder_StatArb_v1/model_best.pt",
+    "optimizer_state_path": "models/checkpoints_verify/stat_arb/Autoencoder_StatArb_v1/optimizer_state.pt",
+    "design_premise": "Multi-asset spread convergence via learned latent mispricing representations.",
+    "standard_interface": {
+      "outputs": [
+        "spread_prediction"
+      ]
+    },
+    "validation": {
+      "val_mae": 0.8132559061050415,
+      "test_mae": 0.8431546688079834,
+      "val_tracking_error": 0.6914106011390686,
+      "test_tracking_error": 0.5822848081588745,
+      "val_sharpe": 7.928012828148334,
+      "test_sharpe": 2.5014062911939026,
+      "test_profit_factor": 1.024635727883066,
+      "test_max_drawdown": 0.9999999483165335,
+      "backend": "directml",
+      "cuda_used": true,
+      "is_valid": false
+    }
+  },
+  {
+    "architecture_name": "GAT_StatArb_v1",
+    "archetype": "statistical_arbitrage",
+    "weights_path": "models/checkpoints_verify/stat_arb/GAT_StatArb_v1/model_best.pt",
+    "optimizer_state_path": "models/checkpoints_verify/stat_arb/GAT_StatArb_v1/optimizer_state.pt",
+    "design_premise": "Multi-asset spread convergence via learned latent mispricing representations.",
+    "standard_interface": {
+      "outputs": [
+        "spread_prediction"
+      ]
+    },
+    "validation": {
+      "val_mae": 0.9540997743606567,
+      "test_mae": 1.1214590072631836,
+      "val_tracking_error": 0.6498036980628967,
+      "test_tracking_error": 0.5690137147903442,
+      "val_sharpe": 0.05604981264448323,
+      "test_sharpe": 2.5014062911939026,
+      "test_profit_factor": 1.024635727883066,
+      "test_max_drawdown": 0.9999999483165335,
+      "backend": "directml",
+      "cuda_used": true,
+      "is_valid": false
+    }
+  },
+  {
+    "architecture_name": "LSTM_StatArb_v1",
+    "archetype": "statistical_arbitrage",
+    "weights_path": "models/checkpoints_verify/stat_arb/LSTM_StatArb_v1/model_best.pt",
+    "optimizer_state_path": "models/checkpoints_verify/stat_arb/LSTM_StatArb_v1/optimizer_state.pt",
+    "design_premise": "Multi-asset spread convergence via learned latent mispricing representations.",
+    "standard_interface": {
+      "outputs": [
+        "spread_prediction"
+      ]
+    },
+    "validation": {
+      "val_mae": 0.8789757490158081,
+      "test_mae": 0.8172785043716431,
+      "val_tracking_error": 0.7096546292304993,
+      "test_tracking_error": 0.5827435255050659,
+      "val_sharpe": 4.919145080126325,
+      "test_sharpe": 2.5014062911939026,
+      "test_profit_factor": 1.024635727883066,
+      "test_max_drawdown": 0.9999999483165335,
+      "backend": "directml",
+      "cuda_used": true,
+      "is_valid": false
+    }
+  },
+  {
+    "architecture_name": "PPO_MM_v1",
+    "archetype": "market_making_rl",
+    "weights_path": "models\\checkpoints_verify\\market_maker\\PPO_MM_v1/PPO_MM_v1_best.pt",
+    "design_premise": "Reinforcement learning for inventory-aware market making.",
+    "standard_interface": {
+      "outputs": [
+        "action_or_q_values"
+      ]
+    },
+    "validation": {
+      "mean_episode_reward": 19.47682084709353,
+      "std_episode_reward": 1.5782186612512716,
+      "sharpe_rewards": -30.549285183544878,
+      "max_drawdown_rewards": 0.0,
+      "eval_mean_reward": 0.40623191424247124,
+      "eval_sharpe_rewards": -99.11263666518279,
+      "eval_max_drawdown_rewards": 0.0,
+      "backend": "cpu",
+      "num_episodes": 12,
+      "is_valid": false
+    }
+  },
+  {
+    "architecture_name": "SAC_MM_v1",
+    "archetype": "market_making_rl",
+    "weights_path": "models\\checkpoints_verify\\market_maker\\SAC_MM_v1/SAC_MM_v1_best.pt",
+    "design_premise": "Reinforcement learning for inventory-aware market making.",
+    "standard_interface": {
+      "outputs": [
+        "action_or_q_values"
+      ]
+    },
+    "validation": {
+      "mean_episode_reward": 0.6577845530377494,
+      "std_episode_reward": 0.3520851396772868,
+      "sharpe_rewards": 0.22290494467557545,
+      "max_drawdown_rewards": 0.0,
+      "eval_mean_reward": 0.4514557800343937,
+      "eval_sharpe_rewards": 5.043427370964897,
+      "eval_max_drawdown_rewards": 0.0,
+      "backend": "cpu",
+      "num_episodes": 72,
+      "is_valid": true
+    }
+  },
+  {
+    "architecture_name": "DQN_MM_v1",
+    "archetype": "market_making_rl",
+    "weights_path": "models\\checkpoints_verify\\market_maker\\DQN_MM_v1/DQN_MM_v1_best.pt",
+    "design_premise": "Reinforcement learning for inventory-aware market making.",
+    "standard_interface": {
+      "outputs": [
+        "action_or_q_values"
+      ]
+    },
+    "validation": {
+      "mean_episode_reward": 0.6831137353761328,
+      "std_episode_reward": 0.36589753286205057,
+      "sharpe_rewards": 1.3387125466984604,
+      "max_drawdown_rewards": 0.0,
+      "eval_mean_reward": 0.4205974660761685,
+      "eval_sharpe_rewards": -31.37147664162667,
+      "eval_max_drawdown_rewards": 0.0,
+      "backend": "cpu",
+      "num_episodes": 72,
+      "is_valid": false
+    }
+  }
+]

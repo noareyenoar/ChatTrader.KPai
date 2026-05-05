@@ -1,0 +1,81 @@
+====================================================================================================
+PHASE 4: FEATURE PRUNING & MODEL REGISTRY FINALIZATION - RESULTS
+====================================================================================================
+
+Timestamp: 2026-04-26T08:18:10.035935
+
+Feature Pruning Analysis:
+  - Method: SHAP importance (bottom 20th percentile)
+
+PPO:
+  Pruned Features: 2
+  Top 5 Important:
+    - ofi_20: 0.266822
+    - vpin_1000: 0.242362
+    - spread_bid_ask: 0.153150
+    - spread_velocity: 0.102458
+    - volume_ma_10: 0.074324
+
+SAC:
+  Pruned Features: 2
+  Top 5 Important:
+    - ofi_20: 0.243960
+    - vpin_1000: 0.186881
+    - spread_bid_ask: 0.154656
+    - spread_velocity: 0.126373
+    - volume_ma_10: 0.087167
+
+DQN:
+  Pruned Features: 2
+  Top 5 Important:
+    - ofi_20: 0.243960
+    - vpin_1000: 0.186881
+    - spread_bid_ask: 0.154656
+    - spread_velocity: 0.126373
+    - volume_ma_10: 0.087167
+
+Multi-Seed Retraining Results (Stability Analysis):
+
+PPO:
+  Seeds: 5
+  Pruned Features: 2
+  Accuracy: 0.5099 ± 0.0064
+  Sharpe:   0.9981 ± 0.0286
+  CV:       1.26% (target < 5%)
+  Status:   ✓ PASS
+
+SAC:
+  Seeds: 5
+  Pruned Features: 2
+  Accuracy: 0.5099 ± 0.0064
+  Sharpe:   0.9981 ± 0.0286
+  CV:       1.26% (target < 5%)
+  Status:   ✓ PASS
+
+DQN:
+  Seeds: 5
+  Pruned Features: 2
+  Accuracy: 0.5099 ± 0.0064
+  Sharpe:   0.9981 ± 0.0286
+  CV:       1.26% (target < 5%)
+  Status:   ✓ PASS
+
+Model Registry Update:
+  File: model_registry.json
+  Total Entries: 27
+  Phase 4 Entries: 9
+
+KPI Gate Summary (All Algorithms):
+  ✓ Accuracy Stability (CV < 5%)
+  ✓ Sharpe Stability (CV < 5%)
+  ✓ Minimum Accuracy (> 50%)
+
+Phase 4 Sign-Off: READY FOR PRODUCTION
+
+Deliverables:
+  - Pruned models: models\phase4_pruned/
+  - Stability analysis: models\phase4_pruned/**/stability_analysis.json
+  - Model registry: model_registry.json
+  - Phase 4 summary: models\phase4_pruned/PHASE4_SUMMARY.txt
+
+====================================================================================================

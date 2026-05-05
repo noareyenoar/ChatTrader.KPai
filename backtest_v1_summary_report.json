@@ -1,0 +1,183 @@
+{
+  "run_started_at": "2026-05-01T19:08:11",
+  "run_finished_at": "2026-05-01T19:08:14",
+  "files": [
+    "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-10\\20251010.parquet",
+    "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251227.parquet",
+    "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251228.parquet",
+    "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251229.parquet",
+    "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251230.parquet",
+    "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251231.parquet"
+  ],
+  "per_day": [
+    {
+      "file": "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-10\\20251010.parquet",
+      "file_name": "20251010.parquet",
+      "stats": {
+        "total_bars": 223,
+        "debates_run": 25,
+        "trades_opened": 4,
+        "trades_closed": 4,
+        "wins": 0,
+        "losses": 4,
+        "flat_decisions": 21,
+        "total_pnl": -0.0019670751959656617,
+        "peak_equity": 1.0,
+        "current_equity": 0.9980329248040344,
+        "max_drawdown": 0.0019670751959656174,
+        "errors_caught": 0,
+        "credibility_updates": 24
+      },
+      "agent_credibilities": {
+        "TrendAnalyst": 0.49905,
+        "MeanReversionAnalyst": 0.42805000000000004,
+        "ScalperAnalyst": 0.41805000000000003,
+        "StatArbAnalyst": 0.40905,
+        "DiscretionaryAnalyst": 0.4909500000000001,
+        "MarketMakerAnalyst": 0.42805000000000004
+      }
+    },
+    {
+      "file": "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251227.parquet",
+      "file_name": "20251227.parquet",
+      "stats": {
+        "total_bars": 223,
+        "debates_run": 1,
+        "trades_opened": 1,
+        "trades_closed": 1,
+        "wins": 0,
+        "losses": 1,
+        "flat_decisions": 0,
+        "total_pnl": 0.0,
+        "peak_equity": 1.0,
+        "current_equity": 1.0,
+        "max_drawdown": 0.0,
+        "errors_caught": 0,
+        "credibility_updates": 6
+      },
+      "agent_credibilities": {
+        "TrendAnalyst": 0.55,
+        "MeanReversionAnalyst": 0.55,
+        "ScalperAnalyst": 0.55,
+        "StatArbAnalyst": 0.45,
+        "DiscretionaryAnalyst": 0.55,
+        "MarketMakerAnalyst": 0.45
+      }
+    },
+    {
+      "file": "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251228.parquet",
+      "file_name": "20251228.parquet",
+      "stats": {
+        "total_bars": 223,
+        "debates_run": 1,
+        "trades_opened": 1,
+        "trades_closed": 1,
+        "wins": 0,
+        "losses": 1,
+        "flat_decisions": 0,
+        "total_pnl": 0.0,
+        "peak_equity": 1.0,
+        "current_equity": 1.0,
+        "max_drawdown": 0.0,
+        "errors_caught": 0,
+        "credibility_updates": 6
+      },
+      "agent_credibilities": {
+        "TrendAnalyst": 0.55,
+        "MeanReversionAnalyst": 0.45,
+        "ScalperAnalyst": 0.55,
+        "StatArbAnalyst": 0.45,
+        "DiscretionaryAnalyst": 0.55,
+        "MarketMakerAnalyst": 0.45
+      }
+    },
+    {
+      "file": "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251229.parquet",
+      "file_name": "20251229.parquet",
+      "stats": {
+        "total_bars": 223,
+        "debates_run": 1,
+        "trades_opened": 1,
+        "trades_closed": 1,
+        "wins": 0,
+        "losses": 1,
+        "flat_decisions": 0,
+        "total_pnl": 0.0,
+        "peak_equity": 1.0,
+        "current_equity": 1.0,
+        "max_drawdown": 0.0,
+        "errors_caught": 0,
+        "credibility_updates": 6
+      },
+      "agent_credibilities": {
+        "TrendAnalyst": 0.55,
+        "MeanReversionAnalyst": 0.45,
+        "ScalperAnalyst": 0.45,
+        "StatArbAnalyst": 0.55,
+        "DiscretionaryAnalyst": 0.55,
+        "MarketMakerAnalyst": 0.45
+      }
+    },
+    {
+      "file": "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251230.parquet",
+      "file_name": "20251230.parquet",
+      "stats": {
+        "total_bars": 223,
+        "debates_run": 2,
+        "trades_opened": 1,
+        "trades_closed": 1,
+        "wins": 0,
+        "losses": 1,
+        "flat_decisions": 1,
+        "total_pnl": 0.0,
+        "peak_equity": 1.0,
+        "current_equity": 1.0,
+        "max_drawdown": 0.0,
+        "errors_caught": 0,
+        "credibility_updates": 6
+      },
+      "agent_credibilities": {
+        "TrendAnalyst": 0.55,
+        "MeanReversionAnalyst": 0.45,
+        "ScalperAnalyst": 0.45,
+        "StatArbAnalyst": 0.45,
+        "DiscretionaryAnalyst": 0.55,
+        "MarketMakerAnalyst": 0.45
+      }
+    },
+    {
+      "file": "Dataset\\binance_vision_real\\BTCUSDT\\aggTrades\\2025-12\\20251231.parquet",
+      "file_name": "20251231.parquet",
+      "stats": {
+        "total_bars": 223,
+        "debates_run": 1,
+        "trades_opened": 1,
+        "trades_closed": 1,
+        "wins": 0,
+        "losses": 1,
+        "flat_decisions": 0,
+        "total_pnl": 0.0,
+        "peak_equity": 1.0,
+        "current_equity": 1.0,
+        "max_drawdown": 0.0,
+        "errors_caught": 0,
+        "credibility_updates": 6
+      },
+      "agent_credibilities": {
+        "TrendAnalyst": 0.55,
+        "MeanReversionAnalyst": 0.45,
+        "ScalperAnalyst": 0.45,
+        "StatArbAnalyst": 0.45,
+        "DiscretionaryAnalyst": 0.55,
+        "MarketMakerAnalyst": 0.45
+      }
+    }
+  ],
+  "new_records": {
+    "journal": 31,
+    "omni": 661,
+    "growth": 54
+  },
+  "dry_run": true,
+  "model": "qwen3.5:4b"
+}

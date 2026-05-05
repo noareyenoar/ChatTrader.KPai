@@ -1,0 +1,1484 @@
+# Phase 4 Working Log (AFK Monitor)
+
+Auto-generated training, validation, and testing updates from model training loops.
+Timestamps are written in UTC+7.
+
+- [2026-04-28 15:44:31 UTC+7] model=TEST_MODEL stage=PING ok=1.000000
+- [2026-04-28 15:47:36 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=1/30 train_loss=0.645420 val_loss=1.199493 val_mae=0.940216 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 15:49:45 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=2/30 train_loss=0.521446 val_loss=1.223678 val_mae=0.956838 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 15:51:53 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=3/30 train_loss=0.495361 val_loss=1.265684 val_mae=0.979905 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 15:54:00 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=4/30 train_loss=0.469795 val_loss=1.302203 val_mae=0.998578 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 15:56:06 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=5/30 train_loss=0.443336 val_loss=1.329681 val_mae=1.011971 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 15:57:58 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=6/30 train_loss=0.415205 val_loss=1.343252 val_mae=1.018247 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 15:59:48 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=7/30 train_loss=0.387579 val_loss=1.354873 val_mae=1.023448 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:01:39 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=8/30 train_loss=0.360104 val_loss=1.362366 val_mae=1.026742 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:03:55 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=9/30 train_loss=0.336991 val_loss=1.351912 val_mae=1.021740 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:06:51 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=10/30 train_loss=0.317637 val_loss=1.358331 val_mae=1.024707 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:10:25 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=11/30 train_loss=0.301462 val_loss=1.357833 val_mae=1.024498 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:10:58 UTC+7] model=Autoencoder_StatArb_v1 stage=FINAL val_mae=0.940216 val_sharpe=-0.758675 test_mae=0.771381 test_sharpe=-14.073221 test_profit_factor=0.877964 test_max_drawdown=1.000000
+- [2026-04-28 16:11:02 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=1/30 train_loss=0.181758 val_loss=1.346775 val_mae=1.029430 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:06 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=2/30 train_loss=0.063465 val_loss=1.290360 val_mae=1.003641 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:09 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=3/30 train_loss=0.059647 val_loss=1.271070 val_mae=0.994773 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:12 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=4/30 train_loss=0.056674 val_loss=1.244504 val_mae=0.982911 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:15 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=5/30 train_loss=0.054024 val_loss=1.237343 val_mae=0.979907 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:18 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=6/30 train_loss=0.052173 val_loss=1.240997 val_mae=0.982350 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:22 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=7/30 train_loss=0.051014 val_loss=1.220653 val_mae=0.972646 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:25 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=8/30 train_loss=0.050086 val_loss=1.223288 val_mae=0.974541 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:29 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=9/30 train_loss=0.049265 val_loss=1.220507 val_mae=0.973347 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:32 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=10/30 train_loss=0.048430 val_loss=1.219505 val_mae=0.973270 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:36 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=11/30 train_loss=0.047882 val_loss=1.216658 val_mae=0.972245 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:39 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=12/30 train_loss=0.047319 val_loss=1.220397 val_mae=0.974324 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:43 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=13/30 train_loss=0.047134 val_loss=1.208192 val_mae=0.968613 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:46 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=14/30 train_loss=0.046592 val_loss=1.219985 val_mae=0.974568 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:49 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=15/30 train_loss=0.046366 val_loss=1.213791 val_mae=0.971858 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:53 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=16/30 train_loss=0.046203 val_loss=1.209983 val_mae=0.970083 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:56 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=17/30 train_loss=0.046508 val_loss=1.215600 val_mae=0.973079 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:11:59 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=18/30 train_loss=0.045730 val_loss=1.200291 val_mae=0.965671 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:02 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=19/30 train_loss=0.045640 val_loss=1.204991 val_mae=0.968023 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:06 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=20/30 train_loss=0.045804 val_loss=1.209339 val_mae=0.970314 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:09 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=21/30 train_loss=0.045620 val_loss=1.214436 val_mae=0.972920 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:12 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=22/30 train_loss=0.045498 val_loss=1.211684 val_mae=0.971646 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:16 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=23/30 train_loss=0.045304 val_loss=1.205809 val_mae=0.968783 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:19 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=24/30 train_loss=0.045443 val_loss=1.209380 val_mae=0.970546 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:23 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=25/30 train_loss=0.045302 val_loss=1.210252 val_mae=0.971017 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:26 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=26/30 train_loss=0.045299 val_loss=1.210323 val_mae=0.971092 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:29 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=27/30 train_loss=0.045404 val_loss=1.207713 val_mae=0.969823 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:33 UTC+7] model=GAT_StatArb_v1 stage=EPOCH epoch=28/30 train_loss=0.045358 val_loss=1.208648 val_mae=0.970285 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:12:34 UTC+7] model=GAT_StatArb_v1 stage=FINAL val_mae=0.965671 val_sharpe=-0.758675 test_mae=0.912297 test_sharpe=-1.990138 test_profit_factor=0.981764 test_max_drawdown=1.000000
+- [2026-04-28 16:13:56 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=1/30 train_loss=0.131316 val_loss=1.023851 val_mae=0.851524 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:15:15 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=2/30 train_loss=0.043275 val_loss=1.012847 val_mae=0.852000 val_sharpe=-0.758675 test_status=pending
+- [2026-04-28 16:16:32 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=3/30 train_loss=0.035015 val_loss=1.012581 val_mae=0.856457 val_sharpe=-0.690599 test_status=pending
+- [2026-04-28 16:17:49 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=4/30 train_loss=0.032177 val_loss=1.007671 val_mae=0.856731 val_sharpe=-0.577024 test_status=pending
+- [2026-04-28 16:19:06 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=5/30 train_loss=0.030694 val_loss=0.998850 val_mae=0.853895 val_sharpe=-0.516764 test_status=pending
+- [2026-04-28 16:20:18 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=6/30 train_loss=0.029476 val_loss=1.011452 val_mae=0.861756 val_sharpe=-0.516764 test_status=pending
+- [2026-04-28 16:21:31 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=7/30 train_loss=0.028619 val_loss=1.018857 val_mae=0.866712 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:22:43 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=8/30 train_loss=0.028181 val_loss=1.014284 val_mae=0.865194 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:23:56 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=9/30 train_loss=0.027662 val_loss=1.023881 val_mae=0.870734 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:25:12 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=10/30 train_loss=0.027106 val_loss=1.026009 val_mae=0.872507 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:26:31 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=11/30 train_loss=0.026673 val_loss=1.036742 val_mae=0.878419 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:27:44 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=12/30 train_loss=0.026552 val_loss=1.029144 val_mae=0.874743 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:28:56 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=13/30 train_loss=0.026321 val_loss=1.032922 val_mae=0.877179 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:30:12 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=14/30 train_loss=0.025976 val_loss=1.042570 val_mae=0.882589 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:31:29 UTC+7] model=LSTM_StatArb_v1 stage=EPOCH epoch=15/30 train_loss=0.025919 val_loss=1.040835 val_mae=0.882034 val_sharpe=-0.556468 test_status=pending
+- [2026-04-28 16:31:38 UTC+7] model=LSTM_StatArb_v1 stage=FINAL val_mae=0.853895 val_sharpe=-0.516764 test_mae=0.702028 test_sharpe=3.247750 test_profit_factor=1.030490 test_max_drawdown=0.959992
+- [2026-04-28 16:46:52 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=1/200 train_episode_reward=-15.389769 val_status=pending test_status=pending
+- [2026-04-28 16:47:00 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=2/200 train_episode_reward=-12.317876 val_status=pending test_status=pending
+- [2026-04-28 16:47:07 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=3/200 train_episode_reward=-6.795792 val_status=pending test_status=pending
+- [2026-04-28 16:47:13 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=4/200 train_episode_reward=-1.611504 val_status=pending test_status=pending
+- [2026-04-28 16:47:20 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=5/200 train_episode_reward=-1.958991 val_status=pending test_status=pending
+- [2026-04-28 16:47:26 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=6/200 train_episode_reward=-5.188201 val_status=pending test_status=pending
+- [2026-04-28 16:47:35 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=7/200 train_episode_reward=-7.383762 val_status=pending test_status=pending
+- [2026-04-28 16:47:41 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=8/200 train_episode_reward=-1.688972 val_status=pending test_status=pending
+- [2026-04-28 16:47:49 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=9/200 train_episode_reward=-7.194463 val_status=pending test_status=pending
+- [2026-04-28 16:47:57 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=10/200 train_episode_reward=-6.108672 val_status=pending test_status=pending
+- [2026-04-28 16:48:07 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=10/200 train_episode_reward=-6.108672 val_mean_reward=-1.515059 test_status=pending
+- [2026-04-28 16:48:14 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=11/200 train_episode_reward=-2.211651 val_status=pending test_status=pending
+- [2026-04-28 16:48:21 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=12/200 train_episode_reward=-6.086865 val_status=pending test_status=pending
+- [2026-04-28 16:48:28 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=13/200 train_episode_reward=-4.496665 val_status=pending test_status=pending
+- [2026-04-28 16:48:35 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=14/200 train_episode_reward=-2.071378 val_status=pending test_status=pending
+- [2026-04-28 16:48:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=15/200 train_episode_reward=-2.985170 val_status=pending test_status=pending
+- [2026-04-28 16:48:50 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=16/200 train_episode_reward=-7.830731 val_status=pending test_status=pending
+- [2026-04-28 16:48:57 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=17/200 train_episode_reward=-3.900867 val_status=pending test_status=pending
+- [2026-04-28 16:49:04 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=18/200 train_episode_reward=-2.449334 val_status=pending test_status=pending
+- [2026-04-28 16:49:11 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=19/200 train_episode_reward=-7.846073 val_status=pending test_status=pending
+- [2026-04-28 16:49:17 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=20/200 train_episode_reward=-7.158845 val_status=pending test_status=pending
+- [2026-04-28 16:49:26 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=20/200 train_episode_reward=-7.158845 val_mean_reward=-0.617907 test_status=pending
+- [2026-04-28 16:49:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=21/200 train_episode_reward=-3.350199 val_status=pending test_status=pending
+- [2026-04-28 16:49:36 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=22/200 train_episode_reward=-4.065534 val_status=pending test_status=pending
+- [2026-04-28 16:49:41 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=23/200 train_episode_reward=-7.188523 val_status=pending test_status=pending
+- [2026-04-28 16:49:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=24/200 train_episode_reward=-4.447319 val_status=pending test_status=pending
+- [2026-04-28 16:49:48 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=25/200 train_episode_reward=-5.045685 val_status=pending test_status=pending
+- [2026-04-28 16:49:51 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=26/200 train_episode_reward=-3.386447 val_status=pending test_status=pending
+- [2026-04-28 16:49:53 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=27/200 train_episode_reward=-3.699673 val_status=pending test_status=pending
+- [2026-04-28 16:49:55 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=28/200 train_episode_reward=-3.338989 val_status=pending test_status=pending
+- [2026-04-28 16:49:58 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=29/200 train_episode_reward=-3.730284 val_status=pending test_status=pending
+- [2026-04-28 16:50:01 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=30/200 train_episode_reward=-2.978885 val_status=pending test_status=pending
+- [2026-04-28 16:50:05 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=30/200 train_episode_reward=-2.978885 val_mean_reward=-0.944315 test_status=pending
+- [2026-04-28 16:50:08 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=31/200 train_episode_reward=-7.102436 val_status=pending test_status=pending
+- [2026-04-28 16:50:12 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=32/200 train_episode_reward=-11.677962 val_status=pending test_status=pending
+- [2026-04-28 16:50:16 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=33/200 train_episode_reward=-7.228481 val_status=pending test_status=pending
+- [2026-04-28 16:50:20 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=34/200 train_episode_reward=-5.612987 val_status=pending test_status=pending
+- [2026-04-28 16:50:25 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=35/200 train_episode_reward=-4.294471 val_status=pending test_status=pending
+- [2026-04-28 16:50:30 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=36/200 train_episode_reward=-5.029979 val_status=pending test_status=pending
+- [2026-04-28 16:50:34 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=37/200 train_episode_reward=-3.487582 val_status=pending test_status=pending
+- [2026-04-28 16:50:39 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=38/200 train_episode_reward=-2.554490 val_status=pending test_status=pending
+- [2026-04-28 16:50:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=39/200 train_episode_reward=-1.715101 val_status=pending test_status=pending
+- [2026-04-28 16:50:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=40/200 train_episode_reward=-8.806076 val_status=pending test_status=pending
+- [2026-04-28 16:50:47 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=40/200 train_episode_reward=-8.806076 val_mean_reward=-1.122998 test_status=pending
+- [2026-04-28 16:50:49 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=41/200 train_episode_reward=-4.807974 val_status=pending test_status=pending
+- [2026-04-28 16:50:50 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=42/200 train_episode_reward=-3.059133 val_status=pending test_status=pending
+- [2026-04-28 16:50:52 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=43/200 train_episode_reward=-5.619687 val_status=pending test_status=pending
+- [2026-04-28 16:50:54 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=44/200 train_episode_reward=-2.531958 val_status=pending test_status=pending
+- [2026-04-28 16:50:56 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=45/200 train_episode_reward=-4.403041 val_status=pending test_status=pending
+- [2026-04-28 16:50:58 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=46/200 train_episode_reward=-1.391468 val_status=pending test_status=pending
+- [2026-04-28 16:51:01 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=47/200 train_episode_reward=-5.352854 val_status=pending test_status=pending
+- [2026-04-28 16:51:03 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=48/200 train_episode_reward=-1.225096 val_status=pending test_status=pending
+- [2026-04-28 16:51:05 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=49/200 train_episode_reward=-3.072883 val_status=pending test_status=pending
+- [2026-04-28 16:51:07 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=50/200 train_episode_reward=-8.968858 val_status=pending test_status=pending
+- [2026-04-28 16:51:11 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=50/200 train_episode_reward=-8.968858 val_mean_reward=-1.125004 test_status=pending
+- [2026-04-28 16:51:15 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=51/200 train_episode_reward=-2.714029 val_status=pending test_status=pending
+- [2026-04-28 16:51:20 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=52/200 train_episode_reward=-1.815940 val_status=pending test_status=pending
+- [2026-04-28 16:51:23 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=53/200 train_episode_reward=-23.012335 val_status=pending test_status=pending
+- [2026-04-28 16:51:27 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=54/200 train_episode_reward=-3.028295 val_status=pending test_status=pending
+- [2026-04-28 16:51:29 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=55/200 train_episode_reward=-10.071923 val_status=pending test_status=pending
+- [2026-04-28 16:51:30 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=56/200 train_episode_reward=-5.097511 val_status=pending test_status=pending
+- [2026-04-28 16:51:32 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=57/200 train_episode_reward=-4.655663 val_status=pending test_status=pending
+- [2026-04-28 16:51:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=58/200 train_episode_reward=-2.711343 val_status=pending test_status=pending
+- [2026-04-28 16:51:35 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=59/200 train_episode_reward=-1.433139 val_status=pending test_status=pending
+- [2026-04-28 16:51:36 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=60/200 train_episode_reward=-3.100665 val_status=pending test_status=pending
+- [2026-04-28 16:51:39 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=60/200 train_episode_reward=-3.100665 val_mean_reward=-1.122161 test_status=pending
+- [2026-04-28 16:51:40 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=61/200 train_episode_reward=-2.079782 val_status=pending test_status=pending
+- [2026-04-28 16:51:42 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=62/200 train_episode_reward=-5.539294 val_status=pending test_status=pending
+- [2026-04-28 16:51:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=63/200 train_episode_reward=-1.545032 val_status=pending test_status=pending
+- [2026-04-28 16:51:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=64/200 train_episode_reward=-5.032038 val_status=pending test_status=pending
+- [2026-04-28 16:51:46 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=65/200 train_episode_reward=-3.848361 val_status=pending test_status=pending
+- [2026-04-28 16:51:47 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=66/200 train_episode_reward=-2.239259 val_status=pending test_status=pending
+- [2026-04-28 16:51:49 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=67/200 train_episode_reward=-7.734835 val_status=pending test_status=pending
+- [2026-04-28 16:51:50 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=68/200 train_episode_reward=-3.404565 val_status=pending test_status=pending
+- [2026-04-28 16:51:52 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=69/200 train_episode_reward=-7.605970 val_status=pending test_status=pending
+- [2026-04-28 16:51:53 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=70/200 train_episode_reward=-4.685746 val_status=pending test_status=pending
+- [2026-04-28 16:51:55 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=70/200 train_episode_reward=-4.685746 val_mean_reward=-1.547321 test_status=pending
+- [2026-04-28 16:51:56 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=71/200 train_episode_reward=-1.043541 val_status=pending test_status=pending
+- [2026-04-28 16:51:58 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=72/200 train_episode_reward=-4.554618 val_status=pending test_status=pending
+- [2026-04-28 16:51:59 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=73/200 train_episode_reward=-3.020164 val_status=pending test_status=pending
+- [2026-04-28 16:52:01 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=74/200 train_episode_reward=-3.836686 val_status=pending test_status=pending
+- [2026-04-28 16:52:02 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=75/200 train_episode_reward=-2.990284 val_status=pending test_status=pending
+- [2026-04-28 16:52:04 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=76/200 train_episode_reward=-5.204119 val_status=pending test_status=pending
+- [2026-04-28 16:52:05 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=77/200 train_episode_reward=-2.000702 val_status=pending test_status=pending
+- [2026-04-28 16:52:07 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=78/200 train_episode_reward=-9.288052 val_status=pending test_status=pending
+- [2026-04-28 16:52:08 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=79/200 train_episode_reward=-1.663379 val_status=pending test_status=pending
+- [2026-04-28 16:52:09 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=80/200 train_episode_reward=-10.315478 val_status=pending test_status=pending
+- [2026-04-28 16:52:11 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=80/200 train_episode_reward=-10.315478 val_mean_reward=-0.635671 test_status=pending
+- [2026-04-28 16:52:13 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=81/200 train_episode_reward=-2.834001 val_status=pending test_status=pending
+- [2026-04-28 16:52:14 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=82/200 train_episode_reward=-7.625558 val_status=pending test_status=pending
+- [2026-04-28 16:52:16 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=83/200 train_episode_reward=-3.073351 val_status=pending test_status=pending
+- [2026-04-28 16:52:17 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=84/200 train_episode_reward=-19.167827 val_status=pending test_status=pending
+- [2026-04-28 16:52:19 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=85/200 train_episode_reward=-4.563937 val_status=pending test_status=pending
+- [2026-04-28 16:52:20 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=86/200 train_episode_reward=-4.761137 val_status=pending test_status=pending
+- [2026-04-28 16:52:22 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=87/200 train_episode_reward=-4.753476 val_status=pending test_status=pending
+- [2026-04-28 16:52:23 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=88/200 train_episode_reward=-2.465248 val_status=pending test_status=pending
+- [2026-04-28 16:52:25 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=89/200 train_episode_reward=-11.038940 val_status=pending test_status=pending
+- [2026-04-28 16:52:26 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=90/200 train_episode_reward=-14.300873 val_status=pending test_status=pending
+- [2026-04-28 16:52:31 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=90/200 train_episode_reward=-14.300873 val_mean_reward=-1.307118 test_status=pending
+- [2026-04-28 16:52:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=91/200 train_episode_reward=-4.206619 val_status=pending test_status=pending
+- [2026-04-28 16:52:36 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=92/200 train_episode_reward=-4.303858 val_status=pending test_status=pending
+- [2026-04-28 16:52:38 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=93/200 train_episode_reward=-25.739093 val_status=pending test_status=pending
+- [2026-04-28 16:52:41 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=94/200 train_episode_reward=-6.484710 val_status=pending test_status=pending
+- [2026-04-28 16:52:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=95/200 train_episode_reward=-9.516449 val_status=pending test_status=pending
+- [2026-04-28 16:52:46 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=96/200 train_episode_reward=-5.899230 val_status=pending test_status=pending
+- [2026-04-28 16:52:48 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=97/200 train_episode_reward=-6.196385 val_status=pending test_status=pending
+- [2026-04-28 16:52:51 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=98/200 train_episode_reward=-4.682172 val_status=pending test_status=pending
+- [2026-04-28 16:52:53 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=99/200 train_episode_reward=-5.382280 val_status=pending test_status=pending
+- [2026-04-28 16:52:56 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=100/200 train_episode_reward=-3.726174 val_status=pending test_status=pending
+- [2026-04-28 16:53:00 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=100/200 train_episode_reward=-3.726174 val_mean_reward=-0.957706 test_status=pending
+- [2026-04-28 16:53:02 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=101/200 train_episode_reward=-4.143658 val_status=pending test_status=pending
+- [2026-04-28 16:53:05 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=102/200 train_episode_reward=-2.135109 val_status=pending test_status=pending
+- [2026-04-28 16:53:08 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=103/200 train_episode_reward=-10.307817 val_status=pending test_status=pending
+- [2026-04-28 16:53:10 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=104/200 train_episode_reward=-7.091524 val_status=pending test_status=pending
+- [2026-04-28 16:53:13 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=105/200 train_episode_reward=-11.717396 val_status=pending test_status=pending
+- [2026-04-28 16:53:16 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=106/200 train_episode_reward=-6.157938 val_status=pending test_status=pending
+- [2026-04-28 16:53:18 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=107/200 train_episode_reward=-2.272886 val_status=pending test_status=pending
+- [2026-04-28 16:53:21 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=108/200 train_episode_reward=-4.859767 val_status=pending test_status=pending
+- [2026-04-28 16:53:23 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=109/200 train_episode_reward=-2.160829 val_status=pending test_status=pending
+- [2026-04-28 16:53:26 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=110/200 train_episode_reward=-1.887437 val_status=pending test_status=pending
+- [2026-04-28 16:53:30 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=110/200 train_episode_reward=-1.887437 val_mean_reward=-0.833014 test_status=pending
+- [2026-04-28 16:53:32 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=111/200 train_episode_reward=-3.713013 val_status=pending test_status=pending
+- [2026-04-28 16:53:35 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=112/200 train_episode_reward=-14.378723 val_status=pending test_status=pending
+- [2026-04-28 16:53:37 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=113/200 train_episode_reward=-8.839183 val_status=pending test_status=pending
+- [2026-04-28 16:53:40 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=114/200 train_episode_reward=-6.432530 val_status=pending test_status=pending
+- [2026-04-28 16:53:42 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=115/200 train_episode_reward=-2.113822 val_status=pending test_status=pending
+- [2026-04-28 16:53:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=116/200 train_episode_reward=-3.774338 val_status=pending test_status=pending
+- [2026-04-28 16:53:48 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=117/200 train_episode_reward=-4.536761 val_status=pending test_status=pending
+- [2026-04-28 16:53:50 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=118/200 train_episode_reward=-4.061137 val_status=pending test_status=pending
+- [2026-04-28 16:53:53 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=119/200 train_episode_reward=-2.351220 val_status=pending test_status=pending
+- [2026-04-28 16:53:55 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=120/200 train_episode_reward=-2.486303 val_status=pending test_status=pending
+- [2026-04-28 16:53:59 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=120/200 train_episode_reward=-2.486303 val_mean_reward=-0.940519 test_status=pending
+- [2026-04-28 16:54:01 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=121/200 train_episode_reward=-10.674432 val_status=pending test_status=pending
+- [2026-04-28 16:54:04 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=122/200 train_episode_reward=-3.344833 val_status=pending test_status=pending
+- [2026-04-28 16:54:06 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=123/200 train_episode_reward=-2.570062 val_status=pending test_status=pending
+- [2026-04-28 16:54:09 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=124/200 train_episode_reward=-2.771742 val_status=pending test_status=pending
+- [2026-04-28 16:54:11 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=125/200 train_episode_reward=-9.318066 val_status=pending test_status=pending
+- [2026-04-28 16:54:14 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=126/200 train_episode_reward=-8.013564 val_status=pending test_status=pending
+- [2026-04-28 16:54:17 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=127/200 train_episode_reward=-1.613909 val_status=pending test_status=pending
+- [2026-04-28 16:54:19 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=128/200 train_episode_reward=-11.317460 val_status=pending test_status=pending
+- [2026-04-28 16:54:22 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=129/200 train_episode_reward=-16.663676 val_status=pending test_status=pending
+- [2026-04-28 16:54:24 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=130/200 train_episode_reward=-3.134436 val_status=pending test_status=pending
+- [2026-04-28 16:54:28 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=130/200 train_episode_reward=-3.134436 val_mean_reward=-1.435624 test_status=pending
+- [2026-04-28 16:54:31 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=131/200 train_episode_reward=-3.666155 val_status=pending test_status=pending
+- [2026-04-28 16:54:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=132/200 train_episode_reward=-4.813676 val_status=pending test_status=pending
+- [2026-04-28 16:54:36 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=133/200 train_episode_reward=-3.807672 val_status=pending test_status=pending
+- [2026-04-28 16:54:38 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=134/200 train_episode_reward=-4.827381 val_status=pending test_status=pending
+- [2026-04-28 16:54:41 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=135/200 train_episode_reward=-4.272515 val_status=pending test_status=pending
+- [2026-04-28 16:54:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=136/200 train_episode_reward=-4.137875 val_status=pending test_status=pending
+- [2026-04-28 16:54:46 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=137/200 train_episode_reward=-3.353382 val_status=pending test_status=pending
+- [2026-04-28 16:54:48 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=138/200 train_episode_reward=-4.390735 val_status=pending test_status=pending
+- [2026-04-28 16:54:51 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=139/200 train_episode_reward=-3.787515 val_status=pending test_status=pending
+- [2026-04-28 16:54:53 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=140/200 train_episode_reward=-4.470193 val_status=pending test_status=pending
+- [2026-04-28 16:54:57 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=140/200 train_episode_reward=-4.470193 val_mean_reward=-0.889705 test_status=pending
+- [2026-04-28 16:55:00 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=141/200 train_episode_reward=-4.957425 val_status=pending test_status=pending
+- [2026-04-28 16:55:02 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=142/200 train_episode_reward=-7.807550 val_status=pending test_status=pending
+- [2026-04-28 16:55:05 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=143/200 train_episode_reward=-2.142116 val_status=pending test_status=pending
+- [2026-04-28 16:55:07 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=144/200 train_episode_reward=-3.200069 val_status=pending test_status=pending
+- [2026-04-28 16:55:09 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=145/200 train_episode_reward=-1.334787 val_status=pending test_status=pending
+- [2026-04-28 16:55:12 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=146/200 train_episode_reward=-3.709281 val_status=pending test_status=pending
+- [2026-04-28 16:55:14 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=147/200 train_episode_reward=-1.494749 val_status=pending test_status=pending
+- [2026-04-28 16:55:17 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=148/200 train_episode_reward=-5.010579 val_status=pending test_status=pending
+- [2026-04-28 16:55:19 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=149/200 train_episode_reward=-4.224115 val_status=pending test_status=pending
+- [2026-04-28 16:55:22 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=150/200 train_episode_reward=-4.927578 val_status=pending test_status=pending
+- [2026-04-28 16:55:26 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=150/200 train_episode_reward=-4.927578 val_mean_reward=-1.034697 test_status=pending
+- [2026-04-28 16:55:28 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=151/200 train_episode_reward=-3.733891 val_status=pending test_status=pending
+- [2026-04-28 16:55:31 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=152/200 train_episode_reward=-3.105237 val_status=pending test_status=pending
+- [2026-04-28 16:55:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=153/200 train_episode_reward=-4.597817 val_status=pending test_status=pending
+- [2026-04-28 16:55:36 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=154/200 train_episode_reward=-3.012676 val_status=pending test_status=pending
+- [2026-04-28 16:55:38 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=155/200 train_episode_reward=-1.879359 val_status=pending test_status=pending
+- [2026-04-28 16:55:41 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=156/200 train_episode_reward=-2.841746 val_status=pending test_status=pending
+- [2026-04-28 16:55:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=157/200 train_episode_reward=-3.375699 val_status=pending test_status=pending
+- [2026-04-28 16:55:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=158/200 train_episode_reward=-2.318949 val_status=pending test_status=pending
+- [2026-04-28 16:55:48 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=159/200 train_episode_reward=-9.721426 val_status=pending test_status=pending
+- [2026-04-28 16:55:50 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=160/200 train_episode_reward=-2.440367 val_status=pending test_status=pending
+- [2026-04-28 16:55:54 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=160/200 train_episode_reward=-2.440367 val_mean_reward=-2.146638 test_status=pending
+- [2026-04-28 16:55:57 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=161/200 train_episode_reward=-3.688021 val_status=pending test_status=pending
+- [2026-04-28 16:55:59 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=162/200 train_episode_reward=-2.352647 val_status=pending test_status=pending
+- [2026-04-28 16:56:02 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=163/200 train_episode_reward=-2.746847 val_status=pending test_status=pending
+- [2026-04-28 16:56:04 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=164/200 train_episode_reward=-3.710226 val_status=pending test_status=pending
+- [2026-04-28 16:56:06 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=165/200 train_episode_reward=-8.191753 val_status=pending test_status=pending
+- [2026-04-28 16:56:09 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=166/200 train_episode_reward=-3.945890 val_status=pending test_status=pending
+- [2026-04-28 16:56:11 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=167/200 train_episode_reward=-18.287920 val_status=pending test_status=pending
+- [2026-04-28 16:56:14 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=168/200 train_episode_reward=-4.125836 val_status=pending test_status=pending
+- [2026-04-28 16:56:16 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=169/200 train_episode_reward=-4.215399 val_status=pending test_status=pending
+- [2026-04-28 16:56:19 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=170/200 train_episode_reward=-16.133986 val_status=pending test_status=pending
+- [2026-04-28 16:56:23 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=170/200 train_episode_reward=-16.133986 val_mean_reward=-1.109523 test_status=pending
+- [2026-04-28 16:56:25 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=171/200 train_episode_reward=-2.029907 val_status=pending test_status=pending
+- [2026-04-28 16:56:28 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=172/200 train_episode_reward=-0.541142 val_status=pending test_status=pending
+- [2026-04-28 16:56:30 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=173/200 train_episode_reward=-4.411443 val_status=pending test_status=pending
+- [2026-04-28 16:56:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=174/200 train_episode_reward=-2.785117 val_status=pending test_status=pending
+- [2026-04-28 16:56:35 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=175/200 train_episode_reward=-3.354209 val_status=pending test_status=pending
+- [2026-04-28 16:56:38 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=176/200 train_episode_reward=-2.596789 val_status=pending test_status=pending
+- [2026-04-28 16:56:40 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=177/200 train_episode_reward=-3.005699 val_status=pending test_status=pending
+- [2026-04-28 16:56:43 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=178/200 train_episode_reward=-3.203136 val_status=pending test_status=pending
+- [2026-04-28 16:56:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=179/200 train_episode_reward=-2.495769 val_status=pending test_status=pending
+- [2026-04-28 16:56:48 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=180/200 train_episode_reward=-2.523869 val_status=pending test_status=pending
+- [2026-04-28 16:56:52 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=180/200 train_episode_reward=-2.523869 val_mean_reward=-1.180995 test_status=pending
+- [2026-04-28 16:56:54 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=181/200 train_episode_reward=-3.244508 val_status=pending test_status=pending
+- [2026-04-28 16:56:56 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=182/200 train_episode_reward=-3.288549 val_status=pending test_status=pending
+- [2026-04-28 16:56:59 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=183/200 train_episode_reward=-8.997983 val_status=pending test_status=pending
+- [2026-04-28 16:57:01 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=184/200 train_episode_reward=-11.438073 val_status=pending test_status=pending
+- [2026-04-28 16:57:04 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=185/200 train_episode_reward=-3.395180 val_status=pending test_status=pending
+- [2026-04-28 16:57:06 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=186/200 train_episode_reward=-6.536110 val_status=pending test_status=pending
+- [2026-04-28 16:57:09 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=187/200 train_episode_reward=-1.949623 val_status=pending test_status=pending
+- [2026-04-28 16:57:11 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=188/200 train_episode_reward=-2.398388 val_status=pending test_status=pending
+- [2026-04-28 16:57:14 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=189/200 train_episode_reward=-2.316477 val_status=pending test_status=pending
+- [2026-04-28 16:57:16 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=190/200 train_episode_reward=-2.221462 val_status=pending test_status=pending
+- [2026-04-28 16:57:20 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=190/200 train_episode_reward=-2.221462 val_mean_reward=-0.910452 test_status=pending
+- [2026-04-28 16:57:22 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=191/200 train_episode_reward=-7.368939 val_status=pending test_status=pending
+- [2026-04-28 16:57:25 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=192/200 train_episode_reward=-3.714694 val_status=pending test_status=pending
+- [2026-04-28 16:57:28 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=193/200 train_episode_reward=-6.318348 val_status=pending test_status=pending
+- [2026-04-28 16:57:30 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=194/200 train_episode_reward=-7.773333 val_status=pending test_status=pending
+- [2026-04-28 16:57:33 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=195/200 train_episode_reward=-1.872571 val_status=pending test_status=pending
+- [2026-04-28 16:57:35 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=196/200 train_episode_reward=-3.692707 val_status=pending test_status=pending
+- [2026-04-28 16:57:37 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=197/200 train_episode_reward=-3.761538 val_status=pending test_status=pending
+- [2026-04-28 16:57:40 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=198/200 train_episode_reward=-3.848923 val_status=pending test_status=pending
+- [2026-04-28 16:57:42 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=199/200 train_episode_reward=-4.409931 val_status=pending test_status=pending
+- [2026-04-28 16:57:45 UTC+7] model=PPO_MM_v1 stage=EPISODE epoch=200/200 train_episode_reward=-6.220195 val_status=pending test_status=pending
+- [2026-04-28 16:57:49 UTC+7] model=PPO_MM_v1 stage=VALIDATION epoch=200/200 train_episode_reward=-6.220195 val_mean_reward=-0.976465 test_status=pending
+- [2026-04-28 16:57:52 UTC+7] model=PPO_MM_v1 stage=FINAL train_mean_reward=-5.145815 val_best_mean_reward=-0.617907 test_mean_reward=-1.055623 test_sharpe=-123.912631 test_max_drawdown=1.000000
+- [2026-04-28 16:57:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=1 train_episode_reward=-1.668187 val_status=pending test_status=pending
+- [2026-04-28 16:57:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=2 train_episode_reward=-8.285118 val_status=pending test_status=pending
+- [2026-04-28 16:57:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=3 train_episode_reward=-0.593641 val_status=pending test_status=pending
+- [2026-04-28 16:57:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=4 train_episode_reward=-5.629221 val_status=pending test_status=pending
+- [2026-04-28 16:57:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=5 train_episode_reward=-0.222509 val_status=pending test_status=pending
+- [2026-04-28 16:57:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=6 train_episode_reward=-4.877800 val_status=pending test_status=pending
+- [2026-04-28 16:57:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=7 train_episode_reward=-2.432382 val_status=pending test_status=pending
+- [2026-04-28 16:57:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=8 train_episode_reward=-0.335242 val_status=pending test_status=pending
+- [2026-04-28 16:58:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=9 train_episode_reward=-1.752893 val_status=pending test_status=pending
+- [2026-04-28 16:58:01 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=10 train_episode_reward=-0.508191 val_status=pending test_status=pending
+- [2026-04-28 16:58:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=11 train_episode_reward=-0.554391 val_status=pending test_status=pending
+- [2026-04-28 16:58:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=12 train_episode_reward=-0.483195 val_status=pending test_status=pending
+- [2026-04-28 16:58:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=13 train_episode_reward=-0.455093 val_status=pending test_status=pending
+- [2026-04-28 16:58:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=14 train_episode_reward=-2.718067 val_status=pending test_status=pending
+- [2026-04-28 16:58:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=15 train_episode_reward=-0.333694 val_status=pending test_status=pending
+- [2026-04-28 16:58:46 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=3000 val_mean_reward=-1.194847 alpha=0.004637 test_status=pending
+- [2026-04-28 16:58:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=16 train_episode_reward=-2.022597 val_status=pending test_status=pending
+- [2026-04-28 16:59:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=17 train_episode_reward=-0.667942 val_status=pending test_status=pending
+- [2026-04-28 16:59:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=18 train_episode_reward=-1.322186 val_status=pending test_status=pending
+- [2026-04-28 16:59:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=19 train_episode_reward=-3.965980 val_status=pending test_status=pending
+- [2026-04-28 16:59:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=20 train_episode_reward=-0.765663 val_status=pending test_status=pending
+- [2026-04-28 16:59:34 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=4000 val_mean_reward=-0.766332 alpha=0.000014 test_status=pending
+- [2026-04-28 16:59:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=21 train_episode_reward=-1.834541 val_status=pending test_status=pending
+- [2026-04-28 16:59:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=22 train_episode_reward=-1.169106 val_status=pending test_status=pending
+- [2026-04-28 16:59:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=23 train_episode_reward=-5.709263 val_status=pending test_status=pending
+- [2026-04-28 17:00:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=24 train_episode_reward=-1.304907 val_status=pending test_status=pending
+- [2026-04-28 17:00:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=25 train_episode_reward=-0.390494 val_status=pending test_status=pending
+- [2026-04-28 17:00:21 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=5000 val_mean_reward=-1.114843 alpha=0.000000 test_status=pending
+- [2026-04-28 17:00:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=26 train_episode_reward=-7.845281 val_status=pending test_status=pending
+- [2026-04-28 17:00:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=27 train_episode_reward=-0.452681 val_status=pending test_status=pending
+- [2026-04-28 17:00:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=28 train_episode_reward=-3.112296 val_status=pending test_status=pending
+- [2026-04-28 17:00:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=29 train_episode_reward=-2.227639 val_status=pending test_status=pending
+- [2026-04-28 17:01:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=30 train_episode_reward=-1.220625 val_status=pending test_status=pending
+- [2026-04-28 17:01:08 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=6000 val_mean_reward=-1.147402 alpha=0.000000 test_status=pending
+- [2026-04-28 17:01:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=31 train_episode_reward=-0.511581 val_status=pending test_status=pending
+- [2026-04-28 17:01:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=32 train_episode_reward=-1.517482 val_status=pending test_status=pending
+- [2026-04-28 17:01:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=33 train_episode_reward=-2.676508 val_status=pending test_status=pending
+- [2026-04-28 17:01:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=34 train_episode_reward=-0.673675 val_status=pending test_status=pending
+- [2026-04-28 17:01:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=35 train_episode_reward=-1.794975 val_status=pending test_status=pending
+- [2026-04-28 17:01:54 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=7000 val_mean_reward=-1.018233 alpha=0.000000 test_status=pending
+- [2026-04-28 17:02:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=36 train_episode_reward=-1.340345 val_status=pending test_status=pending
+- [2026-04-28 17:02:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=37 train_episode_reward=-1.947908 val_status=pending test_status=pending
+- [2026-04-28 17:02:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=38 train_episode_reward=-4.261527 val_status=pending test_status=pending
+- [2026-04-28 17:02:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=39 train_episode_reward=-1.971562 val_status=pending test_status=pending
+- [2026-04-28 17:02:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=40 train_episode_reward=-1.190749 val_status=pending test_status=pending
+- [2026-04-28 17:02:40 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=8000 val_mean_reward=-1.506950 alpha=0.000000 test_status=pending
+- [2026-04-28 17:02:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=41 train_episode_reward=-3.002474 val_status=pending test_status=pending
+- [2026-04-28 17:02:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=42 train_episode_reward=-2.086630 val_status=pending test_status=pending
+- [2026-04-28 17:03:05 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=43 train_episode_reward=-0.605983 val_status=pending test_status=pending
+- [2026-04-28 17:03:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=44 train_episode_reward=-2.239607 val_status=pending test_status=pending
+- [2026-04-28 17:03:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=45 train_episode_reward=-1.011300 val_status=pending test_status=pending
+- [2026-04-28 17:03:26 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=9000 val_mean_reward=-0.882097 alpha=0.000000 test_status=pending
+- [2026-04-28 17:03:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=46 train_episode_reward=-1.388215 val_status=pending test_status=pending
+- [2026-04-28 17:03:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=47 train_episode_reward=-3.219982 val_status=pending test_status=pending
+- [2026-04-28 17:03:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=48 train_episode_reward=-2.367599 val_status=pending test_status=pending
+- [2026-04-28 17:04:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=49 train_episode_reward=-2.383097 val_status=pending test_status=pending
+- [2026-04-28 17:04:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=50 train_episode_reward=-2.238106 val_status=pending test_status=pending
+- [2026-04-28 17:04:12 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=10000 val_mean_reward=-0.912613 alpha=0.000000 test_status=pending
+- [2026-04-28 17:04:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=51 train_episode_reward=-1.402060 val_status=pending test_status=pending
+- [2026-04-28 17:04:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=52 train_episode_reward=0.625025 val_status=pending test_status=pending
+- [2026-04-28 17:04:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=53 train_episode_reward=-2.348747 val_status=pending test_status=pending
+- [2026-04-28 17:04:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=54 train_episode_reward=-1.307677 val_status=pending test_status=pending
+- [2026-04-28 17:04:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=55 train_episode_reward=-0.285599 val_status=pending test_status=pending
+- [2026-04-28 17:04:36 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=11000 val_mean_reward=-0.971822 alpha=0.000000 test_status=pending
+- [2026-04-28 17:04:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=56 train_episode_reward=-1.646611 val_status=pending test_status=pending
+- [2026-04-28 17:04:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=57 train_episode_reward=-2.276292 val_status=pending test_status=pending
+- [2026-04-28 17:04:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=58 train_episode_reward=-1.002754 val_status=pending test_status=pending
+- [2026-04-28 17:04:52 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=59 train_episode_reward=-1.106786 val_status=pending test_status=pending
+- [2026-04-28 17:04:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=60 train_episode_reward=-5.443263 val_status=pending test_status=pending
+- [2026-04-28 17:04:58 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=12000 val_mean_reward=-0.977579 alpha=0.000000 test_status=pending
+- [2026-04-28 17:05:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=61 train_episode_reward=-2.633062 val_status=pending test_status=pending
+- [2026-04-28 17:05:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=62 train_episode_reward=-5.008271 val_status=pending test_status=pending
+- [2026-04-28 17:05:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=63 train_episode_reward=-0.776788 val_status=pending test_status=pending
+- [2026-04-28 17:05:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=64 train_episode_reward=-1.444087 val_status=pending test_status=pending
+- [2026-04-28 17:05:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=65 train_episode_reward=-0.531539 val_status=pending test_status=pending
+- [2026-04-28 17:05:43 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=13000 val_mean_reward=-1.258532 alpha=0.000000 test_status=pending
+- [2026-04-28 17:05:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=66 train_episode_reward=-0.852689 val_status=pending test_status=pending
+- [2026-04-28 17:05:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=67 train_episode_reward=-0.160531 val_status=pending test_status=pending
+- [2026-04-28 17:06:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=68 train_episode_reward=-1.079330 val_status=pending test_status=pending
+- [2026-04-28 17:06:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=69 train_episode_reward=-4.851857 val_status=pending test_status=pending
+- [2026-04-28 17:06:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=70 train_episode_reward=-0.834945 val_status=pending test_status=pending
+- [2026-04-28 17:06:29 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=14000 val_mean_reward=-1.113488 alpha=0.000000 test_status=pending
+- [2026-04-28 17:06:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=71 train_episode_reward=-1.746983 val_status=pending test_status=pending
+- [2026-04-28 17:06:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=72 train_episode_reward=-2.695595 val_status=pending test_status=pending
+- [2026-04-28 17:06:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=73 train_episode_reward=-5.162187 val_status=pending test_status=pending
+- [2026-04-28 17:07:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=74 train_episode_reward=-5.920434 val_status=pending test_status=pending
+- [2026-04-28 17:07:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=75 train_episode_reward=-1.093874 val_status=pending test_status=pending
+- [2026-04-28 17:07:16 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=15000 val_mean_reward=-1.528221 alpha=0.000000 test_status=pending
+- [2026-04-28 17:07:24 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=76 train_episode_reward=-1.078773 val_status=pending test_status=pending
+- [2026-04-28 17:07:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=77 train_episode_reward=-1.478461 val_status=pending test_status=pending
+- [2026-04-28 17:07:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=78 train_episode_reward=-4.744138 val_status=pending test_status=pending
+- [2026-04-28 17:07:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=79 train_episode_reward=-0.820961 val_status=pending test_status=pending
+- [2026-04-28 17:07:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=80 train_episode_reward=-0.972158 val_status=pending test_status=pending
+- [2026-04-28 17:08:02 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=16000 val_mean_reward=-1.160885 alpha=0.000000 test_status=pending
+- [2026-04-28 17:08:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=81 train_episode_reward=-4.576262 val_status=pending test_status=pending
+- [2026-04-28 17:08:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=82 train_episode_reward=-1.462938 val_status=pending test_status=pending
+- [2026-04-28 17:08:28 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=83 train_episode_reward=-1.063835 val_status=pending test_status=pending
+- [2026-04-28 17:08:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=84 train_episode_reward=-0.961822 val_status=pending test_status=pending
+- [2026-04-28 17:08:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=85 train_episode_reward=-4.141905 val_status=pending test_status=pending
+- [2026-04-28 17:08:49 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=17000 val_mean_reward=-1.060570 alpha=0.000000 test_status=pending
+- [2026-04-28 17:08:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=86 train_episode_reward=-1.938903 val_status=pending test_status=pending
+- [2026-04-28 17:09:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=87 train_episode_reward=-2.873700 val_status=pending test_status=pending
+- [2026-04-28 17:09:15 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=88 train_episode_reward=-2.829120 val_status=pending test_status=pending
+- [2026-04-28 17:09:24 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=89 train_episode_reward=-1.314736 val_status=pending test_status=pending
+- [2026-04-28 17:09:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=90 train_episode_reward=-1.258172 val_status=pending test_status=pending
+- [2026-04-28 17:09:37 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=18000 val_mean_reward=-1.159992 alpha=0.000000 test_status=pending
+- [2026-04-28 17:09:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=91 train_episode_reward=-0.628912 val_status=pending test_status=pending
+- [2026-04-28 17:09:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=92 train_episode_reward=-0.531182 val_status=pending test_status=pending
+- [2026-04-28 17:10:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=93 train_episode_reward=-1.716582 val_status=pending test_status=pending
+- [2026-04-28 17:10:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=94 train_episode_reward=-0.778103 val_status=pending test_status=pending
+- [2026-04-28 17:10:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=95 train_episode_reward=-2.221416 val_status=pending test_status=pending
+- [2026-04-28 17:10:24 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=19000 val_mean_reward=-1.493983 alpha=0.000000 test_status=pending
+- [2026-04-28 17:10:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=96 train_episode_reward=-0.782801 val_status=pending test_status=pending
+- [2026-04-28 17:10:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=97 train_episode_reward=-1.107798 val_status=pending test_status=pending
+- [2026-04-28 17:10:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=98 train_episode_reward=-4.338379 val_status=pending test_status=pending
+- [2026-04-28 17:10:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=99 train_episode_reward=-1.004889 val_status=pending test_status=pending
+- [2026-04-28 17:11:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=100 train_episode_reward=-2.822970 val_status=pending test_status=pending
+- [2026-04-28 17:11:12 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=20000 val_mean_reward=-1.038835 alpha=0.000000 test_status=pending
+- [2026-04-28 17:11:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=101 train_episode_reward=-1.421502 val_status=pending test_status=pending
+- [2026-04-28 17:11:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=102 train_episode_reward=-3.679906 val_status=pending test_status=pending
+- [2026-04-28 17:11:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=103 train_episode_reward=-1.882707 val_status=pending test_status=pending
+- [2026-04-28 17:11:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=104 train_episode_reward=-3.273167 val_status=pending test_status=pending
+- [2026-04-28 17:11:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=105 train_episode_reward=-0.459753 val_status=pending test_status=pending
+- [2026-04-28 17:11:59 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=21000 val_mean_reward=-1.067213 alpha=0.000000 test_status=pending
+- [2026-04-28 17:12:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=106 train_episode_reward=-1.614995 val_status=pending test_status=pending
+- [2026-04-28 17:12:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=107 train_episode_reward=-0.459607 val_status=pending test_status=pending
+- [2026-04-28 17:12:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=108 train_episode_reward=-6.735279 val_status=pending test_status=pending
+- [2026-04-28 17:12:34 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=109 train_episode_reward=-0.982198 val_status=pending test_status=pending
+- [2026-04-28 17:12:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=110 train_episode_reward=-1.794897 val_status=pending test_status=pending
+- [2026-04-28 17:12:47 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=22000 val_mean_reward=-0.867062 alpha=0.000000 test_status=pending
+- [2026-04-28 17:12:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=111 train_episode_reward=-0.431721 val_status=pending test_status=pending
+- [2026-04-28 17:13:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=112 train_episode_reward=-0.833434 val_status=pending test_status=pending
+- [2026-04-28 17:13:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=113 train_episode_reward=-0.564970 val_status=pending test_status=pending
+- [2026-04-28 17:13:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=114 train_episode_reward=-3.167321 val_status=pending test_status=pending
+- [2026-04-28 17:13:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=115 train_episode_reward=-3.507403 val_status=pending test_status=pending
+- [2026-04-28 17:13:34 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=23000 val_mean_reward=-0.944396 alpha=0.000000 test_status=pending
+- [2026-04-28 17:13:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=116 train_episode_reward=-1.309806 val_status=pending test_status=pending
+- [2026-04-28 17:13:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=117 train_episode_reward=-1.019019 val_status=pending test_status=pending
+- [2026-04-28 17:14:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=118 train_episode_reward=-7.347806 val_status=pending test_status=pending
+- [2026-04-28 17:14:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=119 train_episode_reward=-4.178284 val_status=pending test_status=pending
+- [2026-04-28 17:14:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=120 train_episode_reward=-0.953950 val_status=pending test_status=pending
+- [2026-04-28 17:14:22 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=24000 val_mean_reward=-0.945734 alpha=0.000000 test_status=pending
+- [2026-04-28 17:14:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=121 train_episode_reward=-0.365520 val_status=pending test_status=pending
+- [2026-04-28 17:14:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=122 train_episode_reward=-1.029218 val_status=pending test_status=pending
+- [2026-04-28 17:14:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=123 train_episode_reward=-0.775689 val_status=pending test_status=pending
+- [2026-04-28 17:14:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=124 train_episode_reward=-1.184337 val_status=pending test_status=pending
+- [2026-04-28 17:15:05 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=125 train_episode_reward=-1.272165 val_status=pending test_status=pending
+- [2026-04-28 17:15:09 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=25000 val_mean_reward=-0.798457 alpha=0.000000 test_status=pending
+- [2026-04-28 17:15:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=126 train_episode_reward=-1.195208 val_status=pending test_status=pending
+- [2026-04-28 17:15:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=127 train_episode_reward=-9.215739 val_status=pending test_status=pending
+- [2026-04-28 17:15:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=128 train_episode_reward=-3.144123 val_status=pending test_status=pending
+- [2026-04-28 17:15:44 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=129 train_episode_reward=-3.615375 val_status=pending test_status=pending
+- [2026-04-28 17:15:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=130 train_episode_reward=-2.717343 val_status=pending test_status=pending
+- [2026-04-28 17:15:57 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=26000 val_mean_reward=-1.216457 alpha=0.000000 test_status=pending
+- [2026-04-28 17:16:05 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=131 train_episode_reward=-3.818172 val_status=pending test_status=pending
+- [2026-04-28 17:16:14 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=132 train_episode_reward=-5.990900 val_status=pending test_status=pending
+- [2026-04-28 17:16:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=133 train_episode_reward=-2.211325 val_status=pending test_status=pending
+- [2026-04-28 17:16:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=134 train_episode_reward=-12.936840 val_status=pending test_status=pending
+- [2026-04-28 17:16:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=135 train_episode_reward=-3.273322 val_status=pending test_status=pending
+- [2026-04-28 17:16:33 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=27000 val_mean_reward=-1.227023 alpha=0.000000 test_status=pending
+- [2026-04-28 17:16:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=136 train_episode_reward=-3.320860 val_status=pending test_status=pending
+- [2026-04-28 17:16:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=137 train_episode_reward=-0.429303 val_status=pending test_status=pending
+- [2026-04-28 17:16:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=138 train_episode_reward=-3.778686 val_status=pending test_status=pending
+- [2026-04-28 17:16:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=139 train_episode_reward=-2.941359 val_status=pending test_status=pending
+- [2026-04-28 17:16:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=140 train_episode_reward=-0.619956 val_status=pending test_status=pending
+- [2026-04-28 17:16:55 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=28000 val_mean_reward=-0.907412 alpha=0.000000 test_status=pending
+- [2026-04-28 17:17:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=141 train_episode_reward=-2.936355 val_status=pending test_status=pending
+- [2026-04-28 17:17:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=142 train_episode_reward=-0.636504 val_status=pending test_status=pending
+- [2026-04-28 17:17:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=143 train_episode_reward=-1.693462 val_status=pending test_status=pending
+- [2026-04-28 17:17:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=144 train_episode_reward=-1.633613 val_status=pending test_status=pending
+- [2026-04-28 17:17:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=145 train_episode_reward=-3.767638 val_status=pending test_status=pending
+- [2026-04-28 17:17:18 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=29000 val_mean_reward=-1.669459 alpha=0.000000 test_status=pending
+- [2026-04-28 17:17:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=146 train_episode_reward=-1.780515 val_status=pending test_status=pending
+- [2026-04-28 17:17:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=147 train_episode_reward=-0.240466 val_status=pending test_status=pending
+- [2026-04-28 17:17:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=148 train_episode_reward=-0.687957 val_status=pending test_status=pending
+- [2026-04-28 17:17:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=149 train_episode_reward=-5.701743 val_status=pending test_status=pending
+- [2026-04-28 17:17:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=150 train_episode_reward=-3.005446 val_status=pending test_status=pending
+- [2026-04-28 17:17:41 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=30000 val_mean_reward=-0.837040 alpha=0.000000 test_status=pending
+- [2026-04-28 17:17:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=151 train_episode_reward=-2.889405 val_status=pending test_status=pending
+- [2026-04-28 17:17:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=152 train_episode_reward=-1.250992 val_status=pending test_status=pending
+- [2026-04-28 17:17:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=153 train_episode_reward=-0.697822 val_status=pending test_status=pending
+- [2026-04-28 17:17:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=154 train_episode_reward=-2.015367 val_status=pending test_status=pending
+- [2026-04-28 17:18:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=155 train_episode_reward=-10.316314 val_status=pending test_status=pending
+- [2026-04-28 17:18:04 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=31000 val_mean_reward=-1.419192 alpha=0.000000 test_status=pending
+- [2026-04-28 17:18:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=156 train_episode_reward=-1.358793 val_status=pending test_status=pending
+- [2026-04-28 17:18:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=157 train_episode_reward=-1.487311 val_status=pending test_status=pending
+- [2026-04-28 17:18:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=158 train_episode_reward=-2.272171 val_status=pending test_status=pending
+- [2026-04-28 17:18:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=159 train_episode_reward=-2.277406 val_status=pending test_status=pending
+- [2026-04-28 17:18:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=160 train_episode_reward=-0.506833 val_status=pending test_status=pending
+- [2026-04-28 17:18:27 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=32000 val_mean_reward=-1.178036 alpha=0.000000 test_status=pending
+- [2026-04-28 17:18:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=161 train_episode_reward=-0.990351 val_status=pending test_status=pending
+- [2026-04-28 17:18:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=162 train_episode_reward=-6.563922 val_status=pending test_status=pending
+- [2026-04-28 17:18:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=163 train_episode_reward=-1.145691 val_status=pending test_status=pending
+- [2026-04-28 17:18:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=164 train_episode_reward=-1.173954 val_status=pending test_status=pending
+- [2026-04-28 17:18:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=165 train_episode_reward=-1.364455 val_status=pending test_status=pending
+- [2026-04-28 17:18:50 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=33000 val_mean_reward=-1.103103 alpha=0.000000 test_status=pending
+- [2026-04-28 17:18:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=166 train_episode_reward=-1.366799 val_status=pending test_status=pending
+- [2026-04-28 17:18:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=167 train_episode_reward=-3.460729 val_status=pending test_status=pending
+- [2026-04-28 17:19:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=168 train_episode_reward=-0.437026 val_status=pending test_status=pending
+- [2026-04-28 17:19:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=169 train_episode_reward=-1.506816 val_status=pending test_status=pending
+- [2026-04-28 17:19:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=170 train_episode_reward=-4.150134 val_status=pending test_status=pending
+- [2026-04-28 17:19:13 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=34000 val_mean_reward=-0.795844 alpha=0.000000 test_status=pending
+- [2026-04-28 17:19:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=171 train_episode_reward=-3.273318 val_status=pending test_status=pending
+- [2026-04-28 17:19:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=172 train_episode_reward=-4.741220 val_status=pending test_status=pending
+- [2026-04-28 17:19:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=173 train_episode_reward=-0.873200 val_status=pending test_status=pending
+- [2026-04-28 17:19:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=174 train_episode_reward=-3.212830 val_status=pending test_status=pending
+- [2026-04-28 17:19:34 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=175 train_episode_reward=-2.533551 val_status=pending test_status=pending
+- [2026-04-28 17:19:36 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=35000 val_mean_reward=-1.122772 alpha=0.000000 test_status=pending
+- [2026-04-28 17:19:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=176 train_episode_reward=-3.391866 val_status=pending test_status=pending
+- [2026-04-28 17:19:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=177 train_episode_reward=-1.127546 val_status=pending test_status=pending
+- [2026-04-28 17:19:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=178 train_episode_reward=-2.550631 val_status=pending test_status=pending
+- [2026-04-28 17:19:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=179 train_episode_reward=-1.303205 val_status=pending test_status=pending
+- [2026-04-28 17:19:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=180 train_episode_reward=-1.951723 val_status=pending test_status=pending
+- [2026-04-28 17:20:00 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=36000 val_mean_reward=-1.367896 alpha=0.000000 test_status=pending
+- [2026-04-28 17:20:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=181 train_episode_reward=-0.801847 val_status=pending test_status=pending
+- [2026-04-28 17:20:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=182 train_episode_reward=-1.889662 val_status=pending test_status=pending
+- [2026-04-28 17:20:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=183 train_episode_reward=-0.652906 val_status=pending test_status=pending
+- [2026-04-28 17:20:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=184 train_episode_reward=-2.885619 val_status=pending test_status=pending
+- [2026-04-28 17:20:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=185 train_episode_reward=-1.752276 val_status=pending test_status=pending
+- [2026-04-28 17:20:22 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=37000 val_mean_reward=-1.296337 alpha=0.000000 test_status=pending
+- [2026-04-28 17:20:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=186 train_episode_reward=-1.086320 val_status=pending test_status=pending
+- [2026-04-28 17:20:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=187 train_episode_reward=-0.575617 val_status=pending test_status=pending
+- [2026-04-28 17:20:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=188 train_episode_reward=-0.483827 val_status=pending test_status=pending
+- [2026-04-28 17:20:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=189 train_episode_reward=-1.089944 val_status=pending test_status=pending
+- [2026-04-28 17:20:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=190 train_episode_reward=-0.472976 val_status=pending test_status=pending
+- [2026-04-28 17:20:46 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=38000 val_mean_reward=-1.487852 alpha=0.000000 test_status=pending
+- [2026-04-28 17:20:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=191 train_episode_reward=-2.601710 val_status=pending test_status=pending
+- [2026-04-28 17:20:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=192 train_episode_reward=-1.583973 val_status=pending test_status=pending
+- [2026-04-28 17:20:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=193 train_episode_reward=-2.501587 val_status=pending test_status=pending
+- [2026-04-28 17:21:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=194 train_episode_reward=-11.678880 val_status=pending test_status=pending
+- [2026-04-28 17:21:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=195 train_episode_reward=-1.358276 val_status=pending test_status=pending
+- [2026-04-28 17:21:09 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=39000 val_mean_reward=-0.953535 alpha=0.000000 test_status=pending
+- [2026-04-28 17:21:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=196 train_episode_reward=-0.740739 val_status=pending test_status=pending
+- [2026-04-28 17:21:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=197 train_episode_reward=-3.359634 val_status=pending test_status=pending
+- [2026-04-28 17:21:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=198 train_episode_reward=-0.465106 val_status=pending test_status=pending
+- [2026-04-28 17:21:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=199 train_episode_reward=-8.017328 val_status=pending test_status=pending
+- [2026-04-28 17:21:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=200 train_episode_reward=-2.154133 val_status=pending test_status=pending
+- [2026-04-28 17:21:32 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=40000 val_mean_reward=-0.976231 alpha=0.000000 test_status=pending
+- [2026-04-28 17:21:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=201 train_episode_reward=-0.264048 val_status=pending test_status=pending
+- [2026-04-28 17:21:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=202 train_episode_reward=-0.649873 val_status=pending test_status=pending
+- [2026-04-28 17:21:44 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=203 train_episode_reward=-2.120012 val_status=pending test_status=pending
+- [2026-04-28 17:21:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=204 train_episode_reward=-1.129965 val_status=pending test_status=pending
+- [2026-04-28 17:21:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=205 train_episode_reward=-4.959149 val_status=pending test_status=pending
+- [2026-04-28 17:21:55 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=41000 val_mean_reward=-0.808663 alpha=0.000000 test_status=pending
+- [2026-04-28 17:21:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=206 train_episode_reward=-2.205217 val_status=pending test_status=pending
+- [2026-04-28 17:22:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=207 train_episode_reward=-0.627574 val_status=pending test_status=pending
+- [2026-04-28 17:22:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=208 train_episode_reward=-0.837306 val_status=pending test_status=pending
+- [2026-04-28 17:22:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=209 train_episode_reward=-1.071757 val_status=pending test_status=pending
+- [2026-04-28 17:22:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=210 train_episode_reward=-1.953740 val_status=pending test_status=pending
+- [2026-04-28 17:22:18 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=42000 val_mean_reward=-1.200015 alpha=0.000000 test_status=pending
+- [2026-04-28 17:22:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=211 train_episode_reward=-0.749241 val_status=pending test_status=pending
+- [2026-04-28 17:22:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=212 train_episode_reward=-2.569101 val_status=pending test_status=pending
+- [2026-04-28 17:22:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=213 train_episode_reward=-0.930674 val_status=pending test_status=pending
+- [2026-04-28 17:22:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=214 train_episode_reward=-1.717219 val_status=pending test_status=pending
+- [2026-04-28 17:22:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=215 train_episode_reward=-0.673980 val_status=pending test_status=pending
+- [2026-04-28 17:22:41 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=43000 val_mean_reward=-1.224146 alpha=0.000000 test_status=pending
+- [2026-04-28 17:22:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=216 train_episode_reward=-0.877330 val_status=pending test_status=pending
+- [2026-04-28 17:22:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=217 train_episode_reward=-0.959982 val_status=pending test_status=pending
+- [2026-04-28 17:22:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=218 train_episode_reward=-1.833833 val_status=pending test_status=pending
+- [2026-04-28 17:22:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=219 train_episode_reward=-1.077764 val_status=pending test_status=pending
+- [2026-04-28 17:23:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=220 train_episode_reward=-1.416828 val_status=pending test_status=pending
+- [2026-04-28 17:23:04 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=44000 val_mean_reward=-1.198048 alpha=0.000000 test_status=pending
+- [2026-04-28 17:23:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=221 train_episode_reward=-1.093255 val_status=pending test_status=pending
+- [2026-04-28 17:23:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=222 train_episode_reward=-0.563433 val_status=pending test_status=pending
+- [2026-04-28 17:23:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=223 train_episode_reward=-1.829638 val_status=pending test_status=pending
+- [2026-04-28 17:23:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=224 train_episode_reward=-0.940371 val_status=pending test_status=pending
+- [2026-04-28 17:23:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=225 train_episode_reward=-4.241311 val_status=pending test_status=pending
+- [2026-04-28 17:23:27 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=45000 val_mean_reward=-0.854276 alpha=0.000000 test_status=pending
+- [2026-04-28 17:23:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=226 train_episode_reward=-0.709744 val_status=pending test_status=pending
+- [2026-04-28 17:23:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=227 train_episode_reward=-2.015135 val_status=pending test_status=pending
+- [2026-04-28 17:23:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=228 train_episode_reward=-1.355057 val_status=pending test_status=pending
+- [2026-04-28 17:23:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=229 train_episode_reward=-0.862576 val_status=pending test_status=pending
+- [2026-04-28 17:23:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=230 train_episode_reward=-2.537083 val_status=pending test_status=pending
+- [2026-04-28 17:23:50 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=46000 val_mean_reward=-0.927592 alpha=0.000000 test_status=pending
+- [2026-04-28 17:23:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=231 train_episode_reward=-0.657003 val_status=pending test_status=pending
+- [2026-04-28 17:23:58 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=232 train_episode_reward=-3.598827 val_status=pending test_status=pending
+- [2026-04-28 17:24:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=233 train_episode_reward=-2.091210 val_status=pending test_status=pending
+- [2026-04-28 17:24:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=234 train_episode_reward=-3.248067 val_status=pending test_status=pending
+- [2026-04-28 17:24:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=235 train_episode_reward=-2.475988 val_status=pending test_status=pending
+- [2026-04-28 17:24:13 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=47000 val_mean_reward=-0.942838 alpha=0.000000 test_status=pending
+- [2026-04-28 17:24:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=236 train_episode_reward=-6.286922 val_status=pending test_status=pending
+- [2026-04-28 17:24:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=237 train_episode_reward=-0.682753 val_status=pending test_status=pending
+- [2026-04-28 17:24:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=238 train_episode_reward=-2.388748 val_status=pending test_status=pending
+- [2026-04-28 17:24:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=239 train_episode_reward=-1.856383 val_status=pending test_status=pending
+- [2026-04-28 17:24:34 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=240 train_episode_reward=-2.965662 val_status=pending test_status=pending
+- [2026-04-28 17:24:36 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=48000 val_mean_reward=-1.486652 alpha=0.000000 test_status=pending
+- [2026-04-28 17:24:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=241 train_episode_reward=-10.776777 val_status=pending test_status=pending
+- [2026-04-28 17:24:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=242 train_episode_reward=-3.337730 val_status=pending test_status=pending
+- [2026-04-28 17:24:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=243 train_episode_reward=-2.607487 val_status=pending test_status=pending
+- [2026-04-28 17:24:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=244 train_episode_reward=-2.169142 val_status=pending test_status=pending
+- [2026-04-28 17:24:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=245 train_episode_reward=-1.648862 val_status=pending test_status=pending
+- [2026-04-28 17:25:00 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=49000 val_mean_reward=-1.510381 alpha=0.000000 test_status=pending
+- [2026-04-28 17:25:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=246 train_episode_reward=-2.316277 val_status=pending test_status=pending
+- [2026-04-28 17:25:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=247 train_episode_reward=-12.305215 val_status=pending test_status=pending
+- [2026-04-28 17:25:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=248 train_episode_reward=-1.941149 val_status=pending test_status=pending
+- [2026-04-28 17:25:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=249 train_episode_reward=-2.030185 val_status=pending test_status=pending
+- [2026-04-28 17:25:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=250 train_episode_reward=-11.882656 val_status=pending test_status=pending
+- [2026-04-28 17:25:23 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=50000 val_mean_reward=-1.307636 alpha=0.000000 test_status=pending
+- [2026-04-28 17:25:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=251 train_episode_reward=-7.498551 val_status=pending test_status=pending
+- [2026-04-28 17:25:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=252 train_episode_reward=-0.440577 val_status=pending test_status=pending
+- [2026-04-28 17:25:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=253 train_episode_reward=-2.500820 val_status=pending test_status=pending
+- [2026-04-28 17:25:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=254 train_episode_reward=-1.073130 val_status=pending test_status=pending
+- [2026-04-28 17:25:44 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=255 train_episode_reward=-0.264556 val_status=pending test_status=pending
+- [2026-04-28 17:25:46 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=51000 val_mean_reward=-1.581501 alpha=0.000000 test_status=pending
+- [2026-04-28 17:25:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=256 train_episode_reward=-0.426241 val_status=pending test_status=pending
+- [2026-04-28 17:25:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=257 train_episode_reward=-1.903859 val_status=pending test_status=pending
+- [2026-04-28 17:25:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=258 train_episode_reward=-0.425380 val_status=pending test_status=pending
+- [2026-04-28 17:26:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=259 train_episode_reward=-1.796064 val_status=pending test_status=pending
+- [2026-04-28 17:26:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=260 train_episode_reward=-3.573007 val_status=pending test_status=pending
+- [2026-04-28 17:26:09 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=52000 val_mean_reward=-1.311983 alpha=0.000000 test_status=pending
+- [2026-04-28 17:26:14 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=261 train_episode_reward=-1.260492 val_status=pending test_status=pending
+- [2026-04-28 17:26:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=262 train_episode_reward=-2.203641 val_status=pending test_status=pending
+- [2026-04-28 17:26:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=263 train_episode_reward=-16.950785 val_status=pending test_status=pending
+- [2026-04-28 17:26:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=264 train_episode_reward=-2.690297 val_status=pending test_status=pending
+- [2026-04-28 17:26:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=265 train_episode_reward=-18.734617 val_status=pending test_status=pending
+- [2026-04-28 17:26:33 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=53000 val_mean_reward=-1.210804 alpha=0.000000 test_status=pending
+- [2026-04-28 17:26:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=266 train_episode_reward=-0.672009 val_status=pending test_status=pending
+- [2026-04-28 17:26:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=267 train_episode_reward=-5.378246 val_status=pending test_status=pending
+- [2026-04-28 17:26:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=268 train_episode_reward=-6.383674 val_status=pending test_status=pending
+- [2026-04-28 17:26:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=269 train_episode_reward=-1.315526 val_status=pending test_status=pending
+- [2026-04-28 17:26:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=270 train_episode_reward=-2.121195 val_status=pending test_status=pending
+- [2026-04-28 17:26:56 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=54000 val_mean_reward=-1.186219 alpha=0.000000 test_status=pending
+- [2026-04-28 17:27:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=271 train_episode_reward=-3.091071 val_status=pending test_status=pending
+- [2026-04-28 17:27:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=272 train_episode_reward=-1.091829 val_status=pending test_status=pending
+- [2026-04-28 17:27:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=273 train_episode_reward=-7.858180 val_status=pending test_status=pending
+- [2026-04-28 17:27:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=274 train_episode_reward=-0.954699 val_status=pending test_status=pending
+- [2026-04-28 17:27:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=275 train_episode_reward=-1.320440 val_status=pending test_status=pending
+- [2026-04-28 17:27:19 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=55000 val_mean_reward=-1.104529 alpha=0.000000 test_status=pending
+- [2026-04-28 17:27:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=276 train_episode_reward=-21.331040 val_status=pending test_status=pending
+- [2026-04-28 17:27:28 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=277 train_episode_reward=-0.500751 val_status=pending test_status=pending
+- [2026-04-28 17:27:32 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=278 train_episode_reward=1.243085 val_status=pending test_status=pending
+- [2026-04-28 17:27:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=279 train_episode_reward=-2.328655 val_status=pending test_status=pending
+- [2026-04-28 17:27:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=280 train_episode_reward=-14.646659 val_status=pending test_status=pending
+- [2026-04-28 17:27:42 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=56000 val_mean_reward=-0.897288 alpha=0.000000 test_status=pending
+- [2026-04-28 17:27:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=281 train_episode_reward=-1.066576 val_status=pending test_status=pending
+- [2026-04-28 17:27:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=282 train_episode_reward=-2.610009 val_status=pending test_status=pending
+- [2026-04-28 17:27:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=283 train_episode_reward=-2.360873 val_status=pending test_status=pending
+- [2026-04-28 17:27:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=284 train_episode_reward=-5.410361 val_status=pending test_status=pending
+- [2026-04-28 17:28:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=285 train_episode_reward=-2.790099 val_status=pending test_status=pending
+- [2026-04-28 17:28:05 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=57000 val_mean_reward=-0.843481 alpha=0.000000 test_status=pending
+- [2026-04-28 17:28:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=286 train_episode_reward=-8.163783 val_status=pending test_status=pending
+- [2026-04-28 17:28:14 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=287 train_episode_reward=-3.101231 val_status=pending test_status=pending
+- [2026-04-28 17:28:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=288 train_episode_reward=-1.189222 val_status=pending test_status=pending
+- [2026-04-28 17:28:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=289 train_episode_reward=-5.970533 val_status=pending test_status=pending
+- [2026-04-28 17:28:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=290 train_episode_reward=-1.160730 val_status=pending test_status=pending
+- [2026-04-28 17:28:29 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=58000 val_mean_reward=-1.036662 alpha=0.000000 test_status=pending
+- [2026-04-28 17:28:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=291 train_episode_reward=-0.645819 val_status=pending test_status=pending
+- [2026-04-28 17:28:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=292 train_episode_reward=-1.644263 val_status=pending test_status=pending
+- [2026-04-28 17:28:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=293 train_episode_reward=-1.889658 val_status=pending test_status=pending
+- [2026-04-28 17:28:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=294 train_episode_reward=-0.646475 val_status=pending test_status=pending
+- [2026-04-28 17:28:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=295 train_episode_reward=-2.222232 val_status=pending test_status=pending
+- [2026-04-28 17:28:52 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=59000 val_mean_reward=-1.484566 alpha=0.000000 test_status=pending
+- [2026-04-28 17:28:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=296 train_episode_reward=-1.034264 val_status=pending test_status=pending
+- [2026-04-28 17:29:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=297 train_episode_reward=-7.169083 val_status=pending test_status=pending
+- [2026-04-28 17:29:05 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=298 train_episode_reward=-0.523282 val_status=pending test_status=pending
+- [2026-04-28 17:29:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=299 train_episode_reward=-7.810623 val_status=pending test_status=pending
+- [2026-04-28 17:29:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=300 train_episode_reward=-10.880273 val_status=pending test_status=pending
+- [2026-04-28 17:29:15 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=60000 val_mean_reward=-1.114866 alpha=0.000000 test_status=pending
+- [2026-04-28 17:29:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=301 train_episode_reward=-0.980218 val_status=pending test_status=pending
+- [2026-04-28 17:29:24 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=302 train_episode_reward=-4.796582 val_status=pending test_status=pending
+- [2026-04-28 17:29:28 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=303 train_episode_reward=-0.965966 val_status=pending test_status=pending
+- [2026-04-28 17:29:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=304 train_episode_reward=-3.300593 val_status=pending test_status=pending
+- [2026-04-28 17:29:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=305 train_episode_reward=-3.136244 val_status=pending test_status=pending
+- [2026-04-28 17:29:39 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=61000 val_mean_reward=-1.130950 alpha=0.000000 test_status=pending
+- [2026-04-28 17:29:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=306 train_episode_reward=-1.690691 val_status=pending test_status=pending
+- [2026-04-28 17:29:47 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=307 train_episode_reward=-3.720455 val_status=pending test_status=pending
+- [2026-04-28 17:29:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=308 train_episode_reward=-7.568008 val_status=pending test_status=pending
+- [2026-04-28 17:29:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=309 train_episode_reward=-1.891346 val_status=pending test_status=pending
+- [2026-04-28 17:30:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=310 train_episode_reward=-1.013921 val_status=pending test_status=pending
+- [2026-04-28 17:30:02 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=62000 val_mean_reward=-1.058114 alpha=0.000000 test_status=pending
+- [2026-04-28 17:30:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=311 train_episode_reward=-2.668172 val_status=pending test_status=pending
+- [2026-04-28 17:30:10 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=312 train_episode_reward=-0.886588 val_status=pending test_status=pending
+- [2026-04-28 17:30:15 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=313 train_episode_reward=-1.752967 val_status=pending test_status=pending
+- [2026-04-28 17:30:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=314 train_episode_reward=-1.298622 val_status=pending test_status=pending
+- [2026-04-28 17:30:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=315 train_episode_reward=-5.104790 val_status=pending test_status=pending
+- [2026-04-28 17:30:25 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=63000 val_mean_reward=-1.385157 alpha=0.000000 test_status=pending
+- [2026-04-28 17:30:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=316 train_episode_reward=-8.572824 val_status=pending test_status=pending
+- [2026-04-28 17:30:34 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=317 train_episode_reward=-0.451193 val_status=pending test_status=pending
+- [2026-04-28 17:30:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=318 train_episode_reward=-0.957113 val_status=pending test_status=pending
+- [2026-04-28 17:30:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=319 train_episode_reward=-10.110968 val_status=pending test_status=pending
+- [2026-04-28 17:30:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=320 train_episode_reward=-2.693669 val_status=pending test_status=pending
+- [2026-04-28 17:30:48 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=64000 val_mean_reward=-1.361873 alpha=0.000000 test_status=pending
+- [2026-04-28 17:30:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=321 train_episode_reward=-10.917148 val_status=pending test_status=pending
+- [2026-04-28 17:30:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=322 train_episode_reward=-5.045236 val_status=pending test_status=pending
+- [2026-04-28 17:31:01 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=323 train_episode_reward=-1.718109 val_status=pending test_status=pending
+- [2026-04-28 17:31:05 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=324 train_episode_reward=-4.238664 val_status=pending test_status=pending
+- [2026-04-28 17:31:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=325 train_episode_reward=-0.970349 val_status=pending test_status=pending
+- [2026-04-28 17:31:12 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=65000 val_mean_reward=-1.377294 alpha=0.000000 test_status=pending
+- [2026-04-28 17:31:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=326 train_episode_reward=-14.902173 val_status=pending test_status=pending
+- [2026-04-28 17:31:20 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=327 train_episode_reward=-0.854435 val_status=pending test_status=pending
+- [2026-04-28 17:31:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=328 train_episode_reward=-3.823089 val_status=pending test_status=pending
+- [2026-04-28 17:31:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=329 train_episode_reward=-1.017239 val_status=pending test_status=pending
+- [2026-04-28 17:31:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=330 train_episode_reward=-1.390690 val_status=pending test_status=pending
+- [2026-04-28 17:31:35 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=66000 val_mean_reward=-1.163430 alpha=0.000000 test_status=pending
+- [2026-04-28 17:31:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=331 train_episode_reward=-8.541559 val_status=pending test_status=pending
+- [2026-04-28 17:31:44 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=332 train_episode_reward=-1.291246 val_status=pending test_status=pending
+- [2026-04-28 17:31:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=333 train_episode_reward=-31.499810 val_status=pending test_status=pending
+- [2026-04-28 17:31:52 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=334 train_episode_reward=-1.143388 val_status=pending test_status=pending
+- [2026-04-28 17:31:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=335 train_episode_reward=-0.756651 val_status=pending test_status=pending
+- [2026-04-28 17:31:58 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=67000 val_mean_reward=-1.113137 alpha=0.000000 test_status=pending
+- [2026-04-28 17:32:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=336 train_episode_reward=-6.052896 val_status=pending test_status=pending
+- [2026-04-28 17:32:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=337 train_episode_reward=-17.768744 val_status=pending test_status=pending
+- [2026-04-28 17:32:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=338 train_episode_reward=-1.313843 val_status=pending test_status=pending
+- [2026-04-28 17:32:15 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=339 train_episode_reward=-4.730835 val_status=pending test_status=pending
+- [2026-04-28 17:32:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=340 train_episode_reward=-1.039204 val_status=pending test_status=pending
+- [2026-04-28 17:32:22 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=68000 val_mean_reward=-1.071222 alpha=0.000000 test_status=pending
+- [2026-04-28 17:32:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=341 train_episode_reward=-10.302404 val_status=pending test_status=pending
+- [2026-04-28 17:32:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=342 train_episode_reward=-0.578573 val_status=pending test_status=pending
+- [2026-04-28 17:32:34 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=343 train_episode_reward=-3.366726 val_status=pending test_status=pending
+- [2026-04-28 17:32:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=344 train_episode_reward=-1.745009 val_status=pending test_status=pending
+- [2026-04-28 17:32:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=345 train_episode_reward=-0.602374 val_status=pending test_status=pending
+- [2026-04-28 17:32:45 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=69000 val_mean_reward=-1.452214 alpha=0.000000 test_status=pending
+- [2026-04-28 17:32:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=346 train_episode_reward=-0.977187 val_status=pending test_status=pending
+- [2026-04-28 17:32:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=347 train_episode_reward=-1.537661 val_status=pending test_status=pending
+- [2026-04-28 17:32:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=348 train_episode_reward=-2.669149 val_status=pending test_status=pending
+- [2026-04-28 17:33:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=349 train_episode_reward=-0.645697 val_status=pending test_status=pending
+- [2026-04-28 17:33:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=350 train_episode_reward=-0.757547 val_status=pending test_status=pending
+- [2026-04-28 17:33:08 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=70000 val_mean_reward=-1.241038 alpha=0.000000 test_status=pending
+- [2026-04-28 17:33:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=351 train_episode_reward=-1.727599 val_status=pending test_status=pending
+- [2026-04-28 17:33:17 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=352 train_episode_reward=-1.819027 val_status=pending test_status=pending
+- [2026-04-28 17:33:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=353 train_episode_reward=-1.153889 val_status=pending test_status=pending
+- [2026-04-28 17:33:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=354 train_episode_reward=-2.821753 val_status=pending test_status=pending
+- [2026-04-28 17:33:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=355 train_episode_reward=-20.243309 val_status=pending test_status=pending
+- [2026-04-28 17:33:31 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=71000 val_mean_reward=-1.546143 alpha=0.000000 test_status=pending
+- [2026-04-28 17:33:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=356 train_episode_reward=-1.443089 val_status=pending test_status=pending
+- [2026-04-28 17:33:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=357 train_episode_reward=-1.752764 val_status=pending test_status=pending
+- [2026-04-28 17:33:44 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=358 train_episode_reward=-11.534093 val_status=pending test_status=pending
+- [2026-04-28 17:33:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=359 train_episode_reward=-1.219746 val_status=pending test_status=pending
+- [2026-04-28 17:33:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=360 train_episode_reward=-1.569441 val_status=pending test_status=pending
+- [2026-04-28 17:33:55 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=72000 val_mean_reward=-0.916881 alpha=0.000000 test_status=pending
+- [2026-04-28 17:33:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=361 train_episode_reward=-1.408577 val_status=pending test_status=pending
+- [2026-04-28 17:34:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=362 train_episode_reward=-1.002943 val_status=pending test_status=pending
+- [2026-04-28 17:34:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=363 train_episode_reward=-8.744116 val_status=pending test_status=pending
+- [2026-04-28 17:34:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=364 train_episode_reward=-9.905648 val_status=pending test_status=pending
+- [2026-04-28 17:34:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=365 train_episode_reward=-3.120193 val_status=pending test_status=pending
+- [2026-04-28 17:34:19 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=73000 val_mean_reward=-1.218239 alpha=0.000000 test_status=pending
+- [2026-04-28 17:34:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=366 train_episode_reward=-2.005345 val_status=pending test_status=pending
+- [2026-04-28 17:34:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=367 train_episode_reward=-9.832198 val_status=pending test_status=pending
+- [2026-04-28 17:34:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=368 train_episode_reward=-1.107770 val_status=pending test_status=pending
+- [2026-04-28 17:34:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=369 train_episode_reward=-2.010556 val_status=pending test_status=pending
+- [2026-04-28 17:34:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=370 train_episode_reward=-0.710749 val_status=pending test_status=pending
+- [2026-04-28 17:34:42 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=74000 val_mean_reward=-1.288022 alpha=0.000000 test_status=pending
+- [2026-04-28 17:34:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=371 train_episode_reward=-1.980765 val_status=pending test_status=pending
+- [2026-04-28 17:34:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=372 train_episode_reward=-1.057741 val_status=pending test_status=pending
+- [2026-04-28 17:34:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=373 train_episode_reward=-4.649887 val_status=pending test_status=pending
+- [2026-04-28 17:34:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=374 train_episode_reward=-0.691804 val_status=pending test_status=pending
+- [2026-04-28 17:35:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=375 train_episode_reward=-3.111343 val_status=pending test_status=pending
+- [2026-04-28 17:35:05 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=75000 val_mean_reward=-1.679638 alpha=0.000000 test_status=pending
+- [2026-04-28 17:35:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=376 train_episode_reward=-1.311256 val_status=pending test_status=pending
+- [2026-04-28 17:35:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=377 train_episode_reward=-1.417947 val_status=pending test_status=pending
+- [2026-04-28 17:35:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=378 train_episode_reward=-8.842683 val_status=pending test_status=pending
+- [2026-04-28 17:35:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=379 train_episode_reward=-1.756310 val_status=pending test_status=pending
+- [2026-04-28 17:35:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=380 train_episode_reward=-1.788742 val_status=pending test_status=pending
+- [2026-04-28 17:35:28 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=76000 val_mean_reward=-1.892669 alpha=0.000000 test_status=pending
+- [2026-04-28 17:35:32 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=381 train_episode_reward=-3.234054 val_status=pending test_status=pending
+- [2026-04-28 17:35:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=382 train_episode_reward=-1.811260 val_status=pending test_status=pending
+- [2026-04-28 17:35:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=383 train_episode_reward=-15.479943 val_status=pending test_status=pending
+- [2026-04-28 17:35:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=384 train_episode_reward=-0.540958 val_status=pending test_status=pending
+- [2026-04-28 17:35:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=385 train_episode_reward=-3.821026 val_status=pending test_status=pending
+- [2026-04-28 17:35:52 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=77000 val_mean_reward=-1.459821 alpha=0.000000 test_status=pending
+- [2026-04-28 17:35:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=386 train_episode_reward=-1.451033 val_status=pending test_status=pending
+- [2026-04-28 17:36:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=387 train_episode_reward=-0.594022 val_status=pending test_status=pending
+- [2026-04-28 17:36:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=388 train_episode_reward=-12.222069 val_status=pending test_status=pending
+- [2026-04-28 17:36:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=389 train_episode_reward=-7.598413 val_status=pending test_status=pending
+- [2026-04-28 17:36:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=390 train_episode_reward=-14.091558 val_status=pending test_status=pending
+- [2026-04-28 17:36:15 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=78000 val_mean_reward=-1.085437 alpha=0.000000 test_status=pending
+- [2026-04-28 17:36:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=391 train_episode_reward=-3.474994 val_status=pending test_status=pending
+- [2026-04-28 17:36:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=392 train_episode_reward=-2.306402 val_status=pending test_status=pending
+- [2026-04-28 17:36:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=393 train_episode_reward=-3.708099 val_status=pending test_status=pending
+- [2026-04-28 17:36:32 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=394 train_episode_reward=-0.545656 val_status=pending test_status=pending
+- [2026-04-28 17:36:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=395 train_episode_reward=-12.211108 val_status=pending test_status=pending
+- [2026-04-28 17:36:38 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=79000 val_mean_reward=-1.223604 alpha=0.000000 test_status=pending
+- [2026-04-28 17:36:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=396 train_episode_reward=-1.164728 val_status=pending test_status=pending
+- [2026-04-28 17:36:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=397 train_episode_reward=-2.512884 val_status=pending test_status=pending
+- [2026-04-28 17:36:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=398 train_episode_reward=-1.076436 val_status=pending test_status=pending
+- [2026-04-28 17:36:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=399 train_episode_reward=-2.469578 val_status=pending test_status=pending
+- [2026-04-28 17:36:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=400 train_episode_reward=-0.488483 val_status=pending test_status=pending
+- [2026-04-28 17:37:01 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=80000 val_mean_reward=-0.970060 alpha=0.000000 test_status=pending
+- [2026-04-28 17:37:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=401 train_episode_reward=-0.815327 val_status=pending test_status=pending
+- [2026-04-28 17:37:10 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=402 train_episode_reward=-11.893772 val_status=pending test_status=pending
+- [2026-04-28 17:37:14 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=403 train_episode_reward=-3.584235 val_status=pending test_status=pending
+- [2026-04-28 17:37:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=404 train_episode_reward=-0.967506 val_status=pending test_status=pending
+- [2026-04-28 17:37:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=405 train_episode_reward=-0.655009 val_status=pending test_status=pending
+- [2026-04-28 17:37:25 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=81000 val_mean_reward=-1.482504 alpha=0.000000 test_status=pending
+- [2026-04-28 17:37:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=406 train_episode_reward=-4.114404 val_status=pending test_status=pending
+- [2026-04-28 17:37:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=407 train_episode_reward=-5.295180 val_status=pending test_status=pending
+- [2026-04-28 17:37:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=408 train_episode_reward=-1.065099 val_status=pending test_status=pending
+- [2026-04-28 17:37:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=409 train_episode_reward=-1.070044 val_status=pending test_status=pending
+- [2026-04-28 17:37:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=410 train_episode_reward=-1.158986 val_status=pending test_status=pending
+- [2026-04-28 17:37:48 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=82000 val_mean_reward=-1.224858 alpha=0.000000 test_status=pending
+- [2026-04-28 17:37:52 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=411 train_episode_reward=-2.089968 val_status=pending test_status=pending
+- [2026-04-28 17:37:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=412 train_episode_reward=-0.669198 val_status=pending test_status=pending
+- [2026-04-28 17:38:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=413 train_episode_reward=-1.409953 val_status=pending test_status=pending
+- [2026-04-28 17:38:05 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=414 train_episode_reward=-2.575680 val_status=pending test_status=pending
+- [2026-04-28 17:38:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=415 train_episode_reward=-1.522115 val_status=pending test_status=pending
+- [2026-04-28 17:38:11 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=83000 val_mean_reward=-1.068937 alpha=0.000000 test_status=pending
+- [2026-04-28 17:38:15 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=416 train_episode_reward=-1.559739 val_status=pending test_status=pending
+- [2026-04-28 17:38:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=417 train_episode_reward=-1.252042 val_status=pending test_status=pending
+- [2026-04-28 17:38:24 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=418 train_episode_reward=-0.697075 val_status=pending test_status=pending
+- [2026-04-28 17:38:28 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=419 train_episode_reward=-4.086723 val_status=pending test_status=pending
+- [2026-04-28 17:38:32 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=420 train_episode_reward=-16.596382 val_status=pending test_status=pending
+- [2026-04-28 17:38:34 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=84000 val_mean_reward=-1.197569 alpha=0.000000 test_status=pending
+- [2026-04-28 17:38:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=421 train_episode_reward=-0.828853 val_status=pending test_status=pending
+- [2026-04-28 17:38:43 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=422 train_episode_reward=-2.075519 val_status=pending test_status=pending
+- [2026-04-28 17:38:47 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=423 train_episode_reward=-1.875820 val_status=pending test_status=pending
+- [2026-04-28 17:38:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=424 train_episode_reward=-2.120303 val_status=pending test_status=pending
+- [2026-04-28 17:38:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=425 train_episode_reward=-8.439364 val_status=pending test_status=pending
+- [2026-04-28 17:38:58 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=85000 val_mean_reward=-2.533660 alpha=0.000000 test_status=pending
+- [2026-04-28 17:39:02 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=426 train_episode_reward=-17.888479 val_status=pending test_status=pending
+- [2026-04-28 17:39:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=427 train_episode_reward=-6.586541 val_status=pending test_status=pending
+- [2026-04-28 17:39:11 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=428 train_episode_reward=-1.649950 val_status=pending test_status=pending
+- [2026-04-28 17:39:15 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=429 train_episode_reward=-30.661800 val_status=pending test_status=pending
+- [2026-04-28 17:39:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=430 train_episode_reward=-1.617775 val_status=pending test_status=pending
+- [2026-04-28 17:39:21 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=86000 val_mean_reward=-2.763186 alpha=0.000000 test_status=pending
+- [2026-04-28 17:39:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=431 train_episode_reward=-7.796948 val_status=pending test_status=pending
+- [2026-04-28 17:39:30 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=432 train_episode_reward=-3.629902 val_status=pending test_status=pending
+- [2026-04-28 17:39:34 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=433 train_episode_reward=-1.293951 val_status=pending test_status=pending
+- [2026-04-28 17:39:38 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=434 train_episode_reward=-1.311394 val_status=pending test_status=pending
+- [2026-04-28 17:39:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=435 train_episode_reward=-6.552719 val_status=pending test_status=pending
+- [2026-04-28 17:39:45 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=87000 val_mean_reward=-1.087997 alpha=0.000000 test_status=pending
+- [2026-04-28 17:39:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=436 train_episode_reward=-0.627981 val_status=pending test_status=pending
+- [2026-04-28 17:39:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=437 train_episode_reward=-1.965800 val_status=pending test_status=pending
+- [2026-04-28 17:39:57 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=438 train_episode_reward=-1.541355 val_status=pending test_status=pending
+- [2026-04-28 17:40:01 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=439 train_episode_reward=-1.374895 val_status=pending test_status=pending
+- [2026-04-28 17:40:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=440 train_episode_reward=-0.850235 val_status=pending test_status=pending
+- [2026-04-28 17:40:08 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=88000 val_mean_reward=-1.132387 alpha=0.000000 test_status=pending
+- [2026-04-28 17:40:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=441 train_episode_reward=-7.401473 val_status=pending test_status=pending
+- [2026-04-28 17:40:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=442 train_episode_reward=-1.835267 val_status=pending test_status=pending
+- [2026-04-28 17:40:21 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=443 train_episode_reward=-2.702185 val_status=pending test_status=pending
+- [2026-04-28 17:40:25 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=444 train_episode_reward=-16.561151 val_status=pending test_status=pending
+- [2026-04-28 17:40:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=445 train_episode_reward=-0.850302 val_status=pending test_status=pending
+- [2026-04-28 17:40:31 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=89000 val_mean_reward=-2.334877 alpha=0.000000 test_status=pending
+- [2026-04-28 17:40:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=446 train_episode_reward=-3.230550 val_status=pending test_status=pending
+- [2026-04-28 17:40:40 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=447 train_episode_reward=-7.577815 val_status=pending test_status=pending
+- [2026-04-28 17:40:44 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=448 train_episode_reward=-14.545599 val_status=pending test_status=pending
+- [2026-04-28 17:40:48 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=449 train_episode_reward=-2.246714 val_status=pending test_status=pending
+- [2026-04-28 17:40:53 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=450 train_episode_reward=-3.227570 val_status=pending test_status=pending
+- [2026-04-28 17:40:55 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=90000 val_mean_reward=-2.617662 alpha=0.000000 test_status=pending
+- [2026-04-28 17:40:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=451 train_episode_reward=-0.740820 val_status=pending test_status=pending
+- [2026-04-28 17:41:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=452 train_episode_reward=-1.204740 val_status=pending test_status=pending
+- [2026-04-28 17:41:07 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=453 train_episode_reward=-1.004436 val_status=pending test_status=pending
+- [2026-04-28 17:41:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=454 train_episode_reward=-1.163794 val_status=pending test_status=pending
+- [2026-04-28 17:41:16 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=455 train_episode_reward=-0.840795 val_status=pending test_status=pending
+- [2026-04-28 17:41:18 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=91000 val_mean_reward=-0.921718 alpha=0.000000 test_status=pending
+- [2026-04-28 17:41:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=456 train_episode_reward=-2.799146 val_status=pending test_status=pending
+- [2026-04-28 17:41:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=457 train_episode_reward=-1.938370 val_status=pending test_status=pending
+- [2026-04-28 17:41:31 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=458 train_episode_reward=-4.558838 val_status=pending test_status=pending
+- [2026-04-28 17:41:35 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=459 train_episode_reward=-1.166751 val_status=pending test_status=pending
+- [2026-04-28 17:41:39 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=460 train_episode_reward=-3.705909 val_status=pending test_status=pending
+- [2026-04-28 17:41:42 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=92000 val_mean_reward=-1.392158 alpha=0.000000 test_status=pending
+- [2026-04-28 17:41:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=461 train_episode_reward=-1.535679 val_status=pending test_status=pending
+- [2026-04-28 17:41:50 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=462 train_episode_reward=-2.078172 val_status=pending test_status=pending
+- [2026-04-28 17:41:54 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=463 train_episode_reward=-2.192797 val_status=pending test_status=pending
+- [2026-04-28 17:41:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=464 train_episode_reward=-0.904165 val_status=pending test_status=pending
+- [2026-04-28 17:42:03 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=465 train_episode_reward=-5.611245 val_status=pending test_status=pending
+- [2026-04-28 17:42:05 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=93000 val_mean_reward=-1.352307 alpha=0.000000 test_status=pending
+- [2026-04-28 17:42:09 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=466 train_episode_reward=-1.342834 val_status=pending test_status=pending
+- [2026-04-28 17:42:13 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=467 train_episode_reward=-1.178526 val_status=pending test_status=pending
+- [2026-04-28 17:42:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=468 train_episode_reward=-9.395867 val_status=pending test_status=pending
+- [2026-04-28 17:42:22 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=469 train_episode_reward=-2.917542 val_status=pending test_status=pending
+- [2026-04-28 17:42:26 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=470 train_episode_reward=-2.205601 val_status=pending test_status=pending
+- [2026-04-28 17:42:28 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=94000 val_mean_reward=-1.079049 alpha=0.000000 test_status=pending
+- [2026-04-28 17:42:32 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=471 train_episode_reward=-3.418408 val_status=pending test_status=pending
+- [2026-04-28 17:42:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=472 train_episode_reward=-12.354972 val_status=pending test_status=pending
+- [2026-04-28 17:42:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=473 train_episode_reward=-0.597686 val_status=pending test_status=pending
+- [2026-04-28 17:42:45 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=474 train_episode_reward=-3.128351 val_status=pending test_status=pending
+- [2026-04-28 17:42:49 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=475 train_episode_reward=-0.522422 val_status=pending test_status=pending
+- [2026-04-28 17:42:51 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=95000 val_mean_reward=-1.850343 alpha=0.000000 test_status=pending
+- [2026-04-28 17:42:56 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=476 train_episode_reward=-0.879687 val_status=pending test_status=pending
+- [2026-04-28 17:43:00 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=477 train_episode_reward=-0.753901 val_status=pending test_status=pending
+- [2026-04-28 17:43:04 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=478 train_episode_reward=-0.942553 val_status=pending test_status=pending
+- [2026-04-28 17:43:08 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=479 train_episode_reward=-0.941709 val_status=pending test_status=pending
+- [2026-04-28 17:43:12 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=480 train_episode_reward=-1.618861 val_status=pending test_status=pending
+- [2026-04-28 17:43:14 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=96000 val_mean_reward=-1.353213 alpha=0.000000 test_status=pending
+- [2026-04-28 17:43:19 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=481 train_episode_reward=-1.390391 val_status=pending test_status=pending
+- [2026-04-28 17:43:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=482 train_episode_reward=-0.595985 val_status=pending test_status=pending
+- [2026-04-28 17:43:27 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=483 train_episode_reward=-0.834659 val_status=pending test_status=pending
+- [2026-04-28 17:43:32 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=484 train_episode_reward=-6.224081 val_status=pending test_status=pending
+- [2026-04-28 17:43:36 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=485 train_episode_reward=-1.823264 val_status=pending test_status=pending
+- [2026-04-28 17:43:38 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=97000 val_mean_reward=-1.462456 alpha=0.000000 test_status=pending
+- [2026-04-28 17:43:42 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=486 train_episode_reward=-4.242135 val_status=pending test_status=pending
+- [2026-04-28 17:43:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=487 train_episode_reward=-2.387552 val_status=pending test_status=pending
+- [2026-04-28 17:43:51 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=488 train_episode_reward=-2.933144 val_status=pending test_status=pending
+- [2026-04-28 17:43:55 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=489 train_episode_reward=-2.398535 val_status=pending test_status=pending
+- [2026-04-28 17:43:59 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=490 train_episode_reward=-6.677194 val_status=pending test_status=pending
+- [2026-04-28 17:44:02 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=98000 val_mean_reward=-1.146807 alpha=0.000000 test_status=pending
+- [2026-04-28 17:44:06 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=491 train_episode_reward=-5.814778 val_status=pending test_status=pending
+- [2026-04-28 17:44:10 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=492 train_episode_reward=-0.735595 val_status=pending test_status=pending
+- [2026-04-28 17:44:14 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=493 train_episode_reward=-0.781792 val_status=pending test_status=pending
+- [2026-04-28 17:44:18 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=494 train_episode_reward=-0.990843 val_status=pending test_status=pending
+- [2026-04-28 17:44:23 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=495 train_episode_reward=-1.448924 val_status=pending test_status=pending
+- [2026-04-28 17:44:25 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=99000 val_mean_reward=-1.477089 alpha=0.000000 test_status=pending
+- [2026-04-28 17:44:29 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=496 train_episode_reward=-1.437618 val_status=pending test_status=pending
+- [2026-04-28 17:44:33 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=497 train_episode_reward=-2.300248 val_status=pending test_status=pending
+- [2026-04-28 17:44:37 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=498 train_episode_reward=-0.547870 val_status=pending test_status=pending
+- [2026-04-28 17:44:41 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=499 train_episode_reward=-1.770667 val_status=pending test_status=pending
+- [2026-04-28 17:44:46 UTC+7] model=SAC_MM_v1 stage=EPISODE epoch=500 train_episode_reward=-2.805020 val_status=pending test_status=pending
+- [2026-04-28 17:44:48 UTC+7] model=SAC_MM_v1 stage=VALIDATION step=100000 val_mean_reward=-1.117531 alpha=0.000000 test_status=pending
+- [2026-04-28 17:44:50 UTC+7] model=SAC_MM_v1 stage=FINAL train_mean_reward=-3.050924 val_best_mean_reward=-0.766332 test_mean_reward=-1.439908 test_sharpe=-90.313691 test_max_drawdown=0.000000
+- [2026-04-28 17:44:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=1 train_episode_reward=-1.472685 epsilon=0.905267 val_status=pending test_status=pending
+- [2026-04-28 17:44:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=2 train_episode_reward=-16.976262 epsilon=0.819099 val_status=pending test_status=pending
+- [2026-04-28 17:44:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=3 train_episode_reward=-2.058727 epsilon=0.741133 val_status=pending test_status=pending
+- [2026-04-28 17:44:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=4 train_episode_reward=-2.650304 epsilon=0.670588 val_status=pending test_status=pending
+- [2026-04-28 17:44:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=5 train_episode_reward=-0.864872 epsilon=0.606758 val_status=pending test_status=pending
+- [2026-04-28 17:44:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=6 train_episode_reward=-1.404515 epsilon=0.549004 val_status=pending test_status=pending
+- [2026-04-28 17:44:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=7 train_episode_reward=-2.501587 epsilon=0.496747 val_status=pending test_status=pending
+- [2026-04-28 17:44:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=8 train_episode_reward=-0.743122 epsilon=0.449464 val_status=pending test_status=pending
+- [2026-04-28 17:44:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=9 train_episode_reward=-1.182637 epsilon=0.406682 val_status=pending test_status=pending
+- [2026-04-28 17:44:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=10 train_episode_reward=-0.841492 epsilon=0.367971 val_status=pending test_status=pending
+- [2026-04-28 17:44:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=11 train_episode_reward=-0.920679 epsilon=0.332946 val_status=pending test_status=pending
+- [2026-04-28 17:44:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=12 train_episode_reward=-1.195992 epsilon=0.301254 val_status=pending test_status=pending
+- [2026-04-28 17:44:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=13 train_episode_reward=-2.400964 epsilon=0.272579 val_status=pending test_status=pending
+- [2026-04-28 17:44:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=14 train_episode_reward=-0.860524 epsilon=0.246634 val_status=pending test_status=pending
+- [2026-04-28 17:44:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=15 train_episode_reward=-0.869519 epsilon=0.223158 val_status=pending test_status=pending
+- [2026-04-28 17:44:57 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=3000 val_mean_reward=-2.121919 epsilon=0.223046 test_status=pending
+- [2026-04-28 17:44:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=16 train_episode_reward=-2.085753 epsilon=0.201917 val_status=pending test_status=pending
+- [2026-04-28 17:44:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=17 train_episode_reward=-0.526314 epsilon=0.182697 val_status=pending test_status=pending
+- [2026-04-28 17:45:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=18 train_episode_reward=-0.856408 epsilon=0.165307 val_status=pending test_status=pending
+- [2026-04-28 17:45:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=19 train_episode_reward=-9.365262 epsilon=0.149572 val_status=pending test_status=pending
+- [2026-04-28 17:45:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=20 train_episode_reward=-10.168384 epsilon=0.135335 val_status=pending test_status=pending
+- [2026-04-28 17:45:03 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=4000 val_mean_reward=-1.486977 epsilon=0.135268 test_status=pending
+- [2026-04-28 17:45:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=21 train_episode_reward=-12.330831 epsilon=0.122453 val_status=pending test_status=pending
+- [2026-04-28 17:45:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=22 train_episode_reward=-1.558456 epsilon=0.110798 val_status=pending test_status=pending
+- [2026-04-28 17:45:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=23 train_episode_reward=-2.116588 epsilon=0.100251 val_status=pending test_status=pending
+- [2026-04-28 17:45:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=24 train_episode_reward=-3.617142 epsilon=0.090709 val_status=pending test_status=pending
+- [2026-04-28 17:45:08 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=25 train_episode_reward=-2.225414 epsilon=0.082075 val_status=pending test_status=pending
+- [2026-04-28 17:45:09 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=5000 val_mean_reward=-1.237989 epsilon=0.082034 test_status=pending
+- [2026-04-28 17:45:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=26 train_episode_reward=-7.399843 epsilon=0.074262 val_status=pending test_status=pending
+- [2026-04-28 17:45:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=27 train_episode_reward=-0.458114 epsilon=0.067194 val_status=pending test_status=pending
+- [2026-04-28 17:45:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=28 train_episode_reward=-2.503322 epsilon=0.060798 val_status=pending test_status=pending
+- [2026-04-28 17:45:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=29 train_episode_reward=-1.622931 epsilon=0.055011 val_status=pending test_status=pending
+- [2026-04-28 17:45:14 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=30 train_episode_reward=-0.760521 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:15 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=6000 val_mean_reward=-2.480507 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=31 train_episode_reward=-0.652930 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:17 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=32 train_episode_reward=-1.927096 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=33 train_episode_reward=-2.697437 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=34 train_episode_reward=-0.688120 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:20 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=35 train_episode_reward=-2.816475 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:21 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=7000 val_mean_reward=-2.648715 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=36 train_episode_reward=-1.176834 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:23 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=37 train_episode_reward=-1.203372 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:24 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=38 train_episode_reward=-1.787299 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=39 train_episode_reward=-8.224606 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=40 train_episode_reward=-0.428217 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:27 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=8000 val_mean_reward=-2.519557 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=41 train_episode_reward=-1.800511 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:29 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=42 train_episode_reward=-0.980323 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=43 train_episode_reward=-5.219922 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=44 train_episode_reward=-2.231395 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:32 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=45 train_episode_reward=-0.760816 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:33 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=9000 val_mean_reward=-2.669735 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:34 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=46 train_episode_reward=-1.480094 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=47 train_episode_reward=-2.066157 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=48 train_episode_reward=-3.679757 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=49 train_episode_reward=-15.389957 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:38 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=50 train_episode_reward=-4.456410 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:39 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=10000 val_mean_reward=-2.397346 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=51 train_episode_reward=-1.758815 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=52 train_episode_reward=0.597637 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=53 train_episode_reward=-1.151192 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=54 train_episode_reward=-1.697614 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=55 train_episode_reward=-1.051595 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:45 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=11000 val_mean_reward=-2.561728 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=56 train_episode_reward=-15.432904 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=57 train_episode_reward=-18.116512 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=58 train_episode_reward=-0.737898 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=59 train_episode_reward=-2.482312 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=60 train_episode_reward=-14.831590 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:52 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=12000 val_mean_reward=-2.399614 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=61 train_episode_reward=-3.606674 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=62 train_episode_reward=-4.945193 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=63 train_episode_reward=-0.934801 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=64 train_episode_reward=-6.355261 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=65 train_episode_reward=-1.821870 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:45:58 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=13000 val_mean_reward=-2.207317 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:45:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=66 train_episode_reward=-1.516587 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=67 train_episode_reward=-2.912197 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=68 train_episode_reward=-0.715973 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=69 train_episode_reward=-17.372565 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=70 train_episode_reward=-0.896550 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:04 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=14000 val_mean_reward=-2.327892 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=71 train_episode_reward=-2.286229 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=72 train_episode_reward=-2.078472 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:08 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=73 train_episode_reward=-4.285687 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=74 train_episode_reward=-11.228225 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=75 train_episode_reward=-3.303463 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:11 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=15000 val_mean_reward=-2.179248 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=76 train_episode_reward=-15.912545 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=77 train_episode_reward=-0.382864 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:14 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=78 train_episode_reward=-4.946786 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=79 train_episode_reward=-16.248226 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=80 train_episode_reward=-6.851036 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:17 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=16000 val_mean_reward=-1.027219 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=81 train_episode_reward=-4.609805 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=82 train_episode_reward=-0.866987 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:20 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=83 train_episode_reward=-4.733271 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=84 train_episode_reward=-1.009469 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:23 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=85 train_episode_reward=-5.857467 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:23 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=17000 val_mean_reward=-2.120466 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=86 train_episode_reward=-2.219949 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=87 train_episode_reward=-1.925920 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:27 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=88 train_episode_reward=-2.380596 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=89 train_episode_reward=-2.794644 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=90 train_episode_reward=-7.632386 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:30 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=18000 val_mean_reward=-2.286534 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=91 train_episode_reward=-1.415230 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=92 train_episode_reward=-1.123675 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:34 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=93 train_episode_reward=-1.655308 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=94 train_episode_reward=-0.980363 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=95 train_episode_reward=-9.799015 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:37 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=19000 val_mean_reward=-2.081660 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:38 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=96 train_episode_reward=-1.695449 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=97 train_episode_reward=-1.932129 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=98 train_episode_reward=-16.415438 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=99 train_episode_reward=-1.456702 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=100 train_episode_reward=-22.157797 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:44 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=20000 val_mean_reward=-0.905342 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=101 train_episode_reward=-13.863973 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=102 train_episode_reward=-8.122043 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:47 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=103 train_episode_reward=-0.866700 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=104 train_episode_reward=-9.103188 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=105 train_episode_reward=-1.377160 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:51 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=21000 val_mean_reward=-2.293210 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=106 train_episode_reward=-2.260744 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=107 train_episode_reward=-2.484724 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=108 train_episode_reward=-3.063419 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=109 train_episode_reward=-1.008065 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=110 train_episode_reward=-0.437501 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:46:58 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=22000 val_mean_reward=-2.365869 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:46:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=111 train_episode_reward=-14.571130 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=112 train_episode_reward=-0.400862 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=113 train_episode_reward=-1.122344 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=114 train_episode_reward=-0.841441 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=115 train_episode_reward=-0.659814 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:04 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=23000 val_mean_reward=-0.902730 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=116 train_episode_reward=-0.868578 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=117 train_episode_reward=-2.281373 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:08 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=118 train_episode_reward=-0.695710 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=119 train_episode_reward=-1.071737 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=120 train_episode_reward=-0.970900 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:11 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=24000 val_mean_reward=-2.227319 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=121 train_episode_reward=-13.852256 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:14 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=122 train_episode_reward=-0.657170 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=123 train_episode_reward=-3.903283 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=124 train_episode_reward=-0.583662 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=125 train_episode_reward=-0.969970 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:18 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=25000 val_mean_reward=-0.969624 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=126 train_episode_reward=-1.640496 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=127 train_episode_reward=-16.340475 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=128 train_episode_reward=-0.981531 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:23 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=129 train_episode_reward=-1.228839 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=130 train_episode_reward=-1.039800 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:25 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=26000 val_mean_reward=-2.231495 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=131 train_episode_reward=-4.337856 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=132 train_episode_reward=-2.659943 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:29 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=133 train_episode_reward=-1.955406 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=134 train_episode_reward=-10.316023 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=135 train_episode_reward=-3.518114 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:32 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=27000 val_mean_reward=-1.206175 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=136 train_episode_reward=-10.597656 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=137 train_episode_reward=-1.322042 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=138 train_episode_reward=-1.389208 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=139 train_episode_reward=-2.973888 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:38 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=140 train_episode_reward=-3.584829 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:39 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=28000 val_mean_reward=-2.212319 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=141 train_episode_reward=-1.040812 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=142 train_episode_reward=-0.517443 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=143 train_episode_reward=-8.260785 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=144 train_episode_reward=-3.251397 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=145 train_episode_reward=-29.863119 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:46 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=29000 val_mean_reward=-1.006785 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:47 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=146 train_episode_reward=-0.959495 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=147 train_episode_reward=-22.317087 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=148 train_episode_reward=-0.855179 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=149 train_episode_reward=-20.051762 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=150 train_episode_reward=-2.003621 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:53 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=30000 val_mean_reward=-1.028957 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:47:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=151 train_episode_reward=-2.772668 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=152 train_episode_reward=-1.310020 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=153 train_episode_reward=-1.252256 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:47:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=154 train_episode_reward=-1.742396 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=155 train_episode_reward=-24.369265 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:00 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=31000 val_mean_reward=-2.220675 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=156 train_episode_reward=-0.974088 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:03 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=157 train_episode_reward=-8.255626 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=158 train_episode_reward=-3.029792 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=159 train_episode_reward=-1.006951 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=160 train_episode_reward=-0.486309 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:07 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=32000 val_mean_reward=-0.868340 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:08 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=161 train_episode_reward=-1.393709 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=162 train_episode_reward=-7.665220 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=163 train_episode_reward=-1.606870 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=164 train_episode_reward=-0.761090 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=165 train_episode_reward=-3.436850 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:14 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=33000 val_mean_reward=-2.037107 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=166 train_episode_reward=-1.737332 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:17 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=167 train_episode_reward=-1.683155 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=168 train_episode_reward=-1.413792 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=169 train_episode_reward=-2.316055 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=170 train_episode_reward=-2.632413 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:21 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=34000 val_mean_reward=-1.990943 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:23 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=171 train_episode_reward=-1.165504 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:24 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=172 train_episode_reward=-4.323067 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=173 train_episode_reward=-1.204614 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=174 train_episode_reward=-11.019209 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=175 train_episode_reward=-13.614240 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:28 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=35000 val_mean_reward=-2.190822 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=176 train_episode_reward=-2.393027 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=177 train_episode_reward=-1.967200 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:32 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=178 train_episode_reward=-0.765897 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:34 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=179 train_episode_reward=-4.646097 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=180 train_episode_reward=-1.609331 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:35 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=36000 val_mean_reward=-1.057169 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=181 train_episode_reward=-1.770846 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:38 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=182 train_episode_reward=-1.465937 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=183 train_episode_reward=-0.715039 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=184 train_episode_reward=-1.428544 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=185 train_episode_reward=-0.666548 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:43 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=37000 val_mean_reward=-0.862677 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=186 train_episode_reward=-2.104016 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=187 train_episode_reward=-1.019709 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:47 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=188 train_episode_reward=-2.617875 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=189 train_episode_reward=-1.620289 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=190 train_episode_reward=-0.729574 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:50 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=38000 val_mean_reward=-2.011824 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=191 train_episode_reward=-2.539940 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=192 train_episode_reward=-1.972812 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=193 train_episode_reward=-2.062616 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=194 train_episode_reward=-18.800258 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=195 train_episode_reward=-2.423694 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:48:57 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=39000 val_mean_reward=-0.798323 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:48:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=196 train_episode_reward=-2.060705 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=197 train_episode_reward=-0.768909 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=198 train_episode_reward=-3.801702 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=199 train_episode_reward=-10.604299 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=200 train_episode_reward=-2.455617 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:04 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=40000 val_mean_reward=-1.918636 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=201 train_episode_reward=-0.369060 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=202 train_episode_reward=-10.609109 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=203 train_episode_reward=-12.045536 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=204 train_episode_reward=-1.523733 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=205 train_episode_reward=-2.250984 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:12 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=41000 val_mean_reward=-2.240631 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:14 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=206 train_episode_reward=-2.327083 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=207 train_episode_reward=-0.920042 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=208 train_episode_reward=-1.501060 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=209 train_episode_reward=-2.669373 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=210 train_episode_reward=-0.550944 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:19 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=42000 val_mean_reward=-0.852173 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=211 train_episode_reward=-1.989930 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=212 train_episode_reward=-2.203589 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:23 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=213 train_episode_reward=-1.015747 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=214 train_episode_reward=-2.351615 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=215 train_episode_reward=-6.378367 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:27 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=43000 val_mean_reward=-0.808521 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=216 train_episode_reward=-0.979454 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:29 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=217 train_episode_reward=-1.161054 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=218 train_episode_reward=-3.877720 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:32 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=219 train_episode_reward=-4.331872 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=220 train_episode_reward=-1.442442 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:34 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=44000 val_mean_reward=-1.957649 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=221 train_episode_reward=-26.890244 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=222 train_episode_reward=-1.883741 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:38 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=223 train_episode_reward=-1.753510 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=224 train_episode_reward=-1.417401 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=225 train_episode_reward=-2.386807 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:41 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=45000 val_mean_reward=-0.937553 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=226 train_episode_reward=-0.994624 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=227 train_episode_reward=-1.510549 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=228 train_episode_reward=-1.820959 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=229 train_episode_reward=-0.917683 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=230 train_episode_reward=-2.757326 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:48 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=46000 val_mean_reward=-0.773829 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=231 train_episode_reward=-2.039617 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=232 train_episode_reward=-1.907118 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=233 train_episode_reward=-0.885899 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=234 train_episode_reward=-0.710488 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=235 train_episode_reward=-0.685394 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:56 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=47000 val_mean_reward=-0.824736 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:49:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=236 train_episode_reward=-14.071712 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:49:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=237 train_episode_reward=-7.207491 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=238 train_episode_reward=-17.775144 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=239 train_episode_reward=-1.164525 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:03 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=240 train_episode_reward=-1.052987 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:04 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=48000 val_mean_reward=-0.821857 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:50:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=241 train_episode_reward=-19.012186 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=242 train_episode_reward=-24.309395 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:08 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=243 train_episode_reward=-0.544140 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=244 train_episode_reward=-10.764088 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=245 train_episode_reward=-1.856564 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:12 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=49000 val_mean_reward=-0.903419 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:50:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=246 train_episode_reward=-13.933899 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=247 train_episode_reward=-24.072363 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=248 train_episode_reward=-0.679800 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=249 train_episode_reward=-1.687525 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=250 train_episode_reward=-26.659160 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:20 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=50000 val_mean_reward=-0.941098 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:50:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=251 train_episode_reward=-7.082263 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:24 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=252 train_episode_reward=-0.673073 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=253 train_episode_reward=-2.956558 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:29 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=254 train_episode_reward=-0.904024 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:32 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=255 train_episode_reward=-1.244232 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:33 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=51000 val_mean_reward=-2.120480 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:50:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=256 train_episode_reward=-1.083488 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=257 train_episode_reward=-1.809099 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=258 train_episode_reward=-1.188547 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=259 train_episode_reward=-0.911540 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=260 train_episode_reward=-11.433099 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:45 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=52000 val_mean_reward=-0.888457 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:50:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=261 train_episode_reward=-11.450579 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=262 train_episode_reward=-3.789668 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=263 train_episode_reward=-22.142044 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=264 train_episode_reward=-3.736917 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=265 train_episode_reward=-12.589253 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:52 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=53000 val_mean_reward=-0.889992 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:50:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=266 train_episode_reward=-0.919630 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=267 train_episode_reward=-2.774735 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=268 train_episode_reward=-17.833026 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:50:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=269 train_episode_reward=-1.831677 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=270 train_episode_reward=-1.732772 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:01 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=54000 val_mean_reward=-1.028521 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:51:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=271 train_episode_reward=-3.997455 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=272 train_episode_reward=-3.563001 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=273 train_episode_reward=-8.296911 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=274 train_episode_reward=-2.621168 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=275 train_episode_reward=-5.605056 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:17 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=55000 val_mean_reward=-0.805312 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:51:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=276 train_episode_reward=-27.817767 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=277 train_episode_reward=-0.434076 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=278 train_episode_reward=1.784230 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=279 train_episode_reward=-2.105386 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=280 train_episode_reward=-28.068420 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:32 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=56000 val_mean_reward=-0.944634 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:51:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=281 train_episode_reward=-0.832684 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:38 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=282 train_episode_reward=-2.188488 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=283 train_episode_reward=-2.716739 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=284 train_episode_reward=-0.287909 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=285 train_episode_reward=-2.985582 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:47 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=57000 val_mean_reward=-0.862760 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:51:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=286 train_episode_reward=-2.311965 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=287 train_episode_reward=-3.721893 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=288 train_episode_reward=-0.359193 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=289 train_episode_reward=-19.671297 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=290 train_episode_reward=-2.368450 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:55 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=58000 val_mean_reward=-1.001398 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:51:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=291 train_episode_reward=-1.079656 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=292 train_episode_reward=-1.142209 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:51:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=293 train_episode_reward=-4.267993 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=294 train_episode_reward=-1.265864 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=295 train_episode_reward=-1.357733 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:03 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=59000 val_mean_reward=-2.107772 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:52:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=296 train_episode_reward=-1.068858 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=297 train_episode_reward=-15.391577 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=298 train_episode_reward=-1.090308 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=299 train_episode_reward=-2.887916 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=300 train_episode_reward=-13.181948 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:19 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=60000 val_mean_reward=-0.814569 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:52:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=301 train_episode_reward=-7.066950 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=302 train_episode_reward=-3.857462 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:27 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=303 train_episode_reward=-1.953594 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=304 train_episode_reward=-2.228995 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=305 train_episode_reward=-2.751756 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:34 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=61000 val_mean_reward=-1.027408 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:52:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=306 train_episode_reward=-1.385234 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=307 train_episode_reward=-3.620270 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=308 train_episode_reward=-10.536679 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=309 train_episode_reward=-2.464960 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=310 train_episode_reward=-3.902809 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:46 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=62000 val_mean_reward=-0.975034 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:52:47 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=311 train_episode_reward=-1.993458 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=312 train_episode_reward=-5.776994 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=313 train_episode_reward=-5.326121 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=314 train_episode_reward=-0.439189 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=315 train_episode_reward=-3.635059 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:54 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=63000 val_mean_reward=-0.978912 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:52:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=316 train_episode_reward=-11.312744 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=317 train_episode_reward=-0.828796 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:52:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=318 train_episode_reward=-3.569915 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=319 train_episode_reward=-15.747163 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=320 train_episode_reward=-2.577279 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:06 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=64000 val_mean_reward=-0.891613 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:53:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=321 train_episode_reward=-9.634561 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=322 train_episode_reward=-3.273175 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=323 train_episode_reward=-1.580176 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=324 train_episode_reward=-4.040270 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:20 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=325 train_episode_reward=-4.099058 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:22 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=65000 val_mean_reward=-0.903613 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:53:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=326 train_episode_reward=-14.723224 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:27 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=327 train_episode_reward=-0.365284 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=328 train_episode_reward=-1.608640 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=329 train_episode_reward=-1.534776 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=330 train_episode_reward=-2.249765 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:37 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=66000 val_mean_reward=-0.947932 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:53:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=331 train_episode_reward=-2.377423 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=332 train_episode_reward=-1.574244 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=333 train_episode_reward=-30.286104 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=334 train_episode_reward=-3.144755 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=335 train_episode_reward=-0.915886 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:52 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=67000 val_mean_reward=-0.963371 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:53:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=336 train_episode_reward=-1.772372 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:53:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=337 train_episode_reward=-2.380118 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=338 train_episode_reward=-0.864770 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:03 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=339 train_episode_reward=-2.024491 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=340 train_episode_reward=-0.611104 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:07 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=68000 val_mean_reward=-0.958921 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:54:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=341 train_episode_reward=-1.873206 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=342 train_episode_reward=-0.348519 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=343 train_episode_reward=-5.109274 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=344 train_episode_reward=-3.647161 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=345 train_episode_reward=-1.189865 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:22 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=69000 val_mean_reward=-1.181026 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:54:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=346 train_episode_reward=-0.674545 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:29 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=347 train_episode_reward=-3.190245 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=348 train_episode_reward=-2.606305 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:34 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=349 train_episode_reward=-1.746944 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=350 train_episode_reward=-3.125123 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:38 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=70000 val_mean_reward=-0.798678 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:54:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=351 train_episode_reward=-0.842768 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=352 train_episode_reward=-8.665297 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=353 train_episode_reward=-7.413539 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=354 train_episode_reward=-8.677241 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=355 train_episode_reward=-28.657123 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:53 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=71000 val_mean_reward=-0.842903 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:54:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=356 train_episode_reward=-16.586995 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:54:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=357 train_episode_reward=-4.136165 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=358 train_episode_reward=-2.366500 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=359 train_episode_reward=-0.877639 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=360 train_episode_reward=-1.484158 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:08 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=72000 val_mean_reward=-0.898563 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:55:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=361 train_episode_reward=-1.253890 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=362 train_episode_reward=-8.500804 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=363 train_episode_reward=-12.066576 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=364 train_episode_reward=-4.344396 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=365 train_episode_reward=-6.601831 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:23 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=73000 val_mean_reward=-0.856035 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:55:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=366 train_episode_reward=-1.072517 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=367 train_episode_reward=-8.331918 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=368 train_episode_reward=-0.744306 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:34 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=369 train_episode_reward=-1.650042 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:37 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=370 train_episode_reward=-1.741321 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:38 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=74000 val_mean_reward=-1.174705 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:55:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=371 train_episode_reward=-1.169669 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=372 train_episode_reward=-3.685541 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=373 train_episode_reward=-5.756033 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=374 train_episode_reward=-0.670012 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:52 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=375 train_episode_reward=-3.504457 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:53 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=75000 val_mean_reward=-1.011388 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:55:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=376 train_episode_reward=-2.922489 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:55:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=377 train_episode_reward=-1.990546 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=378 train_episode_reward=-9.304617 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=379 train_episode_reward=-6.377419 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:07 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=380 train_episode_reward=-2.974878 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:08 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=76000 val_mean_reward=-0.832331 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:56:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=381 train_episode_reward=-7.926078 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=382 train_episode_reward=-2.185358 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=383 train_episode_reward=-14.624043 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=384 train_episode_reward=-0.549725 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:22 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=385 train_episode_reward=-7.499674 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:23 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=77000 val_mean_reward=-0.975034 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:56:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=386 train_episode_reward=-0.718695 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=387 train_episode_reward=-2.757339 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=388 train_episode_reward=-1.513393 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:34 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=389 train_episode_reward=-2.707128 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=390 train_episode_reward=-12.722922 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:38 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=78000 val_mean_reward=-0.865771 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:56:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=391 train_episode_reward=-3.776278 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=392 train_episode_reward=-2.540226 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=393 train_episode_reward=-2.874869 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:49 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=394 train_episode_reward=-1.023460 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=395 train_episode_reward=-10.619872 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:52 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=79000 val_mean_reward=-0.821430 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:56:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=396 train_episode_reward=-1.914909 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:56:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=397 train_episode_reward=-9.503655 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:01 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=398 train_episode_reward=-1.415629 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:03 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=399 train_episode_reward=-1.071982 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=400 train_episode_reward=-1.483576 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:07 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=80000 val_mean_reward=-2.223784 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:57:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=401 train_episode_reward=-0.651284 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=402 train_episode_reward=-2.928115 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:16 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=403 train_episode_reward=-2.015530 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:19 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=404 train_episode_reward=-1.187692 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=405 train_episode_reward=-0.732628 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:22 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=81000 val_mean_reward=-1.086686 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:57:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=406 train_episode_reward=-2.921071 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=407 train_episode_reward=-4.188424 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:31 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=408 train_episode_reward=-3.007781 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=409 train_episode_reward=-2.300399 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=410 train_episode_reward=-3.215154 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:37 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=82000 val_mean_reward=-0.903890 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:57:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=411 train_episode_reward=-0.610545 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=412 train_episode_reward=-2.405521 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:46 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=413 train_episode_reward=-1.175575 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=414 train_episode_reward=-1.454531 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=415 train_episode_reward=-1.739979 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:52 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=83000 val_mean_reward=-1.031439 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:57:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=416 train_episode_reward=-5.329889 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:57:58 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=417 train_episode_reward=-4.438184 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=418 train_episode_reward=-0.814949 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:03 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=419 train_episode_reward=-3.776252 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=420 train_episode_reward=-8.891221 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:07 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=84000 val_mean_reward=-0.972240 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:58:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=421 train_episode_reward=-0.637376 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:13 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=422 train_episode_reward=-1.952046 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=423 train_episode_reward=-1.423643 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=424 train_episode_reward=-2.489638 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=425 train_episode_reward=-7.250870 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:22 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=85000 val_mean_reward=-0.948082 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:58:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=426 train_episode_reward=-9.711283 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:28 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=427 train_episode_reward=-3.826062 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=428 train_episode_reward=-0.668965 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=429 train_episode_reward=-19.158438 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=430 train_episode_reward=-8.930154 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:37 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=86000 val_mean_reward=-0.997704 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:58:40 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=431 train_episode_reward=-2.007543 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:43 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=432 train_episode_reward=-3.224214 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=433 train_episode_reward=-2.107991 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=434 train_episode_reward=-1.512525 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:51 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=435 train_episode_reward=-4.963041 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:52 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=87000 val_mean_reward=-0.889930 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:58:55 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=436 train_episode_reward=-1.026452 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:58:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=437 train_episode_reward=-1.203339 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=438 train_episode_reward=-1.337027 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:03 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=439 train_episode_reward=-1.036405 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:06 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=440 train_episode_reward=-0.760607 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:07 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=88000 val_mean_reward=-1.041896 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:59:10 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=441 train_episode_reward=-4.775583 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=442 train_episode_reward=-3.189236 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:15 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=443 train_episode_reward=-12.000879 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:18 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=444 train_episode_reward=-17.516015 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:21 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=445 train_episode_reward=-2.051948 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:22 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=89000 val_mean_reward=-0.948082 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:59:25 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=446 train_episode_reward=-0.482586 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:27 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=447 train_episode_reward=-10.224055 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=448 train_episode_reward=-9.270045 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:33 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=449 train_episode_reward=-1.192332 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:36 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=450 train_episode_reward=-0.656328 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:37 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=90000 val_mean_reward=-0.865771 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:59:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=451 train_episode_reward=-0.958599 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=452 train_episode_reward=-2.065529 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=453 train_episode_reward=-0.439154 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:48 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=454 train_episode_reward=-0.616734 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=455 train_episode_reward=-0.884738 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:51 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=91000 val_mean_reward=-0.879455 epsilon=0.050000 test_status=pending
+- [2026-04-28 17:59:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=456 train_episode_reward=-2.543580 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 17:59:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=457 train_episode_reward=-10.542695 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:00 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=458 train_episode_reward=-3.553876 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=459 train_episode_reward=-3.108892 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=460 train_episode_reward=-2.478101 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:06 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=92000 val_mean_reward=-1.080015 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:00:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=461 train_episode_reward=-2.889151 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:12 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=462 train_episode_reward=-1.906169 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:14 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=463 train_episode_reward=-1.214459 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:17 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=464 train_episode_reward=-1.171971 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:20 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=465 train_episode_reward=-6.782201 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:21 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=93000 val_mean_reward=-1.124206 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:00:24 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=466 train_episode_reward=-1.017211 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:27 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=467 train_episode_reward=-0.451736 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:30 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=468 train_episode_reward=-7.714632 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:32 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=469 train_episode_reward=-4.507600 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=470 train_episode_reward=-1.112897 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:36 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=94000 val_mean_reward=-0.918409 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:00:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=471 train_episode_reward=-5.992800 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:42 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=472 train_episode_reward=-10.843624 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:45 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=473 train_episode_reward=-0.710247 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:47 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=474 train_episode_reward=-3.937917 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=475 train_episode_reward=-0.187251 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:51 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=95000 val_mean_reward=-0.948082 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:00:54 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=476 train_episode_reward=-2.125915 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:57 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=477 train_episode_reward=-0.750418 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:00:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=478 train_episode_reward=-0.859145 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=479 train_episode_reward=-0.764302 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:05 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=480 train_episode_reward=-1.958659 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:06 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=96000 val_mean_reward=-0.865771 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:01:09 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=481 train_episode_reward=-0.999958 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:11 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=482 train_episode_reward=-1.935365 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:14 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=483 train_episode_reward=-1.732589 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:17 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=484 train_episode_reward=-6.797254 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:20 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=485 train_episode_reward=-11.082480 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:21 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=97000 val_mean_reward=-1.052897 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:01:24 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=486 train_episode_reward=-18.220270 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:26 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=487 train_episode_reward=-1.478465 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:29 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=488 train_episode_reward=-3.861455 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:32 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=489 train_episode_reward=-0.784129 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:35 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=490 train_episode_reward=-4.138396 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:36 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=98000 val_mean_reward=-1.235463 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:01:39 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=491 train_episode_reward=-3.331753 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:41 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=492 train_episode_reward=-0.761157 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:44 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=493 train_episode_reward=-0.329934 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:47 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=494 train_episode_reward=-0.517631 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:50 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=495 train_episode_reward=-1.250410 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:51 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=99000 val_mean_reward=-0.889930 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:01:53 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=496 train_episode_reward=-0.649159 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:56 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=497 train_episode_reward=-9.899249 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:01:59 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=498 train_episode_reward=-1.803456 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:02:02 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=499 train_episode_reward=-2.208646 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:02:04 UTC+7] model=DQN_MM_v1 stage=EPISODE epoch=500 train_episode_reward=-2.732074 epsilon=0.050000 val_status=pending test_status=pending
+- [2026-04-28 18:02:06 UTC+7] model=DQN_MM_v1 stage=VALIDATION step=100000 val_mean_reward=-1.212824 epsilon=0.050000 test_status=pending
+- [2026-04-28 18:02:07 UTC+7] model=DQN_MM_v1 stage=FINAL train_mean_reward=-4.349045 val_best_mean_reward=-0.773829 test_mean_reward=-0.833223 test_sharpe=-62.312888 test_max_drawdown=1.000000
+- [2026-04-28 20:25:22 UTC+7] model=LSTM_Trend_v1 stage=EPOCH epoch=1/9 train_loss=0.000341 train_acc=0.487113 val_loss=0.000128 val_acc=0.489055 val_sharpe=-0.501751 test_status=pending
+- [2026-04-28 23:01:19 UTC+7] model=Autoencoder_StatArb_v1 stage=EPOCH epoch=1/30 train_loss=0.645420 val_loss=1.199493 val_mae=0.940216 val_sharpe=-0.758675 test_status=pending

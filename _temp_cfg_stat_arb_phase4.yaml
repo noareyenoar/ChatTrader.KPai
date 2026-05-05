@@ -1,0 +1,36 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 64
+  horizon: 10
+  max_assets: 34
+  max_rows_per_symbol: 50000
+training:
+  seed: 42
+  preferred_backend: directml
+  batch_size: 384
+  max_epochs: 80
+  patience: 12
+  lr: 0.001
+  weight_decay: 0.0001
+  recon_weight: 0.5
+  num_workers: 4
+  num_workers_non_cuda: 0
+  checkpoint_root: models/checkpoints/stat_arb
+  tensorboard_root: models/tensorboard/stat_arb
+  num_workers_directml: 0
+models:
+  autoencoder:
+    latent_dim: 32
+    dropout: 0.1
+  gat:
+    d_model: 32
+    num_layers: 2
+    dropout: 0.1
+  lstm:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.1
+registry_path: model_registry.json

@@ -1,0 +1,2 @@
+[trend:lstm] epoch 11 done train_loss=0.000151 train_acc=0.4891 val_loss=0.000102 val_acc=0.4886 val_sharpe=-0.0570 elapsed_s=5118.2
+[trend:lstm] checkpoint saved val_loss=0.000102

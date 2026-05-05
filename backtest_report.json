@@ -1,0 +1,25 @@
+{
+  "stats": {
+    "total_bars": 5,
+    "debates_run": 5,
+    "trades_opened": 0,
+    "trades_closed": 0,
+    "wins": 0,
+    "losses": 0,
+    "flat_decisions": 5,
+    "total_pnl": 0.0,
+    "peak_equity": 1.0,
+    "current_equity": 1.0,
+    "max_drawdown": 0.0,
+    "errors_caught": 0,
+    "credibility_updates": 0
+  },
+  "agent_credibilities": {
+    "TrendAnalyst": 0.6500311317595,
+    "MeanReversionAnalyst": 0.32820582784950014,
+    "ScalperAnalyst": 0.3565126718595001,
+    "StatArbAnalyst": 0.25285681714050007,
+    "DiscretionaryAnalyst": 0.5458362317594999,
+    "MarketMakerAnalyst": 0.3222147682405001
+  }
+}

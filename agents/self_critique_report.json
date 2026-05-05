@@ -1,0 +1,134 @@
+{
+  "TrendAnalyst": {
+    "agent": "TrendAnalyst",
+    "train_credibility": 0.65,
+    "val_credibility": 0.65,
+    "credibility_delta": 0.0,
+    "train_agent_accuracy": 0.75,
+    "val_agent_accuracy": 0.0,
+    "test_agent_accuracy": 0.0,
+    "train_win_rate": 0.0,
+    "val_win_rate": 0.0,
+    "test_win_rate": 0.0,
+    "val_accuracy_drift": -0.75,
+    "test_accuracy_drift": 0.0,
+    "overconfident_in": [],
+    "underconfident_in": [],
+    "regime_biases": {
+      "general": "Insufficient validation regime samples"
+    },
+    "recommended_adjustment": "Reduce credibility weight by 0.05 in RANGING regime. Current val PnL (0.0000%) is significantly below train (0.0000%). Possible overfit to trending patterns seen in training data.",
+    "llm_self_critique": "",
+    "validity_flag": "INVALID [FAIL] -- performance decay > 50%"
+  },
+  "MeanReversionAnalyst": {
+    "agent": "MeanReversionAnalyst",
+    "train_credibility": 0.3282,
+    "val_credibility": 0.3282,
+    "credibility_delta": 0.0,
+    "train_agent_accuracy": 0.25,
+    "val_agent_accuracy": 0.0,
+    "test_agent_accuracy": 0.6667,
+    "train_win_rate": 0.0,
+    "val_win_rate": 0.0,
+    "test_win_rate": 0.0,
+    "val_accuracy_drift": -0.25,
+    "test_accuracy_drift": 0.6667,
+    "overconfident_in": [],
+    "underconfident_in": [],
+    "regime_biases": {
+      "general": "Insufficient validation regime samples"
+    },
+    "recommended_adjustment": "Explore feature engineering improvements. Low credibility (0.3282) suggests signal quality below baseline.",
+    "llm_self_critique": "",
+    "validity_flag": "INVALID [FAIL] -- performance decay > 50%"
+  },
+  "ScalperAnalyst": {
+    "agent": "ScalperAnalyst",
+    "train_credibility": 0.3565,
+    "val_credibility": 0.3565,
+    "credibility_delta": 0.0,
+    "train_agent_accuracy": 0.3333,
+    "val_agent_accuracy": 0.0,
+    "test_agent_accuracy": 0.6667,
+    "train_win_rate": 0.0,
+    "val_win_rate": 0.0,
+    "test_win_rate": 0.0,
+    "val_accuracy_drift": -0.3333,
+    "test_accuracy_drift": 0.6667,
+    "overconfident_in": [],
+    "underconfident_in": [],
+    "regime_biases": {
+      "general": "Insufficient validation regime samples"
+    },
+    "recommended_adjustment": "Performance within acceptable bounds. Monitor for regime shift. Train acc=33.3% | Val acc=0.0% | Test acc=66.7%.",
+    "llm_self_critique": "",
+    "validity_flag": "INVALID [FAIL] -- performance decay > 50%"
+  },
+  "StatArbAnalyst": {
+    "agent": "StatArbAnalyst",
+    "train_credibility": 0.2529,
+    "val_credibility": 0.2529,
+    "credibility_delta": 0.0,
+    "train_agent_accuracy": 0.1667,
+    "val_agent_accuracy": 0.0,
+    "test_agent_accuracy": 0.3333,
+    "train_win_rate": 0.0,
+    "val_win_rate": 0.0,
+    "test_win_rate": 0.0,
+    "val_accuracy_drift": -0.1667,
+    "test_accuracy_drift": 0.3333,
+    "overconfident_in": [],
+    "underconfident_in": [],
+    "regime_biases": {
+      "general": "Insufficient validation regime samples"
+    },
+    "recommended_adjustment": "Explore feature engineering improvements. Low credibility (0.2529) suggests signal quality below baseline.",
+    "llm_self_critique": "",
+    "validity_flag": "INVALID [FAIL] -- performance decay > 50%"
+  },
+  "DiscretionaryAnalyst": {
+    "agent": "DiscretionaryAnalyst",
+    "train_credibility": 0.5458,
+    "val_credibility": 0.5458,
+    "credibility_delta": 0.0,
+    "train_agent_accuracy": 0.6667,
+    "val_agent_accuracy": 0.0,
+    "test_agent_accuracy": 1.0,
+    "train_win_rate": 0.0,
+    "val_win_rate": 0.0,
+    "test_win_rate": 0.0,
+    "val_accuracy_drift": -0.6667,
+    "test_accuracy_drift": 1.0,
+    "overconfident_in": [],
+    "underconfident_in": [],
+    "regime_biases": {
+      "general": "Insufficient validation regime samples"
+    },
+    "recommended_adjustment": "Performance within acceptable bounds. Monitor for regime shift. Train acc=66.7% | Val acc=0.0% | Test acc=100.0%.",
+    "llm_self_critique": "",
+    "validity_flag": "INVALID [FAIL] -- performance decay > 50%"
+  },
+  "MarketMakerAnalyst": {
+    "agent": "MarketMakerAnalyst",
+    "train_credibility": 0.3222,
+    "val_credibility": 0.3222,
+    "credibility_delta": 0.0,
+    "train_agent_accuracy": 0.1667,
+    "val_agent_accuracy": 0.0,
+    "test_agent_accuracy": 0.0,
+    "train_win_rate": 0.0,
+    "val_win_rate": 0.0,
+    "test_win_rate": 0.0,
+    "val_accuracy_drift": -0.1667,
+    "test_accuracy_drift": 0.0,
+    "overconfident_in": [],
+    "underconfident_in": [],
+    "regime_biases": {
+      "general": "Insufficient validation regime samples"
+    },
+    "recommended_adjustment": "Explore feature engineering improvements. Low credibility (0.3222) suggests signal quality below baseline.",
+    "llm_self_critique": "",
+    "validity_flag": "INVALID [FAIL] -- performance decay > 50%"
+  }
+}

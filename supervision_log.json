@@ -1,0 +1,101 @@
+[
+  {
+    "timestamp": "2026-04-27T15:56:46.614862+00:00",
+    "round": 1,
+    "total": 18,
+    "passed": 5,
+    "failed": 13,
+    "failed_models": [
+      "Transformer_Trend_v1",
+      "ResNet_MR_v1",
+      "GRN_MR_v1",
+      "CNN_Scalper_v1",
+      "LinearAttn_Scalper_v1",
+      "GRU_Scalper_v1",
+      "Autoencoder_StatArb_v1",
+      "LSTM_StatArb_v1",
+      "ViT_Disc_v1",
+      "Multimodal_Disc_v1",
+      "CNNChart_Disc_v1",
+      "PPO_MM_v1",
+      "DQN_MM_v1"
+    ]
+  },
+  {
+    "timestamp": "2026-04-27T16:09:59.407834+00:00",
+    "round": 1,
+    "total": 18,
+    "passed": 2,
+    "failed": 16,
+    "failed_models": [
+      "LSTM_Trend_v1",
+      "Transformer_Trend_v1",
+      "TCN_Trend_v1",
+      "MLP_MR_v1",
+      "ResNet_MR_v1",
+      "GRN_MR_v1",
+      "CNN_Scalper_v1",
+      "LinearAttn_Scalper_v1",
+      "GRU_Scalper_v1",
+      "Autoencoder_StatArb_v1",
+      "GAT_StatArb_v1",
+      "LSTM_StatArb_v1",
+      "ViT_Disc_v1",
+      "Multimodal_Disc_v1",
+      "CNNChart_Disc_v1",
+      "DQN_MM_v1"
+    ]
+  },
+  {
+    "timestamp": "2026-04-27T16:21:09.835218+00:00",
+    "round": 1,
+    "total": 18,
+    "passed": 2,
+    "failed": 16,
+    "failed_models": [
+      "LSTM_Trend_v1",
+      "Transformer_Trend_v1",
+      "TCN_Trend_v1",
+      "MLP_MR_v1",
+      "ResNet_MR_v1",
+      "GRN_MR_v1",
+      "CNN_Scalper_v1",
+      "LinearAttn_Scalper_v1",
+      "GRU_Scalper_v1",
+      "Autoencoder_StatArb_v1",
+      "GAT_StatArb_v1",
+      "LSTM_StatArb_v1",
+      "ViT_Disc_v1",
+      "Multimodal_Disc_v1",
+      "CNNChart_Disc_v1",
+      "DQN_MM_v1"
+    ]
+  },
+  {
+    "timestamp": "2026-05-04T12:49:02.057276+00:00",
+    "round": 1,
+    "total": 18,
+    "passed": 0,
+    "failed": 18,
+    "failed_models": [
+      "LSTM_Trend_v1",
+      "Transformer_Trend_v1",
+      "TCN_Trend_v1",
+      "MLP_MR_v1",
+      "ResNet_MR_v1",
+      "GRN_MR_v1",
+      "CNN_Scalper_v1",
+      "LinearAttn_Scalper_v1",
+      "GRU_Scalper_v1",
+      "Autoencoder_StatArb_v1",
+      "GAT_StatArb_v1",
+      "LSTM_StatArb_v1",
+      "ViT_Disc_v1",
+      "Multimodal_Disc_v1",
+      "CNNChart_Disc_v1",
+      "PPO_MM_v1",
+      "SAC_MM_v1",
+      "DQN_MM_v1"
+    ]
+  }
+]

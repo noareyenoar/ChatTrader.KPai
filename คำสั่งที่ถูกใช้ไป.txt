@@ -1,0 +1,1 @@
+ใช้เพื่อ train batch xxx/9188 d:/kp_ai_agent/ChatTrader.KPai/.venv/Scripts/python.exe -W error::FutureWarning -W error::UserWarning -m quant_core.train_trend_phase4 --config configs/trend_phase4_verify_all_symbols.yaml 

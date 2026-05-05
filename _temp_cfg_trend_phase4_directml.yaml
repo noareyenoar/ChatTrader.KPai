@@ -1,0 +1,36 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 96
+  horizon: 20
+  max_symbols: 34
+training:
+  seed: 42
+  seq_len: 96
+  preferred_backend: directml
+  batch_size: 1024
+  max_epochs: 9
+  patience: 15
+  lr: 0.0005
+  weight_decay: 0.0001
+  num_workers: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  checkpoint_root: models/checkpoints/trend
+  tensorboard_root: models/tensorboard/trend
+models:
+  lstm:
+    hidden_size: 128
+    num_layers: 3
+    dropout: 0.1
+  transformer:
+    d_model: 128
+    nhead: 4
+    num_layers: 2
+    dropout: 0.1
+  tcn:
+    channels: 128
+    dropout: 0.1
+registry_path: model_registry.json

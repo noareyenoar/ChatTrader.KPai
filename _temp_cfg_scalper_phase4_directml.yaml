@@ -1,0 +1,39 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 32
+  horizon: 5
+  flat_threshold: 0.0003
+  max_symbols: 34
+training:
+  seed: 42
+  preferred_backend: directml
+  batch_size: 1024
+  max_epochs: 50
+  patience: 10
+  lr: 0.001
+  use_cyclic_lr: true
+  cyclic_base_lr: 0.0002
+  cyclic_max_lr: 0.0015
+  cyclic_step_up_epochs: 2
+  weight_decay: 0.0001
+  num_workers: 4
+  num_workers_non_cuda: 0
+  checkpoint_root: models/checkpoints/scalper
+  tensorboard_root: models/tensorboard/scalper
+models:
+  cnn:
+    channels: 64
+    dropout: 0.1
+  linear_attn:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    dropout: 0.1
+  gru:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.1
+registry_path: model_registry.json

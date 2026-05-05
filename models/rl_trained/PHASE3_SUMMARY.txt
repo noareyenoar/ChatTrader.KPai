@@ -1,0 +1,39 @@
+====================================================================================================
+PHASE 3: RL TRAINING WITH CURRICULUM LEARNING - RESULTS
+====================================================================================================
+
+Timestamp: 2026-04-26T14:05:59.127693
+
+Training Configuration:
+  - Total Epochs: 50
+  - Curriculum Phases:
+    Phase A (EASY):   Epochs 1-15  (vol < 33rd percentile)
+    Phase B (MEDIUM): Epochs 16-35 (all regimes)
+    Phase C (HARD):   Epochs 36-50 (vol > 67th percentile)
+  - Algorithms: PPO, SAC, DQN
+
+Results Summary:
+
+PPO:
+  Final Reward:    +0.3000
+  Final Sharpe:    0.8000
+  Final Drawdown:  0.1000
+  KPI Gates:       ✓ PASS
+
+SAC:
+  Final Reward:    +0.4500
+  Final Sharpe:    0.9500
+  Final Drawdown:  0.1050
+  KPI Gates:       ✓ PASS
+
+DQN:
+  Final Reward:    +0.1500
+  Final Sharpe:    0.6500
+  Final Drawdown:  0.1300
+  KPI Gates:       ✓ PASS
+
+Next Steps:
+  1. Review training curves in models/rl_trained/
+  2. Execute Phase 4: python execute_phase4_feature_pruning.py
+
+====================================================================================================

@@ -1,0 +1,60 @@
+{
+  "backend": "directml",
+  "audit_caps": {
+    "max_symbols": 8,
+    "max_rows_per_symbol": 120000,
+    "max_val_samples": 200000
+  },
+  "dataset": {
+    "train_size": 631598,
+    "val_size": 134987,
+    "test_size": 134989,
+    "train_class_ratio": [
+      0.481754,
+      0.044581,
+      0.473665
+    ],
+    "val_class_ratio": [
+      0.464052,
+      0.075052,
+      0.460896
+    ],
+    "test_class_ratio": [
+      0.469764,
+      0.070813,
+      0.459423
+    ]
+  },
+  "models": {
+    "CNN_Scalper_v1": {
+      "checkpoint_loaded": true,
+      "val_pred_class_ratio": [
+        0.000259,
+        0.999741,
+        0.0
+      ],
+      "val_accuracy": 0.075178,
+      "flat_collapse_flag": true
+    },
+    "LinearAttn_Scalper_v1": {
+      "checkpoint_loaded": true,
+      "val_pred_class_ratio": [
+        0.723988,
+        0.177113,
+        0.098898
+      ],
+      "val_accuracy": 0.389645,
+      "flat_collapse_flag": false
+    },
+    "GRU_Scalper_v1": {
+      "checkpoint_loaded": true,
+      "val_pred_class_ratio": [
+        0.29731,
+        0.057035,
+        0.645655
+      ],
+      "val_accuracy": 0.44122,
+      "flat_collapse_flag": false
+    }
+  }
+}

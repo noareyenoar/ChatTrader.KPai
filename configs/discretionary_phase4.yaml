@@ -1,0 +1,42 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  horizon: 20
+  flat_threshold: 0.003
+  max_symbols: 34
+  max_rows_per_symbol: 12000
+
+training:
+  seed: 42
+  preferred_backend: cpu
+  batch_size: 256
+  max_epochs: 100
+  patience: 20
+  lr: 0.0003
+  weight_decay: 0.0001
+  num_workers: 4
+  num_workers_non_cuda: 0
+  checkpoint_root: models/checkpoints/discretionary
+  tensorboard_root: models/tensorboard/discretionary
+
+models:
+  vit:
+    img_size: 32
+    patch_size: 4
+    in_chans: 4
+    embed_dim: 64
+    num_layers: 4
+    nhead: 4
+    dropout: 0.1
+  multimodal:
+    img_embed: 64
+    tab_embed: 64
+    dropout: 0.1
+  cnn_chart:
+    in_chans: 4
+    channels: 32
+    dropout: 0.1
+
+registry_path: model_registry.json

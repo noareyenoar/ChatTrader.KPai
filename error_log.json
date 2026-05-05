@@ -1,0 +1,158 @@
+[
+  {
+    "timestamp": "2026-04-27T15:20:28.387550+00:00",
+    "batch_id": 1,
+    "batch_label": "StatArb  [GAT + Autoencoder + LSTM]",
+    "error": "Batch 1 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:20:28.465549+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:20:28.619550+00:00",
+    "batch_id": 3,
+    "batch_label": "MarketMaker  [PPO from scratch + SAC + DQN]",
+    "error": "Batch 3 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:20:28.696550+00:00",
+    "batch_id": 4,
+    "batch_label": "Trend  [Transformer + LSTM]",
+    "error": "Batch 4 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:20:28.771549+00:00",
+    "batch_id": 5,
+    "batch_label": "MeanReversion  [ResNet + GRN]",
+    "error": "Batch 5 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:20:28.848549+00:00",
+    "batch_id": 6,
+    "batch_label": "Discretionary  [ViT + Multimodal + CNNChart]",
+    "error": "Batch 6 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:22:16.558378+00:00",
+    "batch_id": 1,
+    "batch_label": "StatArb  [GAT + Autoencoder + LSTM]",
+    "error": "Batch 1 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:22:16.638377+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:22:16.790417+00:00",
+    "batch_id": 3,
+    "batch_label": "MarketMaker  [PPO from scratch + SAC + DQN]",
+    "error": "Batch 3 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:22:16.868576+00:00",
+    "batch_id": 4,
+    "batch_label": "Trend  [Transformer + LSTM]",
+    "error": "Batch 4 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:22:16.946575+00:00",
+    "batch_id": 5,
+    "batch_label": "MeanReversion  [ResNet + GRN]",
+    "error": "Batch 5 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:22:17.026575+00:00",
+    "batch_id": 6,
+    "batch_label": "Discretionary  [ViT + Multimodal + CNNChart]",
+    "error": "Batch 6 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:24:12.186522+00:00",
+    "batch_id": 1,
+    "batch_label": "StatArb  [GAT + Autoencoder + LSTM]",
+    "error": "Batch 1 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:24:23.509374+00:00",
+    "batch_id": 1,
+    "batch_label": "StatArb  [GAT + Autoencoder + LSTM]",
+    "error": "Batch 1 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T15:27:05.675009+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T16:17:34.979421+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T16:32:55.113178+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-27T16:43:23.415988+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T07:25:04.434547+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T09:41:14.472122+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T16:35:53.689436+00:00",
+    "batch_id": 1,
+    "batch_label": "StatArb  [GAT + Autoencoder + LSTM]",
+    "error": "Batch 1 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T16:41:39.667125+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T16:47:05.815816+00:00",
+    "batch_id": 3,
+    "batch_label": "MarketMaker  [PPO from scratch + SAC + DQN]",
+    "error": "Batch 3 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T16:52:37.476405+00:00",
+    "batch_id": 4,
+    "batch_label": "Trend  [Transformer + LSTM]",
+    "error": "Batch 4 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T16:55:47.400403+00:00",
+    "batch_id": 1,
+    "batch_label": "StatArb  [GAT + Autoencoder + LSTM]",
+    "error": "Batch 1 exited with code 1"
+  },
+  {
+    "timestamp": "2026-04-28T17:01:05.122359+00:00",
+    "batch_id": 2,
+    "batch_label": "Scalper  [CNN + LinearAttn + GRU]",
+    "error": "Batch 2 exited with code 1"
+  }
+]

@@ -1,0 +1,42 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  max_symbols: 34
+
+training:
+  seed: 42
+  preferred_backend: directml
+  hidden: 256
+  lr: 0.0003
+  weight_decay: 0.0001
+  episode_length: 200
+  inventory_lambda: 0.1
+  warmup_steps: 20
+  reward_alpha_pos: 0.75
+  reward_alpha_neg: 1.35
+  reward_scale: 1.0
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_eps: 0.2
+  ppo_epochs: 4
+  rollout_len: 512
+  max_episodes: 2000
+  max_steps: 500000
+  replay_buffer_size: 50000
+  batch_size: 2048
+  tau: 0.005
+  target_update_freq: 500
+  eps_start: 1.0
+  eps_end: 0.05
+  eps_decay: 0.9995
+  checkpoint_root: models/checkpoints/market_maker
+  tensorboard_root: models/tensorboard/market_maker
+
+models:
+  ppo: {}
+  sac: {}
+  dqn: {}
+
+registry_path: model_registry.json

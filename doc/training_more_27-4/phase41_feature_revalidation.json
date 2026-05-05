@@ -1,0 +1,64 @@
+{
+  "symbols_used": [
+    "1000SATSUSDT",
+    "AAVEUSDT",
+    "ADAUSDT",
+    "APEUSDT",
+    "API3USDT",
+    "ARKMUSDT",
+    "ARUSDT",
+    "AXLUSDT"
+  ],
+  "limits": {
+    "max_symbols": 8,
+    "max_rows_per_symbol": 100000
+  },
+  "scalper": {
+    "rows": 458930,
+    "correlation": {
+      "rows": 458930,
+      "max_abs_corr": 0.836949,
+      "high_corr_pairs": []
+    },
+    "importance": {
+      "ofi_proxy": 0.07451197155316862,
+      "microprice_dev": 0.09356145808291538,
+      "spread_pct": 0.09236406466867134,
+      "log_return": 0.08805809455497422,
+      "vol_imbalance": 0.003323655289264782,
+      "fracdiff_close_d04": 0.09570935519622152,
+      "fracdiff_volume_d04": 0.10074269103614655,
+      "buy_sell_pressure": 0.09406219067520288,
+      "price_velocity_5": 0.0774051346009547,
+      "price_velocity_10": 0.07967065508295085,
+      "price_velocity_15": 0.08161842466777594,
+      "volatility_z_32": 0.10240876038594386,
+      "vol_regime_code": 0.01656354420580954
+    },
+    "prune_bottom_30pct": [
+      "vol_imbalance",
+      "vol_regime_code",
+      "ofi_proxy",
+      "price_velocity_5"
+    ]
+  },
+  "discretionary_tab": {
+    "rows": 468616,
+    "correlation": {
+      "rows": 468616,
+      "max_abs_corr": 0.876565,
+      "high_corr_pairs": []
+    },
+    "importance": {
+      "log_return": 0.19603390736336407,
+      "zscore_close_64": 0.21050233310167601,
+      "ema_spread": 0.20643497744621994,
+      "atr_14": 0.22167023694888552,
+      "price_slope_20": 0.1653585451398544
+    },
+    "prune_bottom_30pct": [
+      "price_slope_20",
+      "log_return"
+    ]
+  }
+}
