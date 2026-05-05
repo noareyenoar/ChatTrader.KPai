@@ -1,22 +1,34 @@
+# Retrain v2 — target: Sharpe>1.2, PF>1.5, MDD<0.20, F1>0.65
+# Key changes vs v1:
+#   max_rows_per_symbol 12000→50000: 12k rows is severely underfit
+#   horizon 20→5: 5-bar lookahead has stronger signal vs 20
+#   flat_threshold 0.003→0.005: wider flat band for cleaner 3-class labels
+#   lr 0.0003→0.0001 (ViT requires careful lr)
+#   batch_size 256→128 (larger effective batch via gradient accumulation for ViT)
+#   dropout 0.1→0.4: heavy overfitting at 12k rows — must regularise
+#   max_epochs 100→200, patience 20→30
+#   weight_decay 0.0001→0.01 (critical for ViT)
+#   label_smoothing: 0.1 for all models
 data:
   dataset_dir: Dataset/binance_historical
   manifest_path: Dataset/binance_historical/manifest.json
   min_history_bars: 50000
   purge_gap_bars: 20
-  horizon: 20
-  flat_threshold: 0.003
+  horizon: 5
+  flat_threshold: 0.005
   max_symbols: 34
-  max_rows_per_symbol: 12000
+  max_rows_per_symbol: 50000
 
 training:
   seed: 42
-  preferred_backend: cpu
-  batch_size: 256
-  max_epochs: 100
-  patience: 20
-  lr: 0.0003
-  weight_decay: 0.0001
-  num_workers: 4
+  preferred_backend: directml
+  batch_size: 128
+  max_epochs: 200
+  patience: 30
+  lr: 0.0001
+  weight_decay: 0.01
+  label_smoothing: 0.1
+  num_workers: 0
   num_workers_non_cuda: 0
   checkpoint_root: models/checkpoints/discretionary
   tensorboard_root: models/tensorboard/discretionary
@@ -29,14 +41,14 @@ models:
     embed_dim: 64
     num_layers: 4
     nhead: 4
-    dropout: 0.1
+    dropout: 0.4
   multimodal:
     img_embed: 64
     tab_embed: 64
-    dropout: 0.1
+    dropout: 0.4
   cnn_chart:
     in_chans: 4
     channels: 32
-    dropout: 0.1
+    dropout: 0.4
 
 registry_path: model_registry.json

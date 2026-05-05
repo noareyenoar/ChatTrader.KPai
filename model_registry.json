@@ -3,10 +3,10 @@
     "architecture_name": "LSTM_Trend_v1",
     "archetype": "trend_follower",
     "weights_path": "models/checkpoints/trend/LSTM_Trend_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:31.821390+00:00",
+    "eval_timestamp": "2026-05-05T08:12:46.761898+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.5191,
       "sharpe": -1.725634,
       "profit_factor": 0.615745,
@@ -16,20 +16,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "Transformer_Trend_v1",
     "archetype": "trend_follower",
     "weights_path": "models/checkpoints/trend/Transformer_Trend_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:39.844596+00:00",
+    "eval_timestamp": "2026-05-05T08:12:50.570004+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.5167,
       "sharpe": -1.886461,
       "profit_factor": 0.588931,
@@ -39,20 +36,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "TCN_Trend_v1",
     "archetype": "trend_follower",
     "weights_path": "models/checkpoints/trend_verify/TCN_Trend_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:50.213410+00:00",
+    "eval_timestamp": "2026-05-05T08:12:54.788129+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.51915,
       "sharpe": -1.725613,
       "profit_factor": 0.615744,
@@ -62,20 +56,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "MLP_MR_v1",
     "archetype": "mean_reversion",
     "weights_path": "models/checkpoints/mean_reversion/MLP_MR_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:53.143950+00:00",
+    "eval_timestamp": "2026-05-05T08:12:55.885247+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.51755,
       "sharpe": -1.73356,
       "profit_factor": 0.615565,
@@ -85,20 +76,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "ResNet_MR_v1",
     "archetype": "mean_reversion",
     "weights_path": "models/checkpoints/mean_reversion/ResNet_MR_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:55.122735+00:00",
+    "eval_timestamp": "2026-05-05T08:12:56.614611+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.5169,
       "sharpe": -1.795287,
       "profit_factor": 0.604727,
@@ -108,20 +96,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "GRN_MR_v1",
     "archetype": "mean_reversion",
     "weights_path": "models/checkpoints/mean_reversion/GRN_MR_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:57.420539+00:00",
+    "eval_timestamp": "2026-05-05T08:12:57.554978+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.5073,
       "sharpe": -0.740543,
       "profit_factor": 0.8156,
@@ -131,20 +116,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "CNN_Scalper_v1",
     "archetype": "scalping_microstructure",
     "weights_path": "models/checkpoints/scalper/CNN_Scalper_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:51:59.266567+00:00",
+    "eval_timestamp": "2026-05-05T08:12:58.284885+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.40305,
       "sharpe": -0.998267,
       "profit_factor": 0.73485,
@@ -154,20 +136,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "LinearAttn_Scalper_v1",
     "archetype": "scalping_microstructure",
     "weights_path": "models/checkpoints/scalper/LinearAttn_Scalper_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:52:00.112535+00:00",
+    "eval_timestamp": "2026-05-05T08:12:59.071508+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.3668,
       "sharpe": -1.696282,
       "profit_factor": 0.566952,
@@ -177,20 +156,17 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "GRU_Scalper_v1",
     "archetype": "scalping_microstructure",
     "weights_path": "models/checkpoints/scalper/GRU_Scalper_v1/model_best.pt",
-    "eval_timestamp": "2026-05-04T12:52:01.366711+00:00",
+    "eval_timestamp": "2026-05-05T08:13:00.175858+00:00",
     "device": "directml",
     "validation": {
-      "status": "PASSED",
+      "status": "RESUME_TRAINING_REQUIRED",
       "directional_accuracy": 0.38175,
       "sharpe": -1.254219,
       "profit_factor": 0.690075,
@@ -200,256 +176,182 @@
       "strict_sharpe_gate": 1.2,
       "strict_acc_gate": 0.55,
       "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2,
-      "oos_consistency_passed": true,
-      "is_valid": true
-    },
-    "archetype_status": "PASSED"
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "Autoencoder_StatArb_v1",
     "archetype": "statistical_arbitrage",
     "weights_path": "models/checkpoints/stat_arb/Autoencoder_StatArb_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/stat_arb/Autoencoder_StatArb_v1/optimizer_state.pt",
-    "design_premise": "Multi-asset spread convergence via learned latent mispricing representations.",
-    "standard_interface": {
-      "outputs": [
-        "spread_prediction"
-      ]
-    },
+    "eval_timestamp": "2026-05-05T08:13:01.744212+00:00",
+    "device": "directml",
     "validation": {
-      "val_mae": 0.8269181847572327,
-      "test_mae": 0.625311017036438,
-      "val_tracking_error": 0.7067407369613647,
-      "test_tracking_error": 0.5198079943656921,
-      "val_sharpe": 0.9820938593164609,
-      "test_sharpe": 9.424511487218759,
-      "test_profit_factor": 1.090665147008011,
-      "test_max_drawdown": 0.8897609860939824,
-      "backend": "cpu",
-      "cuda_used": false,
-      "is_valid": true,
-      "oos_consistency_passed": true,
-      "status": "PASSED"
-    },
-    "archetype_status": "FAILED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.553217,
+      "sharpe": 1.452506,
+      "profit_factor": 1.464182,
+      "max_drawdown": 1.0,
+      "n_samples": 2518,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "GAT_StatArb_v1",
     "archetype": "statistical_arbitrage",
     "weights_path": "models/checkpoints/stat_arb/GAT_StatArb_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/stat_arb/GAT_StatArb_v1/optimizer_state.pt",
-    "design_premise": "Multi-asset spread convergence via learned latent mispricing representations.",
-    "standard_interface": {
-      "outputs": [
-        "spread_prediction"
-      ]
-    },
+    "eval_timestamp": "2026-05-05T08:13:02.126792+00:00",
+    "device": "directml",
     "validation": {
-      "val_mae": 0.9569653272628784,
-      "test_mae": 0.8519887328147888,
-      "val_tracking_error": 0.5160072445869446,
-      "test_tracking_error": 0.36815714836120605,
-      "val_sharpe": 2.474561182796191,
-      "test_sharpe": -0.6030833937409805,
-      "test_profit_factor": 0.9944619056332353,
-      "test_max_drawdown": 0.99999999998238,
-      "backend": "cpu",
-      "cuda_used": false,
-      "is_valid": false,
-      "oos_consistency_passed": false,
-      "status": "FAILED"
-    },
-    "archetype_status": "FAILED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.556791,
+      "sharpe": 1.974849,
+      "profit_factor": 1.68531,
+      "max_drawdown": 1.0,
+      "n_samples": 2518,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "LSTM_StatArb_v1",
     "archetype": "statistical_arbitrage",
     "weights_path": "models/checkpoints/stat_arb/LSTM_StatArb_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/stat_arb/LSTM_StatArb_v1/optimizer_state.pt",
-    "design_premise": "Multi-asset spread convergence via learned latent mispricing representations.",
-    "standard_interface": {
-      "outputs": [
-        "spread_prediction"
-      ]
-    },
+    "eval_timestamp": "2026-05-05T08:13:02.272305+00:00",
+    "device": "directml",
     "validation": {
-      "val_mae": 0.716684103012085,
-      "test_mae": 0.5542522668838501,
-      "val_tracking_error": 0.5686495304107666,
-      "test_tracking_error": 0.4089665114879608,
-      "val_sharpe": 2.474561182796191,
-      "test_sharpe": 9.990557222964703,
-      "test_profit_factor": 1.0963627270013776,
-      "test_max_drawdown": 0.8803073610162524,
-      "backend": "cpu",
-      "cuda_used": false,
-      "is_valid": true,
-      "oos_consistency_passed": true,
-      "status": "PASSED"
-    },
-    "archetype_status": "FAILED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "reason": "architecture_load_failed",
+      "directional_accuracy": null,
+      "sharpe": null,
+      "profit_factor": null,
+      "max_drawdown": null
+    }
   },
   {
     "architecture_name": "ViT_Disc_v1",
     "archetype": "discretionary_multimodal",
     "weights_path": "models/checkpoints/discretionary/ViT_Disc_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/discretionary/ViT_Disc_v1/optimizer_state.pt",
-    "design_premise": "Visual chart pattern recognition via rasterized candlestick image analysis.",
-    "standard_interface": {
-      "outputs": [
-        "class_logits_3"
-      ]
-    },
+    "eval_timestamp": "2026-05-05T08:13:02.275295+00:00",
+    "device": "directml",
     "validation": {
-      "val_accuracy": 0.3994817606676538,
-      "test_accuracy": 0.3811414726073496,
-      "val_f1": 0.3945855545459895,
-      "test_f1": 0.3716960204859338,
-      "val_sharpe": -2.627911385915673,
-      "test_sharpe": -7.3585351618224255,
-      "test_profit_factor": 0.9246000000000503,
-      "test_max_drawdown": 0.9999999966666667,
-      "backend": "cpu",
-      "cuda_used": false,
-      "is_valid": false,
-      "oos_consistency_passed": false,
-      "status": "FAILED"
-    },
-    "archetype_status": "FAILED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.355846,
+      "sharpe": -1.911907,
+      "profit_factor": 0.598765,
+      "max_drawdown": 0.999981,
+      "n_samples": 12556,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "Multimodal_Disc_v1",
     "archetype": "discretionary_multimodal",
     "weights_path": "models/checkpoints/discretionary/Multimodal_Disc_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/discretionary/Multimodal_Disc_v1/optimizer_state.pt",
-    "design_premise": "Visual chart pattern recognition via rasterized candlestick image analysis.",
-    "standard_interface": {
-      "outputs": [
-        "class_logits_3"
-      ]
-    },
+    "eval_timestamp": "2026-05-05T08:13:03.973692+00:00",
+    "device": "directml",
     "validation": {
-      "val_accuracy": 0.4337057477453224,
-      "test_accuracy": 0.4172667923004442,
-      "val_f1": 0.41617004008341935,
-      "test_f1": 0.40108455612711147,
-      "val_sharpe": 5.806066605439026,
-      "test_sharpe": 4.022815176022773,
-      "test_profit_factor": 1.0421453423488203,
-      "test_max_drawdown": 0.9999999800000002,
-      "backend": "cpu",
-      "cuda_used": false,
-      "is_valid": false,
-      "oos_consistency_passed": true,
-      "status": "FAILED"
-    },
-    "archetype_status": "FAILED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.398853,
+      "sharpe": -2.21785,
+      "profit_factor": 0.585929,
+      "max_drawdown": 0.999998,
+      "n_samples": 12556,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "CNNChart_Disc_v1",
     "archetype": "discretionary_multimodal",
     "weights_path": "models/checkpoints/discretionary/CNNChart_Disc_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/discretionary/CNNChart_Disc_v1/optimizer_state.pt",
-    "design_premise": "Visual chart pattern recognition via rasterized candlestick image analysis.",
-    "standard_interface": {
-      "outputs": [
-        "class_logits_3"
-      ]
-    },
+    "eval_timestamp": "2026-05-05T08:13:04.570862+00:00",
+    "device": "directml",
     "validation": {
-      "val_accuracy": 0.4148102032575044,
-      "test_accuracy": 0.4011980078072419,
-      "val_f1": 0.4101651397483148,
-      "test_f1": 0.3970382586532564,
-      "val_sharpe": 4.457112650456875,
-      "test_sharpe": 3.0832789533468183,
-      "test_profit_factor": 1.0326225869374908,
-      "test_max_drawdown": 0.999999999939577,
-      "backend": "cpu",
-      "cuda_used": false,
-      "is_valid": false,
-      "oos_consistency_passed": true,
-      "status": "FAILED"
-    },
-    "archetype_status": "FAILED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.392482,
+      "sharpe": -1.842397,
+      "profit_factor": 0.645746,
+      "max_drawdown": 0.999986,
+      "n_samples": 12556,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "PPO_MM_v1",
     "archetype": "market_making_rl",
-    "weights_path": "models\\checkpoints\\market_maker\\PPO_MM_v1/PPO_MM_v1_best.pt",
-    "design_premise": "Reinforcement learning for inventory-aware market making.",
-    "standard_interface": {
-      "outputs": [
-        "action_or_q_values"
-      ]
-    },
+    "weights_path": "models/checkpoints/market_maker/PPO_MM_v1/PPO_MM_v1_best.pt",
+    "eval_timestamp": "2026-05-05T08:13:05.223295+00:00",
+    "device": "directml",
     "validation": {
-      "mean_episode_reward": -17.143428199099972,
-      "std_episode_reward": 18.65706841158205,
-      "sharpe_rewards": 0.0694719461867017,
-      "max_drawdown_rewards": 0.0,
-      "eval_mean_reward": -1.5,
-      "eval_sharpe_rewards": 0.0,
-      "eval_max_drawdown_rewards": 0.0,
-      "backend": "directml",
-      "num_episodes": 2000,
-      "is_valid": true,
-      "oos_consistency_passed": true,
-      "status": "PASSED"
-    },
-    "archetype_status": "PASSED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.564129,
+      "sharpe": -4.315741,
+      "profit_factor": 0.35529,
+      "max_drawdown": 0.999897,
+      "n_samples": 8592,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "SAC_MM_v1",
     "archetype": "market_making_rl",
-    "weights_path": "models\\checkpoints\\market_maker\\SAC_MM_v1/SAC_MM_v1_best.pt",
-    "design_premise": "Reinforcement learning for inventory-aware market making.",
-    "standard_interface": {
-      "outputs": [
-        "action_or_q_values"
-      ]
-    },
+    "weights_path": "models/checkpoints/market_maker/SAC_MM_v1/SAC_MM_v1_best.pt",
+    "eval_timestamp": "2026-05-05T08:13:05.561724+00:00",
+    "device": "directml",
     "validation": {
-      "mean_episode_reward": -0.9172179102920341,
-      "std_episode_reward": 4.739626235643849,
-      "sharpe_rewards": 0.005821684971038913,
-      "max_drawdown_rewards": 0.9999999775340809,
-      "eval_mean_reward": -1.5,
-      "eval_sharpe_rewards": 0.0,
-      "eval_max_drawdown_rewards": 0.0,
-      "backend": "directml",
-      "num_episodes": 13643,
-      "is_valid": true,
-      "oos_consistency_passed": true,
-      "status": "PASSED"
-    },
-    "archetype_status": "PASSED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.564129,
+      "sharpe": -4.315741,
+      "profit_factor": 0.35529,
+      "max_drawdown": 0.999897,
+      "n_samples": 8592,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   },
   {
     "architecture_name": "DQN_MM_v1",
     "archetype": "market_making_rl",
-    "weights_path": "models\\checkpoints\\market_maker\\DQN_MM_v1/DQN_MM_v1_best.pt",
-    "design_premise": "Reinforcement learning for inventory-aware market making.",
-    "standard_interface": {
-      "outputs": [
-        "action_or_q_values"
-      ]
-    },
+    "weights_path": "models/checkpoints/market_maker/DQN_MM_v1/DQN_MM_v1_best.pt",
+    "eval_timestamp": "2026-05-05T08:13:05.891558+00:00",
+    "device": "directml",
     "validation": {
-      "mean_episode_reward": -1.4329164500260865,
-      "std_episode_reward": 5.241321823433206,
-      "sharpe_rewards": 0.0053867234370153895,
-      "max_drawdown_rewards": 0.9999999628584486,
-      "eval_mean_reward": -1.5,
-      "eval_sharpe_rewards": 0.0,
-      "eval_max_drawdown_rewards": 0.0,
-      "backend": "directml",
-      "num_episodes": 13724,
-      "is_valid": true,
-      "oos_consistency_passed": true,
-      "status": "PASSED"
-    },
-    "archetype_status": "PASSED"
+      "status": "RESUME_TRAINING_REQUIRED",
+      "directional_accuracy": 0.528748,
+      "sharpe": -4.30593,
+      "profit_factor": 0.354983,
+      "max_drawdown": 0.999895,
+      "n_samples": 8592,
+      "device": "directml",
+      "strict_sharpe_gate": 1.2,
+      "strict_acc_gate": 0.55,
+      "strict_profit_factor_gate": 1.5,
+      "strict_max_drawdown_gate": 0.2
+    }
   }
 ]

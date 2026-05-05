@@ -1,45 +1,50 @@
+# Retrain v2 — target: Sharpe>1.2, PF>1.5, MDD<0.20, DirAcc>0.55
+# Key changes vs v1:
+#   seq_len 32→96: longer context improves trend signal
+#   horizon 20→5: shorter horizon = stronger directional signal in crypto
+#   lr 0.0005→0.0003 + cosine annealing
+#   dropout 0.1→0.3: reduce overfitting
+#   max_epochs 80→150, patience 12→20
+#   weight_decay 0.0001→0.001
+#   resume_from_checkpoint: false (fresh weights)
 data:
   dataset_dir: Dataset/binance_historical
   manifest_path: Dataset/binance_historical/manifest.json
   min_history_bars: 50000
   purge_gap_bars: 20
-  seq_len: 32
-  horizon: 20
+  seq_len: 96
+  horizon: 5
   max_symbols: 34
   max_rows_per_symbol: 50000
 
 training:
   seed: 42
-  seq_len: 32
-  preferred_backend: cpu
-  batch_size: 4096
-  max_epochs: 80
-  patience: 12
-  lr: 0.0005
-  weight_decay: 0.0001
+  seq_len: 96
+  preferred_backend: directml
+  batch_size: 2048
+  max_epochs: 150
+  patience: 20
+  lr: 0.0003
+  weight_decay: 0.001
   num_workers: 0
   num_workers_non_cuda: 0
   compile_model: false
-  resume_from_checkpoint: true
-  resume_start_epoch_by_model:
-    lstm: 80
-    transformer: 2
-    tcn: 1
+  resume_from_checkpoint: false
   checkpoint_root: models/checkpoints/trend
   tensorboard_root: models/tensorboard/trend
 
 models:
   lstm:
-    hidden_size: 128
+    hidden_size: 256
     num_layers: 3
-    dropout: 0.1
+    dropout: 0.3
   transformer:
     d_model: 128
     nhead: 4
-    num_layers: 2
-    dropout: 0.1
+    num_layers: 4
+    dropout: 0.3
   tcn:
     channels: 128
-    dropout: 0.1
+    dropout: 0.3
 
 registry_path: model_registry.json

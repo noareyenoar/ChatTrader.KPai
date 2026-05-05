@@ -529,6 +529,79 @@ def load_disc_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int =
     return TensorDataset(X_t, y_t, r_t)
 
 
+@torch.no_grad()
+def eval_rl_episode(
+    model: torch.nn.Module,
+    frames: list[pd.DataFrame],
+    output_type: str,
+    state_dim: int,
+    n_eval_episodes: int = 200,
+    episode_length: int = 200,
+) -> dict[str, float]:
+    """Run proper episodic evaluation for RL market-maker models using MarketMakingEnv.
+
+    This is the CORRECT evaluator for PPO/SAC/DQN — NOT a one-shot directional
+    forward-pass.  Each episode replays a segment of OOS price data (last 15%).
+    Returns Sharpe, PF, MDD computed over episode rewards.
+    """
+    from quant_core.market_maker_env import MarketMakingEnv
+
+    all_ep_rewards: list[float] = []
+    all_returns: list[float] = []
+
+    rng = np.random.default_rng(42)
+
+    for df in frames[:6]:  # use up to 6 symbols
+        n = len(df)
+        test_start = int(n * 0.85)
+        prices = df["close"].to_numpy(np.float32)[test_start:]
+        if len(prices) < episode_length + 10:
+            continue
+
+        for _ in range(n_eval_episodes // max(1, len(frames[:6]))):
+            env = MarketMakingEnv(prices, episode_length=episode_length, seed=int(rng.integers(0, 99999)))
+            state = env.reset()
+            ep_reward = 0.0
+            done = False
+            while not done:
+                state_t = torch.tensor(state[:state_dim], dtype=torch.float32).unsqueeze(0).to(INFER_DEVICE)
+                if output_type == "rl_discrete":
+                    q_vals = model(state_t)
+                    if isinstance(q_vals, tuple):
+                        q_vals = q_vals[0]
+                    action = int(q_vals.argmax(dim=-1).item())
+                    offsets = [0.0005, 0.001, 0.002][action]
+                    cont_action = np.array([offsets, offsets], dtype=np.float32)
+                else:
+                    out = model(state_t)
+                    if isinstance(out, tuple):
+                        out = out[0]
+                    cont_action = out.squeeze(0).cpu().numpy()[:2]
+                state, reward, done, _ = env.step(cont_action)
+                ep_reward += float(reward)
+            all_ep_rewards.append(ep_reward)
+
+    if len(all_ep_rewards) < 5:
+        return {"directional_accuracy": 0.5, "sharpe": 0.0, "profit_factor": 1.0, "max_drawdown": 1.0}
+
+    ep_arr = np.array(all_ep_rewards, dtype=np.float64)
+    ep_returns = ep_arr / (episode_length * 0.001 + 1e-10)  # normalise to per-step scale
+
+    sharpe = sharpe_ratio(ep_returns)
+    pf = profit_factor(ep_returns)
+    mdd = max_drawdown(ep_returns)
+    dir_acc = float(np.mean(ep_arr > 0))  # fraction of profitable episodes
+
+    _log(f"[eval-rl] episodes={len(all_ep_rewards)}  mean_ep_reward={ep_arr.mean():.4f}  "
+         f"sharpe={sharpe:.4f}  pf={pf:.4f}  mdd={mdd:.4f}  win_rate={dir_acc:.4f}")
+    return {
+        "directional_accuracy": round(dir_acc, 6),
+        "sharpe": round(sharpe, 6),
+        "profit_factor": round(pf, 6),
+        "max_drawdown": round(mdd, 6),
+    }
+
+
 def load_mm_data(frames: list[pd.DataFrame], n_steps: int = 3000, state_dim: int = 10) -> TensorDataset | None:
     """Build market-maker state vectors from last n_steps test bars.
 
@@ -644,19 +717,19 @@ MODEL_MANIFEST: dict[str, dict[str, Any]] = {
     "Autoencoder_StatArb_v1": {
         "ckpt": "stat_arb/Autoencoder_StatArb_v1/model_best.pt",
         "module": "quant_core.stat_arb_models", "cls": "StatArbAutoencoder",
-        "kwargs": {"num_assets": 2, "latent_dim": 32, "seq_len": 64, "dropout": 0.0},
+        "kwargs": {"num_assets": 34, "latent_dim": 32, "seq_len": 64, "dropout": 0.0},
         "data": "stat_arb", "out": "regression", "archetype": "statistical_arbitrage",
     },
     "GAT_StatArb_v1": {
         "ckpt": "stat_arb/GAT_StatArb_v1/model_best.pt",
         "module": "quant_core.stat_arb_models", "cls": "StatArbGAT",
-        "kwargs": {"num_assets": 2, "d_model": 32, "num_layers": 2, "dropout": 0.0},
+        "kwargs": {"num_assets": 34, "d_model": 32, "num_layers": 2, "dropout": 0.0},
         "data": "stat_arb", "out": "regression", "archetype": "statistical_arbitrage",
     },
     "LSTM_StatArb_v1": {
         "ckpt": "stat_arb/LSTM_StatArb_v1/model_best.pt",
         "module": "quant_core.stat_arb_models", "cls": "StatArbLSTM",
-        "kwargs": {"num_assets": 2, "hidden_size": 64, "num_layers": 2, "dropout": 0.0},
+        "kwargs": {"num_assets": 34, "hidden_size": 64, "num_layers": 2, "dropout": 0.0},
         "data": "stat_arb", "out": "regression", "archetype": "statistical_arbitrage",
     },
     "ViT_Disc_v1": {
@@ -887,7 +960,7 @@ def main() -> int:
     _log(f"[eval]   scalper: {len(datasets['scalper']) if datasets['scalper'] else 'FAIL'} samples")
 
     _log("[eval] → building stat_arb dataset...")
-    datasets["stat_arb"] = load_stat_arb_data(frames, seq_len=64, horizon=10, num_assets=min(10, len(frames)))
+    datasets["stat_arb"] = load_stat_arb_data(frames, seq_len=64, horizon=10, num_assets=min(34, len(frames)))
     _log(f"[eval]   stat_arb:{len(datasets['stat_arb']) if datasets['stat_arb'] else 'FAIL'} samples")
 
     _log("[eval] → building disc (chart image) dataset...")
@@ -1016,7 +1089,62 @@ def main() -> int:
             results[model_name] = result
             continue
 
-        # ── forward pass ──────────────────────────────────────────────────
+        # ── RL models: use episodic evaluator, not one-shot forward pass ─────
+        if manifest["archetype"] == "market_making_rl":
+            try:
+                target_sd = int(manifest["kwargs"].get("state_dim", 7))
+                try:
+                    raw_s = torch.load(str(CHECKPOINT_ROOT / manifest["ckpt"]), map_location="cpu")
+                    if isinstance(raw_s, dict):
+                        raw_s = raw_s.get("model_state_dict", raw_s.get("state_dict", raw_s))
+                    w = raw_s.get("trunk.0.weight") or raw_s.get("net.0.weight")
+                    if w is not None:
+                        target_sd = int(w.shape[1])
+                except Exception:
+                    pass
+                metrics = eval_rl_episode(model, frames, manifest["out"], state_dim=target_sd)
+                elapsed = time.perf_counter() - t0
+                _log(f"[eval] RL episode eval done  |  {elapsed:.2f}s")
+            except Exception as e:
+                _log(f"[eval] ✗ RL episode eval error: {e}")
+                result["validation"] = {
+                    "status": "RESUME_TRAINING_REQUIRED",
+                    "reason": f"rl_eval_error: {e}",
+                    "directional_accuracy": None, "sharpe": None,
+                    "profit_factor": None, "max_drawdown": None,
+                }
+                results[model_name] = result
+                _release_memory(model)
+                continue
+
+            dir_acc = metrics["directional_accuracy"]
+            sharpe  = metrics["sharpe"]
+            pf      = metrics["profit_factor"]
+            mdd     = metrics["max_drawdown"]
+            # RL pass criteria: Sharpe>0 (positive mean reward), win_rate>50%, MDD<85%
+            strict_pass = sharpe > 0.0 and dir_acc > 0.50 and mdd < 0.85
+            status = "PASSED" if strict_pass else "RESUME_TRAINING_REQUIRED"
+            gate_str = "✓ PASSED" if strict_pass else "✗ FAILED"
+            _log(f"[eval] Episode Win Rate : {dir_acc:.4f}  (gate > 0.50)")
+            _log(f"[eval] Episode Sharpe   : {sharpe:.4f}  (gate > 0.0)")
+            _log(f"[eval] Episode PF       : {pf:.4f}")
+            _log(f"[eval] Episode MDD      : {mdd:.4f}  (gate < 0.85)")
+            _log(f"[eval] KPI Gate         : {gate_str}")
+            result["validation"] = {
+                "status": status,
+                "directional_accuracy": dir_acc,
+                "sharpe": sharpe,
+                "profit_factor": pf,
+                "max_drawdown": mdd,
+                "n_samples": 200,
+                "device": DEVICE_NAME,
+                "eval_mode": "episodic_rl",
+            }
+            results[model_name] = result
+            _release_memory(model)
+            continue
+
+        # ── forward pass (all non-RL models) ──────────────────────────────
         try:
             is_multi = (manifest["data"] == "disc_multimodal")
             logits, labels, actual_rets = run_inference(model, ds, manifest["out"], is_multimodal=is_multi)

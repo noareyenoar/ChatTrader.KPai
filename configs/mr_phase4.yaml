@@ -1,21 +1,29 @@
+# Retrain v2 — target: Sharpe>1.2, PF>1.5, MDD<0.20, DirAcc>0.55
+# Key changes vs v1:
+#   horizon 20→3: MR signals are short-lived in crypto
+#   add rsi oversold/overbought binary features (from 0→1 flags)
+#   increase dropout 0.1→0.4 to prevent overfitting to noise
+#   lr 0.0005→0.0002 with cosine decay
+#   max_epochs 80→150, patience→20
+#   weight_decay 0.0001→0.002
 data:
   dataset_dir: Dataset/binance_historical
   manifest_path: Dataset/binance_historical/manifest.json
   min_history_bars: 50000
   purge_gap_bars: 20
-  horizon: 20
+  horizon: 3
   max_symbols: 34
   max_rows_per_symbol: 50000
 
 training:
   seed: 42
-  preferred_backend: cpu
+  preferred_backend: directml
   batch_size: 4096
-  max_epochs: 80
-  patience: 12
-  lr: 0.0005
-  weight_decay: 0.0001
-  num_workers: 4
+  max_epochs: 150
+  patience: 20
+  lr: 0.0002
+  weight_decay: 0.002
+  num_workers: 0
   num_workers_non_cuda: 0
   checkpoint_root: models/checkpoints/mean_reversion
   tensorboard_root: models/tensorboard/mean_reversion
@@ -24,14 +32,14 @@ models:
   mlp:
     hidden_size: 256
     num_layers: 4
-    dropout: 0.1
+    dropout: 0.4
   resnet:
     hidden_size: 256
     depth: 6
-    dropout: 0.1
+    dropout: 0.4
   grn:
     hidden_size: 128
     depth: 4
-    dropout: 0.1
+    dropout: 0.4
 
 registry_path: model_registry.json

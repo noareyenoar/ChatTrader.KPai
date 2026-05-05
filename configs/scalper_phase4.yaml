@@ -1,27 +1,34 @@
+# Retrain v2 — target: Sharpe>1.2, PF>1.5, MDD<0.20, DirAcc>0.55
+# Key changes vs v1:
+#   flat_threshold 0.0003→0.0010: wider flat band removes ambiguous labels,
+#     reduces class imbalance and forces model to pick only clear moves
+#   horizon 5→2: scalper must predict 2-bar micro-move, not 5-bar which is too noisy
+#   seq_len 32→16: shorter memory matches scalping timeframe
+#   class_weight_up=2.0, class_weight_down=2.0, flat=0.5 (focal loss recommended)
+#   lr 0.001→0.0005, cyclic disabled
+#   dropout 0.1→0.3
+#   max_epochs 80→120, patience→15
 data:
   dataset_dir: Dataset/binance_historical
   manifest_path: Dataset/binance_historical/manifest.json
   min_history_bars: 50000
   purge_gap_bars: 20
-  seq_len: 32
-  horizon: 5
-  flat_threshold: 0.0003
+  seq_len: 16
+  horizon: 2
+  flat_threshold: 0.0010
   max_symbols: 34
   max_rows_per_symbol: 50000
 
 training:
   seed: 42
-  preferred_backend: cpu
+  preferred_backend: directml
   batch_size: 4096
-  max_epochs: 80
-  patience: 12
-  lr: 0.001
-  use_cyclic_lr: true
-  cyclic_base_lr: 0.0002
-  cyclic_max_lr: 0.0015
-  cyclic_step_up_epochs: 2
-  weight_decay: 0.0001
-  num_workers: 4
+  max_epochs: 120
+  patience: 15
+  lr: 0.0005
+  use_cyclic_lr: false
+  weight_decay: 0.001
+  num_workers: 0
   num_workers_non_cuda: 0
   checkpoint_root: models/checkpoints/scalper
   tensorboard_root: models/tensorboard/scalper
@@ -29,15 +36,15 @@ training:
 models:
   cnn:
     channels: 64
-    dropout: 0.1
+    dropout: 0.3
   linear_attn:
     d_model: 64
     nhead: 4
     num_layers: 2
-    dropout: 0.1
+    dropout: 0.3
   gru:
     hidden_size: 64
     num_layers: 2
-    dropout: 0.1
+    dropout: 0.3
 
 registry_path: model_registry.json
