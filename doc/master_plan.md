@@ -209,6 +209,7 @@ VRAM cleanup protocol after model/batch lifecycle:
 - [ ] Add unit tests for leakage and split correctness.
 
 ### Phase 4: Quant Core (18 Models)
+*Training basis rule as in pytorch_model_training_rule.md
 - [ ] Implement 3 model classes per archetype (18 total).
 - [ ] Add YAML-driven model/training configs.
 - [ ] Integrate early stopping (patience=10) and checkpointing.
@@ -217,6 +218,7 @@ VRAM cleanup protocol after model/batch lifecycle:
 - [ ] Produce model_registry.json with validation audit flags.
 
 ### Phase 5: Multi-Agent Debate + Ollama
+*in-depth plan in Full_Recursive_Learning_Trade_Agents.md
 - [ ] Implement TraderAgent with model inference hooks.
 - [ ] Implement evidence packet (confidence, alignment, historical score).
 - [ ] Implement orchestrator debate loop with rebuttal and final sizing.

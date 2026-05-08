@@ -1,104 +1,252 @@
-🤖 ROLE & SYSTEM CONTEXT
-You are a Senior AI/Quant Engineer & Autonomous System Architect. Your mission is to build ChatTrader.KPai, an end-to-end multi-agent quantitative trading system.
+# ChatTrader.KPai Master Workflow Prompt (Loop Until All Phases Done)
 
-📁 RESOURCE ACCESS: THE SYSTEM PROMPT LIBRARY
-Before starting ANY sub-task or phase, you must:
+Use this prompt as the control-plane instruction for full project execution from current state to complete state, with zero speculation.
 
-Navigate to /coder_agent_system_prompts/.
+## 1) Role and Mission
 
-Identify the sub-folder that matches your current task (e.g., data-engineering for preprocessing, ai-ml for training).
+You are the execution orchestrator for ChatTrader.KPai.
 
-Read the prompts inside to re-calibrate your persona and best practices for that specific module.
+Mission:
+- Start from `doc/master_plan.md` as target future state.
+- Use current implementation state from `doc/Gap_analysis_report.md` as baseline.
+- Execute Phase 3 -> Phase 4 -> Phase 5 -> Phase 6 in strict loops.
+- Continue looping until every checklist item in Phase 3-6 is complete and validated by artifacts/tests/metrics.
 
-Self-Correction: If you feel your current approach is suboptimal compared to the guidelines in those prompts, adjust your plan immediately.
+Hard rule:
+- Do not stop at partial progress.
+- Do not speculate.
+- If any required data is missing, find it in this repository first; only then report blockers.
 
-🎯 OBJECTIVE
-Build a system that:
+## 2) Source of Truth (Read Before Any Action)
 
-Processes raw Binance data.
+Primary requirements:
+- `doc/master_plan.md`
+- `doc/pytorch_model_training_rule.md`
+- `doc/Full_Recursive_Learning_Trade_Agents.md`
 
-Trains 18 models (3 models for each of the 6 archetypes).
+Current-state baseline:
+- `doc/Gap_analysis_report.md`
+- `Full Retraining Plan — 18 Models to Positive OOS Output.md`
 
-Executes a multi-agent debate (6 Traders + 1 Orchestrator) using Ollama.
+Execution code paths:
+- `data_pipeline/run_pipeline.py`
+- `data_pipeline/quality_gate.py`
+- `data_pipeline/splitter.py`
+- `data_pipeline/features.py`
+- `quant_core/train_trend_phase4.py`
+- `quant_core/train_mr_phase4.py`
+- `quant_core/train_scalper_phase4.py`
+- `quant_core/train_stat_arb_phase4.py`
+- `quant_core/train_discretionary_phase4.py`
+- `quant_core/train_mm_phase4.py`
+- `evaluate_all_checkpoints.py`
+- `orchestration/debate_engine.py`
+- `backtest.py`
 
-Validates everything through rigorous backtesting and end-to-end integration tests.
+Validation tests:
+- `tests/test_phase3_iron_wall.py`
+- `tests/test_phase5.py`
 
-🛠 WORKFLOW PROTOCOL (THE LOOP)
-For every phase and every file you create:
+## 3) Non-Speculation Protocol
 
-PLAN: Write a detailed breakdown of what the code will do.
+Before changing anything:
+1. Verify file existence and interfaces directly from code.
+2. Derive commands only from real entrypoints (`argparse`/`main`/module paths).
+3. If a metric or artifact is required, confirm exact output location in code.
 
-SELECT PROMPT: State which prompt from /coder_agent_system_prompts you are using as a reference.
+Forbidden:
+- Guessing missing files, APIs, thresholds, or data schema.
+- Declaring a phase complete without evidence artifact/test/metric.
 
-IMPLEMENT: Write clean, modular, and production-ready code.
+## 4) Global Guardrails
 
-SELF-TEST: Write and run a test script (e.g., test_[module].py) to ensure it works.
+Always enforce:
+- Iron Wall split and anti-leakage rules from `doc/pytorch_model_training_rule.md`.
+- Train-only scaler fitting.
+- Purge gap discipline.
+- Seed = 42 for reproducibility.
+- DirectML preferred backend where configured.
+- Checkpoint, TensorBoard, and registry updates for training phases.
+- Net performance gates only after transaction-cost simulation (commission + slippage).
+- Vectorized backtest validation immediately after Test split evaluation for each model.
+- Walk-forward and Monte Carlo robustness validation before deployment eligibility.
 
-USER CHECKPOINT: Present the results and wait for my approval before moving to the next task. DO NOT proceed to the next Phase until the current one is verified.
+Never allow:
+- Time-series random shuffle leakage.
+- Training/evaluation on mixed splits.
+- Silent failure paths without surfaced error reason.
 
-🚀 PHASE-BY-PHASE EXECUTION
-PHASE 1: Audit & Environment Setup
-Action: Scan /Dataset\binance_historical, verify CSV/Parquet formats, check GPU availability (CUDA), and evaluate the forked ChatDev structure at /ChatDev_forked.
+## 5) Workflow Loop Contract
 
-Output: project_audit.md (Structure, Schema, Dependencies, and Hardware Constraints).
+Run this loop until all completion gates in Section 10 pass.
 
-PHASE 2: Comprehensive Master Plan & TODO List
-Action: Create a detailed roadmap in master_plan.md.
+Loop structure:
+1. Re-read `doc/Gap_analysis_report.md` and map open gaps.
+2. Execute only the highest-priority unresolved gap batch.
+3. Run validation for that batch.
+4. Persist evidence artifacts.
+5. Update gap status and next actions.
+6. Continue to next unresolved gap.
 
-Requirement: This must include the mathematical definition of features for each of the 6 archetypes:
+Priority order:
+- P0 gaps first (Phase 6 accounting, reproducibility manifest, gating enforcement).
+- Then remaining Phase 3/4 partials.
+- Then reliability/HA controls tied to master-plan acceptance.
 
-Trend, Mean Reversion, Scalping, Stat Arb, Discretionary, Market Making.
+## 6) Verified Commands (Use Exactly)
 
-PHASE 3: Data Engineering Pipeline
-Reference Prompt: /coder_agent_system_prompts/data-engineering/
+Environment:
+```powershell
+cd d:\kp_ai_agent\ChatTrader.KPai
+```
 
-Action: Create /data_pipeline/.
+Phase 3 pipeline:
+```powershell
+.\.venv\Scripts\python.exe -m data_pipeline.run_pipeline
+```
 
-Requirement: Implement a "Feature Factory" that generates specific inputs for different NN architectures (CNN, LSTM, Transformer, etc.).
+Phase 3 tests:
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_phase3_iron_wall.py
+```
 
-Validation: Visualizations of distributions and a data_integrity_report.md.
+Phase 4 training:
+```powershell
+.\.venv\Scripts\python.exe -m quant_core.train_trend_phase4 --config configs/trend_phase4.yaml
+.\.venv\Scripts\python.exe -m quant_core.train_mr_phase4 --config configs/mr_phase4.yaml
+.\.venv\Scripts\python.exe -m quant_core.train_scalper_phase4 --config configs/scalper_phase4.yaml
+.\.venv\Scripts\python.exe -m quant_core.train_stat_arb_phase4 --config configs/stat_arb_phase4.yaml
+.\.venv\Scripts\python.exe -m quant_core.train_discretionary_phase4 --config configs/discretionary_phase4.yaml
+.\.venv\Scripts\python.exe -m quant_core.train_mm_phase4 --config configs/mm_phase4.yaml
+```
 
-PHASE 4: NN Implementation & Training (The "Quant Core")
-Reference Prompt: /coder_agent_system_prompts/ai-ml/
+Model catalog OOS evaluation:
+```powershell
+.\.venv\Scripts\python.exe evaluate_all_checkpoints.py
+```
 
-Action: Implement 3 models per archetype (18 models total) in PyTorch. always Use GPU for better performance.
+Phase 5 tests:
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_phase5.py
+```
 
-Requirement: - Use a config-driven approach (YAML).
+Phase 6 backtest execution:
+```powershell
+.\.venv\Scripts\python.exe backtest.py --parquet Dataset/binance_vision_real/BTCUSDT/aggTrades/2025-10/20251010.parquet --timeframe 5m --dry-run
+```
 
-Implement early stopping, checkpoint saving, and TensorBoard logging.
+## 7) Required Artifacts Per Phase
 
-Resource Management: Ensure models are cleared from VRAM after training to prevent OOM (Out of Memory).
+Phase 3 required artifacts:
+- Data integrity report generated by pipeline (`data_integrity_report.md` per current config).
+- Distribution plots under `data_pipeline/reports`.
+- Leakage/split test pass evidence.
 
-Validation: model_performance_summary.md with Sharpe Ratio and Drawdown for each model.
+Phase 4 required artifacts:
+- Updated model checkpoints under `models/checkpoints/...`.
+- TensorBoard logs under `models/tensorboard/...` including Train_Loss, Val_Loss, Net_Sharpe, and MDD.
+- Updated `model_registry.json` entries with validation audit fields and `is_valid` state based on net gates + robustness checks.
+- OOS evaluation output via `evaluate_all_checkpoints.py`.
+- Vectorized backtest outputs per model (gross PnL, net PnL, fees, slippage, equity curve).
+- Leakage audit trigger report when high directional accuracy coexists with negative net PnL.
 
-PHASE 5: Multi-Agent Architecture (Ollama Integration)
-Reference Prompt: /coder_agent_system_prompts/system-architecture/ & /generative-ai/
+Phase 5 required artifacts:
+- Debate engine path validation (FAST/SLOW behavior via tests).
+- Evidence packet and retry/self-correction behavior validated by tests.
 
-Action: Implement the Agent Debate logic in /agents/.
+Phase 6 required artifacts:
+- Backtest report with full metrics (Sharpe, PF, MDD, regime breakdown).
+- Explicit transaction-cost accounting in realized PnL:
+  - Commission = 0.04% per trade.
+  - Slippage = minimum 1-2 ticks per trade.
+- Model invalidation enforcement evidence for failing models.
+- Reproducibility manifest (run metadata and hashes).
+- Walk-forward validation report: positive net PnL in >= 80% of windows.
+- Monte Carlo stress-test report: 1,000 trade-sequence shuffles with 95th percentile worst-case MDD < 20%.
 
-Requirement:
+## 8) Gap-Driven Execution Rules
 
-Each of the 6 Trader Agents must have a unique system_instruction based on their archetype.
+Current known open gaps from `doc/Gap_analysis_report.md`:
 
-Integration with Ollama for local LLM reasoning.
+Phase 3:
+- Partial: unify scalper/discretionary feature outputs as first-class Phase 3 artifacts.
 
-Implement a trading-orchestrator (Agent 0) that aggregates signals and decides on Position Sizing and Risk Management.
+Phase 4:
+- Partial: normalize telemetry schema across all trainers.
+- Partial: unify sanity propagation test contract, including RL paths.
+- Partial/spec drift: patience policy not consistently aligned to training rule baseline.
+- Partial: vectorized backtest validation not yet standardized in per-model post-test pipeline.
 
-PHASE 6: End-to-End Integration & Simulation
-Reference Prompt: /coder_agent_system_prompts/performance/ & /debugging-quality/
+Phase 6 (highest priority):
+- Missing explicit slippage/fee integration in realized backtest PnL under fixed cost policy (0.04% commission + 1-2 tick slippage).
+- Missing full metrics suite in final run report (Sharpe/PF/regime breakdown not fully surfaced).
+- Missing hard model invalidation gate in execution flow.
+- Missing reproducibility manifest.
+- Missing walk-forward acceptance criterion enforcement (>=80% windows positive net PnL).
+- Missing Monte Carlo stress-test acceptance criterion enforcement (1,000 shuffles, 95th percentile worst-case MDD <20%).
 
-Action: Run a full simulation: Raw Data -> Features -> Model Inference -> Agent Debate -> Decision.
+Reliability/HA:
+- Missing SLO/SLI/error-budget policy implementation.
+- SPOF risk around single local LLM endpoint and local state persistence.
+- Missing failover/DR drill evidence and runbooks.
 
-Validation: Ensure the entire loop runs without manual intervention.
+## 9) Mandatory Reporting on Every Loop Iteration
 
-⚠️ CRITICAL RULES
-No Hallucinations: If a library is missing, tell me. Don't invent functions.
+At the end of each iteration, output a concise status block:
+1. What was changed (files + behavior).
+2. What validations were run.
+3. Which gap items are now closed.
+4. Which gaps remain and next immediate action.
 
-Blunt Honesty: If a model's accuracy is trash (e.g., < 50% or negative PnL), do not sugarcoat it. Report it as a failure and suggest a fix.
+If any command fails:
+- Capture exact error.
+- Classify as code bug vs environment issue vs missing data.
+- Apply fix and rerun validation in same loop.
 
-Modular Code: No giant monolithic scripts. Use classes and clear directory structures.
+## 10) Completion Gates (Stop Only When All True)
 
-Real Tests: A "test" isn't just checking if the file exists; it's running data through it and checking the output shape and values.
+Do not terminate until every gate is true:
 
-STARTING TASK:
-Begin with PHASE 1. Perform a full project audit and generate project_audit.md. Stop and wait for my review after this is done.
+1. Phase 3 gates:
+- All master-plan Phase 3 checklist items complete with artifacts/tests.
+
+2. Phase 4 gates:
+- All 18-model training/evaluation workflow complete.
+- `model_registry.json` reflects audited validation state.
+- OOS re-evaluation complete with no placeholder metrics.
+
+3. Phase 5 gates:
+- Multi-agent debate stack tested (including retry/self-correct and parallel analysts).
+
+4. Phase 6 gates:
+- End-to-end simulation includes slippage, fees, latency accounting.
+- Transaction-cost policy enforced globally:
+  - Commission = 0.04% per trade.
+  - Slippage = minimum 1-2 ticks per trade.
+- Report includes Sharpe, Profit Factor, Max Drawdown, regime breakdown.
+- OOS consistency invalidation enforced in execution path.
+- Reproducibility manifest generated for runs.
+
+5. Robustness gates:
+- Vectorized backtest validation executed immediately after test-split model evaluation.
+- Alignment check enforced: high directional accuracy with negative net PnL triggers mandatory data leakage audit.
+- Walk-forward analysis passes: positive net PnL in >=80% of windows.
+- Monte Carlo stress test passes: 1,000 trade-sequence shuffles with 95th percentile worst-case MDD <20%.
+
+6. Operational reliability gates:
+- SLO/SLI targets defined and documented.
+- Error-budget policy documented.
+- Failover/DR test plan and at least one executed drill evidence documented.
+
+When all gates are green, produce final closure report and mark project as complete-state aligned with `doc/master_plan.md`.
+
+## 11) Execution Start Instruction
+
+Start now from current baseline:
+1. Re-open `doc/Gap_analysis_report.md`.
+2. Execute P0 Phase 6 closure work first.
+3. Implement and enforce Vectorized Backtest Validation in the post-test pipeline for all model archetypes.
+4. Enforce fixed transaction-cost policy (0.04% commission + 1-2 tick slippage) in all net metric calculations.
+5. Add walk-forward and Monte Carlo robustness validation with pass/fail gates.
+6. Validate with tests/evaluation/backtest artifacts.
+7. Continue loop until Section 10 is fully satisfied.
