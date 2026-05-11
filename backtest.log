@@ -1,0 +1,53 @@
+15:12:15 | INFO | backtest | CHECK ONLY mode: running 1 bar dry-run smoke test.
+15:12:15 | INFO | backtest | Initializing DataFeeder ...
+15:12:15 | INFO | data_feeder | DataFeeder: loading 20251010.parquet ...
+15:12:17 | INFO | data_feeder | DataFeeder: 288 bars computed for BTCUSDT @ 5m (warmup=64, usable=224)
+15:12:17 | INFO | backtest | Initializing RealSignalBridge ...
+15:12:17 | INFO | real_signal_bridge | RealSignalBridge initialized. Signals derived from real market features. Swap to ProductionModelBridge when models pass validation.
+15:12:17 | INFO | backtest | Initializing DebateEngine (force_slow_path=True) ...
+15:12:17 | INFO | backtest | DRY RUN: Patching LLM calls to offline fallback.
+15:12:17 | INFO | orchestration.debate_engine | DebateEngine initialized | model=qwen3.5:4b | analysts=6 | parallel=3 | force_slow=True
+15:12:17 | WARNING | backtest | MODEL VALIDITY GATE: 18/18 models NOT production-valid: LSTM_Trend_v1(RESUME_TRAINING_REQUIRED), Transformer_Trend_v1(RESUME_TRAINING_REQUIRED), TCN_Trend_v1(RESUME_TRAINING_REQUIRED), MLP_MR_v1(RESUME_TRAINING_REQUIRED), ResNet_MR_v1(RESUME_TRAINING_REQUIRED), GRN_MR_v1(RESUME_TRAINING_REQUIRED)...
+15:12:17 | WARNING | backtest | Signals are rule-based fallback (RealSignalBridge). Retrain models before live deployment.
+15:12:17 | INFO | backtest | Starting backtest | BTCUSDT @ 5m | 224 usable bars | dry_run=True
+15:12:17 | WARNING | agents.analyst_agents | TrendAnalyst LLM call failed: Dry run: Ollama disabled.. Using model-signal fallback.
+15:12:17 | WARNING | agents.analyst_agents | MeanReversionAnalyst LLM call failed: Dry run: Ollama disabled.. Using model-signal fallback.
+15:12:17 | WARNING | agents.analyst_agents | ScalperAnalyst LLM call failed: Dry run: Ollama disabled.. Using model-signal fallback.
+15:12:17 | WARNING | agents.analyst_agents | StatArbAnalyst LLM call failed: Dry run: Ollama disabled.. Using model-signal fallback.
+15:12:17 | WARNING | agents.analyst_agents | DiscretionaryAnalyst LLM call failed: Dry run: Ollama disabled.. Using model-signal fallback.
+15:12:17 | WARNING | agents.analyst_agents | MarketMakerAnalyst LLM call failed: Dry run: Ollama disabled.. Using model-signal fallback.
+15:12:17 | WARNING | agents.shadow_agent | ShadowAgent critique failed: Dry run: Ollama disabled.
+15:12:17 | ERROR | orchestration.debate_engine | Orchestrator LLM call failed: Dry run: Ollama disabled.
+15:12:17 | INFO | orchestration.debate_engine | Anti-overthinking triggered: consensus 0.46 < 0.60 -> NO_TRADE | session=0a256306
+15:12:17 | WARNING | agents.portfolio_manager | PM HARD VETO: HARD VETO: Consensus score 0.46 below threshold 0.55.
+15:12:17 | INFO | agents.journaler | Journaler: recorded session 0a256306 -> 2026-05-08-debate-journal.jsonl
+15:12:17 | INFO | orchestration.debate_engine | Debate complete | path=SLOW | 6ms | direction=FLAT | session=0a256306
+15:12:17 | INFO | backtest | [2025-10-10 05:20] bar=64 action=NO_TRADE dir=FLAT consensus=46% size=0.00% latency=6ms
+15:12:17 | INFO | backtest | ============================================================
+15:12:17 | INFO | backtest | BACKTEST COMPLETE
+15:12:17 | INFO | backtest | ============================================================
+15:12:17 | INFO | backtest | Bars processed:     1
+15:12:17 | INFO | backtest | Debates run:        1
+15:12:17 | INFO | backtest | Trades opened:      0
+15:12:17 | INFO | backtest | Trades closed:      0
+15:12:17 | INFO | backtest | Win rate:           0.0%
+15:12:17 | INFO | backtest | Gross PnL:          0.0000%
+15:12:17 | INFO | backtest | Fees paid:          0.0000%
+15:12:17 | INFO | backtest | Slippage cost:      0.0000%
+15:12:17 | INFO | backtest | Net PnL:            0.0000%
+15:12:17 | INFO | backtest | Sharpe Ratio:       0.0000
+15:12:17 | INFO | backtest | Profit Factor:      1.0000
+15:12:17 | INFO | backtest | Max Drawdown:       0.00%
+15:12:17 | INFO | backtest | Final Equity:       1.0000
+15:12:17 | INFO | backtest | Flat decisions:     1
+15:12:17 | INFO | backtest | Errors caught:      0
+15:12:17 | INFO | backtest | Credibility updates:0
+15:12:17 | INFO | backtest | ============================================================
+15:12:17 | INFO | backtest |   TrendAnalyst                   credibility=0.5000
+15:12:17 | INFO | backtest |   MeanReversionAnalyst           credibility=0.5000
+15:12:17 | INFO | backtest |   ScalperAnalyst                 credibility=0.5000
+15:12:17 | INFO | backtest |   StatArbAnalyst                 credibility=0.5000
+15:12:17 | INFO | backtest |   DiscretionaryAnalyst           credibility=0.5000
+15:12:17 | INFO | backtest |   MarketMakerAnalyst             credibility=0.5000
+15:12:17 | INFO | backtest | ============================================================
+15:12:17 | INFO | backtest | Report saved to backtest_report.json | gate_pass=False

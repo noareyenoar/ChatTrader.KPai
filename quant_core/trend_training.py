@@ -102,7 +102,8 @@ def _annualization_factor() -> float:
 
 
 def _log(message: str) -> None:
-    print(message, flush=True)
+    ts = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print(f"[{ts}] {message}", flush=True)
 
 
 def _compute_pnl(pred: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
@@ -262,11 +263,23 @@ def train_one_model(
     else:
         num_workers = int(common_cfg.get("num_workers_non_cuda", 0))
     pin_memory = backend == "cuda"
+    configured_batch_size = int(common_cfg["batch_size"])
+    effective_batch_size = configured_batch_size
+    if backend == "directml":
+        # DirectML VRAM is typically tighter; cap batch to avoid mid-epoch OOM.
+        dml_cap = int(common_cfg.get("directml_max_batch_size", 256))
+        if configured_batch_size > dml_cap:
+            effective_batch_size = dml_cap
+            _log(
+                f"[trend:{name}] directml batch cap applied configured_batch_size={configured_batch_size} "
+                f"effective_batch_size={effective_batch_size}"
+            )
+
     train_loader, val_loader, test_loader = _create_loaders(
         train_ds=train_ds,
         val_ds=val_ds,
         test_ds=test_ds,
-        batch_size=int(common_cfg["batch_size"]),
+        batch_size=effective_batch_size,
         num_workers=num_workers,
         pin_memory=pin_memory,
     )
@@ -274,7 +287,7 @@ def train_one_model(
     _log(
         f"[trend:{name}] start backend={backend} device={device} "
         f"train_windows={len(train_ds)} val_windows={len(val_ds)} test_windows={len(test_ds)} "
-        f"batch_size={int(common_cfg['batch_size'])} num_workers={num_workers}"
+        f"batch_size={effective_batch_size} num_workers={num_workers}"
     )
 
     model = _build_model(name, input_dim=input_dim, seq_len=seq_len, cfg=model_cfg).to(device)
@@ -283,7 +296,7 @@ def train_one_model(
 
     sanity_passed = sanity_check(
         model,
-        batch=min(32, int(common_cfg["batch_size"])),
+        batch=min(32, effective_batch_size),
         seq_len=seq_len,
         input_dim=input_dim,
         device=device,
@@ -435,15 +448,21 @@ def train_one_model(
         writer.add_scalar("val/accuracy", float(val_metrics["directional_acc"]), epoch)
         writer.add_scalar("train/lr", lr, epoch)
 
+        epoch_elapsed_s = float(time.time() - epoch_started)
+        samples_per_s = float(len(train_ds) / max(epoch_elapsed_s, 1e-6))
+
         _log(
             f"[trend:{name}] epoch {epoch} done train_loss={train_loss:.6f} "
             f"train_acc={train_acc:.4f} val_loss={val_loss:.6f} val_acc={val_metrics['directional_acc']:.4f} "
-            f"val_sharpe={val_metrics['sharpe']:.4f} elapsed_s={time.time() - epoch_started:.1f}"
+            f"val_sharpe={val_metrics['sharpe']:.4f} elapsed_s={epoch_elapsed_s:.1f}"
         )
         append_working_log(
             model_key,
             "EPOCH",
             {
+                "backend": backend,
+                "elapsed_s": epoch_elapsed_s,
+                "samples_per_s": samples_per_s,
                 "train_loss": train_loss,
                 "train_acc": train_acc,
                 "val_loss": val_loss,

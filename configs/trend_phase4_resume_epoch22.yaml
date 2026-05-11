@@ -1,0 +1,48 @@
+# Resume config after outage for Trend archetype
+# LSTM resumes from epoch 22 (last completed: 21), other models start fresh.
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 96
+  horizon: 5
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  seq_len: 96
+  preferred_backend: directml
+  batch_size: 2048
+  directml_max_batch_size: 256
+  max_epochs: 150
+  patience: 20
+  lr: 0.0003
+  weight_decay: 0.001
+  num_workers: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  resume_from_checkpoint: true
+  resume_start_epoch_by_model:
+    lstm: 22
+    transformer: 1
+    tcn: 1
+  checkpoint_root: models/checkpoints/trend
+  tensorboard_root: models/tensorboard/trend
+
+models:
+  lstm:
+    hidden_size: 256
+    num_layers: 3
+    dropout: 0.3
+  transformer:
+    d_model: 128
+    nhead: 4
+    num_layers: 4
+    dropout: 0.3
+  tcn:
+    channels: 128
+    dropout: 0.3
+
+registry_path: model_registry.json

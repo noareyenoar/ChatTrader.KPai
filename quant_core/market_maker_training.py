@@ -10,6 +10,7 @@ All use the MarketMakingEnv replay over historical price data.
 from __future__ import annotations
 
 import random
+import time
 from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
@@ -116,7 +117,8 @@ def _rule_based_discrete_action(state: np.ndarray) -> int:
 
 
 def _log(message: str) -> None:
-    print(message, flush=True)
+    ts = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print(f"[{ts}] {message}", flush=True)
 
 
 # ---------------------------------------------------------------------------
@@ -158,6 +160,7 @@ def train_ppo(
 
     all_ep_rewards: list[float] = []
     best_val_rew = -float("inf")
+    train_started = time.time()
 
     for episode in range(int(cfg["max_episodes"])):
         states, actions, log_probs_old, rewards, dones, values = [], [], [], [], [], []
@@ -217,12 +220,17 @@ def train_ppo(
 
         ep_reward = float(np.sum(rewards))
         all_ep_rewards.append(ep_reward)
+        elapsed_s = float(time.time() - train_started)
+        episodes_per_min = float((episode + 1) / max(elapsed_s, 1e-6) * 60.0)
         writer.add_scalar("train/episode_reward", ep_reward, episode)
         _log(f"[mm:ppo] episode {episode + 1}/{int(cfg['max_episodes'])} reward={ep_reward:.4f} envs={num_envs}")
         append_working_log(
             "PPO_MM_v1",
             "EPISODE",
             {
+                "backend": backend,
+                "elapsed_s": elapsed_s,
+                "episodes_per_min": episodes_per_min,
                 "train_episode_reward": ep_reward,
                 "val_status": "pending",
                 "test_status": "pending",
@@ -240,6 +248,9 @@ def train_ppo(
                 "PPO_MM_v1",
                 "VALIDATION",
                 {
+                    "backend": backend,
+                    "elapsed_s": elapsed_s,
+                    "episodes_per_min": episodes_per_min,
                     "train_episode_reward": ep_reward,
                     "val_mean_reward": val_rew,
                     "test_status": "pending",
@@ -262,6 +273,8 @@ def train_ppo(
         "PPO_MM_v1",
         "FINAL",
         {
+            "backend": backend,
+            "elapsed_s": float(time.time() - train_started),
             "train_mean_reward": float(np.mean(rewards_arr)),
             "val_best_mean_reward": float(best_val_rew),
             "test_mean_reward": eval_mean,
@@ -386,6 +399,7 @@ def train_sac(
     all_ep_rewards: list[float] = []
     best_val_rew = -float("inf")
     warmup_episodes = int(cfg.get("behavior_warmup_episodes", 8))
+    train_started = time.time()
 
     states = vec_env.reset()
     ep_rewards = np.zeros(num_envs, dtype=np.float32)
@@ -410,6 +424,8 @@ def train_sac(
                 finished_reward = float(ep_rewards[i])
                 finished_steps = int(ep_lengths[i])
                 all_ep_rewards.append(finished_reward)
+                elapsed_s = float(time.time() - train_started)
+                episodes_per_min = float(len(all_ep_rewards) / max(elapsed_s, 1e-6) * 60.0)
                 writer.add_scalar("train/episode_reward", finished_reward, len(all_ep_rewards))
                 writer.add_scalar("train/episode_steps", finished_steps, len(all_ep_rewards))
                 _log(
@@ -420,6 +436,9 @@ def train_sac(
                     "SAC_MM_v1",
                     "EPISODE",
                     {
+                        "backend": backend,
+                        "elapsed_s": elapsed_s,
+                        "episodes_per_min": episodes_per_min,
                         "train_episode_reward": finished_reward,
                         "episode_steps": finished_steps,
                         "val_status": "pending",
@@ -485,6 +504,9 @@ def train_sac(
                 "SAC_MM_v1",
                 "VALIDATION",
                 {
+                    "backend": backend,
+                    "elapsed_s": float(time.time() - train_started),
+                    "episodes_per_min": float(len(all_ep_rewards) / max(time.time() - train_started, 1e-6) * 60.0),
                     "step": step + 1,
                     "val_mean_reward": val_rew,
                     "alpha": float(nets.alpha.item()),
@@ -506,6 +528,8 @@ def train_sac(
         "SAC_MM_v1",
         "FINAL",
         {
+            "backend": backend,
+            "elapsed_s": float(time.time() - train_started),
             "train_mean_reward": float(np.mean(rewards_arr)),
             "val_best_mean_reward": float(best_val_rew),
             "test_mean_reward": eval_mean,
@@ -579,6 +603,7 @@ def train_dqn(
     all_ep_rewards: list[float] = []
     best_val_rew = -float("inf")
     eps = eps_start
+    train_started = time.time()
     states = vec_env.reset()
     ep_rewards = np.zeros(num_envs, dtype=np.float32)
     ep_lengths = np.zeros(num_envs, dtype=np.int32)
@@ -607,6 +632,8 @@ def train_dqn(
                 finished_reward = float(ep_rewards[i])
                 finished_steps = int(ep_lengths[i])
                 all_ep_rewards.append(finished_reward)
+                elapsed_s = float(time.time() - train_started)
+                episodes_per_min = float(len(all_ep_rewards) / max(elapsed_s, 1e-6) * 60.0)
                 writer.add_scalar("train/episode_reward", finished_reward, len(all_ep_rewards))
                 writer.add_scalar("train/episode_steps", finished_steps, len(all_ep_rewards))
                 _log(
@@ -617,6 +644,9 @@ def train_dqn(
                     "DQN_MM_v1",
                     "EPISODE",
                     {
+                        "backend": backend,
+                        "elapsed_s": elapsed_s,
+                        "episodes_per_min": episodes_per_min,
                         "train_episode_reward": finished_reward,
                         "episode_steps": finished_steps,
                         "epsilon": eps,
@@ -663,6 +693,9 @@ def train_dqn(
                 "DQN_MM_v1",
                 "VALIDATION",
                 {
+                    "backend": backend,
+                    "elapsed_s": float(time.time() - train_started),
+                    "episodes_per_min": float(len(all_ep_rewards) / max(time.time() - train_started, 1e-6) * 60.0),
                     "step": step + 1,
                     "val_mean_reward": val_rew,
                     "epsilon": eps,
@@ -684,6 +717,8 @@ def train_dqn(
         "DQN_MM_v1",
         "FINAL",
         {
+            "backend": backend,
+            "elapsed_s": float(time.time() - train_started),
             "train_mean_reward": float(np.mean(rewards_arr)),
             "val_best_mean_reward": float(best_val_rew),
             "test_mean_reward": eval_mean,

@@ -260,6 +260,8 @@ def train_stat_arb_model(
             f"[stat-arb:{name}] epoch {epoch} done train_loss={float(np.mean(losses)):.6f} val_loss={vm['loss']:.6f} "
             f"val_mae={vm['mae']:.4f} val_sharpe={vm['sharpe']:.4f} elapsed_s={time.time() - epoch_started:.1f}"
         )
+        epoch_elapsed_s = float(time.time() - epoch_started)
+        samples_per_s = float(len(train_ds) / max(epoch_elapsed_s, 1e-6))
         if last_val_sharpe is not None and abs(vm["sharpe"] - last_val_sharpe) < 1e-6:
             frozen_sharpe_epochs += 1
         else:
@@ -274,6 +276,9 @@ def train_stat_arb_model(
             model_key,
             "EPOCH",
             {
+                "backend": backend,
+                "elapsed_s": epoch_elapsed_s,
+                "samples_per_s": samples_per_s,
                 "train_loss": float(np.mean(losses)),
                 "val_loss": vm["loss"],
                 "val_mae": vm["mae"],

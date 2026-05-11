@@ -296,14 +296,20 @@ def train_scalper_model(
         writer.add_scalar("val/loss", vm["loss"], epoch)
         writer.add_scalar("val/accuracy", vm["accuracy"], epoch)
         writer.add_scalar("train/lr", float(optimizer.param_groups[0]["lr"]), epoch)
+
+        epoch_elapsed_s = float(time.time() - epoch_started)
+        samples_per_s = float(len(train_ds) / max(epoch_elapsed_s, 1e-6))
         _log(
             f"[scalper:{name}] epoch {epoch} done train_loss={train_loss:.6f} train_acc={train_acc:.4f} val_loss={vm['loss']:.6f} "
-            f"val_acc={vm['accuracy']:.4f} val_f1={vm['f1']:.4f} elapsed_s={time.time() - epoch_started:.1f}"
+            f"val_acc={vm['accuracy']:.4f} val_f1={vm['f1']:.4f} elapsed_s={epoch_elapsed_s:.1f}"
         )
         append_working_log(
             model_key,
             "EPOCH",
             {
+                "backend": backend,
+                "elapsed_s": epoch_elapsed_s,
+                "samples_per_s": samples_per_s,
                 "train_loss": train_loss,
                 "train_acc": train_acc,
                 "val_loss": vm["loss"],

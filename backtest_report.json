@@ -1,0 +1,141 @@
+{
+  "reproducibility_manifest": {
+    "timestamp_utc": "2026-05-08T08:12:17.486576+00:00",
+    "git_commit": "a040280a1bf2b8c42f3b28f39a13beca0bf8cd77",
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "torch_version": "2.4.1+cpu",
+    "seed": 42,
+    "config": {
+      "parquet_path": "Dataset/binance_vision_real/BTCUSDT/aggTrades/2025-10/20251010.parquet",
+      "timeframe": "5m",
+      "symbol": "BTCUSDT",
+      "ollama_model": "qwen3.5:4b",
+      "max_bars": 1,
+      "dry_run": true,
+      "max_open_positions": 1,
+      "tick_size": 0.1,
+      "commission_rate": 0.0004,
+      "slippage_ticks": 1
+    },
+    "config_digest_md5": "74478321f7e729dd2033491145e0bf77",
+    "dataset_path": "Dataset/binance_vision_real/BTCUSDT/aggTrades/2025-10/20251010.parquet",
+    "dataset_hash_md5": "eaae17e8fca6f5410791de88ececec39",
+    "model_registry_validity": {
+      "total": 18,
+      "valid": 0,
+      "invalid": 18,
+      "invalid_models": [
+        "LSTM_Trend_v1(RESUME_TRAINING_REQUIRED)",
+        "Transformer_Trend_v1(RESUME_TRAINING_REQUIRED)",
+        "TCN_Trend_v1(RESUME_TRAINING_REQUIRED)",
+        "MLP_MR_v1(RESUME_TRAINING_REQUIRED)",
+        "ResNet_MR_v1(RESUME_TRAINING_REQUIRED)",
+        "GRN_MR_v1(RESUME_TRAINING_REQUIRED)",
+        "CNN_Scalper_v1(RESUME_TRAINING_REQUIRED)",
+        "LinearAttn_Scalper_v1(RESUME_TRAINING_REQUIRED)",
+        "GRU_Scalper_v1(RESUME_TRAINING_REQUIRED)",
+        "Autoencoder_StatArb_v1(RESUME_TRAINING_REQUIRED)",
+        "GAT_StatArb_v1(RESUME_TRAINING_REQUIRED)",
+        "LSTM_StatArb_v1(RESUME_TRAINING_REQUIRED)",
+        "ViT_Disc_v1(RESUME_TRAINING_REQUIRED)",
+        "Multimodal_Disc_v1(RESUME_TRAINING_REQUIRED)",
+        "CNNChart_Disc_v1(RESUME_TRAINING_REQUIRED)",
+        "PPO_MM_v1(RESUME_TRAINING_REQUIRED)",
+        "SAC_MM_v1(RESUME_TRAINING_REQUIRED)",
+        "DQN_MM_v1(RESUME_TRAINING_REQUIRED)"
+      ]
+    }
+  },
+  "performance": {
+    "net_pnl_pct": 0.0,
+    "gross_pnl_pct": 0.0,
+    "total_fees_pct": 0.0,
+    "total_slippage_pct": 0.0,
+    "sharpe_ratio": 0.0,
+    "profit_factor": 1.0,
+    "max_drawdown_pct": 0.0,
+    "win_rate_pct": 0.0,
+    "final_equity": 1.0,
+    "trades_closed": 0,
+    "trade_count_needed_for_gates": {
+      "sharpe_gate": 1.2,
+      "profit_factor_gate": 1.5,
+      "max_drawdown_gate_pct": 20.0
+    },
+    "gate_pass": false
+  },
+  "regime_breakdown": {},
+  "trade_pnls": [],
+  "raw_stats": {
+    "total_bars": 1,
+    "debates_run": 1,
+    "trades_opened": 0,
+    "trades_closed": 0,
+    "wins": 0,
+    "losses": 0,
+    "flat_decisions": 1,
+    "total_pnl": 0.0,
+    "gross_pnl": 0.0,
+    "total_fees": 0.0,
+    "total_slippage_cost": 0.0,
+    "peak_equity": 1.0,
+    "current_equity": 1.0,
+    "max_drawdown": 0.0,
+    "errors_caught": 0,
+    "credibility_updates": 0,
+    "trade_pnls": [],
+    "regime_breakdown": {}
+  },
+  "agent_credibilities": {
+    "TrendAnalyst": 0.5,
+    "MeanReversionAnalyst": 0.5,
+    "ScalperAnalyst": 0.5,
+    "StatArbAnalyst": 0.5,
+    "DiscretionaryAnalyst": 0.5,
+    "MarketMakerAnalyst": 0.5
+  },
+  "agent_learning_stats": {
+    "TrendAnalyst": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "accuracy": 0.0,
+      "by_regime": {}
+    },
+    "MeanReversionAnalyst": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "accuracy": 0.0,
+      "by_regime": {}
+    },
+    "ScalperAnalyst": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "accuracy": 0.0,
+      "by_regime": {}
+    },
+    "StatArbAnalyst": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "accuracy": 0.0,
+      "by_regime": {}
+    },
+    "DiscretionaryAnalyst": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "accuracy": 0.0,
+      "by_regime": {}
+    },
+    "MarketMakerAnalyst": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "accuracy": 0.0,
+      "by_regime": {}
+    }
+  }
+}
