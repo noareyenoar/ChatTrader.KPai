@@ -1,0 +1,91 @@
+{
+  "heartbeat": 29,
+  "timestamp": "2026-05-25 01:41:08 UTC",
+  "elapsed_hours": 14.505,
+  "dataset_windows": {
+    "train": 467440,
+    "val": 100040,
+    "test": 100042,
+    "input_dim": 5
+  },
+  "models": {
+    "tcn": {
+      "epochs_done": 21,
+      "max_epochs": 120,
+      "best_val_sharpe": 4.63272,
+      "best_val_acc": 0.528259,
+      "latest_train_loss": 0.480523,
+      "latest_val_loss": 0.695166,
+      "final_test_sharpe": -0.8304,
+      "final_test_acc": 0.5344,
+      "is_valid": null
+    },
+    "TCN_Trend_v1": {
+      "epochs_done": 0,
+      "max_epochs": 0,
+      "best_val_sharpe": -Infinity,
+      "best_val_acc": 0.0,
+      "latest_train_loss": null,
+      "latest_val_loss": null,
+      "final_test_sharpe": null,
+      "final_test_acc": null,
+      "is_valid": false
+    },
+    "transformer": {
+      "epochs_done": 44,
+      "max_epochs": 120,
+      "best_val_sharpe": 5.00648,
+      "best_val_acc": 0.528569,
+      "latest_train_loss": 0.482462,
+      "latest_val_loss": 0.690532,
+      "final_test_sharpe": -1.3165,
+      "final_test_acc": 0.5345,
+      "is_valid": null
+    },
+    "Transformer_Trend_v1": {
+      "epochs_done": 0,
+      "max_epochs": 0,
+      "best_val_sharpe": -Infinity,
+      "best_val_acc": 0.0,
+      "latest_train_loss": null,
+      "latest_val_loss": null,
+      "final_test_sharpe": null,
+      "final_test_acc": null,
+      "is_valid": false
+    },
+    "lstm": {
+      "epochs_done": 25,
+      "max_epochs": 120,
+      "best_val_sharpe": 4.432529,
+      "best_val_acc": 0.530308,
+      "latest_train_loss": 0.481052,
+      "latest_val_loss": 0.692598,
+      "final_test_sharpe": null,
+      "final_test_acc": null,
+      "is_valid": null
+    },
+    "LSTM_Trend_v1": {
+      "epochs_done": 0,
+      "max_epochs": 0,
+      "best_val_sharpe": -Infinity,
+      "best_val_acc": 0.0,
+      "latest_train_loss": null,
+      "latest_val_loss": null,
+      "final_test_sharpe": null,
+      "final_test_acc": null,
+      "is_valid": false
+    }
+  },
+  "passed": [],
+  "failed": [
+    "TCN_Trend_v1",
+    "Transformer_Trend_v1",
+    "LSTM_Trend_v1"
+  ],
+  "running": [
+    "tcn",
+    "transformer",
+    "lstm"
+  ],
+  "error_count": 0
+}

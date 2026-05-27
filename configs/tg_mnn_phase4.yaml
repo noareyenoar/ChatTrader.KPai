@@ -1,0 +1,129 @@
+# TG-MNN (Temporal-Gradient Markov Neural Network) Phase 4 Training Configuration
+# 
+# Archetype: Trend Following / Wave Structure Analysis
+# Task: Multi-task learning for wave property prediction
+#   - Classification: Wave state (Steady, Up, Down)
+#   - Regression: Magnitude and duration to next peak/trough
+
+# ============================================================================
+# DATA CONFIGURATION
+# ============================================================================
+data:
+  input_dir: "Dataset/binance_historical"
+  output_dir: "models/checkpoints/tg_mnn"
+  
+  # Chronological split (Iron Wall)
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  purge_gap_bars: 20  # Prevent lookahead leakage
+  
+  # Symbols to use (empty = auto-discover all)
+  symbols: []  # Set specific symbols if needed
+
+  seq_len: 50  # Sequence length for rolling windows
+  max_rows_per_symbol: 50000  # Cap per symbol to prevent epoch time explosion
+
+# ============================================================================
+# MODEL ARCHITECTURE
+# ============================================================================
+model:
+  name: "TG_MNN_v1"
+  
+  # Backbone: Dilated 1D CNN
+  hidden_dim: 64              # Internal feature dimension
+  num_backbone_layers: 3      # Dilated conv blocks
+  
+  # Multi-task heads
+  state_classes: 3            # Steady=0, Up=1, Down=2
+  regression_heads: 2         # Magnitude, Duration
+
+# ============================================================================
+# LOSS FUNCTION
+# ============================================================================
+loss:
+  type: "multitask"
+  state_weight: 1.0           # Classification weight
+  magnitude_weight: 0.5       # Regression weight (magnitude)
+  duration_weight: 0.5        # Regression weight (duration)
+  
+  regression_loss: "huber"    # Use Huber for outlier robustness
+  huber_delta: 1.0
+  
+  learnable_weights: false    # If true, task weights become learnable
+
+# ============================================================================
+# TRAINING CONFIGURATION
+# ============================================================================
+training:
+  max_epochs: 50
+  batch_size: 1024  # Increased from 32: efficient for ~3M total windows after capping
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  
+  # Learning rate schedule
+  scheduler: "cosine"         # cosine annealing
+  eta_min: 1.0e-6
+  
+  # Early stopping
+  early_stopping_patience: 10
+  
+  # Gradient clipping
+  max_grad_norm: 1.0
+  
+  # Mixed precision training (CUDA)
+  use_mixed_precision: true
+  
+  # Hardware preference
+  preferred_backend: "auto"   # auto | cuda | directml | cpu
+  num_workers: 0              # DataLoader workers
+
+# ============================================================================
+# VALIDATION & GATES
+# ============================================================================
+validation:
+  # State classification gates (accuracy)
+  min_state_accuracy: 0.45
+  
+  # Magnitude MAE gate
+  max_magnitude_mae: 0.1      # Relative to price range
+  
+  # Duration MAE gate (in bars)
+  max_duration_mae: 10.0
+  
+  # Walk-forward validation
+  walk_forward_windows: 5
+  min_wf_sharpe: 1.0
+  
+  # Monte Carlo robustness (1000 shuffles)
+  monte_carlo_runs: 1000
+  mc_max_drawdown_pct: 0.20
+
+# ============================================================================
+# EXECUTION & TRANSACTION COSTS
+# ============================================================================
+execution:
+  # Realistic trading costs
+  commission_pct: 0.0004      # 0.04% per trade (Binance Futures)
+  slippage_bps: 15            # 15 basis points = ~1.5 ticks
+  
+  # Position sizing
+  max_position_pct: 0.02      # Max 2% of account per trade
+
+# ============================================================================
+# MONITORING & LOGGING
+# ============================================================================
+logging:
+  tensorboard_dir: "models/tensorboard/tg_mnn"
+  log_interval: 100           # Log every N batches
+  checkpoint_interval: 1      # Save checkpoint every N epochs
+  
+  # Enable detailed logging
+  verbose: true
+
+# ============================================================================
+# REPRODUCIBILITY
+# ============================================================================
+reproducibility:
+  seed: 42
+  deterministic: true

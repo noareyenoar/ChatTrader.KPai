@@ -103,18 +103,39 @@ def build_stat_arb_datasets(config: dict[str, Any]) -> StatArbDatasets:
         _log(f"[stat-arb-data] loading {sym_idx}/{len(symbols)} symbol={sym}")
         raw = _load_symbol(pipe_cfg.dataset_dir / f"{sym}.parquet")
         feat = FeatureFactory.build_stat_arb_features(raw)
-        feat = feat[["timestamp", "fracdiff_close_d04", "spread_z_64"]].dropna()
+        # v2 feature set: fracdiff + multi-window z-scores + OU half-life + Hurst proxy
+        STAT_ARB_FEAT_COLS = [
+            "fracdiff_close_d04", "spread_z_64", "spread_z_20", "spread_z_128",
+            "spread_z_vel", "ou_halflife", "hurst_proxy",
+            "entry_long_signal", "entry_short_signal",
+        ]
+        available = [c for c in STAT_ARB_FEAT_COLS if c in feat.columns]
+        feat = feat[["timestamp"] + available].dropna()
         _verify_fracdiff_column(sym, feat)
         # Do NOT cap per-symbol before alignment — different listing dates
         # would produce disjoint timestamp ranges.
         frames[sym] = feat.set_index("timestamp")
         _log(f"[stat-arb-data] ready symbol={sym} rows={len(feat)}")
 
-    # Align to common index
-    aligned = pd.concat({s: frames[s]["fracdiff_close_d04"] for s in symbols}, axis=1).dropna()
-    aligned.columns = symbols
+    # Align to common index using fracdiff_close_d04 (stationary base signal)
+    # and expand with 2 additional features per asset (spread_z_64, ou_halflife norm)
+    # giving input_dim = num_symbols * 3 per timestep.
+    FEAT_PER_ASSET = ["fracdiff_close_d04", "spread_z_64", "hurst_proxy"]
+    aligned_parts: dict[str, pd.DataFrame] = {}
+    for sym in symbols:
+        sym_frame = frames[sym]
+        available_feats = [c for c in FEAT_PER_ASSET if c in sym_frame.columns]
+        if len(available_feats) < 1:
+            available_feats = ["fracdiff_close_d04"]
+        # Prefix columns with symbol to avoid naming collisions
+        sym_feats = sym_frame[available_feats].copy()
+        sym_feats.columns = [f"{sym}_{c}" for c in available_feats]
+        aligned_parts[sym] = sym_feats
+
+    # Outer-join all symbol feature frames; inner-join timestamp
+    aligned = pd.concat(list(aligned_parts.values()), axis=1).dropna()
     aligned = aligned.reset_index()
-    _log(f"[stat-arb-data] aligned_rows={len(aligned)} assets={len(symbols)}")
+    _log(f"[stat-arb-data] aligned_rows={len(aligned)} assets={len(symbols)} feat_per_asset={len(FEAT_PER_ASSET)} total_features={aligned.shape[1]-1}")
 
     # Cap the aligned (post-intersection) rows — take LAST N to keep recency
     if cap_rows > 0 and len(aligned) > cap_rows:
@@ -122,18 +143,20 @@ def build_stat_arb_datasets(config: dict[str, Any]) -> StatArbDatasets:
 
     # Iron Wall split based on timestamp column
     splitter = IronWallSplitter(purge_gap_bars=int(config["purge_gap_bars"]))
-    aligned["timestamp"] = pd.to_datetime(aligned["timestamp"], utc=True)
+    aligned["timestamp"] = pd.to_datetime(aligned["timestamp"], utc=True, errors="coerce")
+    aligned = aligned.dropna(subset=["timestamp"])
     split = splitter.split(aligned, time_col="timestamp")
 
-    def _process_split(df: pd.DataFrame):
-        arr = df[symbols].to_numpy(np.float32)
-        # Fit scaler per-asset on this slice (we refit for each split segment
-        # but only using the train slice's stats — passed in from outside)
-        return arr
+    # Feature columns = all non-timestamp columns
+    feat_cols = [c for c in aligned.columns if c != "timestamp"]
+    actual_num_assets = len(feat_cols)  # num_symbols * features_per_asset
 
-    tr_arr = _process_split(split.train)
-    va_arr = _process_split(split.val)
-    te_arr = _process_split(split.test)
+    def _to_arr(df: pd.DataFrame) -> np.ndarray:
+        return df[feat_cols].to_numpy(np.float32)
+
+    tr_arr = _to_arr(split.train)
+    va_arr = _to_arr(split.val)
+    te_arr = _to_arr(split.test)
 
     # Normalize: fit scaler on train only
     mean = tr_arr.mean(axis=0, keepdims=True)
@@ -142,15 +165,18 @@ def build_stat_arb_datasets(config: dict[str, Any]) -> StatArbDatasets:
     va_arr = (va_arr - mean) / std
     te_arr = (te_arr - mean) / std
 
-    # Target: mean spread Z-score at next `horizon` steps
+    # Target: mean of the fracdiff_close_d04 features (first feature of each asset)
+    # — this represents the mean-spread direction signal across all assets
+    fracdiff_idxs = [i for i, c in enumerate(feat_cols) if c.endswith("fracdiff_close_d04")]
+    if not fracdiff_idxs:
+        fracdiff_idxs = list(range(len(symbols)))  # fallback: first N cols
+
     def _make_target(arr: np.ndarray) -> np.ndarray:
-        z = (arr - arr.mean(axis=0, keepdims=True)) / (arr.std(axis=0, keepdims=True) + 1e-8)
-        return z.mean(axis=1)  # (N,) scalar mean Z across assets
+        fd = arr[:, fracdiff_idxs]
+        z = (fd - fd.mean(axis=0, keepdims=True)) / (fd.std(axis=0, keepdims=True) + 1e-8)
+        return z.mean(axis=1)  # (N,) scalar mean Z across fracdiff signals
 
-    for arr in [tr_arr, va_arr, te_arr]:
-        pass  # arrays already normalized
-
-    def _build(arr):
+    def _build(arr: np.ndarray) -> TensorDataset:
         tgt = _make_target(arr)
         x, y = _make_seq(arr, tgt, seq_len)
         return TensorDataset(torch.tensor(x), torch.tensor(y.astype(np.float32)))
@@ -159,7 +185,7 @@ def build_stat_arb_datasets(config: dict[str, Any]) -> StatArbDatasets:
         train=_build(tr_arr),
         val=_build(va_arr),
         test=_build(te_arr),
-        num_assets=len(symbols),
+        num_assets=actual_num_assets,
         seq_len=seq_len,
     )
     _log(f"[stat-arb-data] datasets complete train={len(datasets.train)} val={len(datasets.val)} test={len(datasets.test)}")

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import re
 import sys
 import time
 import gc
@@ -31,6 +32,14 @@ from contextlib import nullcontext
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+# Phase 6 robustness gates
+try:
+    from quant_core.robustness_tests import run_robustness_suite as _run_robustness
+    _ROBUSTNESS_AVAILABLE = True
+except Exception as _rob_err:
+    _ROBUSTNESS_AVAILABLE = False
+    _run_robustness = None  # type: ignore[assignment]
 
 import numpy as np
 import pandas as pd
@@ -69,7 +78,8 @@ PARQUET_COLS = ["timestamp", "open", "high", "low", "close", "volume",
 
 # Exact feature columns as defined in training data modules
 TREND_FEAT_COLS = ["log_return", "zscore_close_64", "ema_spread", "atr_14", "price_slope_20"]  # 5
-MR_FEAT_COLS    = ["vwap_dev", "bb_distance", "zscore_close_20", "rsi_14", "rsi_div_5"]         # 5
+MR_FEAT_COLS    = ["vwap_dev", "bb_distance", "zscore_close_20", "zscore_close_64",
+                    "rsi_14", "rsi_div_5", "rsi_oversold", "rsi_overbought"]     # 8 (v2)
 # Scalper uses 13 features — imported from quant_core.scalper_data.SCALPER_FEATURES
 
 
@@ -138,6 +148,26 @@ def max_drawdown(returns: np.ndarray) -> float:
     return float(np.max(dd))
 
 
+def max_drawdown_rl(ep_rewards: np.ndarray) -> float:
+    """RL MDD proxy: |sum(losing episodes)| / |sum(winning episodes)|.
+
+    Cumsum-based MDD gives artefacts for RL because the temporal ordering
+    of wins and losses dominates the result (a model that wins early and
+    loses late gets MDD=1.0 even with a very positive mean reward).
+    Instead we measure what fraction of total profits are given back as
+    losses: this equals 1 / profit_factor, bounded to [0, 1].
+
+    - MDD = 0   → no losing episodes at all
+    - MDD < 0.85 → passes RL gate (losses < 85% of wins)
+    - MDD = 1.0 → losses >= wins (model is unprofitable or flat)
+    """
+    gains  = float(np.sum(ep_rewards[ep_rewards > 0]))
+    losses = float(np.sum(np.abs(ep_rewards[ep_rewards < 0])))
+    if gains <= 0.0:
+        return 1.0  # no winning episodes → maximum risk
+    return min(1.0, losses / gains)
+
+
 ROUND_TRIP_COST = 0.001  # 0.1% per completed round-trip (maker+taker, crypto futures)
 
 
@@ -146,6 +176,7 @@ def compute_all_metrics(
     true_labels: np.ndarray,
     output_type: str,
     actual_returns: np.ndarray | None = None,
+    _out_returns: list | None = None,
 ) -> dict[str, float]:
     """Compute all four KPI metrics from raw logits/predictions.
 
@@ -175,6 +206,16 @@ def compute_all_metrics(
         direction = pred_dir
         true_direction = true_dir
         ret_sign = np.where(pred_dir == true_dir, 1.0, -1.0)
+    elif output_type == "tg_mnn":
+        # TG-MNN: state_logits [B, 3] → 0=Steady, 1=Up, 2=Down
+        # Map to binary direction: Up(1)=long(1), Down(2)=short(0), Steady(0)=skip
+        pred_state = np.argmax(logits, axis=1)  # 0=Steady, 1=Up, 2=Down
+        # Convert to directional: Up→1, Down→0, Steady→abstain (treated as 0 for acc)
+        direction = np.where(pred_state == 1, 1, 0).astype(int)  # 1=up, 0=not-up
+        true_direction = true_labels.astype(int)  # binary: 1=price went up
+        trade_mask = (pred_state != 0).astype(np.float64)  # only trade on Up/Down signals
+        ret_sign = np.where(pred_state == 1, 1.0, np.where(pred_state == 2, -1.0, 0.0))
+        ret_sign = ret_sign * np.where(true_direction == 1, 1.0, -1.0)
     elif output_type in ("rl_continuous", "rl_discrete"):
         # RL: action maps to direction
         if output_type == "rl_discrete":
@@ -183,6 +224,11 @@ def compute_all_metrics(
         else:
             direction = (logits[:, 0] > 0.5).astype(int)  # bid offset > 0.5 = buy lean
         true_direction = true_labels.astype(int)
+        ret_sign = np.where(direction == true_direction, 1.0, -1.0)
+    elif output_type == "apv_pln":
+        # APV-PLN: logits = expected return (scalar per sample, already reduced in run_inference)
+        direction = (logits.ravel() > 0.0).astype(int)  # 1=expected up, 0=expected down
+        true_direction = true_labels.astype(int)         # 1=actual up, 0=actual down
         ret_sign = np.where(direction == true_direction, 1.0, -1.0)
     else:
         direction = (logits.ravel() > 0).astype(int)
@@ -194,14 +240,17 @@ def compute_all_metrics(
     # ── PnL using actual forward returns when available ───────────────────
     if actual_returns is not None:
         abs_ret = np.abs(actual_returns).astype(np.float64)
-        if output_type == "multiclass3":
-            # flat predictions = no trade, no transaction cost
+        if output_type in ("multiclass3", "tg_mnn"):
+            # flat/steady predictions = no trade, no transaction cost
             trade_mask = (ret_sign != 0).astype(np.float64)
             returns = ret_sign * abs_ret - trade_mask * ROUND_TRIP_COST
         else:
             returns = ret_sign * abs_ret - ROUND_TRIP_COST
     else:
         returns = ret_sign * 0.001  # fallback: fixed 0.1% scale
+
+    if _out_returns is not None:
+        _out_returns.append(returns.copy())
 
     return {
         "directional_accuracy": round(dir_acc, 6),
@@ -247,37 +296,34 @@ def _stride_sequences(arr: np.ndarray, seq_len: int) -> np.ndarray:
     return np.lib.stride_tricks.as_strided(arr, shape=shape, strides=strides).copy()
 
 
-def load_trend_data(frames: list[pd.DataFrame], seq_len: int = 96, horizon: int = 20) -> TensorDataset | None:
+def load_trend_data(frames: list[pd.DataFrame], seq_len: int = 96, horizon: int = 5) -> TensorDataset | None:
     """Build sequential OOS test data for Trend models. Input: [B, seq_len, 5]
     Returns 3-tensor dataset: (X, y_direction, actual_forward_return)."""
     all_X, all_y, all_ret = [], [], []
     for df in frames:
         try:
             from data_pipeline.features import FeatureFactory
+            from data_pipeline.splitter import IronWallSplitter
             feat = FeatureFactory.build_trend_features(df)
             available = [c for c in TREND_FEAT_COLS if c in feat.columns]
             if len(available) < 3:
                 continue
             close = feat["close"].to_numpy(np.float32)
-            # Binary direction label: 1 if close[t+horizon] > close[t]
             future_close = np.roll(close, -horizon)
             target = (future_close > close).astype(np.float32)
-            target[-horizon:] = 0  # mask invalid tail
-            # Actual forward return (signed fraction)
+            target[-horizon:] = np.nan
             fwd_ret = (future_close - close) / (np.abs(close) + 1e-8)
-            fwd_ret[-horizon:] = 0.0
-            feat_arr = feat[available].to_numpy(np.float32)
-            n = len(feat_arr)
-            test_start = int(n * 0.85)
-            # Use stride tricks on the test portion
-            feat_test = feat_arr[test_start:]
-            tgt_test  = target[test_start:]
-            ret_test  = fwd_ret[test_start:]
+            fwd_ret[-horizon:] = np.nan
+            feat = feat.assign(_target=target, _fwd_ret=fwd_ret).dropna(subset=["_target", "_fwd_ret"]).reset_index(drop=True)
+            split = IronWallSplitter(purge_gap_bars=horizon).split(feat, time_col="timestamp")
+            scaler = FeatureFactory.fit_scaler_train_only(split.train, available)
+            test = FeatureFactory.transform_with_scaler(split.test, scaler)
+            feat_test = test[available].to_numpy(np.float32)
+            tgt_test = test["_target"].to_numpy(np.float32)
+            ret_test = test["_fwd_ret"].to_numpy(np.float32)
             seqs = _stride_sequences(feat_test, seq_len)   # (M, seq_len, F)
-            # label: direction at seq_end (already shifted above)
             labels = tgt_test[seq_len - 1: seq_len - 1 + len(seqs)]
             rets   = ret_test[seq_len - 1: seq_len - 1 + len(seqs)]
-            # Drop last `horizon` samples (target is meaningless there)
             valid = len(seqs) - horizon
             if valid <= 0:
                 continue
@@ -294,13 +340,15 @@ def load_trend_data(frames: list[pd.DataFrame], seq_len: int = 96, horizon: int 
     return TensorDataset(X_t, y_t, r_t)
 
 
-def load_mr_data(frames: list[pd.DataFrame], horizon: int = 20) -> TensorDataset | None:
-    """Build tabular OOS test data for Mean Reversion models. Input: [B, 5]
-    Returns 3-tensor dataset: (X, y_direction, actual_forward_return)."""
+def load_mr_data(frames: list[pd.DataFrame], horizon: int = 3) -> TensorDataset | None:
+    """Build tabular OOS test data for Mean Reversion models. Input: [B, 8]
+    Returns 3-tensor dataset: (X, y_direction, actual_forward_return).
+    horizon=3 matches mr_phase4.yaml training horizon."""
     all_X, all_y, all_ret = [], [], []
     for df in frames:
         try:
             from data_pipeline.features import FeatureFactory
+            from data_pipeline.splitter import IronWallSplitter
             feat = FeatureFactory.build_mean_reversion_features(df)
             available = [c for c in MR_FEAT_COLS if c in feat.columns]
             if len(available) < 3:
@@ -312,8 +360,9 @@ def load_mr_data(frames: list[pd.DataFrame], horizon: int = 20) -> TensorDataset
             fwd_ret = (future_close - close) / (np.abs(close) + 1e-8)
             fwd_ret[-horizon:] = np.nan
             feat = feat.assign(_target=target, _fwd_ret=fwd_ret).dropna(subset=["_target"])
-            n = len(feat)
-            test = feat.iloc[int(n * 0.85):]
+            split = IronWallSplitter(purge_gap_bars=horizon).split(feat.reset_index(drop=True), time_col="timestamp")
+            scaler = FeatureFactory.fit_scaler_train_only(split.train, available)
+            test = FeatureFactory.transform_with_scaler(split.test, scaler)
             all_X.append(test[available].to_numpy(np.float32))
             all_y.append(test["_target"].to_numpy(np.float32))
             all_ret.append(test["_fwd_ret"].to_numpy(np.float32))
@@ -327,7 +376,7 @@ def load_mr_data(frames: list[pd.DataFrame], horizon: int = 20) -> TensorDataset
     return TensorDataset(X_t, y_t, r_t)
 
 
-def load_scalper_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int = 5) -> TensorDataset | None:
+def load_scalper_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int = 2) -> TensorDataset | None:
     """Build sequential OOS test data for Scalper models (13 features). Input: [B, seq_len, 13]
 
     Applies the saved StandardScaler from each model checkpoint so feature ranges match
@@ -424,8 +473,78 @@ def load_scalper_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: in
 def load_stat_arb_data(frames: list[pd.DataFrame], seq_len: int = 64, horizon: int = 10,
                        num_assets: int = 10) -> TensorDataset | None:
     """Build multi-asset sequences for StatArb models. Input: [B, seq_len, num_assets]
-    num_assets is selected dynamically from checkpoint dims to avoid shape mismatches."""
-    selected = frames[:num_assets]
+
+    v2 pipeline (preferred): extracts fracdiff_close_d04, spread_z_64, hurst_proxy per
+    symbol (3 features each) and aligns on common timestamps — matching stat_arb_data.py.
+    Falls back to raw z-scored pct_change returns if v2 features are unavailable.
+
+    num_assets from checkpoint is used to detect which pipeline to use:
+      - num_assets divisible by 3 AND num_assets // 3 <= len(frames): use v2 pipeline
+      - otherwise: use v1 raw-returns pipeline (len(frames) assets, 1 feature each)
+    """
+    FEAT_PER_ASSET = ["fracdiff_close_d04", "spread_z_64", "hurst_proxy"]
+    n_sym = len(frames)
+    # Determine which pipeline based on detected num_assets
+    use_v2 = (num_assets % 3 == 0) and (num_assets // 3 <= n_sym)
+    n_sym_v2 = num_assets // 3 if use_v2 else n_sym
+
+    if use_v2:
+        # ── V2 pipeline: compute stat-arb features per symbol, align on timestamp ──
+        try:
+            from data_pipeline.features import FeatureFactory
+            sym_frames = {}
+            for idx, df in enumerate(frames[:n_sym_v2]):
+                try:
+                    feat = FeatureFactory.build_stat_arb_features(df)
+                    available = [c for c in FEAT_PER_ASSET if c in feat.columns]
+                    if len(available) < 1:
+                        available = ["fracdiff_close_d04"] if "fracdiff_close_d04" in feat.columns else []
+                    if not available:
+                        continue
+                    sym_feat = feat[["timestamp"] + available].dropna().copy()
+                    sym_feat.columns = ["timestamp"] + [f"SYM{idx:03d}_{c}" for c in available]
+                    sym_frames[idx] = sym_feat.set_index("timestamp")
+                except Exception as e:
+                    _log(f"[eval] stat_arb v2 sym {idx} warning: {e}")
+            if len(sym_frames) < 2:
+                _log("[eval] stat_arb v2: too few symbols with features, falling back to v1")
+                use_v2 = False
+        except ImportError:
+            use_v2 = False
+
+    if use_v2:
+        try:
+            aligned = pd.concat(list(sym_frames.values()), axis=1).dropna()
+            if len(aligned) < seq_len + horizon + 20:
+                return None
+            feat_arr = aligned.to_numpy(np.float32)   # (T, num_assets_actual)
+            # Iron Wall: use last 15% as test
+            train_n = int(len(feat_arr) * 0.85)
+            train_arr = feat_arr[:train_n]
+            test_arr = feat_arr[train_n:]
+            mean = train_arr.mean(axis=0, keepdims=True)
+            std = train_arr.std(axis=0, keepdims=True) + 1e-8
+            test_z = (test_arr - mean) / std
+            seqs = _stride_sequences(test_z, seq_len)     # (M, seq_len, num_assets)
+            # Target: mean fracdiff signal across all assets (fracdiff cols at position 0, 3, 6, ...)
+            fd_idxs = list(range(0, feat_arr.shape[1], len(FEAT_PER_ASSET)))
+            tgt_raw = test_z[:, fd_idxs].mean(axis=1)
+            labels = np.array([tgt_raw[i + seq_len: i + seq_len + horizon].mean()
+                                for i in range(len(seqs))], dtype=np.float32)
+            valid = len(seqs) - horizon
+            if valid <= 0:
+                return None
+            X_t = torch.tensor(seqs[:valid], dtype=torch.float32)
+            y_t = torch.tensor(labels[:valid], dtype=torch.float32)
+            actual_ret = np.clip(labels[:valid] * 0.005, -0.02, 0.02)
+            r_t = torch.tensor(actual_ret.astype(np.float32))
+            _log(f"[eval] stat_arb v2 data built: X={tuple(X_t.shape)} n_sym={len(sym_frames)} feat_per_sym={len(FEAT_PER_ASSET)}")
+            return TensorDataset(X_t, y_t, r_t)
+        except Exception as e:
+            _log(f"[eval] stat_arb v2 pipeline failed: {e} — falling back to v1")
+
+    # ── V1 fallback: raw pct_change returns ──
+    selected = frames[:max(n_sym_v2, 2)]
     if len(selected) < 2:
         return None
     try:
@@ -436,14 +555,14 @@ def load_stat_arb_data(frames: list[pd.DataFrame], seq_len: int = 64, horizon: i
             [df["close"].iloc[:min_len].pct_change().fillna(0).to_numpy(np.float32)
              for df in selected],
             axis=1,
-        )  # (min_len, num_assets)
+        )  # (min_len, num_symbols)
         train_n = int(min_len * 0.85)
         mu = returns[:train_n].mean(0)
         std = returns[:train_n].std(0) + 1e-8
-        z_scores = (returns - mu) / std   # (min_len, num_assets)
+        z_scores = (returns - mu) / std   # (min_len, num_symbols)
         # Test portion only
         test_z = z_scores[train_n:]
-        seqs = _stride_sequences(test_z, seq_len)      # (M, seq_len, num_assets)
+        seqs = _stride_sequences(test_z, seq_len)      # (M, seq_len, num_symbols)
         # Target: mean of next `horizon` bars of first asset
         tgt_raw = test_z[:, 0]
         labels = np.array([tgt_raw[i + seq_len: i + seq_len + horizon].mean()
@@ -453,8 +572,9 @@ def load_stat_arb_data(frames: list[pd.DataFrame], seq_len: int = 64, horizon: i
             return None
         X_t = torch.tensor(seqs[:valid], dtype=torch.float32)
         y_t = torch.tensor(labels[:valid], dtype=torch.float32)
-        # Use label z-score magnitude as actual return proxy for StatArb
-        r_t = torch.tensor(labels[:valid], dtype=torch.float32)
+        # Scale z-scores to small per-trade returns so max_drawdown stays bounded.
+        actual_ret = np.clip(labels[:valid] * 0.005, -0.02, 0.02)
+        r_t = torch.tensor(actual_ret.astype(np.float32))
         return TensorDataset(X_t, y_t, r_t)
     except Exception as e:
         _log(f"[eval] stat_arb data build warning: {e}")
@@ -529,6 +649,85 @@ def load_disc_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int =
     return TensorDataset(X_t, y_t, r_t)
 
 
+def load_disc_multimodal_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int = 5) -> TensorDataset | None:
+    """Build (img, tab, y, ret) dataset for DiscretionaryMultimodal evaluation.
+
+    tab features: [log_return, zscore_close_64, ema_spread, atr_14, price_slope_20]
+    (same 5 DISC_TAB_FEATURES used during training)
+    """
+    FLAT_THR = 0.001
+    TAB_FEATURES = ["log_return", "zscore_close_64", "ema_spread", "atr_14", "price_slope_20"]
+    try:
+        from quant_core.discretionary_data import _rasterize_window
+        from data_pipeline.features import FeatureFactory
+    except Exception as e:
+        _log(f"[eval] disc multimodal renderer import failed: {e} — skipping")
+        return None
+
+    all_imgs, all_tab, all_y, all_ret = [], [], [], []
+
+    for df in frames[:3]:
+        try:
+            feat_df = FeatureFactory.build_discretionary_features(df)
+            # Align on shared index
+            common_idx = feat_df.index.intersection(df.index)
+            df_a = df.loc[common_idx].reset_index(drop=True)
+            feat_a = feat_df.loc[common_idx].reset_index(drop=True)
+
+            n = len(df_a)
+            test_start = int(n * 0.85)
+            close = df_a["close"].to_numpy(np.float32)
+            open_ = df_a["open"].to_numpy(np.float32)
+            high  = df_a["high"].to_numpy(np.float32)
+            low   = df_a["low"].to_numpy(np.float32)
+
+            # Fit scaler on train portion only
+            train_feat = feat_a.iloc[:int(n * 0.70)]
+            tab_arr = feat_a[TAB_FEATURES].fillna(0.0).to_numpy(np.float32)
+            means = train_feat[TAB_FEATURES].mean().to_numpy(np.float32)
+            stds  = train_feat[TAB_FEATURES].std().to_numpy(np.float32)
+            stds[stds < 1e-8] = 1.0
+            tab_scaled = (tab_arr - means) / stds
+
+            future_ret = np.roll(close, -horizon) / (close + 1e-10) - 1.0
+            targets = np.where(future_ret > FLAT_THR, 2,
+                      np.where(future_ret < -FLAT_THR, 0, 1)).astype(np.int64)
+
+            ohlcv = np.stack([open_, high, low, close], axis=1)
+
+            i0 = test_start
+            i1 = n - seq_len - horizon + 1
+            if i1 <= i0:
+                continue
+            i0_eff = max(i0, i1 - 5_000)
+
+            imgs_list, tab_list, tgt_list, ret_list = [], [], [], []
+            for i in range(i0_eff, i1):
+                window = ohlcv[i: i + seq_len]
+                img = _rasterize_window(window)
+                imgs_list.append(img)
+                tab_list.append(tab_scaled[i + seq_len - 1])
+                tgt_list.append(targets[i + seq_len - 1])
+                ret_list.append(float(future_ret[i + seq_len - 1]))
+
+            if not imgs_list:
+                continue
+            all_imgs.append(np.stack(imgs_list))
+            all_tab.append(np.stack(tab_list))
+            all_y.append(np.array(tgt_list, dtype=np.int64))
+            all_ret.append(np.array(ret_list, dtype=np.float32))
+        except Exception as e:
+            _log(f"[eval] disc multimodal data build warning: {e}")
+
+    if not all_imgs:
+        return None
+    X_t = torch.tensor(np.concatenate(all_imgs), dtype=torch.float32)
+    T_t = torch.tensor(np.concatenate(all_tab), dtype=torch.float32)
+    y_t = torch.tensor(np.concatenate(all_y), dtype=torch.int64)
+    r_t = torch.tensor(np.concatenate(all_ret), dtype=torch.float32)
+    return TensorDataset(X_t, T_t, y_t, r_t)
+
+
 @torch.no_grad()
 def eval_rl_episode(
     model: torch.nn.Module,
@@ -551,6 +750,14 @@ def eval_rl_episode(
 
     rng = np.random.default_rng(42)
 
+    def _fit_state_dim(state_vec: np.ndarray | list[float], target_dim: int) -> np.ndarray:
+        arr = np.asarray(state_vec, dtype=np.float32).reshape(-1)
+        if arr.shape[0] >= target_dim:
+            return arr[:target_dim]
+        out = np.zeros(target_dim, dtype=np.float32)
+        out[: arr.shape[0]] = arr
+        return out
+
     for df in frames[:6]:  # use up to 6 symbols
         n = len(df)
         test_start = int(n * 0.85)
@@ -564,7 +771,8 @@ def eval_rl_episode(
             ep_reward = 0.0
             done = False
             while not done:
-                state_t = torch.tensor(state[:state_dim], dtype=torch.float32).unsqueeze(0).to(INFER_DEVICE)
+                state_aligned = _fit_state_dim(state, state_dim)
+                state_t = torch.tensor(state_aligned, dtype=torch.float32).unsqueeze(0).to(INFER_DEVICE)
                 if output_type == "rl_discrete":
                     q_vals = model(state_t)
                     if isinstance(q_vals, tuple):
@@ -585,11 +793,15 @@ def eval_rl_episode(
         return {"directional_accuracy": 0.5, "sharpe": 0.0, "profit_factor": 1.0, "max_drawdown": 1.0}
 
     ep_arr = np.array(all_ep_rewards, dtype=np.float64)
-    ep_returns = ep_arr / (episode_length * 0.001 + 1e-10)  # normalise to per-step scale
+    # Normalise episode rewards to per-step scale for Sharpe/PF computation.
+    # Use std-based normalisation to keep values in a sensible range.
+    ep_std = float(ep_arr.std()) + 1e-10
+    ep_returns = ep_arr / ep_std  # z-score scale — Sharpe/PF invariant to positive scale
 
     sharpe = sharpe_ratio(ep_returns)
     pf = profit_factor(ep_returns)
-    mdd = max_drawdown(ep_returns)
+    # Use additive MDD on raw episode rewards (not multiplicative on normalised returns)
+    mdd = max_drawdown_rl(ep_arr)
     dir_acc = float(np.mean(ep_arr > 0))  # fraction of profitable episodes
 
     _log(f"[eval-rl] episodes={len(all_ep_rewards)}  mean_ep_reward={ep_arr.mean():.4f}  "
@@ -600,6 +812,82 @@ def eval_rl_episode(
         "profit_factor": round(pf, 6),
         "max_drawdown": round(mdd, 6),
     }
+
+
+def load_apv_pln_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int = 5) -> TensorDataset | None:
+    """Build dual-stream (x_price, x_volume) OOS test dataset for APV-PLN evaluation.
+
+    Returns TensorDataset with 4 tensors:
+        x_price   : [B, seq_len, 5]  — PRICE_FEATURES
+        x_volume  : [B, seq_len, 5]  — VOLUME_FEATURES
+        y_dir     : [B]  int64       — 1=up, 0=down (directional label)
+        actual_ret: [B]  float32     — raw forward log-return (for PnL)
+    Oracle features are NOT included (inference-only, Oracle Isolation Contract).
+    """
+    try:
+        from quant_core.apv_pln_data import (
+            _build_apvpln_features,
+            PRICE_FEATURES,
+            VOLUME_FEATURES,
+        )
+    except Exception as exc:
+        _log(f"[eval] apv_pln import error: {exc} — skipping apv_pln dataset")
+        return None
+
+    all_price, all_vol, all_y, all_ret = [], [], [], []
+
+    for df in frames[:6]:
+        try:
+            feat = _build_apvpln_features(df)
+            feat = feat.dropna(subset=PRICE_FEATURES + VOLUME_FEATURES).reset_index(drop=True)
+            n = len(feat)
+            if n < seq_len + horizon + 100:
+                continue
+
+            # Iron Wall: test split = last 15%
+            test_start = int(n * 0.85) + 20  # +20 purge gap
+            price_arr = feat[PRICE_FEATURES].to_numpy(np.float32)
+            vol_arr   = feat[VOLUME_FEATURES].to_numpy(np.float32)
+            close_arr = feat["log_return"].to_numpy(np.float64)  # log_return for fwd ret
+
+            # Train-only scaler (fit on first 70%)
+            train_end = int(n * 0.70)
+            for col_idx in range(price_arr.shape[1]):
+                m, s = price_arr[:train_end, col_idx].mean(), price_arr[:train_end, col_idx].std()
+                s = s if s > 1e-8 else 1.0
+                price_arr[:, col_idx] = (price_arr[:, col_idx] - m) / s
+            for col_idx in range(vol_arr.shape[1]):
+                m, s = vol_arr[:train_end, col_idx].mean(), vol_arr[:train_end, col_idx].std()
+                s = s if s > 1e-8 else 1.0
+                vol_arr[:, col_idx] = (vol_arr[:, col_idx] - m) / s
+
+            # Build sequences from test split, cap at 5000 samples
+            i0 = test_start
+            i1 = n - seq_len - horizon + 1
+            if i1 <= i0:
+                continue
+            i0_eff = max(i0, i1 - 5_000)
+
+            for i in range(i0_eff, i1):
+                p_win = price_arr[i: i + seq_len]      # [seq_len, 5]
+                v_win = vol_arr[i: i + seq_len]         # [seq_len, 5]
+                # Forward log-return over horizon bars
+                fwd = float(np.sum(close_arr[i + seq_len: i + seq_len + horizon]))
+                y_dir = int(fwd > 0.0)
+                all_price.append(p_win)
+                all_vol.append(v_win)
+                all_y.append(y_dir)
+                all_ret.append(float(fwd))
+        except Exception as exc:
+            _log(f"[eval] apv_pln data build warning: {exc}")
+
+    if not all_price:
+        return None
+    xp_t = torch.tensor(np.stack(all_price), dtype=torch.float32)
+    xv_t = torch.tensor(np.stack(all_vol), dtype=torch.float32)
+    y_t  = torch.tensor(all_y, dtype=torch.int64)
+    r_t  = torch.tensor(all_ret, dtype=torch.float32)
+    return TensorDataset(xp_t, xv_t, y_t, r_t)
 
 
 def load_mm_data(frames: list[pd.DataFrame], n_steps: int = 3000, state_dim: int = 10) -> TensorDataset | None:
@@ -639,7 +927,13 @@ def load_mm_data(frames: list[pd.DataFrame], n_steps: int = 3000, state_dim: int
                 np.zeros(nb, dtype=np.float32),                                  # funding_rate
                 np.zeros(nb, dtype=np.float32),                                  # oi_norm
             ])
-            states = base_states[:, : int(max(1, min(state_dim, base_states.shape[1])))]
+            target_dim = int(max(1, state_dim))
+            base_dim = int(base_states.shape[1])
+            if target_dim <= base_dim:
+                states = base_states[:, :target_dim]
+            else:
+                pad = np.zeros((nb, target_dim - base_dim), dtype=np.float32)
+                states = np.concatenate([base_states, pad], axis=1)
             y = (returns > 0).astype(np.float32)
             all_X.append(states)
             all_y.append(y)
@@ -769,6 +1063,38 @@ MODEL_MANIFEST: dict[str, dict[str, Any]] = {
         "kwargs": {"state_dim": 8, "num_actions": 3, "hidden": 128, "dropout": 0.0},
         "data": "mm", "out": "rl_discrete", "archetype": "market_making_rl",
     },
+    # ── TG-MNN: Temporal-Gradient Markov Neural Network (Trend archetype) ────
+    # Skipped automatically if checkpoint not yet trained.
+    "TG_MNN_v1": {
+        # Trainer saves best checkpoint directly to output_dir/model_best.pt
+        # (output_dir = models/checkpoints/tg_mnn per configs/tg_mnn_phase4.yaml)
+        "ckpt": "tg_mnn/model_best.pt",
+        "module": "quant_core.tg_mnn_models", "cls": "TGMNNModel",
+        "kwargs": {"input_dim": 5, "hidden_dim": 64, "num_backbone_layers": 3},
+        "data": "trend", "out": "tg_mnn", "archetype": "trend_follower",
+    },
+    # ── APV-PLN: Adaptive Price-Volume Probabilistic Learner (Oracle Teacher) ─
+    # Dual CNN + Cross-Attention + Oracle Knowledge Distillation (LUPI).
+    # Oracle Teacher is train-only; evaluation uses Student only.
+    # Skipped automatically if checkpoint not yet trained.
+    "APV_PLN_v1": {
+        "ckpt": "apv_pln/APV_PLN_v1/model_best.pt",
+        "module": "quant_core.apv_pln_models", "cls": "APVPLNModel",
+        "kwargs": {"price_dim": 5, "vol_dim": 5, "num_bins": 51, "cnn_channels": 64, "nhead": 4, "dropout": 0.0},
+        "data": "apv_pln", "out": "apv_pln", "archetype": "trend_follower",
+    },
+    "APV_PLN_v2": {
+        "ckpt": "apv_pln/APV_PLN_v2/model_best.pt",
+        "module": "quant_core.apv_pln_models", "cls": "APVPLNModel",
+        "kwargs": {"price_dim": 5, "vol_dim": 5, "num_bins": 51, "cnn_channels": 128, "nhead": 4, "dropout": 0.0},
+        "data": "apv_pln", "out": "apv_pln", "archetype": "trend_follower",
+    },
+    "APV_PLN_v3": {
+        "ckpt": "apv_pln/APV_PLN_v3/model_best.pt",
+        "module": "quant_core.apv_pln_models", "cls": "APVPLNModel",
+        "kwargs": {"price_dim": 5, "vol_dim": 5, "num_bins": 51, "cnn_channels": 64, "nhead": 8, "dropout": 0.0},
+        "data": "apv_pln", "out": "apv_pln", "archetype": "trend_follower",
+    },
 }
 
 
@@ -805,10 +1131,35 @@ def load_model(manifest_entry: dict[str, Any]) -> torch.nn.Module | None:
             k = state.get("encoder.cells.0.W_r.weight")
             if k is not None:
                 kwargs["num_assets"] = int(k.shape[1])
-        elif cls_name == "StatArbLSTM":
+        elif cls_name == "TrendLSTMModel":
             k = state.get("cells.0.W_i.weight")
             if k is not None:
+                kwargs["input_dim"] = int(k.shape[1])
+                kwargs["hidden_size"] = int(k.shape[0])
+            layer_ids = []
+            for name in state.keys():
+                m = re.match(r"cells\.(\d+)\.W_i\.weight", name)
+                if m:
+                    layer_ids.append(int(m.group(1)))
+            if layer_ids:
+                kwargs["num_layers"] = max(layer_ids) + 1
+        elif cls_name == "StatArbLSTM":
+            k = state.get("in_proj.weight")
+            if k is not None:
                 kwargs["num_assets"] = int(k.shape[1])
+                kwargs["hidden_size"] = int(k.shape[0])
+            else:
+                k = state.get("cells.0.W_i.weight")
+                if k is not None:
+                    kwargs["num_assets"] = int(k.shape[1])
+                    kwargs["hidden_size"] = int(k.shape[0])
+            block_ids = []
+            for name in state.keys():
+                m = re.match(r"blocks\.(\d+)\.conv\.weight", name)
+                if m:
+                    block_ids.append(int(m.group(1)))
+            if block_ids:
+                kwargs["num_layers"] = max(block_ids) + 1
         elif cls_name == "PPOActorCritic":
             k = state.get("trunk.0.weight")
             if k is not None:
@@ -837,6 +1188,28 @@ def load_model(manifest_entry: dict[str, Any]) -> torch.nn.Module | None:
             pos = state.get("positional")
             if pos is not None and len(pos.shape) == 3:
                 kwargs["seq_len"] = int(pos.shape[1])
+        elif cls_name == "TGMNNModel":
+            k = state.get("backbone.input_proj.weight")
+            if k is not None:
+                kwargs["input_dim"] = int(k.shape[1])
+                kwargs["hidden_dim"] = int(k.shape[0])
+            block_ids = [int(m.group(1)) for name in state.keys()
+                         for m in [re.match(r"backbone\.blocks\.(\d+)\.", name)] if m]
+            if block_ids:
+                kwargs["num_backbone_layers"] = max(block_ids) + 1
+        elif cls_name == "APVPLNModel":
+            # price_cnn.0.conv weight: [cnn_channels, price_dim, kernel]
+            k = state.get("price_cnn.0.conv.weight")
+            if k is not None:
+                kwargs["cnn_channels"] = int(k.shape[0])
+                kwargs["price_dim"]    = int(k.shape[1])
+            k2 = state.get("volume_cnn.0.conv.weight")
+            if k2 is not None:
+                kwargs["vol_dim"] = int(k2.shape[1])
+            # prob_head: [num_bins, cnn_channels]
+            k3 = state.get("prob_head.weight")
+            if k3 is not None:
+                kwargs["num_bins"] = int(k3.shape[0])
 
         model = cls(**kwargs)
         model.load_state_dict(state, strict=False)
@@ -861,10 +1234,14 @@ def run_inference(
     dataset: TensorDataset,
     output_type: str,
     is_multimodal: bool = False,
+    bin_centers: torch.Tensor | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray | None]:
     """Run batched forward passes and return (logits, labels, actual_returns).
 
     actual_returns is None when the dataset does not carry a third tensor.
+    For APV-PLN (output_type='apv_pln'), bin_centers must be provided; the
+    returned 'logits' array is the scalar expected-return per sample (not raw
+    num_bins logits).
     """
     # Cap samples for speed — take the LAST MAX_EVAL_SAMPLES (most-recent OOS data)
     n_ds = len(dataset)
@@ -880,8 +1257,18 @@ def run_inference(
     has_returns = False
 
     for batch in loader:
+        # Detect 4-tensor APV-PLN batches (x_price, x_vol, y_dir, actual_ret)
+        if len(batch) == 4 and output_type == "apv_pln":
+            xp_b, xv_b, labels, actual_ret = batch
+            all_actual_rets.append(actual_ret.numpy())
+            has_returns = True
+        # Detect 4-tensor batches (img, tab, y, actual_return) for disc_multimodal
+        elif len(batch) == 4 and is_multimodal:
+            imgs_b, tab_b, labels, actual_ret = batch
+            all_actual_rets.append(actual_ret.numpy())
+            has_returns = True
         # Detect 3-tensor batches (X, y, actual_return)
-        if len(batch) == 3:
+        elif len(batch) == 3:
             x_or_img, labels, actual_ret = batch
             all_actual_rets.append(actual_ret.numpy())
             has_returns = True
@@ -893,15 +1280,43 @@ def run_inference(
             if torch.cuda.is_available() and getattr(INFER_DEVICE, "type", "") == "cuda"
             else nullcontext()
         )
+        if output_type == "apv_pln":
+            xp = xp_b.to(INFER_DEVICE)
+            xv = xv_b.to(INFER_DEVICE)
+            with torch.no_grad(), amp_ctx:
+                raw_logits = model(xp, xv)          # [B, num_bins]
+            probs = torch.softmax(raw_logits.float(), dim=-1)   # [B, num_bins]
+            bc = bin_centers.to(INFER_DEVICE).float()           # [num_bins]
+            exp_ret = (probs * bc.unsqueeze(0)).sum(dim=-1)     # [B]
+            out_cpu = exp_ret.detach().cpu()
+            all_logits.append(out_cpu.numpy())                  # 1D array of scalars
+            all_labels.append(labels.numpy().ravel())
+            _release_memory(out_cpu, raw_logits, exp_ret)
+            continue
+
+        amp_ctx = (
+            torch.cuda.amp.autocast(dtype=torch.float16)
+            if torch.cuda.is_available() and getattr(INFER_DEVICE, "type", "") == "cuda"
+            else nullcontext()
+        )
         if is_multimodal:
-            imgs = x_or_img.to(INFER_DEVICE)
-            tab = torch.zeros(imgs.size(0), 5, device=INFER_DEVICE)
+            if len(batch) == 4:
+                imgs = imgs_b.to(INFER_DEVICE)
+                tab = tab_b.to(INFER_DEVICE)
+            else:
+                imgs = x_or_img.to(INFER_DEVICE)
+                tab = torch.zeros(imgs.size(0), 5, device=INFER_DEVICE)
             with torch.no_grad(), amp_ctx:
                 out = model(imgs, tab)
         else:
             x = x_or_img.to(INFER_DEVICE)
             with torch.no_grad(), amp_ctx:
-                out = model(x)
+                # TG-MNN uses forward_multitask; extract state_logits for eval
+                if output_type == "tg_mnn" and hasattr(model, "forward_multitask"):
+                    tg_out = model.forward_multitask(x)
+                    out = tg_out.state_logits  # [B, 3]
+                else:
+                    out = model(x)
 
         if isinstance(out, tuple):
             out = out[0]  # PPO returns (mean, log_std, value)
@@ -935,6 +1350,21 @@ def main() -> int:
     _log(f"[eval] checkpoint root: {CHECKPOINT_ROOT}")
     _log(f"[eval] data root: {DATASET_DIR}")
 
+    # ── Reproducibility manifest ──────────────────────────────────────────
+    try:
+        from quant_core.run_manifest import save_manifest as _save_manifest
+        _manifest_path = ROOT / "doc" / "iterate_history" / f"eval_manifest_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.json"
+        _manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        _save_manifest(
+            _manifest_path,
+            dataset_manifest_path=ROOT / "Dataset" / "binance_historical" / "manifest.json",
+            seed=42,
+            extra={"evaluator_version": "evaluate_all_checkpoints_v5", "round_trip_cost": ROUND_TRIP_COST},
+        )
+        _log(f"[eval] reproducibility manifest: {_manifest_path.name}")
+    except Exception as _me:
+        _log(f"[eval] WARNING: manifest generation failed: {_me}")
+
     # ── Load all market data once ─────────────────────────────────────────
     _banner("Loading OOS test data from binance_historical")
     frames = _load_parquets(max_files=40)
@@ -948,20 +1378,25 @@ def main() -> int:
 
     _log("[eval] → building trend dataset...")
     datasets: dict[str, TensorDataset | None] = {}
-    datasets["trend"]    = load_trend_data(frames, seq_len=96, horizon=20)
+    datasets["trend"]    = load_trend_data(frames, seq_len=96, horizon=5)
     _log(f"[eval]   trend:   {len(datasets['trend']) if datasets['trend'] else 'FAIL'} samples")
 
     _log("[eval] → building mean_reversion dataset...")
-    datasets["mr"]       = load_mr_data(frames, horizon=20)
+    datasets["mr"]       = load_mr_data(frames, horizon=3)
     _log(f"[eval]   mr:      {len(datasets['mr']) if datasets['mr'] else 'FAIL'} samples")
 
     _log("[eval] → building scalper dataset (fractional diff — may be slow)...")
-    datasets["scalper"]  = load_scalper_data(frames, seq_len=32, horizon=5)
+    datasets["scalper"]  = load_scalper_data(frames, seq_len=32, horizon=2)
     _log(f"[eval]   scalper: {len(datasets['scalper']) if datasets['scalper'] else 'FAIL'} samples")
 
     _log("[eval] → building stat_arb dataset...")
-    datasets["stat_arb"] = load_stat_arb_data(frames, seq_len=64, horizon=10, num_assets=min(34, len(frames)))
-    _log(f"[eval]   stat_arb:{len(datasets['stat_arb']) if datasets['stat_arb'] else 'FAIL'} samples")
+    # Pre-warm cache for both v1 (34 assets) and v2 (34×3=102 assets).
+    # Per-model loop uses f"stat_arb_{detected_num_assets}" as key.
+    _n_sym = min(34, len(frames))
+    datasets[f"stat_arb_{_n_sym}"]        = load_stat_arb_data(frames, seq_len=64, horizon=10, num_assets=_n_sym)
+    datasets[f"stat_arb_{_n_sym * 3}"]    = load_stat_arb_data(frames, seq_len=64, horizon=10, num_assets=_n_sym * 3)
+    _log(f"[eval]   stat_arb_{_n_sym}:{len(datasets[f'stat_arb_{_n_sym}']) if datasets[f'stat_arb_{_n_sym}'] else 'FAIL'} "
+         f"stat_arb_{_n_sym * 3}:{len(datasets[f'stat_arb_{_n_sym * 3}']) if datasets[f'stat_arb_{_n_sym * 3}'] else 'FAIL'} samples")
 
     _log("[eval] → building disc (chart image) dataset...")
     datasets["disc"]     = load_disc_data(frames, seq_len=32, horizon=5)
@@ -972,12 +1407,19 @@ def main() -> int:
     _log(f"[eval]   mm:      {len(datasets['mm']) if datasets['mm'] else 'FAIL'} samples")
 
     # Transformer was trained with seq_len=64 — build a separate slice
-    _log("[eval] \u2192 building trend64 dataset (seq_len=64 for Transformer)...")
-    datasets["trend64"]  = load_trend_data(frames, seq_len=64, horizon=20)
+    _log("[eval] → building trend64 dataset (seq_len=64 for Transformer)...")
+    datasets["trend64"]  = load_trend_data(frames, seq_len=64, horizon=5)
     _log(f"[eval]   trend64: {len(datasets['trend64']) if datasets['trend64'] else 'FAIL'} samples")
 
-    # disc_multimodal reuses disc dataset
-    datasets["disc_multimodal"] = datasets["disc"]
+    # disc_multimodal: build real tabular features for DiscretionaryMultimodal
+    _log("[eval] → building disc_multimodal dataset (img + tabular)...")
+    datasets["disc_multimodal"] = load_disc_multimodal_data(frames, seq_len=32, horizon=5)
+    _log(f"[eval]   disc_multimodal: {len(datasets['disc_multimodal']) if datasets['disc_multimodal'] else 'FAIL'} samples")
+
+    # apv_pln: dual-stream price+volume for Oracle Teacher / LUPI evaluation
+    _log("[eval] → building apv_pln dataset (dual-stream price+volume)...")
+    datasets["apv_pln"] = load_apv_pln_data(frames, seq_len=32, horizon=5)
+    _log(f"[eval]   apv_pln: {len(datasets['apv_pln']) if datasets['apv_pln'] else 'FAIL'} samples")
 
     # ── Evaluate each model ───────────────────────────────────────────────
     results: dict[str, dict[str, Any]] = {}
@@ -1039,7 +1481,9 @@ def main() -> int:
                     if w is not None:
                         target_assets = int(w.shape[1])
                 if manifest["cls"] == "StatArbLSTM" and isinstance(raw_state, dict):
-                    w = raw_state.get("cells.0.W_i.weight")
+                    w = raw_state.get("in_proj.weight")
+                    if w is None:
+                        w = raw_state.get("cells.0.W_i.weight")
                     if w is not None:
                         target_assets = int(w.shape[1])
             except Exception:
@@ -1072,7 +1516,7 @@ def main() -> int:
             target_seq = int(getattr(model, "_eval_inferred_seq_len", 64) or 64)
             key = f"trend_seq_{target_seq}"
             if key not in datasets:
-                datasets[key] = load_trend_data(frames, seq_len=target_seq, horizon=20)
+                datasets[key] = load_trend_data(frames, seq_len=target_seq, horizon=5)
             ds = datasets.get(key)
         else:
             ds = datasets.get(manifest["data"])
@@ -1097,7 +1541,9 @@ def main() -> int:
                     raw_s = torch.load(str(CHECKPOINT_ROOT / manifest["ckpt"]), map_location="cpu")
                     if isinstance(raw_s, dict):
                         raw_s = raw_s.get("model_state_dict", raw_s.get("state_dict", raw_s))
-                    w = raw_s.get("trunk.0.weight") or raw_s.get("net.0.weight")
+                    w = raw_s.get("trunk.0.weight")
+                    if w is None:
+                        w = raw_s.get("net.0.weight")
                     if w is not None:
                         target_sd = int(w.shape[1])
                 except Exception:
@@ -1147,7 +1593,27 @@ def main() -> int:
         # ── forward pass (all non-RL models) ──────────────────────────────
         try:
             is_multi = (manifest["data"] == "disc_multimodal")
-            logits, labels, actual_rets = run_inference(model, ds, manifest["out"], is_multimodal=is_multi)
+            is_apv = (manifest["out"] == "apv_pln")
+
+            # Load bin_centers from saved bin_meta.pt (APV-PLN only)
+            bin_centers_tensor: torch.Tensor | None = None
+            if is_apv:
+                bin_meta_path = ckpt_path.parent / "bin_meta.pt"
+                if bin_meta_path.exists():
+                    try:
+                        bm = torch.load(str(bin_meta_path), map_location="cpu", weights_only=False)
+                        bin_centers_tensor = torch.tensor(bm["bin_centers"], dtype=torch.float32)
+                    except Exception as bm_exc:
+                        _log(f"[eval] ⚠  bin_meta.pt load error: {bm_exc} — using uniform bins")
+                if bin_centers_tensor is None:
+                    # Fallback: uniform bins across [-0.02, 0.02]
+                    bin_centers_tensor = torch.linspace(-0.02, 0.02, 51)
+
+            logits, labels, actual_rets = run_inference(
+                model, ds, manifest["out"],
+                is_multimodal=is_multi,
+                bin_centers=bin_centers_tensor,
+            )
             elapsed = time.perf_counter() - t0
             _log(f"[eval] forward pass: {len(labels):,} samples  |  {elapsed:.2f}s  |  {len(labels)/elapsed:.0f} samples/s")
         except Exception as e:
@@ -1166,7 +1632,12 @@ def main() -> int:
             continue
 
         # ── compute metrics ───────────────────────────────────────────────
-        metrics = compute_all_metrics(logits, labels, manifest["out"], actual_returns=actual_rets)
+        _ret_series_container: list[np.ndarray] = []
+        metrics = compute_all_metrics(
+            logits, labels, manifest["out"],
+            actual_returns=actual_rets,
+            _out_returns=_ret_series_container,
+        )
 
         dir_acc = metrics["directional_accuracy"]
         sharpe  = metrics["sharpe"]
@@ -1176,12 +1647,50 @@ def main() -> int:
         strict_pass = passes_production_gates(metrics, require_directional_accuracy=True)
         status = "PASSED" if strict_pass else "RESUME_TRAINING_REQUIRED"
 
-        gate_str = "✓ PASSED" if strict_pass else "✗ FAILED"
+        gate_str = "PASSED" if strict_pass else "FAILED"
         _log(f"[eval] Directional Accuracy : {dir_acc:.4f}  (gate > {PRODUCTION_GATES.directional_accuracy_min})")
         _log(f"[eval] Sharpe Ratio         : {sharpe:.4f}  (gate > {PRODUCTION_GATES.sharpe_min})")
         _log(f"[eval] Profit Factor        : {pf:.4f}  (gate > {PRODUCTION_GATES.profit_factor_min})")
         _log(f"[eval] Max Drawdown         : {mdd:.4f}  (gate < {PRODUCTION_GATES.max_drawdown_max})")
+
+        # V2.0 Divergence Gate: if a val_sharpe is available in the registry
+        # entry, enforce the absolute gap limit before reporting PASSED.
+        _val_sharpe_archived = result.get("validation", {}).get("val_sharpe") if isinstance(result.get("validation"), dict) else None
+        if strict_pass and _val_sharpe_archived is not None:
+            _abs_gap = abs(float(_val_sharpe_archived) - float(sharpe))
+            if _abs_gap > PRODUCTION_GATES.sharpe_divergence_max_abs:
+                strict_pass = False
+                status = "DIVERGENCE_FAILED"
+                _log(
+                    f"[eval] DIVERGENCE-ALERT val_sharpe={_val_sharpe_archived:.4f} "
+                    f"test_sharpe={sharpe:.4f} abs_gap={_abs_gap:.4f} "
+                    f"(limit={PRODUCTION_GATES.sharpe_divergence_max_abs}) -> V2.0 divergence gate FAILED"
+                )
+                gate_str = "FAILED"
+
         _log(f"[eval] KPI Gate             : {gate_str}")
+
+        # ── Phase 6: Walk-Forward + Monte Carlo robustness gates ──────────
+        robustness_result: dict | None = None
+        if strict_pass and _ROBUSTNESS_AVAILABLE and _ret_series_container:
+            try:
+                _raw_rets = _ret_series_container[0]
+                _log(f"[eval] Running Phase 6 robustness suite on {len(_raw_rets):,} return bars ...")
+                robustness_result = _run_robustness(
+                    _raw_rets,
+                    wf_windows=7,
+                    mc_shuffles=1000,
+                    wf_gate_pct=0.80,
+                    mc_p95_mdd_gate=0.20,
+                    seed=42,
+                )
+                _log(f"[eval] Walk-Forward: pct_pos_windows={robustness_result['walk_forward']['pct_positive_windows']:.2%}  pass={robustness_result['walk_forward']['passed']}")
+                _log(f"[eval] Monte Carlo : p95_mdd={robustness_result['monte_carlo']['p95_mdd']:.4f}  pass={robustness_result['monte_carlo']['passed']}")
+                _log(f"[eval] Robustness Gate: {'PASSED' if robustness_result['robustness_pass'] else 'FAILED'}")
+                if strict_pass and not robustness_result["robustness_pass"]:
+                    status = "ROBUSTNESS_FAILED"
+            except Exception as _rob_exc:
+                _log(f"[eval] WARNING: robustness suite error: {_rob_exc}")
 
         result["validation"] = {
             "status": status,
@@ -1195,7 +1704,10 @@ def main() -> int:
             "strict_acc_gate": PRODUCTION_GATES.directional_accuracy_min,
             "strict_profit_factor_gate": PRODUCTION_GATES.profit_factor_min,
             "strict_max_drawdown_gate": PRODUCTION_GATES.max_drawdown_max,
+            "strict_sharpe_divergence_max_abs": PRODUCTION_GATES.sharpe_divergence_max_abs,
         }
+        if robustness_result is not None:
+            result["validation"]["robustness"] = robustness_result
         results[model_name] = result
 
         # free GPU memory

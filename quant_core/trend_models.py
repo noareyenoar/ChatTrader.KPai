@@ -45,7 +45,7 @@ class TrendLSTMModel(TrendModelInterface):
         self.head = nn.Sequential(
             nn.LayerNorm(hidden_size),
             nn.Linear(hidden_size, hidden_size // 2),
-            nn.GELU(),
+            nn.LeakyReLU(negative_slope=0.01),
             nn.Linear(hidden_size // 2, 1),
         )
 
@@ -108,7 +108,7 @@ class _TransformerBlock(nn.Module):
         self.attn = _ManualMHA(d_model, nhead, dropout)
         self.ff = nn.Sequential(
             nn.Linear(d_model, dim_feedforward),
-            nn.GELU(),
+            nn.LeakyReLU(negative_slope=0.01),
             nn.Dropout(dropout),
             nn.Linear(dim_feedforward, d_model),
             nn.Dropout(dropout),
@@ -160,7 +160,7 @@ class _TemporalBlock(nn.Module):
         self.conv2 = nn.Conv1d(out_channels, out_channels, kernel_size=3, dilation=dilation, padding=padding)
         self.norm1 = nn.BatchNorm1d(out_channels)
         self.norm2 = nn.BatchNorm1d(out_channels)
-        self.act = nn.GELU()
+        self.act = nn.LeakyReLU(negative_slope=0.01)
         self.drop = nn.Dropout(dropout)
         self.res = nn.Conv1d(in_channels, out_channels, kernel_size=1) if in_channels != out_channels else nn.Identity()
 
@@ -186,7 +186,7 @@ class TrendTCNModel(TrendModelInterface):
             nn.AdaptiveAvgPool1d(1),
             nn.Flatten(),
             nn.Linear(channels, channels // 2),
-            nn.GELU(),
+            nn.LeakyReLU(negative_slope=0.01),
             nn.Linear(channels // 2, 1),
         )
 

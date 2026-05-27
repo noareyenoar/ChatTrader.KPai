@@ -1,0 +1,48 @@
+# LSTM Trend Retrain v2 — Post-divergence recovery
+# LSTM v1 stopped at epoch 44 with divergence_alert=True (val_sharpe=5.29, test_sharpe=-2.84)
+# Root cause: LSTM with 3 layers + hidden=256 overfit val regime (trending period)
+#             Test period had regime shift -> sign flip on Sharpe.
+# Changes vs v1:
+#   hidden_size: 256 -> 192 (reduce capacity 25%)
+#   num_layers: 3 -> 2 (reduce depth)
+#   dropout: 0.30 -> 0.45 (heavier regularization vs v1 0.30, more than auto-reg 0.40)
+#   weight_decay: 0.001 -> 0.003 (heavier L2)
+#   max_epochs: 150 -> 80 (v1 stopped at 44 anyway, save time)
+#   patience: 15 (from 20, prevent val overfit)
+#   divergence_threshold: 0.20 -> 0.15 (stricter divergence check)
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 96
+  horizon: 5
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  seq_len: 96
+  preferred_backend: directml
+  batch_size: 2048
+  directml_max_batch_size: 256
+  max_epochs: 80
+  patience: 15
+  lr: 0.0003
+  weight_decay: 0.003
+  num_workers: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  resume_from_checkpoint: false
+  checkpoint_root: models/checkpoints/trend
+  tensorboard_root: models/tensorboard/trend
+  divergence_threshold: 0.15
+  auto_regularize_on_divergence: false
+
+models:
+  lstm:
+    hidden_size: 192
+    num_layers: 2
+    dropout: 0.45
+
+registry_path: model_registry.json

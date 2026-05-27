@@ -1,0 +1,10 @@
+{
+  "LSTM_Trend_v1": {
+    "report_path": "doc/trend_backtest_LSTM_Trend_v1.json",
+    "aggregate_sharpe": -6.818071543954281,
+    "aggregate_profit_factor": 0.879820979935636,
+    "aggregate_max_drawdown": 25.893950949634835,
+    "aggregate_win_rate": 0.5932081114254253,
+    "asset_count": 34
+  }
+}

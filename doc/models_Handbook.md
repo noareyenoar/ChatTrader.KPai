@@ -1,7 +1,7 @@
 # ChatTrader.KPai — Models Handbook & Technical Manual
 
 **Version:** Phase 4 | **Date:** 2026-04-28  
-**Scope:** All 18 neural network models across 6 trading archetypes  
+**Scope:** All 18 neural network models across 6 trading archetypes + APV-PLN (Archetype VII)  
 **Audience:** Developers, quant researchers, and AI agents operating this system
 
 ---
@@ -20,9 +20,10 @@
 10. [Archetype IV — Statistical Arbitrage (3 Models)](#10-archetype-iv--statistical-arbitrage-3-models)
 11. [Archetype V — Discretionary / Multimodal (3 Models)](#11-archetype-v--discretionary--multimodal-3-models)
 12. [Archetype VI — Market Making / RL (3 Models)](#12-archetype-vi--market-making--rl-3-models)
-13. [Strategic Model Selection Guide](#13-strategic-model-selection-guide)
-14. [Model Registry Reference](#14-model-registry-reference)
-15. [Global Glossary of Technical Terms](#15-global-glossary-of-technical-terms)
+13. [Archetype VII — APV-PLN: Probabilistic Trend & Regime Learner (3 Models)](#13-archetype-vii--apv-pln-probabilistic-trend--regime-learner-3-models)
+14. [Strategic Model Selection Guide](#14-strategic-model-selection-guide)
+15. [Model Registry Reference](#15-model-registry-reference)
+16. [Global Glossary of Technical Terms](#16-global-glossary-of-technical-terms)
 
 ---
 
@@ -1076,6 +1077,251 @@ Linear(512→64)
                     ▼
               3 logits
 ```
+
+---
+
+## 13. Archetype VII — APV-PLN: Probabilistic Trend & Regime Learner (3 Models)
+
+> **Added:** 2026-05-19 | **Training type:** Supervised + Knowledge Distillation (LUPI)
+
+### Design Philosophy
+
+APV-PLN answers: **What is the probability distribution of the next H-bar price return, given both the current price dynamics AND volume dynamics of the market?**
+
+Unlike the other archetypes that output a single scalar (direction or intensity), APV-PLN outputs a **discrete probability distribution** over 51 return bins — a "span of probability" that quantifies confidence and uncertainty simultaneously. This is suitable for position sizing (size up when probability mass is concentrated), risk management (do not trade when distribution is flat), and ensemble aggregation.
+
+The key innovation is the **Oracle-Teacher training framework (Learning Using Privileged Information, LUPI)**. During training, a Teacher model sees the actual future price and volume path — information that will never be available at inference time. The Teacher generates high-quality "soft" target distributions that are more informative than hard one-hot labels. The Student (the deployable model) learns to mimic both the hard ground-truth and the Teacher's soft distribution. After training, only the Student is deployed.
+
+---
+
+### 13.1 Model Name & Identifiers
+
+| Field | Value |
+|---|---|
+| **Full Name** | Adaptive Price-Volume Probabilistic Learner Network |
+| **Short Name** | APV-PLN |
+| **Archetype** | Probabilistic Trend & Regime Learner |
+| **Training Type** | Privileged Information Distillation (Oracle-Teacher / LUPI) |
+| **Module** | `quant_core.apv_pln_models` |
+| **Data Module** | `quant_core.apv_pln_data` |
+| **Training Module** | `quant_core.apv_pln_training` |
+| **Launcher** | `python -m quant_core.train_apv_pln_phase4` |
+| **Config** | `configs/apv_pln_phase4.yaml` |
+| **Smoke Test Config** | `configs/apv_pln_phase4_smoke.yaml` |
+| **Checkpoint Root** | `models/checkpoints/apv_pln/APV_PLN_<variant>/model_best.pt` |
+| **Bin Metadata** | `models/checkpoints/apv_pln/APV_PLN_<variant>/bin_meta.pt` |
+| **Registry Archetype Key** | `"apv_pln"` |
+
+---
+
+### 13.2 Input Specifications
+
+APV-PLN uses **two separate input streams** — Price and Volume — each of shape `[Batch, seq_len=32, 5]`.
+
+#### Price Feature Stream (`PRICE_DIM = 5`)
+
+| Column | Formula | Meaning |
+|---|---|---|
+| `log_return` | `ln(close_t / close_{t-1})` | Per-bar percentage change in log space |
+| `zscore_close_64` | `(close - μ_64) / σ_64` | Rolling z-score of close price, window 64 |
+| `ema_spread` | `EMA(12) - EMA(26)` | Short minus long EMA — trend direction proxy |
+| `atr_14` | ATR(14 bars) | Volatility gauge |
+| `price_slope_20` | `(close - close.shift(20)) / 20` | Rate of directional drift |
+
+#### Volume Feature Stream (`VOLUME_DIM = 5`)
+
+| Column | Formula | Meaning |
+|---|---|---|
+| `log_volume` | `log1p(volume)` | Log-scale volume |
+| `volume_zscore_64` | `(log_vol - μ_64) / σ_64` | Rolling z-score of log volume |
+| `taker_buy_ratio` | `taker_buy_base / volume` | Fraction of aggressive buying (buying pressure) |
+| `vwap_deviation` | `(close - VWAP) / (ATR + ε)` | Price distance from volume-weighted average |
+| `vol_imbalance` | `(vol_up - vol_dn) / (vol_up + vol_dn + ε)` | Bullish vs bearish volume imbalance |
+
+All features are **strictly causal** (computed from t−1 or earlier) and **scaled with a scaler fit on the training split only**.
+
+#### Oracle Feature Stream (`ORACLE_DIM = 2`) — **Train Only**
+
+| Column | Meaning |
+|---|---|
+| `log_return` (future bar i) | Actual log-return of bar at t+i |
+| `log_volume` (future bar i) | Actual log-volume of bar at t+i |
+
+Oracle input shape: `[Batch, horizon=5, 2]` — the next 5 bars' price and volume activity.  
+**This stream is NEVER available at inference time and NEVER passed to the model outside training.**
+
+---
+
+### 13.3 Output Specifications
+
+#### Probability Distribution over Bins
+
+APV-PLN outputs `logits` of shape `[Batch, 51]` that, after softmax, represent a discrete probability distribution over 51 return bins.
+
+- **Number of bins:** 51
+- **Bin bounds:** Computed dynamically from the training set using the 0.5th–99.5th percentile of forward returns. Typical bounds are approximately `[-0.03, +0.032]` (±3% for 5-minute Binance OHLCV data, 5-bar horizon).
+- **Bin width:** Approximately 0.0012 (0.12% per bin)
+- **Bin centers:** Saved in `bin_meta.pt` alongside the model checkpoint
+
+#### Converting to a Trading Signal
+
+```python
+# Load bin metadata
+bin_meta = torch.load("models/checkpoints/apv_pln/APV_PLN_v1/bin_meta.pt")
+bin_centers = torch.tensor(bin_meta["bin_centers"])  # [51]
+
+# Inference
+model.eval()
+with torch.no_grad():
+    logits = model(x_price, x_volume, x_oracle=None)  # [B, 51]
+    probs = torch.softmax(logits, dim=-1)              # [B, 51]
+    expected_return = (probs * bin_centers).sum(-1)    # [B] — scalar expected return
+    direction = torch.sign(expected_return)            # [B] — +1 / -1
+    confidence = probs.max(dim=-1).values              # [B] — peak bin probability
+```
+
+---
+
+### 13.4 Architecture Detail
+
+#### APV_Student (class `APV_Student`)
+
+```
+x_price  [B, 32, 5] ──► Price CNN  ──► [B, 32, cnn_channels]
+                                          │
+                            Cross-Attention: Price queries Volume
+                                          │
+x_volume [B, 32, 5] ──► Volume CNN ──► [B, 32, cnn_channels]
+                                          │
+                            Cross-Attention: Volume queries Price
+                                          │
+                     Mean Pool (time axis) → [B, cnn_channels] each
+                                          │
+                          Concat → [B, 2×cnn_channels]
+                                          │
+                      Adaptive Gate = σ(Linear) · Linear
+                                          │
+                  LayerNorm → Linear → GELU → Dropout → Linear
+                                          │
+                          logits [B, num_bins=51]
+```
+
+- **Price CNN:** 2× `Conv1D(k=3) → LayerNorm → LeakyReLU`
+- **Volume CNN:** Same, separate weights
+- **Cross-Attention:** Manual scaled dot-product (`_ManualCrossAttn`) — DirectML-safe
+- **Adaptive Gate:** Learned sigmoid gate on concatenated pooled features
+- **Head:** `LayerNorm → Linear(2C→C) → GELU → Dropout → Linear(C→51)`
+
+#### APV_Oracle_Teacher (class `APV_Oracle_Teacher`) — **Train Only**
+
+```
+x_oracle [B, 5, 2] ──► ManualLSTM(2→hidden=64) ──► LayerNorm → Linear → Softmax
+                                                                          │
+                                                    soft_probs [B, 51]
+```
+
+- **ManualLSTM:** Uses `_ManualLSTMCell` (primitive ops, DirectML-safe)
+- **Output:** Soft probability distribution (not logits)
+
+#### Knowledge Distillation Loss
+
+$$\mathcal{L}_{\text{total}} = \alpha \cdot \mathcal{L}_{\text{CE}}(\text{Student logits},\ y_{\text{bin}}) + \beta \cdot T^2 \cdot \mathcal{L}_{\text{KL}}(\text{Student log-softmax}/T\ \|\ \text{Oracle soft}/T)$$
+
+where:
+- $\alpha = 0.5$, $\beta = 0.5$, Temperature $T = 2.0$ (configurable)
+- $y_{\text{bin}}$: discretized index of the actual H-bar forward return
+- $T^2$ rescaling: standard Knowledge Distillation temperature correction
+
+---
+
+### 13.5 Oracle Isolation Protocol (Iron-Wall Policy)
+
+| Phase | Oracle Teacher | Loss Function | Batch Tuple |
+|---|---|---|---|
+| `train` | **CALLED** (receives future path) | α·CE + β·KL | 4-tuple `(x_price, x_volume, y_bin, x_oracle)` |
+| `val` | **NEVER CALLED** (isolated) | CE only | 3-tuple `(x_price, x_volume, y_bin)` |
+| `test` | **NEVER CALLED** (isolated) | CE only | 3-tuple `(x_price, x_volume, y_bin)` |
+
+The `APVPLNModel.forward()` signature enforces this: `x_oracle=None` triggers Student-only path and `oracle_teacher` is **never instantiated** in the val/test computational graph.
+
+---
+
+### 13.6 Data Split & Temporal Safety
+
+- **Split:** Chronological 70% Train / 15% Val / 15% Test via `IronWallSplitter`
+- **No random shuffle** at any stage
+- **Purge gap:** 20 bars between train/val and val/test boundaries
+- **Bin bounds:** Computed from training returns only (0.5th–99.5th percentile)
+- **Scaler:** Fit on training split only; applied to val and test
+- **Oracle data:** Only included in train dataset (`include_oracle=True`); val/test `APVPLNDataset` instances have `oracle_list=None`
+
+---
+
+### 13.7 Validation Gate Thresholds
+
+| Metric | Threshold | Notes |
+|---|---|---|
+| **Test Sharpe Ratio** | > 1.2 | Annualized, using sign(expected_return) × bin_center |
+| **Test Directional Accuracy** | > 55% | sign(expected_return) vs sign(bin_center[y_bin]) |
+| **Test Profit Factor** | > 1.5 | Gross win / gross loss on simulated PnL |
+| **Test Max Drawdown** | < 20% | Peak-to-trough of cumulative PnL |
+| **Val→Test Sharpe Decay** | < 50% | Divergence alert triggered if exceeded |
+| **CE Loss (val)** | < 3.9 | Approximately log(51) = 3.93 — near uniform = no learning |
+
+---
+
+### 13.8 Running APV-PLN
+
+```bash
+# Full training (3 model variants: v1, v2, v3)
+python -m quant_core.train_apv_pln_phase4 --config configs/apv_pln_phase4.yaml
+
+# Smoke test (1 variant, 3 epochs, 3 symbols)
+python -m quant_core.train_apv_pln_phase4 --config configs/apv_pln_phase4_smoke.yaml
+```
+
+---
+
+### 13.9 Three Model Variants
+
+| Variant | `cnn_channels` | `nhead` | `oracle_hidden` | `dropout` | Parameters (approx.) |
+|---|---|---|---|---|---|
+| **v1** (default) | 64 | 4 | 64 | 0.15 | ~200K |
+| **v2** (large) | 128 | 4 | 128 | 0.20 | ~750K |
+| **v3** (high-attn) | 64 | 8 | 64 | 0.25 | ~210K |
+
+---
+
+### 13.10 Connecting APV-PLN to Trading Orchestrator
+
+APV-PLN produces a probability distribution, not a raw prediction. The Trading Orchestrator should:
+
+1. **Load bin centers** from `bin_meta.pt` alongside the model weights
+2. **Compute expected return** = `(softmax(logits) × bin_centers).sum()`
+3. **Compute entropy** = `−Σ p_i · log(p_i)` — high entropy = low confidence, skip trade
+4. **Direction signal** = `sign(expected_return)` → long / short
+5. **Confidence gate** = skip if `entropy > threshold` (e.g. 3.5 nats ≈ 97% of max entropy for 51 bins)
+6. **Position size** = proportional to `(max_bin_probability − 1/51)` — excess probability above uniform
+
+```python
+# Example integration in Trading Orchestrator
+import torch
+
+model.eval()
+with torch.no_grad():
+    logits = model(x_price, x_volume)           # [1, 51]
+    probs = torch.softmax(logits, dim=-1)        # [1, 51]
+    exp_ret = (probs * bin_centers).sum(-1)      # [1]
+    entropy = -(probs * torch.log(probs + 1e-12)).sum(-1)  # [1]
+
+    if entropy.item() > 3.5:
+        signal = 0      # No trade — too uncertain
+    else:
+        signal = int(torch.sign(exp_ret).item())  # +1 or -1
+        confidence = float(probs.max())
+        size_fraction = max(0.0, confidence - 1.0/51) / (1.0 - 1.0/51)
+```
+
 
 #### Under the Hood
 

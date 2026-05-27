@@ -17,13 +17,23 @@ PYTHON = ROOT / ".venv" / "Scripts" / "python.exe"
 
 STEPS: list[tuple[str, list[str]]] = [
     (
+        "trend_tg_mnn",
+        [
+            str(PYTHON),
+            "-m",
+            "quant_core.main_tg_mnn",
+            "--config",
+            "configs/tg_mnn_phase4.yaml",
+        ],
+    ),
+    (
         "trend",
         [
             str(PYTHON),
             "-m",
             "quant_core.train_trend_phase4",
             "--config",
-            "configs/trend_phase4.yaml",
+            "configs/trend_phase4_v2.yaml",   # V2: class-balanced BCE + horizon=20
         ],
     ),
     (

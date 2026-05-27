@@ -1,0 +1,128 @@
+{
+  "generated_at_utc": "2026-05-12T14:42:15.909768+00:00",
+  "config_path": "configs\\trend_phase4_fast_fail.yaml",
+  "feature_factory_static_audit": {
+    "function": "FeatureFactory.build_trend_features",
+    "has_negative_shift": false,
+    "has_centered_rolling": false,
+    "is_causal_static_pass": true
+  },
+  "target_alignment_audit": {
+    "symbol": "AAVEUSDT",
+    "rows_after_dropna": 580873,
+    "horizon": 20,
+    "max_abs_target_return_diff": 0.0,
+    "strict_future_checks": [
+      {
+        "row_idx": 0,
+        "feature_time": "2020-10-15 08:15:00+00:00",
+        "label_horizon_time": "2020-10-15 09:55:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 82978,
+        "feature_time": "2021-07-31 03:10:00+00:00",
+        "label_horizon_time": "2021-07-31 04:50:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 165957,
+        "feature_time": "2022-05-15 12:35:00+00:00",
+        "label_horizon_time": "2022-05-15 14:15:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 248936,
+        "feature_time": "2023-02-27 15:30:00+00:00",
+        "label_horizon_time": "2023-02-27 17:10:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 331915,
+        "feature_time": "2023-12-12 19:45:00+00:00",
+        "label_horizon_time": "2023-12-12 21:25:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 414894,
+        "feature_time": "2024-09-25 22:40:00+00:00",
+        "label_horizon_time": "2024-09-26 00:20:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 497873,
+        "feature_time": "2025-07-11 01:35:00+00:00",
+        "label_horizon_time": "2025-07-11 03:15:00+00:00",
+        "strictly_future": true
+      },
+      {
+        "row_idx": 580852,
+        "feature_time": "2026-04-25 04:30:00+00:00",
+        "label_horizon_time": "2026-04-25 06:10:00+00:00",
+        "strictly_future": true
+      }
+    ],
+    "strict_future_all_pass": true,
+    "alignment_pass": true
+  },
+  "shuffled_label_probe": {
+    "backend": "directml",
+    "device": "privateuseone:0",
+    "epochs": 3,
+    "max_train_batches": 250,
+    "train_windows": 104715,
+    "val_windows": 22155,
+    "test_windows": 22155,
+    "epoch_metrics": [
+      {
+        "epoch": 1.0,
+        "train_loss": 0.6943157036304474,
+        "val_loss": 0.6898548752069473,
+        "val_acc": 0.5370345115661621,
+        "val_sharpe": 8.760281562805176
+      },
+      {
+        "epoch": 2.0,
+        "train_loss": 0.6933234553337098,
+        "val_loss": 0.6900839046998457,
+        "val_acc": 0.5357255935668945,
+        "val_sharpe": 7.771238803863525
+      },
+      {
+        "epoch": 3.0,
+        "train_loss": 0.6932437074184418,
+        "val_loss": 0.6897984675385735,
+        "val_acc": 0.5355450510978699,
+        "val_sharpe": 9.504581451416016
+      }
+    ],
+    "naive_baseline_sharpes": {
+      "val_always_long_sharpe": -8.143948554992676,
+      "test_always_long_sharpe": 11.063722610473633,
+      "val_always_short_sharpe": 8.143948554992676,
+      "test_always_short_sharpe": -11.063722610473633,
+      "val_random_signal_sharpe": -6.708146572113037,
+      "test_random_signal_sharpe": 0.3198004961013794
+    },
+    "final_val": {
+      "loss": 0.6897984675385735,
+      "acc": 0.5355450510978699,
+      "sharpe": 9.504581451416016,
+      "profit_factor": 1.1016929675349267,
+      "max_drawdown": 1.319301724433899
+    },
+    "final_test": {
+      "loss": 0.6948325335979462,
+      "acc": 0.5145114064216614,
+      "sharpe": 0.45079413056373596,
+      "profit_factor": 1.0081895771461455,
+      "max_drawdown": 3.2829840183258057
+    },
+    "suspicious_leakage_signal": false,
+    "suspicious_rule": "Flag only if shuffled-label TEST sharpe > 1.2 and > always-long TEST sharpe + 1.0"
+  },
+  "decision": {
+    "pivot_to_mean_reversion": true,
+    "reason": "No structural leakage signal in shuffled-label test and causality/alignment checks passed"
+  }
+}

@@ -86,8 +86,80 @@ class FeatureFactory:
         out[width - 1 :] = conv[width - 1 : len(x)]
         return pd.Series(out, index=series.index)
 
+    # =========================================================================
+    # V2.0: CRYPTO ALPHA EXTRACTION — BTC BETA NEUTRALIZATION
+    # =========================================================================
+
+    @staticmethod
+    def compute_btc_rolling_beta(
+        asset_returns: pd.Series,
+        btc_returns: pd.Series,
+        window: int = 1440,
+    ) -> pd.Series:
+        """Rolling OLS Beta of asset log-returns vs BTC log-returns.
+
+        β = Cov(asset, BTC) / Var(BTC)  over a rolling window.
+        Returns 0.0 where insufficient data exists.
+        """
+        min_p = max(30, window // 4)
+        cov = asset_returns.rolling(window, min_periods=min_p).cov(btc_returns)
+        btc_var = btc_returns.rolling(window, min_periods=min_p).var()
+        beta = cov / (btc_var.clip(lower=1e-12))
+        return beta.fillna(0.0)
+
     @classmethod
-    def build_trend_features(cls, frame: pd.DataFrame) -> pd.DataFrame:
+    def add_btc_residual_features(
+        cls,
+        df: pd.DataFrame,
+        btc_df: pd.DataFrame,
+        window: int = 1440,
+    ) -> pd.DataFrame:
+        """Add BTC-neutralized residual features to df.
+
+        Adds two columns:
+          - ``btc_residual_return``  : asset log-return minus beta * BTC log-return
+          - ``btc_relative_vol``     : asset rolling vol / BTC rolling vol
+
+        The BTC frame is aligned on ``timestamp`` before computation; rows with
+        no matching BTC data are forward-filled then back-filled.
+        """
+        btc_aligned = (
+            btc_df[["timestamp", "close"]]
+            .rename(columns={"close": "_btc_close"})
+            .sort_values("timestamp")
+        )
+        merged = df.merge(btc_aligned, on="timestamp", how="left")
+        merged["_btc_close"] = (
+            merged["_btc_close"].ffill().bfill().fillna(merged["close"])
+        )
+
+        asset_ret = cls.log_return(merged["close"])
+        btc_ret = cls.log_return(merged["_btc_close"])
+
+        beta = cls.compute_btc_rolling_beta(asset_ret, btc_ret, window=window)
+
+        min_p = max(30, window // 4)
+        asset_vol = asset_ret.rolling(window, min_periods=min_p).std().fillna(1e-8)
+        btc_vol = btc_ret.rolling(window, min_periods=min_p).std().fillna(1e-8)
+
+        df = df.copy()
+        df["btc_residual_return"] = (asset_ret - beta * btc_ret).fillna(0.0).values
+        df["btc_relative_vol"] = (asset_vol / (btc_vol + 1e-8)).fillna(1.0).values
+        return df
+
+    @classmethod
+    def build_trend_features(
+        cls,
+        frame: pd.DataFrame,
+        btc_frame: pd.DataFrame | None = None,
+        btc_beta_window: int = 1440,
+    ) -> pd.DataFrame:
+        """Build trend features.
+
+        When ``btc_frame`` is provided (a DataFrame with ``timestamp`` and
+        ``close`` columns for BTC), two extra BTC-neutralized features are
+        appended: ``btc_residual_return`` and ``btc_relative_vol``.
+        """
         df = cls._ensure_sorted(frame)
         close = df["close"].astype(float)
         df["log_return"] = cls.log_return(close)
@@ -97,6 +169,8 @@ class FeatureFactory:
         df["ema_spread"] = df["ema_fast_12"] - df["ema_slow_26"]
         df["atr_14"] = cls.atr(df, window=14)
         df["price_slope_20"] = (close - close.shift(20)) / 20.0
+        if btc_frame is not None:
+            df = cls.add_btc_residual_features(df, btc_frame, window=btc_beta_window)
         return df
 
     @classmethod
@@ -121,32 +195,164 @@ class FeatureFactory:
         df["vwap_dev"] = (close - vwap) / (vwap.abs() + 1e-8)
         df["bb_distance"] = (close - roll_mu) / (2.0 * roll_std + 1e-8)
         df["zscore_close_20"] = cls.rolling_zscore(close, window=20)
+        df["zscore_close_64"] = cls.rolling_zscore(close, window=64)
         df["rsi_14"] = rsi
         df["rsi_div_5"] = rsi - rsi.shift(5)
+        # Binary regime flags — oversold/overbought for hard entry signal
+        df["rsi_oversold"] = (rsi < 30.0).astype(np.float32)
+        df["rsi_overbought"] = (rsi > 70.0).astype(np.float32)
         return df
 
     @classmethod
     def build_stat_arb_features(cls, frame: pd.DataFrame) -> pd.DataFrame:
         df = cls._ensure_sorted(frame)
         close = df["close"].astype(float)
+
+        # ── Core features (v1) ─────────────────────────────────────────────
         df["fracdiff_close_d04"] = cls.fractional_diff(close, d=0.4)
         df["spread_z_64"] = cls.rolling_zscore(close, window=64)
+
+        # ── Feature pivot (v2): mean-reversion signals ─────────────────────
+        # Multi-window Z-scores (short + long horizon)
+        df["spread_z_20"]  = cls.rolling_zscore(close, window=20)
+        df["spread_z_128"] = cls.rolling_zscore(close, window=128)
+
+        # Spread velocity (first difference of z-score — how fast the spread moves)
+        df["spread_z_vel"] = df["spread_z_64"].diff(1).fillna(0.0)
+
+        # Ornstein-Uhlenbeck half-life via rolling OLS: Δz = a*z_{t-1} + b
+        # half_life = ln(2) / |a|; clipped to [1, 200] bars for stability
+        df["ou_halflife"] = cls._rolling_ou_halflife(df["spread_z_64"], window=128)
+
+        # Hurst exponent proxy: variance ratio (log(var_tau) / log(tau)) over tau=[1,4,16]
+        # H < 0.5 → mean-reverting; H > 0.5 → trending; H = 0.5 → random walk
+        df["hurst_proxy"] = cls._rolling_hurst_proxy(close, short=4, long=16, window=128)
+
+        # Entry signal: z-score crossed threshold and Hurst < 0.5 (mean-reverting regime)
+        thr = 1.5
+        z = df["spread_z_64"]
+        mr_regime = (df["hurst_proxy"] < 0.5).astype(float)
+        df["entry_long_signal"]  = ((z < -thr) & (mr_regime == 1)).astype(float)
+        df["entry_short_signal"] = ((z >  thr) & (mr_regime == 1)).astype(float)
+
+        return df
+
+    @staticmethod
+    def _rolling_ou_halflife(zscore: pd.Series, window: int = 128) -> pd.Series:
+        """Estimate OU mean-reversion half-life via rolling AR(1) Pearson correlation.
+
+        AR(1) coefficient ρ ≈ corr(z_t, z_{t-1}) on a rolling window.
+        Half-life = -ln(2) / ln(ρ).
+        Result clipped to [1, 500] bars; NaN filled forward then with 50.
+        """
+        z_lag = zscore.shift(1)
+        # Rolling Pearson correlation is O(n) using pandas optimized kernel
+        rho = z_lag.rolling(window, min_periods=max(20, window // 4)).corr(zscore)
+        # Only meaningful when 0 < rho < 1 (mean-reverting)
+        rho_clipped = rho.clip(1e-6, 1.0 - 1e-6)
+        ln_rho = np.log(rho_clipped.to_numpy(dtype=np.float64))
+        # Avoid log(0) — set to zero for undefined cases
+        ln_rho = np.where(np.isfinite(ln_rho) & (ln_rho < -1e-9), ln_rho, np.nan)
+        hl_arr = np.where(np.isfinite(ln_rho), -np.log(2.0) / ln_rho, np.nan)
+        hl_arr = np.clip(hl_arr, 1.0, 500.0)
+        result = pd.Series(hl_arr, index=zscore.index)
+        result = result.ffill().fillna(50.0)
+        return result
+
+    @staticmethod
+    def _rolling_hurst_proxy(close: pd.Series, short: int = 4, long: int = 16,
+                              window: int = 128) -> pd.Series:
+        """Variance-ratio Hurst proxy using rolling windows of sub-sampled returns.
+
+        H_proxy = 0.5 * log2(Var(long-period returns) / Var(short-period returns))
+                             / log2(long / short)
+
+        Vectorised: compute rolling variance of sub-sampled return series.
+        H < 0.5 → mean-reverting; H > 0.5 → trending.
+        """
+        log_c = np.log(close.to_numpy(dtype=np.float64) + 1e-10)
+
+        # Short-period returns: tau=short
+        r_short = pd.Series(np.diff(log_c[::short], prepend=log_c[0]))
+        # Align back to original index length using repeat (approximate)
+        r_short_full = r_short.reindex(range(len(log_c)), method="ffill").fillna(0.0)
+
+        # Long-period returns: tau=long
+        r_long = pd.Series(np.diff(log_c[::long], prepend=log_c[0]))
+        r_long_full = r_long.reindex(range(len(log_c)), method="ffill").fillna(0.0)
+
+        # Rolling variance
+        win_short = max(4, window // short)
+        win_long  = max(4, window // long)
+        min_p = max(2, min(win_short, win_long) // 2)
+        var_short = r_short_full.rolling(win_short, min_periods=min_p).var().values
+        var_long  = r_long_full.rolling(win_long,   min_periods=min_p).var().values
+
+        with np.errstate(divide="ignore", invalid="ignore"):
+            ratio = np.where((var_short > 1e-15) & (var_long > 1e-15),
+                             var_long / var_short, np.nan)
+            hurst = np.where(np.isfinite(ratio) & (ratio > 0),
+                             0.5 * np.log(ratio) / np.log(long / short),
+                             0.5)
+        hurst = np.clip(hurst, 0.0, 1.0)
+
+        result = pd.Series(hurst, index=close.index)
+        return result.ffill().fillna(0.5)
+
+    @classmethod
+    def build_scalper_features(cls, frame: pd.DataFrame) -> pd.DataFrame:
+        """Delegate to quant_core.scalper_data._build_scalper_features.
+        Returns DataFrame with SCALPER_FEATURES columns."""
+        try:
+            from quant_core.scalper_data import _build_scalper_features
+            return _build_scalper_features(frame)
+        except ImportError:
+            return frame.copy()
+
+    @classmethod
+    def build_discretionary_features(cls, frame: pd.DataFrame) -> pd.DataFrame:
+        """Build DISC_TAB_FEATURES using data already available in trend features.
+        Returns DataFrame with DISC_TAB_FEATURES columns added."""
+        df = cls._ensure_sorted(frame)
+        close = df["close"].astype(float)
+        # log_return
+        df["log_return"] = np.log1p(close.pct_change()).fillna(0.0)
+        # zscore_close_64 (already in build_trend_features, replicate here for independence)
+        df["zscore_close_64"] = cls.rolling_zscore(close, window=64)
+        # ema_spread
+        ema_fast = close.ewm(span=12, adjust=False).mean()
+        ema_slow = close.ewm(span=26, adjust=False).mean()
+        df["ema_spread"] = (ema_fast - ema_slow) / (close.abs() + 1e-8)
+        # atr_14
+        high = df["high"].astype(float)
+        low = df["low"].astype(float)
+        tr = (high - low).combine(
+            (high - close.shift()).abs(), np.maximum
+        ).combine(
+            (low - close.shift()).abs(), np.maximum
+        )
+        df["atr_14"] = tr.rolling(14, min_periods=14).mean()
+        # price_slope_20
+        df["price_slope_20"] = close.diff(20).fillna(0.0) / (close.shift(20).abs() + 1e-8)
         return df
 
     @staticmethod
     def fit_scaler_train_only(train_df: pd.DataFrame, columns: Sequence[str]) -> ScalerStats:
-        cols = tuple(columns)
-        x = train_df.loc[:, cols].to_numpy(dtype=float)
+        x = train_df.loc[:, columns].to_numpy(dtype=float)
         mean = np.nanmean(x, axis=0)
         std = np.nanstd(x, axis=0)
         std = np.where(std < 1e-12, 1.0, std)
-        return ScalerStats(columns=cols, mean=mean, std=std)
+        return ScalerStats(columns=columns, mean=mean, std=std)
 
     @staticmethod
     def transform_with_scaler(df: pd.DataFrame, scaler: ScalerStats) -> pd.DataFrame:
         out = df.copy()
-        x = out.loc[:, scaler.columns].to_numpy(dtype=float)
-        out.loc[:, scaler.columns] = (x - scaler.mean) / scaler.std
+        x = out.loc[:, list(scaler.columns)].to_numpy(dtype=float)
+        scaled = (x - scaler.mean) / scaler.std
+        # Assign column-by-column to avoid pandas dtype broadcast TypeError
+        # (some source columns may be float32 e.g. rsi_oversold; write back as float64)
+        for col, vals in zip(scaler.columns, scaled.T):
+            out[col] = vals
         return out
 
     # ========================================================================

@@ -1,0 +1,52 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  max_symbols: 34
+
+# Retrain v2 — SAC+DQN only (PPO_MM_v1 already passes all production gates)
+# Key changes vs v1:
+#   max_steps 500000→2000000: SAC/DQN need more replay experience
+#   inventory_lambda 0.1→0.05: reduce penalty so model explores spread capture more
+#   episode_length 200→400: longer episodes to learn multi-step reward shaping
+#   reward_alpha_neg 1.35→1.5: stronger loss aversion shaping
+#   survival_bonus 0.0005→0.001: stronger incentive to stay alive (avoid MDD)
+#   replay_buffer_size 50000→200000
+#   batch_size 2048→512 (more gradient updates per step)
+#   eps_decay 0.9995→0.9998 (slower exploration decay for DQN)
+training:
+  seed: 42
+  preferred_backend: directml
+  hidden: 256
+  lr: 0.0003
+  weight_decay: 0.0001
+  episode_length: 400
+  inventory_lambda: 0.05
+  warmup_steps: 20
+  reward_alpha_pos: 0.75
+  reward_alpha_neg: 1.5
+  reward_scale: 1.0
+  survival_bonus: 0.001
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_eps: 0.2
+  ppo_epochs: 4
+  rollout_len: 1024
+  max_episodes: 8000
+  max_steps: 2000000
+  replay_buffer_size: 200000
+  batch_size: 512
+  tau: 0.005
+  target_update_freq: 500
+  eps_start: 1.0
+  eps_end: 0.05
+  eps_decay: 0.9998
+  checkpoint_root: models/checkpoints/market_maker
+  tensorboard_root: models/tensorboard/market_maker
+
+models:
+  sac: {}
+  dqn: {}
+
+registry_path: model_registry.json

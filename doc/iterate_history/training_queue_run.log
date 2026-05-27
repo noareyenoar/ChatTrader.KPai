@@ -1,0 +1,12 @@
+
+# Queue started: 2026-05-19 03:56:07 steps=1-10
+
+# Queue started: 2026-05-19 03:57:46 steps=1-10
+  step 1 Transformer+TCN (Trend): FAIL(rc=1) at 2026-05-19 03:57:49
+
+# Queue started: 2026-05-19 03:58:28 steps=1-10
+  step 1 Transformer+TCN (Trend): FAIL(rc=4294967295) at 2026-05-19 04:06:40
+
+# Queue started: 2026-05-19 04:06:52 steps=1-10
+  step 1 Transformer+TCN (Trend): OK at 2026-05-19 10:30:33
+  step 2 LSTM v2 (Trend): FAIL(rc=4294967295) at 2026-05-19 12:21:44

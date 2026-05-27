@@ -27,8 +27,11 @@ MR_FEATURE_COLUMNS = [
     "vwap_dev",
     "bb_distance",
     "zscore_close_20",
+    "zscore_close_64",   # longer-horizon z-score for multi-timescale MR
     "rsi_14",
     "rsi_div_5",
+    "rsi_oversold",      # binary: RSI < 30 (strong oversold entry signal)
+    "rsi_overbought",    # binary: RSI > 70 (strong overbought entry signal)
 ]
 
 

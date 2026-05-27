@@ -1,0 +1,55 @@
+# Scalper v2 — Fix: horizon 2→10 (50-min), flat_threshold widened
+#
+# ROOT CAUSE of v1 failure (test_sharpe=-8.7):
+#   horizon=2 (10 min) = microstructure noise. The model's directional predictions
+#   are wrong more than right in the test period (correction, Jan-Apr 2026).
+#   Class distribution is balanced (DOWN:36%, FLAT:30%, UP:34%) — class weighting
+#   will NOT help. Signal-to-noise ratio is the bottleneck.
+#
+# CHANGES vs v1:
+#   horizon 2→10: 50-min window gives smoother, more predictable return
+#   flat_threshold 0.0010→0.0020: wider band = cleaner FLAT class, fewer ambiguous labels
+#   seq_len 16→32: more context needed for 50-min horizon
+#   preferred_backend: cpu (DirectML unreliable for this workload)
+#   batch_size: 2048 (CPU-safe)
+
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 32
+  horizon: 10
+  flat_threshold: 0.0020
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  preferred_backend: cpu
+  batch_size: 2048
+  max_epochs: 120
+  patience: 15
+  lr: 0.0005
+  use_cyclic_lr: false
+  weight_decay: 0.001
+  num_workers: 0
+  num_workers_non_cuda: 0
+  checkpoint_root: models/checkpoints/scalper_v2
+  tensorboard_root: models/tensorboard/scalper_v2
+
+models:
+  cnn:
+    channels: 64
+    dropout: 0.3
+  linear_attn:
+    d_model: 64
+    nhead: 4
+    num_layers: 2
+    dropout: 0.3
+  gru:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.3
+
+registry_path: model_registry.json

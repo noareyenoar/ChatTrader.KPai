@@ -65,6 +65,8 @@ def main() -> int:
         trend = FeatureFactory.build_trend_features(frame)
         mean_rev = FeatureFactory.build_mean_reversion_features(frame)
         stat_arb = FeatureFactory.build_stat_arb_features(frame)
+        scalper = FeatureFactory.build_scalper_features(frame)
+        disc = FeatureFactory.build_discretionary_features(frame)
 
         feature_df = trend[
             [
@@ -94,6 +96,18 @@ def main() -> int:
             stat_arb[["timestamp", "fracdiff_close_d04", "spread_z_64"]],
             on="timestamp",
             how="left",
+        ).merge(
+            scalper[["timestamp", "ofi_proxy", "microprice_dev", "vol_imbalance",
+                      "volatility_z_32"]].rename(columns=lambda c: c if c == "timestamp" else f"sc_{c}"),
+            on="timestamp",
+            how="left",
+        ).merge(
+            disc[["timestamp", "ema_spread", "atr_14", "price_slope_20"]].rename(
+                columns={"ema_spread": "disc_ema_spread", "atr_14": "disc_atr_14",
+                          "price_slope_20": "disc_price_slope_20"}
+            ),
+            on="timestamp",
+            how="left",
         )
 
         split = splitter.split(feature_df, time_col="timestamp")
@@ -117,6 +131,13 @@ def main() -> int:
             "rsi_div_5",
             "fracdiff_close_d04",
             "spread_z_64",
+            "sc_ofi_proxy",
+            "sc_microprice_dev",
+            "sc_vol_imbalance",
+            "sc_volatility_z_32",
+            "disc_ema_spread",
+            "disc_atr_14",
+            "disc_price_slope_20",
         ]
 
         scaler = FeatureFactory.fit_scaler_train_only(split.train, scaled_cols)
@@ -141,7 +162,7 @@ def main() -> int:
             }
         )
 
-        cleanup_cuda(frame, trend, mean_rev, stat_arb, feature_df, train_scaled, val_scaled, test_scaled)
+        cleanup_cuda(frame, trend, mean_rev, stat_arb, scalper, disc, feature_df, train_scaled, val_scaled, test_scaled)
 
     all_features = pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame()
 
@@ -158,6 +179,13 @@ def main() -> int:
         "rsi_div_5",
         "fracdiff_close_d04",
         "spread_z_64",
+        "sc_ofi_proxy",
+        "sc_microprice_dev",
+        "sc_vol_imbalance",
+        "sc_volatility_z_32",
+        "disc_ema_spread",
+        "disc_atr_14",
+        "disc_price_slope_20",
     ]
 
     stats = feature_stats_table(all_features, feature_columns) if not all_features.empty else pd.DataFrame()

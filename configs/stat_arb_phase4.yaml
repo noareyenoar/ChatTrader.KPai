@@ -19,8 +19,8 @@ data:
 
 training:
   seed: 42
-  preferred_backend: directml
-  batch_size: 1024
+  preferred_backend: cpu    # DirectML OOM at batch_size=1024 seq_len=128 → CPU is safe
+  batch_size: 256           # reduced from 1024 to avoid GPU OOM
   max_epochs: 120
   patience: 20
   lr: 0.0008

@@ -1,0 +1,48 @@
+# APV-PLN Phase-4 Smoke Test Config
+# Minimal dataset / epochs for rapid validation-gate testing.
+# Pass criteria: sanity check PASSED, no Python/shape errors, mode-switch clean.
+
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 32
+  horizon: 5
+  num_bins: 51
+  max_symbols: 3
+  max_rows_per_symbol: 5000
+
+training:
+  seed: 42
+  seq_len: 32
+  horizon: 5
+  preferred_backend: cpu
+  batch_size: 64
+  directml_max_batch_size: 64
+  max_epochs: 3
+  patience: 10
+  lr: 0.001
+  weight_decay: 1e-4
+  num_workers: 0
+  num_workers_directml: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  distill_alpha: 0.5
+  distill_beta: 0.5
+  distill_temperature: 2.0
+  fast_fail_epoch: 999     # disabled for smoke test
+  fast_fail_min_sharpe: -99.0
+  overfit_alert_epoch: 999
+  overfit_loss_ratio_max: 0.0
+  checkpoint_root: models/checkpoints/apv_pln_smoke
+  tensorboard_root: models/tensorboard/apv_pln_smoke
+
+models:
+  v1:
+    cnn_channels: 32
+    nhead: 4
+    oracle_hidden: 32
+    dropout: 0.1
+
+registry_path: model_registry.json

@@ -1,0 +1,285 @@
+# Training queue step 2: LSTM v2 (Trend)
+# Started: 2026-05-19 10:30:33
+# Command: D:\kp_ai_agent\ChatTrader.KPai\.venv\Scripts\python.exe -m quant_core.train_trend_phase4 --config configs/trend_phase4_lstm_v2.yaml
+
+[trend-run] config=configs/trend_phase4_lstm_v2.yaml backend=directml seq_len=96 max_epochs=80
+[trend-data] accepted_symbols=34 selected_symbols=34 seq_len=96 horizon=5
+[trend-data] loading 1/34 symbol=AAVEUSDT
+[trend-data] ready symbol=AAVEUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 2/34 symbol=ADAUSDT
+[trend-data] ready symbol=ADAUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 3/34 symbol=APEUSDT
+[trend-data] ready symbol=APEUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 4/34 symbol=API3USDT
+[trend-data] ready symbol=API3USDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 5/34 symbol=AXSUSDT
+[trend-data] ready symbol=AXSUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 6/34 symbol=BARDUSDT
+[trend-data] ready symbol=BARDUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 7/34 symbol=BIOUSDT
+[trend-data] ready symbol=BIOUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 8/34 symbol=BNBUSDT
+[trend-data] ready symbol=BNBUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 9/34 symbol=DOGEUSDT
+[trend-data] ready symbol=DOGEUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 10/34 symbol=DUSDT
+[trend-data] ready symbol=DUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 11/34 symbol=DYDXUSDT
+[trend-data] ready symbol=DYDXUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 12/34 symbol=ENJUSDT
+[trend-data] ready symbol=ENJUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 13/34 symbol=ETHUSDT
+[trend-data] ready symbol=ETHUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 14/34 symbol=GIGGLEUSDT
+[trend-data] ready symbol=GIGGLEUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 15/34 symbol=NEIROUSDT
+[trend-data] ready symbol=NEIROUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 16/34 symbol=ORDIUSDT
+[trend-data] ready symbol=ORDIUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 17/34 symbol=PAXGUSDT
+[trend-data] ready symbol=PAXGUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 18/34 symbol=PENGUUSDT
+[trend-data] ready symbol=PENGUUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 19/34 symbol=PEPEUSDT
+[trend-data] ready symbol=PEPEUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 20/34 symbol=RUNEUSDT
+[trend-data] ready symbol=RUNEUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 21/34 symbol=SIGNUSDT
+[trend-data] ready symbol=SIGNUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 22/34 symbol=SOLUSDT
+[trend-data] ready symbol=SOLUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 23/34 symbol=SPKUSDT
+[trend-data] ready symbol=SPKUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 24/34 symbol=STOUSDT
+[trend-data] ready symbol=STOUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 25/34 symbol=SUIUSDT
+[trend-data] ready symbol=SUIUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 26/34 symbol=TAOUSDT
+[trend-data] ready symbol=TAOUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 27/34 symbol=TONUSDT
+[trend-data] ready symbol=TONUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 28/34 symbol=TRUMPUSDT
+[trend-data] ready symbol=TRUMPUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 29/34 symbol=TRXUSDT
+[trend-data] ready symbol=TRXUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 30/34 symbol=USD1USDT
+[trend-data] ready symbol=USD1USDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 31/34 symbol=WALUSDT
+[trend-data] ready symbol=WALUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 32/34 symbol=WLFIUSDT
+[trend-data] ready symbol=WLFIUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 33/34 symbol=XRPUSDT
+[trend-data] ready symbol=XRPUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] loading 34/34 symbol=ZECUSDT
+[trend-data] ready symbol=ZECUSDT rows=50000 train=34905 val=7385 test=7385
+[trend-data] datasets complete train_windows=1186770 val_windows=251090 test_windows=251090
+[trend-run] datasets ready train_windows=1186770 val_windows=251090 test_windows=251090 input_dim=5
+[trend-run] launching model=lstm
+[2026-05-19 17:30:44] [trend:lstm] directml batch cap applied configured_batch_size=2048 effective_batch_size=256
+[2026-05-19 17:30:44] [trend:lstm] start backend=directml device=privateuseone:0 train_windows=1186770 val_windows=251090 test_windows=251090 batch_size=256 num_workers=0
+D:\kp_ai_agent\ChatTrader.KPai\.venv\Lib\site-packages\torch\nn\functional.py:3244: UserWarning: The operator 'aten::log_sigmoid_forward' is not currently supported on the DML backend and will fall back to run on the CPU. This may have performance implications. (Triggered internally at C:\__w\1\s\pytorch-directml-plugin\torch_directml\csrc\dml\dml_cpu_fallback.cpp:17.)
+  return torch.binary_cross_entropy_with_logits(input, target, weight, pos_weight, reduction_enum)
+[2026-05-19 17:30:44] [trend:lstm] sanity-check passed
+[2026-05-19 17:30:45] [trend:lstm] epoch 1/80 started
+[2026-05-19 17:30:45] [trend:lstm] epoch 1 batch 1/4636 loss=0.682730 lr=0.0003 batch_s=0.416 eta_s=1926
+[2026-05-19 17:31:19] [trend:lstm] epoch 1 batch 100/4636 loss=0.685788 lr=0.0003 batch_s=0.346 eta_s=1570
+[2026-05-19 17:31:54] [trend:lstm] epoch 1 batch 200/4636 loss=0.700745 lr=0.0003 batch_s=0.345 eta_s=1529
+[2026-05-19 17:32:28] [trend:lstm] epoch 1 batch 300/4636 loss=0.695907 lr=0.0003 batch_s=0.344 eta_s=1493
+[2026-05-19 17:33:02] [trend:lstm] epoch 1 batch 400/4636 loss=0.677605 lr=0.0003 batch_s=0.344 eta_s=1458
+[2026-05-19 17:33:37] [trend:lstm] epoch 1 batch 500/4636 loss=0.686425 lr=0.0003 batch_s=0.344 eta_s=1423
+[2026-05-19 17:34:11] [trend:lstm] epoch 1 batch 600/4636 loss=0.661031 lr=0.0003 batch_s=0.344 eta_s=1388
+[2026-05-19 17:34:46] [trend:lstm] epoch 1 batch 700/4636 loss=0.700440 lr=0.0003 batch_s=0.344 eta_s=1354
+[2026-05-19 17:35:20] [trend:lstm] epoch 1 batch 800/4636 loss=0.683816 lr=0.0003 batch_s=0.344 eta_s=1320
+[2026-05-19 17:35:54] [trend:lstm] epoch 1 batch 900/4636 loss=0.672035 lr=0.0003 batch_s=0.344 eta_s=1285
+[2026-05-19 17:36:29] [trend:lstm] epoch 1 batch 1000/4636 loss=0.741653 lr=0.0003 batch_s=0.344 eta_s=1251
+[2026-05-19 17:37:03] [trend:lstm] epoch 1 batch 1100/4636 loss=0.688307 lr=0.0003 batch_s=0.344 eta_s=1217
+[2026-05-19 17:37:38] [trend:lstm] epoch 1 batch 1200/4636 loss=0.689925 lr=0.0003 batch_s=0.344 eta_s=1182
+[2026-05-19 17:38:12] [trend:lstm] epoch 1 batch 1300/4636 loss=0.701500 lr=0.0003 batch_s=0.344 eta_s=1147
+[2026-05-19 17:38:46] [trend:lstm] epoch 1 batch 1400/4636 loss=0.676544 lr=0.0003 batch_s=0.344 eta_s=1113
+[2026-05-19 17:39:21] [trend:lstm] epoch 1 batch 1500/4636 loss=0.685469 lr=0.0003 batch_s=0.344 eta_s=1078
+[2026-05-19 17:39:55] [trend:lstm] epoch 1 batch 1600/4636 loss=0.703407 lr=0.0003 batch_s=0.344 eta_s=1044
+[2026-05-19 17:40:29] [trend:lstm] epoch 1 batch 1700/4636 loss=0.700273 lr=0.0003 batch_s=0.344 eta_s=1010
+[2026-05-19 17:41:04] [trend:lstm] epoch 1 batch 1800/4636 loss=0.695062 lr=0.0003 batch_s=0.344 eta_s=975
+[2026-05-19 17:41:38] [trend:lstm] epoch 1 batch 1900/4636 loss=0.685307 lr=0.0003 batch_s=0.344 eta_s=941
+[2026-05-19 17:42:13] [trend:lstm] epoch 1 batch 2000/4636 loss=0.689444 lr=0.0003 batch_s=0.344 eta_s=907
+[2026-05-19 17:42:47] [trend:lstm] epoch 1 batch 2100/4636 loss=0.691781 lr=0.0003 batch_s=0.344 eta_s=872
+[2026-05-19 17:43:21] [trend:lstm] epoch 1 batch 2200/4636 loss=0.686895 lr=0.0003 batch_s=0.344 eta_s=838
+[2026-05-19 17:43:56] [trend:lstm] epoch 1 batch 2300/4636 loss=0.694472 lr=0.0003 batch_s=0.344 eta_s=803
+[2026-05-19 17:44:30] [trend:lstm] epoch 1 batch 2400/4636 loss=0.692265 lr=0.0003 batch_s=0.344 eta_s=769
+[2026-05-19 17:45:04] [trend:lstm] epoch 1 batch 2500/4636 loss=0.672833 lr=0.0003 batch_s=0.344 eta_s=734
+[2026-05-19 17:45:39] [trend:lstm] epoch 1 batch 2600/4636 loss=0.674950 lr=0.0003 batch_s=0.344 eta_s=700
+[2026-05-19 17:46:13] [trend:lstm] epoch 1 batch 2700/4636 loss=0.624384 lr=0.0003 batch_s=0.344 eta_s=665
+[2026-05-19 17:46:47] [trend:lstm] epoch 1 batch 2800/4636 loss=0.721176 lr=0.0003 batch_s=0.344 eta_s=631
+[2026-05-19 17:47:21] [trend:lstm] epoch 1 batch 2900/4636 loss=0.690630 lr=0.0003 batch_s=0.343 eta_s=596
+[2026-05-19 17:47:55] [trend:lstm] epoch 1 batch 3000/4636 loss=0.695298 lr=0.0003 batch_s=0.343 eta_s=562
+[2026-05-19 17:48:29] [trend:lstm] epoch 1 batch 3100/4636 loss=0.690336 lr=0.0003 batch_s=0.343 eta_s=527
+[2026-05-19 17:49:04] [trend:lstm] epoch 1 batch 3200/4636 loss=0.696427 lr=0.0003 batch_s=0.343 eta_s=493
+[2026-05-19 17:49:38] [trend:lstm] epoch 1 batch 3300/4636 loss=0.701134 lr=0.0003 batch_s=0.343 eta_s=459
+[2026-05-19 17:50:12] [trend:lstm] epoch 1 batch 3400/4636 loss=0.692150 lr=0.0003 batch_s=0.343 eta_s=424
+[2026-05-19 17:50:46] [trend:lstm] epoch 1 batch 3500/4636 loss=0.689084 lr=0.0003 batch_s=0.343 eta_s=390
+[2026-05-19 17:51:21] [trend:lstm] epoch 1 batch 3600/4636 loss=0.680807 lr=0.0003 batch_s=0.343 eta_s=356
+[2026-05-19 17:51:55] [trend:lstm] epoch 1 batch 3700/4636 loss=0.686600 lr=0.0003 batch_s=0.343 eta_s=321
+[2026-05-19 17:52:29] [trend:lstm] epoch 1 batch 3800/4636 loss=0.691005 lr=0.0003 batch_s=0.343 eta_s=287
+[2026-05-19 17:53:03] [trend:lstm] epoch 1 batch 3900/4636 loss=0.699909 lr=0.0003 batch_s=0.343 eta_s=253
+[2026-05-19 17:53:37] [trend:lstm] epoch 1 batch 4000/4636 loss=0.542774 lr=0.0003 batch_s=0.343 eta_s=218
+[2026-05-19 17:54:12] [trend:lstm] epoch 1 batch 4100/4636 loss=0.726913 lr=0.0003 batch_s=0.343 eta_s=184
+[2026-05-19 17:54:46] [trend:lstm] epoch 1 batch 4200/4636 loss=0.655584 lr=0.0003 batch_s=0.343 eta_s=150
+[2026-05-19 17:55:21] [trend:lstm] epoch 1 batch 4300/4636 loss=0.705944 lr=0.0003 batch_s=0.343 eta_s=115
+[2026-05-19 17:55:55] [trend:lstm] epoch 1 batch 4400/4636 loss=0.685736 lr=0.0003 batch_s=0.343 eta_s=81
+[2026-05-19 17:56:29] [trend:lstm] epoch 1 batch 4500/4636 loss=0.688006 lr=0.0003 batch_s=0.343 eta_s=47
+[2026-05-19 17:57:04] [trend:lstm] epoch 1 batch 4600/4636 loss=0.675502 lr=0.0003 batch_s=0.343 eta_s=12
+[2026-05-19 17:57:16] [trend:lstm] epoch 1 batch 4636/4636 loss=0.691617 lr=0.0003 batch_s=0.343 eta_s=0
+[2026-05-19 17:58:27] [trend:lstm] epoch 1 done train_loss=0.687249 train_acc=0.5403 val_loss=0.687285 val_acc=0.5529 val_sharpe=4.9943 elapsed_s=1662.5
+[2026-05-19 17:58:27] [trend:lstm] checkpoint saved val_sharpe=4.994341 val_acc=0.552862 val_loss=0.687285
+[2026-05-19 17:58:27] [trend:lstm] epoch 2/80 started
+[2026-05-19 17:58:28] [trend:lstm] epoch 2 batch 1/4636 loss=0.693728 lr=0.000299884 batch_s=0.352 eta_s=1632
+[2026-05-19 17:59:02] [trend:lstm] epoch 2 batch 100/4636 loss=0.686433 lr=0.000299884 batch_s=0.346 eta_s=1569
+[2026-05-19 17:59:36] [trend:lstm] epoch 2 batch 200/4636 loss=0.698985 lr=0.000299884 batch_s=0.345 eta_s=1531
+[2026-05-19 18:00:11] [trend:lstm] epoch 2 batch 300/4636 loss=0.695697 lr=0.000299884 batch_s=0.345 eta_s=1496
+[2026-05-19 18:00:45] [trend:lstm] epoch 2 batch 400/4636 loss=0.679856 lr=0.000299884 batch_s=0.345 eta_s=1461
+[2026-05-19 18:01:20] [trend:lstm] epoch 2 batch 500/4636 loss=0.684608 lr=0.000299884 batch_s=0.344 eta_s=1425
+[2026-05-19 18:01:54] [trend:lstm] epoch 2 batch 600/4636 loss=0.668397 lr=0.000299884 batch_s=0.345 eta_s=1391
+[2026-05-19 18:02:29] [trend:lstm] epoch 2 batch 700/4636 loss=0.705581 lr=0.000299884 batch_s=0.345 eta_s=1356
+[2026-05-19 18:03:03] [trend:lstm] epoch 2 batch 800/4636 loss=0.692064 lr=0.000299884 batch_s=0.345 eta_s=1322
+[2026-05-19 18:03:38] [trend:lstm] epoch 2 batch 900/4636 loss=0.673892 lr=0.000299884 batch_s=0.345 eta_s=1288
+[2026-05-19 18:04:12] [trend:lstm] epoch 2 batch 1000/4636 loss=0.742764 lr=0.000299884 batch_s=0.345 eta_s=1253
+[2026-05-19 18:04:46] [trend:lstm] epoch 2 batch 1100/4636 loss=0.689419 lr=0.000299884 batch_s=0.345 eta_s=1218
+[2026-05-19 18:05:21] [trend:lstm] epoch 2 batch 1200/4636 loss=0.685036 lr=0.000299884 batch_s=0.345 eta_s=1184
+[2026-05-19 18:05:55] [trend:lstm] epoch 2 batch 1300/4636 loss=0.694593 lr=0.000299884 batch_s=0.345 eta_s=1150
+[2026-05-19 18:06:30] [trend:lstm] epoch 2 batch 1400/4636 loss=0.676617 lr=0.000299884 batch_s=0.345 eta_s=1115
+[2026-05-19 18:07:04] [trend:lstm] epoch 2 batch 1500/4636 loss=0.679701 lr=0.000299884 batch_s=0.345 eta_s=1081
+[2026-05-19 18:07:39] [trend:lstm] epoch 2 batch 1600/4636 loss=0.698818 lr=0.000299884 batch_s=0.345 eta_s=1046
+[2026-05-19 18:08:13] [trend:lstm] epoch 2 batch 1700/4636 loss=0.700553 lr=0.000299884 batch_s=0.345 eta_s=1012
+[2026-05-19 18:08:48] [trend:lstm] epoch 2 batch 1800/4636 loss=0.696213 lr=0.000299884 batch_s=0.345 eta_s=977
+[2026-05-19 18:09:22] [trend:lstm] epoch 2 batch 1900/4636 loss=0.682610 lr=0.000299884 batch_s=0.345 eta_s=943
+[2026-05-19 18:09:57] [trend:lstm] epoch 2 batch 2000/4636 loss=0.692541 lr=0.000299884 batch_s=0.345 eta_s=908
+[2026-05-19 18:10:31] [trend:lstm] epoch 2 batch 2100/4636 loss=0.686894 lr=0.000299884 batch_s=0.345 eta_s=874
+[2026-05-19 18:11:05] [trend:lstm] epoch 2 batch 2200/4636 loss=0.691877 lr=0.000299884 batch_s=0.345 eta_s=839
+[2026-05-19 18:11:40] [trend:lstm] epoch 2 batch 2300/4636 loss=0.692637 lr=0.000299884 batch_s=0.345 eta_s=805
+[2026-05-19 18:12:14] [trend:lstm] epoch 2 batch 2400/4636 loss=0.692236 lr=0.000299884 batch_s=0.345 eta_s=771
+[2026-05-19 18:12:49] [trend:lstm] epoch 2 batch 2500/4636 loss=0.672484 lr=0.000299884 batch_s=0.345 eta_s=736
+[2026-05-19 18:13:23] [trend:lstm] epoch 2 batch 2600/4636 loss=0.677426 lr=0.000299884 batch_s=0.345 eta_s=702
+[2026-05-19 18:13:58] [trend:lstm] epoch 2 batch 2700/4636 loss=0.626650 lr=0.000299884 batch_s=0.345 eta_s=667
+[2026-05-19 18:14:32] [trend:lstm] epoch 2 batch 2800/4636 loss=0.724489 lr=0.000299884 batch_s=0.345 eta_s=633
+[2026-05-19 18:15:07] [trend:lstm] epoch 2 batch 2900/4636 loss=0.689674 lr=0.000299884 batch_s=0.345 eta_s=598
+[2026-05-19 18:15:42] [trend:lstm] epoch 2 batch 3000/4636 loss=0.693441 lr=0.000299884 batch_s=0.345 eta_s=564
+[2026-05-19 18:16:16] [trend:lstm] epoch 2 batch 3100/4636 loss=0.692577 lr=0.000299884 batch_s=0.345 eta_s=530
+[2026-05-19 18:16:51] [trend:lstm] epoch 2 batch 3200/4636 loss=0.703275 lr=0.000299884 batch_s=0.345 eta_s=495
+[2026-05-19 18:17:25] [trend:lstm] epoch 2 batch 3300/4636 loss=0.693259 lr=0.000299884 batch_s=0.345 eta_s=461
+[2026-05-19 18:17:59] [trend:lstm] epoch 2 batch 3400/4636 loss=0.692690 lr=0.000299884 batch_s=0.345 eta_s=426
+[2026-05-19 18:18:34] [trend:lstm] epoch 2 batch 3500/4636 loss=0.692960 lr=0.000299884 batch_s=0.345 eta_s=392
+[2026-05-19 18:19:08] [trend:lstm] epoch 2 batch 3600/4636 loss=0.683752 lr=0.000299884 batch_s=0.345 eta_s=357
+[2026-05-19 18:19:43] [trend:lstm] epoch 2 batch 3700/4636 loss=0.688862 lr=0.000299884 batch_s=0.345 eta_s=323
+[2026-05-19 18:20:18] [trend:lstm] epoch 2 batch 3800/4636 loss=0.697248 lr=0.000299884 batch_s=0.345 eta_s=288
+[2026-05-19 18:20:52] [trend:lstm] epoch 2 batch 3900/4636 loss=0.699474 lr=0.000299884 batch_s=0.345 eta_s=254
+[2026-05-19 18:21:27] [trend:lstm] epoch 2 batch 4000/4636 loss=0.553605 lr=0.000299884 batch_s=0.345 eta_s=219
+[2026-05-19 18:22:01] [trend:lstm] epoch 2 batch 4100/4636 loss=0.727205 lr=0.000299884 batch_s=0.345 eta_s=185
+[2026-05-19 18:22:36] [trend:lstm] epoch 2 batch 4200/4636 loss=0.660053 lr=0.000299884 batch_s=0.345 eta_s=150
+[2026-05-19 18:23:10] [trend:lstm] epoch 2 batch 4300/4636 loss=0.706959 lr=0.000299884 batch_s=0.345 eta_s=116
+[2026-05-19 18:23:45] [trend:lstm] epoch 2 batch 4400/4636 loss=0.685377 lr=0.000299884 batch_s=0.345 eta_s=81
+[2026-05-19 18:24:19] [trend:lstm] epoch 2 batch 4500/4636 loss=0.685755 lr=0.000299884 batch_s=0.345 eta_s=47
+[2026-05-19 18:24:54] [trend:lstm] epoch 2 batch 4600/4636 loss=0.682088 lr=0.000299884 batch_s=0.345 eta_s=12
+[2026-05-19 18:25:06] [trend:lstm] epoch 2 batch 4636/4636 loss=0.688911 lr=0.000299884 batch_s=0.345 eta_s=0
+[2026-05-19 18:26:18] [trend:lstm] epoch 2 done train_loss=0.686916 train_acc=0.5422 val_loss=0.687100 val_acc=0.5547 val_sharpe=4.8117 elapsed_s=1670.9
+[2026-05-19 18:26:18] [trend:lstm] epoch 3/80 started
+[2026-05-19 18:26:19] [trend:lstm] epoch 3 batch 1/4636 loss=0.692374 lr=0.000299538 batch_s=0.350 eta_s=1623
+[2026-05-19 18:26:53] [trend:lstm] epoch 3 batch 100/4636 loss=0.687891 lr=0.000299538 batch_s=0.346 eta_s=1571
+[2026-05-19 18:27:27] [trend:lstm] epoch 3 batch 200/4636 loss=0.698643 lr=0.000299538 batch_s=0.345 eta_s=1532
+[2026-05-19 18:28:02] [trend:lstm] epoch 3 batch 300/4636 loss=0.690126 lr=0.000299538 batch_s=0.346 eta_s=1500
+[2026-05-19 18:28:37] [trend:lstm] epoch 3 batch 400/4636 loss=0.678859 lr=0.000299538 batch_s=0.346 eta_s=1466
+[2026-05-19 18:29:11] [trend:lstm] epoch 3 batch 500/4636 loss=0.681242 lr=0.000299538 batch_s=0.346 eta_s=1431
+[2026-05-19 18:29:46] [trend:lstm] epoch 3 batch 600/4636 loss=0.671406 lr=0.000299538 batch_s=0.346 eta_s=1397
+[2026-05-19 18:30:21] [trend:lstm] epoch 3 batch 700/4636 loss=0.700242 lr=0.000299538 batch_s=0.346 eta_s=1363
+[2026-05-19 18:30:55] [trend:lstm] epoch 3 batch 800/4636 loss=0.685864 lr=0.000299538 batch_s=0.346 eta_s=1328
+[2026-05-19 18:31:30] [trend:lstm] epoch 3 batch 900/4636 loss=0.674849 lr=0.000299538 batch_s=0.346 eta_s=1293
+[2026-05-19 18:32:04] [trend:lstm] epoch 3 batch 1000/4636 loss=0.736883 lr=0.000299538 batch_s=0.346 eta_s=1258
+[2026-05-19 18:32:39] [trend:lstm] epoch 3 batch 1100/4636 loss=0.686418 lr=0.000299538 batch_s=0.346 eta_s=1224
+[2026-05-19 18:33:14] [trend:lstm] epoch 3 batch 1200/4636 loss=0.686090 lr=0.000299538 batch_s=0.346 eta_s=1190
+[2026-05-19 18:33:48] [trend:lstm] epoch 3 batch 1300/4636 loss=0.696759 lr=0.000299538 batch_s=0.346 eta_s=1155
+[2026-05-19 18:34:23] [trend:lstm] epoch 3 batch 1400/4636 loss=0.678515 lr=0.000299538 batch_s=0.346 eta_s=1121
+[2026-05-19 18:34:58] [trend:lstm] epoch 3 batch 1500/4636 loss=0.675794 lr=0.000299538 batch_s=0.346 eta_s=1086
+[2026-05-19 18:35:32] [trend:lstm] epoch 3 batch 1600/4636 loss=0.698048 lr=0.000299538 batch_s=0.346 eta_s=1052
+[2026-05-19 18:36:07] [trend:lstm] epoch 3 batch 1700/4636 loss=0.703410 lr=0.000299538 batch_s=0.346 eta_s=1017
+[2026-05-19 18:36:42] [trend:lstm] epoch 3 batch 1800/4636 loss=0.695425 lr=0.000299538 batch_s=0.346 eta_s=983
+[2026-05-19 18:37:17] [trend:lstm] epoch 3 batch 1900/4636 loss=0.683769 lr=0.000299538 batch_s=0.346 eta_s=948
+[2026-05-19 18:37:51] [trend:lstm] epoch 3 batch 2000/4636 loss=0.691594 lr=0.000299538 batch_s=0.346 eta_s=913
+[2026-05-19 18:38:26] [trend:lstm] epoch 3 batch 2100/4636 loss=0.688772 lr=0.000299538 batch_s=0.346 eta_s=878
+[2026-05-19 18:39:00] [trend:lstm] epoch 3 batch 2200/4636 loss=0.691360 lr=0.000299538 batch_s=0.346 eta_s=844
+[2026-05-19 18:39:35] [trend:lstm] epoch 3 batch 2300/4636 loss=0.693765 lr=0.000299538 batch_s=0.346 eta_s=809
+[2026-05-19 18:40:10] [trend:lstm] epoch 3 batch 2400/4636 loss=0.692805 lr=0.000299538 batch_s=0.346 eta_s=775
+[2026-05-19 18:40:44] [trend:lstm] epoch 3 batch 2500/4636 loss=0.671072 lr=0.000299538 batch_s=0.346 eta_s=740
+[2026-05-19 18:41:19] [trend:lstm] epoch 3 batch 2600/4636 loss=0.676638 lr=0.000299538 batch_s=0.346 eta_s=705
+[2026-05-19 18:41:54] [trend:lstm] epoch 3 batch 2700/4636 loss=0.628159 lr=0.000299538 batch_s=0.346 eta_s=671
+[2026-05-19 18:42:28] [trend:lstm] epoch 3 batch 2800/4636 loss=0.726985 lr=0.000299538 batch_s=0.346 eta_s=636
+[2026-05-19 18:43:03] [trend:lstm] epoch 3 batch 2900/4636 loss=0.685307 lr=0.000299538 batch_s=0.346 eta_s=602
+[2026-05-19 18:43:38] [trend:lstm] epoch 3 batch 3000/4636 loss=0.695876 lr=0.000299538 batch_s=0.347 eta_s=567
+[2026-05-19 18:44:13] [trend:lstm] epoch 3 batch 3100/4636 loss=0.691955 lr=0.000299538 batch_s=0.347 eta_s=532
+[2026-05-19 18:44:47] [trend:lstm] epoch 3 batch 3200/4636 loss=0.697191 lr=0.000299538 batch_s=0.347 eta_s=498
+[2026-05-19 18:45:22] [trend:lstm] epoch 3 batch 3300/4636 loss=0.692137 lr=0.000299538 batch_s=0.347 eta_s=463
+[2026-05-19 18:45:57] [trend:lstm] epoch 3 batch 3400/4636 loss=0.690056 lr=0.000299538 batch_s=0.347 eta_s=428
+[2026-05-19 18:46:31] [trend:lstm] epoch 3 batch 3500/4636 loss=0.690051 lr=0.000299538 batch_s=0.347 eta_s=394
+[2026-05-19 18:47:06] [trend:lstm] epoch 3 batch 3600/4636 loss=0.678945 lr=0.000299538 batch_s=0.347 eta_s=359
+[2026-05-19 18:47:41] [trend:lstm] epoch 3 batch 3700/4636 loss=0.686098 lr=0.000299538 batch_s=0.347 eta_s=324
+[2026-05-19 18:48:16] [trend:lstm] epoch 3 batch 3800/4636 loss=0.691655 lr=0.000299538 batch_s=0.347 eta_s=290
+[2026-05-19 18:48:50] [trend:lstm] epoch 3 batch 3900/4636 loss=0.697689 lr=0.000299538 batch_s=0.347 eta_s=255
+[2026-05-19 18:49:25] [trend:lstm] epoch 3 batch 4000/4636 loss=0.572672 lr=0.000299538 batch_s=0.347 eta_s=221
+[2026-05-19 18:50:00] [trend:lstm] epoch 3 batch 4100/4636 loss=0.722366 lr=0.000299538 batch_s=0.347 eta_s=186
+[2026-05-19 18:50:35] [trend:lstm] epoch 3 batch 4200/4636 loss=0.651786 lr=0.000299538 batch_s=0.347 eta_s=151
+[2026-05-19 18:51:09] [trend:lstm] epoch 3 batch 4300/4636 loss=0.704830 lr=0.000299538 batch_s=0.347 eta_s=116
+[2026-05-19 18:51:44] [trend:lstm] epoch 3 batch 4400/4636 loss=0.686491 lr=0.000299538 batch_s=0.347 eta_s=82
+[2026-05-19 18:52:19] [trend:lstm] epoch 3 batch 4500/4636 loss=0.688470 lr=0.000299538 batch_s=0.347 eta_s=47
+[2026-05-19 18:52:53] [trend:lstm] epoch 3 batch 4600/4636 loss=0.678639 lr=0.000299538 batch_s=0.347 eta_s=12
+[2026-05-19 18:53:06] [trend:lstm] epoch 3 batch 4636/4636 loss=0.687684 lr=0.000299538 batch_s=0.347 eta_s=0
+[2026-05-19 18:54:18] [trend:lstm] epoch 3 done train_loss=0.687133 train_acc=0.5422 val_loss=0.686792 val_acc=0.5560 val_sharpe=4.8635 elapsed_s=1679.7
+[2026-05-19 18:54:18] [trend:lstm] epoch 4/80 started
+[2026-05-19 18:54:18] [trend:lstm] epoch 4 batch 1/4636 loss=0.687458 lr=0.00029896 batch_s=0.358 eta_s=1661
+[2026-05-19 18:54:53] [trend:lstm] epoch 4 batch 100/4636 loss=0.682739 lr=0.00029896 batch_s=0.347 eta_s=1572
+[2026-05-19 18:55:27] [trend:lstm] epoch 4 batch 200/4636 loss=0.702411 lr=0.00029896 batch_s=0.347 eta_s=1538
+[2026-05-19 18:56:02] [trend:lstm] epoch 4 batch 300/4636 loss=0.691621 lr=0.00029896 batch_s=0.347 eta_s=1505
+[2026-05-19 18:56:37] [trend:lstm] epoch 4 batch 400/4636 loss=0.679063 lr=0.00029896 batch_s=0.347 eta_s=1471
+[2026-05-19 18:57:12] [trend:lstm] epoch 4 batch 500/4636 loss=0.684000 lr=0.00029896 batch_s=0.347 eta_s=1436
+[2026-05-19 18:57:46] [trend:lstm] epoch 4 batch 600/4636 loss=0.670088 lr=0.00029896 batch_s=0.347 eta_s=1400
+[2026-05-19 18:58:21] [trend:lstm] epoch 4 batch 700/4636 loss=0.699630 lr=0.00029896 batch_s=0.347 eta_s=1366
+[2026-05-19 18:58:56] [trend:lstm] epoch 4 batch 800/4636 loss=0.685207 lr=0.00029896 batch_s=0.347 eta_s=1332
+[2026-05-19 18:59:30] [trend:lstm] epoch 4 batch 900/4636 loss=0.672948 lr=0.00029896 batch_s=0.347 eta_s=1297
+[2026-05-19 19:00:05] [trend:lstm] epoch 4 batch 1000/4636 loss=0.736483 lr=0.00029896 batch_s=0.347 eta_s=1262
+[2026-05-19 19:00:40] [trend:lstm] epoch 4 batch 1100/4636 loss=0.690710 lr=0.00029896 batch_s=0.347 eta_s=1227
+[2026-05-19 19:01:14] [trend:lstm] epoch 4 batch 1200/4636 loss=0.683723 lr=0.00029896 batch_s=0.347 eta_s=1191
+[2026-05-19 19:01:48] [trend:lstm] epoch 4 batch 1300/4636 loss=0.694711 lr=0.00029896 batch_s=0.346 eta_s=1156
+[2026-05-19 19:02:23] [trend:lstm] epoch 4 batch 1400/4636 loss=0.674309 lr=0.00029896 batch_s=0.346 eta_s=1120
+[2026-05-19 19:02:57] [trend:lstm] epoch 4 batch 1500/4636 loss=0.675410 lr=0.00029896 batch_s=0.346 eta_s=1085
+[2026-05-19 19:03:31] [trend:lstm] epoch 4 batch 1600/4636 loss=0.701052 lr=0.00029896 batch_s=0.346 eta_s=1050
+[2026-05-19 19:04:06] [trend:lstm] epoch 4 batch 1700/4636 loss=0.700105 lr=0.00029896 batch_s=0.346 eta_s=1015
+[2026-05-19 19:04:40] [trend:lstm] epoch 4 batch 1800/4636 loss=0.695276 lr=0.00029896 batch_s=0.346 eta_s=981
+[2026-05-19 19:05:15] [trend:lstm] epoch 4 batch 1900/4636 loss=0.682083 lr=0.00029896 batch_s=0.346 eta_s=945
+[2026-05-19 19:05:49] [trend:lstm] epoch 4 batch 2000/4636 loss=0.690791 lr=0.00029896 batch_s=0.345 eta_s=911
+[2026-05-19 19:06:23] [trend:lstm] epoch 4 batch 2100/4636 loss=0.687928 lr=0.00029896 batch_s=0.345 eta_s=876
+[2026-05-19 19:06:57] [trend:lstm] epoch 4 batch 2200/4636 loss=0.690422 lr=0.00029896 batch_s=0.345 eta_s=841
+[2026-05-19 19:07:32] [trend:lstm] epoch 4 batch 2300/4636 loss=0.693054 lr=0.00029896 batch_s=0.345 eta_s=806
+[2026-05-19 19:08:06] [trend:lstm] epoch 4 batch 2400/4636 loss=0.692685 lr=0.00029896 batch_s=0.345 eta_s=771
+[2026-05-19 19:08:40] [trend:lstm] epoch 4 batch 2500/4636 loss=0.675321 lr=0.00029896 batch_s=0.345 eta_s=737
+[2026-05-19 19:09:14] [trend:lstm] epoch 4 batch 2600/4636 loss=0.676559 lr=0.00029896 batch_s=0.345 eta_s=702
+[2026-05-19 19:09:49] [trend:lstm] epoch 4 batch 2700/4636 loss=0.632017 lr=0.00029896 batch_s=0.345 eta_s=667
+[2026-05-19 19:10:23] [trend:lstm] epoch 4 batch 2800/4636 loss=0.731943 lr=0.00029896 batch_s=0.345 eta_s=633
+[2026-05-19 19:10:57] [trend:lstm] epoch 4 batch 2900/4636 loss=0.687417 lr=0.00029896 batch_s=0.345 eta_s=598
+[2026-05-19 19:11:32] [trend:lstm] epoch 4 batch 3000/4636 loss=0.694219 lr=0.00029896 batch_s=0.345 eta_s=564
+[2026-05-19 19:12:06] [trend:lstm] epoch 4 batch 3100/4636 loss=0.693440 lr=0.00029896 batch_s=0.344 eta_s=529
+[2026-05-19 19:12:40] [trend:lstm] epoch 4 batch 3200/4636 loss=0.698664 lr=0.00029896 batch_s=0.344 eta_s=495
+[2026-05-19 19:13:14] [trend:lstm] epoch 4 batch 3300/4636 loss=0.692123 lr=0.00029896 batch_s=0.344 eta_s=460
+[2026-05-19 19:13:49] [trend:lstm] epoch 4 batch 3400/4636 loss=0.689784 lr=0.00029896 batch_s=0.344 eta_s=426
+[2026-05-19 19:14:23] [trend:lstm] epoch 4 batch 3500/4636 loss=0.691315 lr=0.00029896 batch_s=0.344 eta_s=391
+[2026-05-19 19:14:57] [trend:lstm] epoch 4 batch 3600/4636 loss=0.680695 lr=0.00029896 batch_s=0.344 eta_s=357
+[2026-05-19 19:15:31] [trend:lstm] epoch 4 batch 3700/4636 loss=0.686546 lr=0.00029896 batch_s=0.344 eta_s=322
+[2026-05-19 19:16:06] [trend:lstm] epoch 4 batch 3800/4636 loss=0.691044 lr=0.00029896 batch_s=0.344 eta_s=288
+[2026-05-19 19:16:40] [trend:lstm] epoch 4 batch 3900/4636 loss=0.698580 lr=0.00029896 batch_s=0.344 eta_s=253
+[2026-05-19 19:17:14] [trend:lstm] epoch 4 batch 4000/4636 loss=0.580267 lr=0.00029896 batch_s=0.344 eta_s=219
+[2026-05-19 19:17:48] [trend:lstm] epoch 4 batch 4100/4636 loss=0.719548 lr=0.00029896 batch_s=0.344 eta_s=184
+[2026-05-19 19:18:22] [trend:lstm] epoch 4 batch 4200/4636 loss=0.658528 lr=0.00029896 batch_s=0.344 eta_s=150
+[2026-05-19 19:18:57] [trend:lstm] epoch 4 batch 4300/4636 loss=0.707521 lr=0.00029896 batch_s=0.344 eta_s=116
+[2026-05-19 19:19:28] [trend:lstm] epoch 4 batch 4400/4636 loss=0.684242 lr=0.00029896 batch_s=0.343 eta_s=81
+[2026-05-19 19:20:00] [trend:lstm] epoch 4 batch 4500/4636 loss=0.688354 lr=0.00029896 batch_s=0.343 eta_s=47
+[2026-05-19 19:20:32] [trend:lstm] epoch 4 batch 4600/4636 loss=0.680867 lr=0.00029896 batch_s=0.342 eta_s=12
+[2026-05-19 19:20:43] [trend:lstm] epoch 4 batch 4636/4636 loss=0.687532 lr=0.00029896 batch_s=0.342 eta_s=0
+
+# Exit code: 4294967295
+# Finished: 2026-05-19 12:21:44

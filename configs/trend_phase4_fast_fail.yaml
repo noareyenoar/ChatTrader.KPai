@@ -1,0 +1,74 @@
+# Trend Phase 4 — Fast-Fail Agile Config v2
+# ===========================================
+# Key changes vs trend_phase4.yaml:
+#   horizon 5→20: larger fwd-return per trade so 0.04% cost is ~2.6x not 10x
+#   fast_fail_epoch: 30 — abort if val_sharpe < 0.2 at epoch 30
+#   fast_fail_min_sharpe: 0.2
+#   Activations: LeakyReLU (patched in trend_models.py)
+#   Gradient clipping: max_norm=1.0 (already in training loop)
+#   Scheduler: CosineAnnealingLR (already in training loop)
+#   Models order: TCN first (skip LSTM, run Transformer second)
+#   LSTM excluded: ran 79 epochs with broken evaluator — retrain fresh after pipeline fix
+#   pos_weight added for label imbalance (labels ~48% up → weight ~1.09)
+#
+# Data diagnosis:
+#   Root cause of val_sharpe=-12: evaluate_model was subtracting ROUND_TRIP_COST
+#   on EVERY rolling window (stride=1) instead of only on signal direction changes.
+#   Fix applied to trend_training.py evaluate_model(). Models now see correct Sharpe.
+
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 96
+  horizon: 20
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  seq_len: 96
+  preferred_backend: directml
+  batch_size: 2048
+  directml_max_batch_size: 256
+  max_epochs: 150
+  patience: 20
+  lr: 0.0003
+  weight_decay: 0.002
+  num_workers: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  resume_from_checkpoint: false
+  checkpoint_root: models/checkpoints/trend
+  tensorboard_root: models/tensorboard/trend
+  # Fast-Fail gate: abort at epoch 30 if val_sharpe < threshold
+  fast_fail_epoch: 30
+  fast_fail_min_sharpe: 0.2
+  divergence_threshold: 0.2
+  overfit_alert_epoch: 30
+  overfit_alert_min_val_sharpe: 0.2
+  overfit_loss_ratio_max: 0.85
+  auto_regularize_on_divergence: true
+  auto_dropout_step: 0.10
+  auto_max_dropout: 0.50
+  auto_weight_decay_multiplier: 2.0
+  auto_simplify_architecture: true
+  # Sequence augmentation (already implemented)
+  use_sequence_augmentation: true
+  augmentation_mask_prob: 0.02
+  augmentation_time_warp: 0.05
+
+models:
+  tcn:
+    channels: 96
+    dropout: 0.4
+  transformer:
+    d_model: 128
+    nhead: 4
+    num_layers: 3
+    dropout: 0.4
+  lstm:
+    hidden_size: 192
+    num_layers: 2
+    dropout: 0.4

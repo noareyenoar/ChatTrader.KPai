@@ -1,9 +1,9 @@
 # ChatTrader.KPai — Models Handbook V2
 ## Production-Grade Specification & Deployment Manual
 
-**Version:** 2.0 (Production)  
-**Release Date:** April 30, 2026  
-**Scope:** All 18 neural network models + execution, risk, and ensemble systems  
+**Version:** 2.1 (Production)  
+**Release Date:** April 30, 2026 | **Updated:** May 19, 2026 (APV-PLN added)  
+**Scope:** All 18 neural network models + APV-PLN (Archetype VII) + execution, risk, and ensemble systems  
 **Audience:** Traders, quant engineers, AI agents, compliance, and risk management  
 **Status:** CRITICAL SYSTEM UPGRADE — From research prototype to institutional deployment
 
@@ -1898,3 +1898,124 @@ The system is designed to operate autonomously while remaining under human contr
 **Report Prepared**: April 30, 2026  
 **Status**: PRODUCTION SPECIFICATION FINALIZED  
 **Next Action**: Initiate extended training pipeline with V2 specifications
+
+
+---
+
+## APV-PLN — Archetype VII: Probabilistic Trend & Regime Learner
+
+> **Added to V2 Handbook:** May 19, 2026
+
+### Model Specification
+
+| Field | Value |
+|---|---|
+| **Model Name** | Adaptive Price-Volume Probabilistic Learner Network (APV-PLN) |
+| **Short Name** | APV-PLN |
+| **Type / Archetype** | Probabilistic Trend & Regime Learner |
+| **Training Type** | Privileged Information Distillation (Oracle-Teacher / LUPI) |
+| **Module** | \quant_core.apv_pln_models.APVPLNModel\ |
+| **Launcher** | \python -m quant_core.train_apv_pln_phase4\ |
+| **Config** | \configs/apv_pln_phase4.yaml\ |
+| **Checkpoint Root** | \models/checkpoints/apv_pln/APV_PLN_<variant>/\ |
+| **Registry Key** | \pv_pln\ |
+
+---
+
+### Input Specifications
+
+**Price Stream** \[B, seq_len=32, 5]
+| Feature | Description |
+|---|---|
+| \log_return\ | log(close_t / close_{t-1}) |
+| \zscore_close_64\ | Rolling z-score of close, window 64 |
+| \ema_spread\ | EMA(12) - EMA(26) |
+| \tr_14\ | Average True Range, window 14 |
+| \price_slope_20\ | (close - close.shift(20)) / 20 |
+
+**Volume Stream** \[B, seq_len=32, 5]
+| Feature | Description |
+|---|---|
+| \log_volume\ | log1p(volume) |
+| \olume_zscore_64\ | Rolling z-score of log_volume, window 64 |
+| \	aker_buy_ratio\ | taker_buy_base / volume (buying pressure) |
+| \wap_deviation\ | (close - VWAP) / (ATR + eps) |
+| \ol_imbalance\ | (vol_up - vol_dn) / (vol_up + vol_dn + eps) |
+
+**Oracle Stream** \[B, horizon=5, 2]\ — **Training Only (LUPI)**
+
+| Feature | Description |
+|---|---|
+| \log_return\ | Future bar log-return (privileged) |
+| \log_volume\ | Future bar log-volume (privileged) |
+
+All features strictly causal. Scaler fit on training split only.
+
+---
+
+### Output Specifications
+
+**Discrete Probability Distribution** \[B, num_bins=51]
+- **51 bins** covering the 0.5th-99.5th percentile of training forward returns
+- Typical bounds: bin_min approx -0.030, bin_max approx +0.032 (5-bar horizon, 5-min Binance OHLCV)
+- Bin width: approx 0.0012 per bin
+- Bin centres saved in \in_meta.pt\ alongside model weights
+- **Expected return** = (softmax(logits) x bin_centres).sum()
+- **Direction signal** = sign(expected_return)
+- **Confidence** = max(softmax(logits))
+
+---
+
+### Architecture
+
+Price CNN (2x Conv1D+LN+LReLU) + Volume CNN (2x Conv1D+LN+LReLU) with cross-attention between streams, adaptive gate, and 51-bin head.
+Oracle Teacher: ManualLSTM over 5 future bars -> 51-bin softmax (train only).
+Loss: L = alpha*CE(student_logits, y_bin) + beta*T^2*KL(student/T || oracle/T); alpha=beta=0.5, T=2.0
+
+---
+
+### Oracle Isolation Contract
+
+| Phase | Oracle Teacher | Loss | Batch Shape |
+|---|---|---|---|
+| train | CALLED | alpha*CE + beta*KL | (x_price, x_volume, y_bin, x_oracle) |
+| val | NEVER CALLED | CE only | (x_price, x_volume, y_bin) |
+| test | NEVER CALLED | CE only | (x_price, x_volume, y_bin) |
+
+---
+
+### Validation Gates
+
+| Metric | Gate |
+|---|---|
+| Test Sharpe Ratio | >= 1.2 |
+| Test Directional Accuracy | >= 55% |
+| Test Profit Factor | >= 1.5 |
+| Test Max Drawdown | <= 20% |
+| Val->Test Sharpe Decay | < 50% |
+| Val CE Loss | < 3.9 (log(51) = pure noise) |
+
+---
+
+### Model Variants
+
+| Variant | cnn_channels | nhead | dropout | Params |
+|---|---|---|---|---|
+| APV_PLN_v1 | 64 | 4 | 0.15 | ~200K |
+| APV_PLN_v2 | 128 | 4 | 0.20 | ~750K |
+| APV_PLN_v3 | 64 | 8 | 0.25 | ~210K |
+
+---
+
+### Running
+
+\\ash
+# Smoke test
+python -m quant_core.train_apv_pln_phase4 --config configs/apv_pln_phase4_smoke.yaml
+
+# Full training
+python -m quant_core.train_apv_pln_phase4 --config configs/apv_pln_phase4.yaml
+\
+---
+
+**Section Added**: May 19, 2026 | **Status**: CODE VERIFIED, SMOKE TEST PASSED, ORACLE ISOLATION CONFIRMED

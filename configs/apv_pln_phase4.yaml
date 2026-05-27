@@ -1,0 +1,65 @@
+# APV-PLN Phase-4 Full Training Config
+# Adaptive Price-Volume Probabilistic Learner Network
+# Architecture: Dual CNN + Cross-Attention + Oracle Teacher (LUPI)
+#
+# Bin bounds: computed dynamically from train-set returns during dataset build.
+# Oracle Isolation: enforced hard in training loop — Oracle Teacher is NEVER
+#   called during val/test phases.
+
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 32
+  horizon: 5
+  num_bins: 51
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  seq_len: 32
+  horizon: 5
+  preferred_backend: directml
+  batch_size: 1024
+  directml_max_batch_size: 256
+  max_epochs: 80
+  patience: 15
+  lr: 0.001
+  weight_decay: 1e-4
+  num_workers: 0
+  num_workers_directml: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  # Knowledge Distillation loss weights
+  distill_alpha: 0.5      # CE weight
+  distill_beta: 0.5       # KL weight
+  distill_temperature: 2.0
+  # Gates
+  fast_fail_epoch: 20
+  fast_fail_min_sharpe: 0.1
+  overfit_alert_epoch: 20
+  overfit_loss_ratio_max: 0.85
+  # Paths
+  checkpoint_root: models/checkpoints/apv_pln
+  tensorboard_root: models/tensorboard/apv_pln
+
+models:
+  v1:
+    cnn_channels: 64
+    nhead: 4
+    oracle_hidden: 64
+    dropout: 0.15
+  v2:
+    cnn_channels: 128
+    nhead: 4
+    oracle_hidden: 128
+    dropout: 0.20
+  v3:
+    cnn_channels: 64
+    nhead: 8
+    oracle_hidden: 64
+    dropout: 0.25
+
+registry_path: model_registry.json
