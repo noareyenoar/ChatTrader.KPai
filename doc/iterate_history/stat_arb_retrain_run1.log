@@ -1,0 +1,958 @@
+# Training queue step 5: StatArb (LSTM/GAT/Autoencoder)
+# Started: 2026-05-28 18:45:54
+# Command: D:\kp_ai_agent\ChatTrader.KPai\.venv\Scripts\python.exe -m quant_core.train_stat_arb_phase4 --config configs/stat_arb_phase4.yaml
+
+[stat-arb-run] config=configs/stat_arb_phase4.yaml backend=cpu max_epochs=120
+[stat-arb-data] accepted_symbols=34 selected_assets=34 seq_len=128 horizon=10
+[stat-arb-data] loading 1/34 symbol=AAVEUSDT
+[stat-arb-data] fracdiff_verify symbol=AAVEUSDT rows=580675 lag1_autocorr=0.9918 std=7.835600
+[stat-arb-data] ready symbol=AAVEUSDT rows=580675
+[stat-arb-data] loading 2/34 symbol=ADAUSDT
+[stat-arb-data] fracdiff_verify symbol=ADAUSDT rows=842430 lag1_autocorr=0.9961 std=0.036580
+[stat-arb-data] warning symbol=ADAUSDT high_lag1_autocorr=0.9961; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=ADAUSDT rows=842430
+[stat-arb-data] loading 3/34 symbol=APEUSDT
+[stat-arb-data] fracdiff_verify symbol=APEUSDT rows=431624 lag1_autocorr=0.9941 std=0.207992
+[stat-arb-data] ready symbol=APEUSDT rows=431624
+[stat-arb-data] loading 4/34 symbol=API3USDT
+[stat-arb-data] fracdiff_verify symbol=API3USDT rows=447512 lag1_autocorr=0.9896 std=0.085016
+[stat-arb-data] ready symbol=API3USDT rows=447512
+[stat-arb-data] loading 5/34 symbol=AXSUSDT
+[stat-arb-data] fracdiff_verify symbol=AXSUSDT rows=574795 lag1_autocorr=0.9972 std=2.055990
+[stat-arb-data] warning symbol=AXSUSDT high_lag1_autocorr=0.9972; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=AXSUSDT rows=574795
+[stat-arb-data] loading 6/34 symbol=BARDUSDT
+[stat-arb-data] fracdiff_verify symbol=BARDUSDT rows=62754 lag1_autocorr=0.9685 std=0.017386
+[stat-arb-data] ready symbol=BARDUSDT rows=62754
+[stat-arb-data] loading 7/34 symbol=BIOUSDT
+[stat-arb-data] fracdiff_verify symbol=BIOUSDT rows=137070 lag1_autocorr=0.9915 std=0.006480
+[stat-arb-data] ready symbol=BIOUSDT rows=137070
+[stat-arb-data] loading 8/34 symbol=BNBUSDT
+[stat-arb-data] fracdiff_verify symbol=BNBUSDT rows=888632 lag1_autocorr=0.9986 std=19.945551
+[stat-arb-data] warning symbol=BNBUSDT high_lag1_autocorr=0.9986; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=BNBUSDT rows=888632
+[stat-arb-data] loading 9/34 symbol=DOGEUSDT
+[stat-arb-data] fracdiff_verify symbol=DOGEUSDT rows=715024 lag1_autocorr=0.9918 std=0.007267
+[stat-arb-data] ready symbol=DOGEUSDT rows=715024
+[stat-arb-data] loading 10/34 symbol=DUSDT
+[stat-arb-data] fracdiff_verify symbol=DUSDT rows=135366 lag1_autocorr=0.9901 std=0.001993
+[stat-arb-data] ready symbol=DUSDT rows=135366
+[stat-arb-data] loading 11/34 symbol=DYDXUSDT
+[stat-arb-data] fracdiff_verify symbol=DYDXUSDT rows=486182 lag1_autocorr=0.9944 std=0.270521
+[stat-arb-data] ready symbol=DYDXUSDT rows=486182
+[stat-arb-data] loading 12/34 symbol=ENJUSDT
+[stat-arb-data] fracdiff_verify symbol=ENJUSDT rows=737452 lag1_autocorr=0.9948 std=0.050737
+[stat-arb-data] ready symbol=ENJUSDT rows=737452
+[stat-arb-data] loading 13/34 symbol=ETHUSDT
+[stat-arb-data] fracdiff_verify symbol=ETHUSDT rows=911875 lag1_autocorr=0.9981 std=90.858035
+[stat-arb-data] warning symbol=ETHUSDT high_lag1_autocorr=0.9981; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=ETHUSDT rows=911875
+[stat-arb-data] loading 14/34 symbol=GIGGLEUSDT
+[stat-arb-data] fracdiff_verify symbol=GIGGLEUSDT rows=52158 lag1_autocorr=0.9691 std=3.241357
+[stat-arb-data] ready symbol=GIGGLEUSDT rows=52158
+[stat-arb-data] loading 15/34 symbol=NEIROUSDT
+[stat-arb-data] fracdiff_verify symbol=NEIROUSDT rows=168462 lag1_autocorr=0.9913 std=0.000041
+[stat-arb-data] ready symbol=NEIROUSDT rows=168462
+[stat-arb-data] loading 16/34 symbol=ORDIUSDT
+[stat-arb-data] fracdiff_verify symbol=ORDIUSDT rows=258870 lag1_autocorr=0.9938 std=1.562141
+[stat-arb-data] ready symbol=ORDIUSDT rows=258870
+[stat-arb-data] loading 17/34 symbol=PAXGUSDT
+[stat-arb-data] fracdiff_verify symbol=PAXGUSDT rows=594391 lag1_autocorr=0.9991 std=61.630354
+[stat-arb-data] warning symbol=PAXGUSDT high_lag1_autocorr=0.9991; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=PAXGUSDT rows=594391
+[stat-arb-data] loading 18/34 symbol=PENGUUSDT
+[stat-arb-data] fracdiff_verify symbol=PENGUUSDT rows=141918 lag1_autocorr=0.9901 std=0.000780
+[stat-arb-data] ready symbol=PENGUUSDT rows=141918
+[stat-arb-data] loading 19/34 symbol=PEPEUSDT
+[stat-arb-data] fracdiff_verify symbol=PEPEUSDT rows=312366 lag1_autocorr=0.9928 std=0.000000
+[stat-arb-data] ready symbol=PEPEUSDT rows=312366
+[stat-arb-data] loading 20/34 symbol=RUNEUSDT
+[stat-arb-data] fracdiff_verify symbol=RUNEUSDT rows=592437 lag1_autocorr=0.9925 std=0.245965
+[stat-arb-data] ready symbol=RUNEUSDT rows=592437
+[stat-arb-data] loading 21/34 symbol=SIGNUSDT
+[stat-arb-data] fracdiff_verify symbol=SIGNUSDT rows=103938 lag1_autocorr=0.9815 std=0.001508
+[stat-arb-data] ready symbol=SIGNUSDT rows=103938
+[stat-arb-data] loading 22/34 symbol=SOLUSDT
+[stat-arb-data] fracdiff_verify symbol=SOLUSDT rows=599359 lag1_autocorr=0.9968 std=5.067501
+[stat-arb-data] warning symbol=SOLUSDT high_lag1_autocorr=0.9968; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=SOLUSDT rows=599359
+[stat-arb-data] loading 23/34 symbol=SPKUSDT
+[stat-arb-data] fracdiff_verify symbol=SPKUSDT rows=89562 lag1_autocorr=0.9747 std=0.001857
+[stat-arb-data] ready symbol=SPKUSDT rows=89562
+[stat-arb-data] loading 24/34 symbol=STOUSDT
+[stat-arb-data] fracdiff_verify symbol=STOUSDT rows=102726 lag1_autocorr=0.8858 std=0.005841
+[stat-arb-data] ready symbol=STOUSDT rows=102726
+[stat-arb-data] loading 25/34 symbol=SUIUSDT
+[stat-arb-data] fracdiff_verify symbol=SUIUSDT rows=313014 lag1_autocorr=0.9945 std=0.086974
+[stat-arb-data] ready symbol=SUIUSDT rows=313014
+[stat-arb-data] loading 26/34 symbol=TAOUSDT
+[stat-arb-data] fracdiff_verify symbol=TAOUSDT rows=213942 lag1_autocorr=0.9776 std=8.091350
+[stat-arb-data] ready symbol=TAOUSDT rows=213942
+[stat-arb-data] loading 27/34 symbol=TONUSDT
+[stat-arb-data] fracdiff_verify symbol=TONUSDT rows=179694 lag1_autocorr=0.9950 std=0.113989
+[stat-arb-data] warning symbol=TONUSDT high_lag1_autocorr=0.9950; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=TONUSDT rows=179694
+[stat-arb-data] loading 28/34 symbol=TRUMPUSDT
+[stat-arb-data] fracdiff_verify symbol=TRUMPUSDT rows=132480 lag1_autocorr=0.9791 std=0.382330
+[stat-arb-data] ready symbol=TRUMPUSDT rows=132480
+[stat-arb-data] loading 29/34 symbol=TRXUSDT
+[stat-arb-data] fracdiff_verify symbol=TRXUSDT rows=826500 lag1_autocorr=0.9992 std=0.006665
+[stat-arb-data] warning symbol=TRXUSDT high_lag1_autocorr=0.9992; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=TRXUSDT rows=826500
+[stat-arb-data] loading 30/34 symbol=USD1USDT
+[stat-arb-data] fracdiff_verify symbol=USD1USDT rows=97014 lag1_autocorr=0.4589 std=0.000101
+[stat-arb-data] ready symbol=USD1USDT rows=97014
+[stat-arb-data] loading 31/34 symbol=WALUSDT
+[stat-arb-data] fracdiff_verify symbol=WALUSDT rows=56460 lag1_autocorr=0.9872 std=0.004070
+[stat-arb-data] ready symbol=WALUSDT rows=56460
+[stat-arb-data] loading 32/34 symbol=WLFIUSDT
+[stat-arb-data] fracdiff_verify symbol=WLFIUSDT rows=67626 lag1_autocorr=0.9724 std=0.002908
+[stat-arb-data] ready symbol=WLFIUSDT rows=67626
+[stat-arb-data] loading 33/34 symbol=XRPUSDT
+[stat-arb-data] fracdiff_verify symbol=XRPUSDT rows=837484 lag1_autocorr=0.9973 std=0.053141
+[stat-arb-data] warning symbol=XRPUSDT high_lag1_autocorr=0.9973; continuing because fracdiff column and variance checks passed
+[stat-arb-data] ready symbol=XRPUSDT rows=837484
+[stat-arb-data] loading 34/34 symbol=ZECUSDT
+[stat-arb-data] fracdiff_verify symbol=ZECUSDT rows=745516 lag1_autocorr=0.9936 std=6.840310
+[stat-arb-data] ready symbol=ZECUSDT rows=745516
+[stat-arb-data] aligned_rows=52158 assets=34 feat_per_asset=3 total_features=102
+[stat-arb-data] datasets complete train=34872 val=7352 test=7352
+[stat-arb-run] datasets ready train=34872 val=7352 test=7352 assets=102 seq_len=128
+[stat-arb-run] launching model=autoencoder
+[stat-arb:autoencoder] start backend=cpu device=cpu train=34872 val=7352 test=7352 batch_size=256 num_workers=0
+[stat-arb:autoencoder] sanity-check passed
+[stat-arb:autoencoder] epoch 1/120 started
+[stat-arb:autoencoder] epoch 1 batch 1/137 loss=1.114708
+[stat-arb:autoencoder] epoch 1 batch 100/137 loss=0.278818
+[stat-arb:autoencoder] epoch 1 batch 137/137 loss=0.280097
+[stat-arb:autoencoder] epoch 1 done train_loss=0.366105 val_loss=1.258382 val_mae=0.9841 val_sharpe=6.2860 elapsed_s=133.5
+[stat-arb:autoencoder] checkpoint saved val_loss=1.258382
+[stat-arb:autoencoder] epoch 2/120 started
+[stat-arb:autoencoder] epoch 2 batch 1/137 loss=0.255540
+[stat-arb:autoencoder] epoch 2 batch 100/137 loss=0.264840
+[stat-arb:autoencoder] epoch 2 batch 137/137 loss=0.267236
+[stat-arb:autoencoder] epoch 2 done train_loss=0.256413 val_loss=1.245371 val_mae=0.9842 val_sharpe=6.2860 elapsed_s=134.1
+[stat-arb:autoencoder] checkpoint saved val_loss=1.245371
+[stat-arb:autoencoder] epoch 3/120 started
+[stat-arb:autoencoder] epoch 3 batch 1/137 loss=0.258113
+[stat-arb:autoencoder] epoch 3 batch 100/137 loss=0.235860
+[stat-arb:autoencoder] epoch 3 batch 137/137 loss=0.231586
+[stat-arb:autoencoder] epoch 3 done train_loss=0.240386 val_loss=1.121055 val_mae=0.9198 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=3 last_val_sharpe=6.285983
+[stat-arb:autoencoder] checkpoint saved val_loss=1.121055
+[stat-arb:autoencoder] epoch 4/120 started
+[stat-arb:autoencoder] epoch 4 batch 1/137 loss=0.223139
+[stat-arb:autoencoder] epoch 4 batch 100/137 loss=0.236321
+[stat-arb:autoencoder] epoch 4 batch 137/137 loss=0.221251
+[stat-arb:autoencoder] epoch 4 done train_loss=0.228507 val_loss=1.165057 val_mae=0.9502 val_sharpe=6.2860 elapsed_s=134.1
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=4 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 5/120 started
+[stat-arb:autoencoder] epoch 5 batch 1/137 loss=0.216750
+[stat-arb:autoencoder] epoch 5 batch 100/137 loss=0.215402
+[stat-arb:autoencoder] epoch 5 batch 137/137 loss=0.210158
+[stat-arb:autoencoder] epoch 5 done train_loss=0.221091 val_loss=1.170269 val_mae=0.9445 val_sharpe=6.2860 elapsed_s=133.7
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=5 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 6/120 started
+[stat-arb:autoencoder] epoch 6 batch 1/137 loss=0.203149
+[stat-arb:autoencoder] epoch 6 batch 100/137 loss=0.221472
+[stat-arb:autoencoder] epoch 6 batch 137/137 loss=0.231539
+[stat-arb:autoencoder] epoch 6 done train_loss=0.217421 val_loss=1.158005 val_mae=0.9450 val_sharpe=6.2860 elapsed_s=134.8
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=6 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 7/120 started
+[stat-arb:autoencoder] epoch 7 batch 1/137 loss=0.217867
+[stat-arb:autoencoder] epoch 7 batch 100/137 loss=0.208505
+[stat-arb:autoencoder] epoch 7 batch 137/137 loss=0.203410
+[stat-arb:autoencoder] epoch 7 done train_loss=0.213929 val_loss=1.111787 val_mae=0.9198 val_sharpe=6.2860 elapsed_s=134.0
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=7 last_val_sharpe=6.285983
+[stat-arb:autoencoder] checkpoint saved val_loss=1.111787
+[stat-arb:autoencoder] epoch 8/120 started
+[stat-arb:autoencoder] epoch 8 batch 1/137 loss=0.211290
+[stat-arb:autoencoder] epoch 8 batch 100/137 loss=0.206324
+[stat-arb:autoencoder] epoch 8 batch 137/137 loss=0.205873
+[stat-arb:autoencoder] epoch 8 done train_loss=0.211659 val_loss=1.158307 val_mae=0.9510 val_sharpe=6.2860 elapsed_s=134.0
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=8 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 9/120 started
+[stat-arb:autoencoder] epoch 9 batch 1/137 loss=0.209935
+[stat-arb:autoencoder] epoch 9 batch 100/137 loss=0.213136
+[stat-arb:autoencoder] epoch 9 batch 137/137 loss=0.195404
+[stat-arb:autoencoder] epoch 9 done train_loss=0.210223 val_loss=1.146218 val_mae=0.9450 val_sharpe=6.2860 elapsed_s=134.2
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=9 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 10/120 started
+[stat-arb:autoencoder] epoch 10 batch 1/137 loss=0.208863
+[stat-arb:autoencoder] epoch 10 batch 100/137 loss=0.204958
+[stat-arb:autoencoder] epoch 10 batch 137/137 loss=0.208550
+[stat-arb:autoencoder] epoch 10 done train_loss=0.208745 val_loss=1.141679 val_mae=0.9445 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=10 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 11/120 started
+[stat-arb:autoencoder] epoch 11 batch 1/137 loss=0.210972
+[stat-arb:autoencoder] epoch 11 batch 100/137 loss=0.204761
+[stat-arb:autoencoder] epoch 11 batch 137/137 loss=0.211707
+[stat-arb:autoencoder] epoch 11 done train_loss=0.207155 val_loss=1.180004 val_mae=0.9540 val_sharpe=6.2860 elapsed_s=134.2
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=11 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 12/120 started
+[stat-arb:autoencoder] epoch 12 batch 1/137 loss=0.215225
+[stat-arb:autoencoder] epoch 12 batch 100/137 loss=0.202572
+[stat-arb:autoencoder] epoch 12 batch 137/137 loss=0.209551
+[stat-arb:autoencoder] epoch 12 done train_loss=0.206427 val_loss=1.170117 val_mae=0.9534 val_sharpe=6.2860 elapsed_s=133.4
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=12 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 13/120 started
+[stat-arb:autoencoder] epoch 13 batch 1/137 loss=0.197566
+[stat-arb:autoencoder] epoch 13 batch 100/137 loss=0.212562
+[stat-arb:autoencoder] epoch 13 batch 137/137 loss=0.182341
+[stat-arb:autoencoder] epoch 13 done train_loss=0.205244 val_loss=1.185818 val_mae=0.9637 val_sharpe=6.2860 elapsed_s=133.7
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=13 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 14/120 started
+[stat-arb:autoencoder] epoch 14 batch 1/137 loss=0.203322
+[stat-arb:autoencoder] epoch 14 batch 100/137 loss=0.198849
+[stat-arb:autoencoder] epoch 14 batch 137/137 loss=0.190188
+[stat-arb:autoencoder] epoch 14 done train_loss=0.204677 val_loss=1.043303 val_mae=0.8855 val_sharpe=6.2860 elapsed_s=133.0
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=14 last_val_sharpe=6.285983
+[stat-arb:autoencoder] checkpoint saved val_loss=1.043303
+[stat-arb:autoencoder] epoch 15/120 started
+[stat-arb:autoencoder] epoch 15 batch 1/137 loss=0.197958
+[stat-arb:autoencoder] epoch 15 batch 100/137 loss=0.201560
+[stat-arb:autoencoder] epoch 15 batch 137/137 loss=0.192570
+[stat-arb:autoencoder] epoch 15 done train_loss=0.204185 val_loss=1.078511 val_mae=0.9041 val_sharpe=6.2860 elapsed_s=133.6
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=15 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 16/120 started
+[stat-arb:autoencoder] epoch 16 batch 1/137 loss=0.206393
+[stat-arb:autoencoder] epoch 16 batch 100/137 loss=0.206692
+[stat-arb:autoencoder] epoch 16 batch 137/137 loss=0.217568
+[stat-arb:autoencoder] epoch 16 done train_loss=0.203772 val_loss=1.082523 val_mae=0.9064 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=16 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 17/120 started
+[stat-arb:autoencoder] epoch 17 batch 1/137 loss=0.205921
+[stat-arb:autoencoder] epoch 17 batch 100/137 loss=0.205593
+[stat-arb:autoencoder] epoch 17 batch 137/137 loss=0.190629
+[stat-arb:autoencoder] epoch 17 done train_loss=0.203115 val_loss=1.138511 val_mae=0.9424 val_sharpe=6.2860 elapsed_s=133.7
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=17 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 18/120 started
+[stat-arb:autoencoder] epoch 18 batch 1/137 loss=0.209296
+[stat-arb:autoencoder] epoch 18 batch 100/137 loss=0.200648
+[stat-arb:autoencoder] epoch 18 batch 137/137 loss=0.206260
+[stat-arb:autoencoder] epoch 18 done train_loss=0.202635 val_loss=1.045096 val_mae=0.8954 val_sharpe=6.2860 elapsed_s=134.2
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=18 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 19/120 started
+[stat-arb:autoencoder] epoch 19 batch 1/137 loss=0.202051
+[stat-arb:autoencoder] epoch 19 batch 100/137 loss=0.204652
+[stat-arb:autoencoder] epoch 19 batch 137/137 loss=0.226212
+[stat-arb:autoencoder] epoch 19 done train_loss=0.202373 val_loss=1.112244 val_mae=0.9261 val_sharpe=6.2860 elapsed_s=133.4
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=19 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 20/120 started
+[stat-arb:autoencoder] epoch 20 batch 1/137 loss=0.205867
+[stat-arb:autoencoder] epoch 20 batch 100/137 loss=0.200362
+[stat-arb:autoencoder] epoch 20 batch 137/137 loss=0.256059
+[stat-arb:autoencoder] epoch 20 done train_loss=0.202542 val_loss=1.037883 val_mae=0.8818 val_sharpe=6.2860 elapsed_s=134.3
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=20 last_val_sharpe=6.285983
+[stat-arb:autoencoder] checkpoint saved val_loss=1.037883
+[stat-arb:autoencoder] epoch 21/120 started
+[stat-arb:autoencoder] epoch 21 batch 1/137 loss=0.205074
+[stat-arb:autoencoder] epoch 21 batch 100/137 loss=0.198113
+[stat-arb:autoencoder] epoch 21 batch 137/137 loss=0.195503
+[stat-arb:autoencoder] epoch 21 done train_loss=0.201647 val_loss=1.132466 val_mae=0.9324 val_sharpe=6.2860 elapsed_s=133.2
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=21 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 22/120 started
+[stat-arb:autoencoder] epoch 22 batch 1/137 loss=0.198253
+[stat-arb:autoencoder] epoch 22 batch 100/137 loss=0.199169
+[stat-arb:autoencoder] epoch 22 batch 137/137 loss=0.197688
+[stat-arb:autoencoder] epoch 22 done train_loss=0.201188 val_loss=1.108837 val_mae=0.9274 val_sharpe=6.2860 elapsed_s=133.6
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=22 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 23/120 started
+[stat-arb:autoencoder] epoch 23 batch 1/137 loss=0.188552
+[stat-arb:autoencoder] epoch 23 batch 100/137 loss=0.190698
+[stat-arb:autoencoder] epoch 23 batch 137/137 loss=0.190484
+[stat-arb:autoencoder] epoch 23 done train_loss=0.200994 val_loss=1.111556 val_mae=0.9186 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=23 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 24/120 started
+[stat-arb:autoencoder] epoch 24 batch 1/137 loss=0.213620
+[stat-arb:autoencoder] epoch 24 batch 100/137 loss=0.203330
+[stat-arb:autoencoder] epoch 24 batch 137/137 loss=0.200209
+[stat-arb:autoencoder] epoch 24 done train_loss=0.200488 val_loss=1.066741 val_mae=0.8920 val_sharpe=6.2860 elapsed_s=133.5
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=24 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 25/120 started
+[stat-arb:autoencoder] epoch 25 batch 1/137 loss=0.203846
+[stat-arb:autoencoder] epoch 25 batch 100/137 loss=0.195709
+[stat-arb:autoencoder] epoch 25 batch 137/137 loss=0.188820
+[stat-arb:autoencoder] epoch 25 done train_loss=0.200195 val_loss=1.078283 val_mae=0.9133 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=25 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 26/120 started
+[stat-arb:autoencoder] epoch 26 batch 1/137 loss=0.194136
+[stat-arb:autoencoder] epoch 26 batch 100/137 loss=0.202681
+[stat-arb:autoencoder] epoch 26 batch 137/137 loss=0.197632
+[stat-arb:autoencoder] epoch 26 done train_loss=0.200122 val_loss=1.124919 val_mae=0.9360 val_sharpe=6.2860 elapsed_s=133.5
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=26 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 27/120 started
+[stat-arb:autoencoder] epoch 27 batch 1/137 loss=0.195738
+[stat-arb:autoencoder] epoch 27 batch 100/137 loss=0.205249
+[stat-arb:autoencoder] epoch 27 batch 137/137 loss=0.193459
+[stat-arb:autoencoder] epoch 27 done train_loss=0.199582 val_loss=1.103875 val_mae=0.9289 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=27 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 28/120 started
+[stat-arb:autoencoder] epoch 28 batch 1/137 loss=0.198133
+[stat-arb:autoencoder] epoch 28 batch 100/137 loss=0.202183
+[stat-arb:autoencoder] epoch 28 batch 137/137 loss=0.174405
+[stat-arb:autoencoder] epoch 28 done train_loss=0.199291 val_loss=1.110611 val_mae=0.9270 val_sharpe=6.2860 elapsed_s=133.2
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=28 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 29/120 started
+[stat-arb:autoencoder] epoch 29 batch 1/137 loss=0.195697
+[stat-arb:autoencoder] epoch 29 batch 100/137 loss=0.194186
+[stat-arb:autoencoder] epoch 29 batch 137/137 loss=0.187472
+[stat-arb:autoencoder] epoch 29 done train_loss=0.199076 val_loss=1.112372 val_mae=0.9292 val_sharpe=6.2860 elapsed_s=134.0
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=29 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 30/120 started
+[stat-arb:autoencoder] epoch 30 batch 1/137 loss=0.195146
+[stat-arb:autoencoder] epoch 30 batch 100/137 loss=0.192034
+[stat-arb:autoencoder] epoch 30 batch 137/137 loss=0.203354
+[stat-arb:autoencoder] epoch 30 done train_loss=0.199212 val_loss=1.133078 val_mae=0.9338 val_sharpe=6.2860 elapsed_s=133.2
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=30 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 31/120 started
+[stat-arb:autoencoder] epoch 31 batch 1/137 loss=0.192889
+[stat-arb:autoencoder] epoch 31 batch 100/137 loss=0.195473
+[stat-arb:autoencoder] epoch 31 batch 137/137 loss=0.222781
+[stat-arb:autoencoder] epoch 31 done train_loss=0.198668 val_loss=1.119112 val_mae=0.9326 val_sharpe=6.2860 elapsed_s=133.9
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=31 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 32/120 started
+[stat-arb:autoencoder] epoch 32 batch 1/137 loss=0.214642
+[stat-arb:autoencoder] epoch 32 batch 100/137 loss=0.205678
+[stat-arb:autoencoder] epoch 32 batch 137/137 loss=0.179024
+[stat-arb:autoencoder] epoch 32 done train_loss=0.198317 val_loss=1.126618 val_mae=0.9404 val_sharpe=6.2860 elapsed_s=133.8
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=32 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 33/120 started
+[stat-arb:autoencoder] epoch 33 batch 1/137 loss=0.194771
+[stat-arb:autoencoder] epoch 33 batch 100/137 loss=0.197690
+[stat-arb:autoencoder] epoch 33 batch 137/137 loss=0.205287
+[stat-arb:autoencoder] epoch 33 done train_loss=0.198968 val_loss=1.151600 val_mae=0.9562 val_sharpe=6.2860 elapsed_s=133.5
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=33 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 34/120 started
+[stat-arb:autoencoder] epoch 34 batch 1/137 loss=0.199259
+[stat-arb:autoencoder] epoch 34 batch 100/137 loss=0.195634
+[stat-arb:autoencoder] epoch 34 batch 137/137 loss=0.220681
+[stat-arb:autoencoder] epoch 34 done train_loss=0.198440 val_loss=1.087118 val_mae=0.9133 val_sharpe=6.2860 elapsed_s=133.8
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=34 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 35/120 started
+[stat-arb:autoencoder] epoch 35 batch 1/137 loss=0.195024
+[stat-arb:autoencoder] epoch 35 batch 100/137 loss=0.201379
+[stat-arb:autoencoder] epoch 35 batch 137/137 loss=0.192086
+[stat-arb:autoencoder] epoch 35 done train_loss=0.198046 val_loss=1.126995 val_mae=0.9415 val_sharpe=6.2860 elapsed_s=133.5
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=35 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 36/120 started
+[stat-arb:autoencoder] epoch 36 batch 1/137 loss=0.201784
+[stat-arb:autoencoder] epoch 36 batch 100/137 loss=0.201621
+[stat-arb:autoencoder] epoch 36 batch 137/137 loss=0.194390
+[stat-arb:autoencoder] epoch 36 done train_loss=0.197656 val_loss=1.097806 val_mae=0.9285 val_sharpe=6.2860 elapsed_s=133.8
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=36 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 37/120 started
+[stat-arb:autoencoder] epoch 37 batch 1/137 loss=0.194670
+[stat-arb:autoencoder] epoch 37 batch 100/137 loss=0.195378
+[stat-arb:autoencoder] epoch 37 batch 137/137 loss=0.193469
+[stat-arb:autoencoder] epoch 37 done train_loss=0.197408 val_loss=1.131596 val_mae=0.9373 val_sharpe=6.2860 elapsed_s=133.5
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=37 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 38/120 started
+[stat-arb:autoencoder] epoch 38 batch 1/137 loss=0.191678
+[stat-arb:autoencoder] epoch 38 batch 100/137 loss=0.195818
+[stat-arb:autoencoder] epoch 38 batch 137/137 loss=0.176060
+[stat-arb:autoencoder] epoch 38 done train_loss=0.197571 val_loss=1.131868 val_mae=0.9363 val_sharpe=6.2860 elapsed_s=134.1
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=38 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 39/120 started
+[stat-arb:autoencoder] epoch 39 batch 1/137 loss=0.199324
+[stat-arb:autoencoder] epoch 39 batch 100/137 loss=0.192881
+[stat-arb:autoencoder] epoch 39 batch 137/137 loss=0.201747
+[stat-arb:autoencoder] epoch 39 done train_loss=0.197620 val_loss=1.146749 val_mae=0.9458 val_sharpe=6.2860 elapsed_s=133.7
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=39 last_val_sharpe=6.285983
+[stat-arb:autoencoder] epoch 40/120 started
+[stat-arb:autoencoder] epoch 40 batch 1/137 loss=0.190265
+[stat-arb:autoencoder] epoch 40 batch 100/137 loss=0.197211
+[stat-arb:autoencoder] epoch 40 batch 137/137 loss=0.196071
+[stat-arb:autoencoder] epoch 40 done train_loss=0.197204 val_loss=1.090255 val_mae=0.9200 val_sharpe=6.2860 elapsed_s=133.8
+[stat-arb:autoencoder] warning sharpe_frozen_epochs=40 last_val_sharpe=6.285983
+[stat-arb:autoencoder] early-stop patience=20
+[stat-arb:autoencoder] final val_mae=0.8818 test_mae=0.8118 test_sharpe=-3.1351
+trained=Autoencoder_StatArb_v1 backend=cpu val_mae=0.8818 test_mae=0.8118 tracking_err=0.3972 is_valid=False
+[stat-arb-run] launching model=gat
+[stat-arb:gat] start backend=cpu device=cpu train=34872 val=7352 test=7352 batch_size=256 num_workers=0
+[stat-arb:gat] sanity-check passed
+[stat-arb:gat] epoch 1/120 started
+[stat-arb:gat] epoch 1 batch 1/137 loss=1.196473
+[stat-arb:gat] epoch 1 batch 100/137 loss=0.093026
+[stat-arb:gat] epoch 1 batch 137/137 loss=0.092033
+[stat-arb:gat] epoch 1 done train_loss=0.177231 val_loss=1.223141 val_mae=1.0151 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] checkpoint saved val_loss=1.223141
+[stat-arb:gat] epoch 2/120 started
+[stat-arb:gat] epoch 2 batch 1/137 loss=0.099588
+[stat-arb:gat] epoch 2 batch 100/137 loss=0.076381
+[stat-arb:gat] epoch 2 batch 137/137 loss=0.047078
+[stat-arb:gat] epoch 2 done train_loss=0.075805 val_loss=1.380321 val_mae=1.0704 val_sharpe=6.2860 elapsed_s=6.6
+[stat-arb:gat] epoch 3/120 started
+[stat-arb:gat] epoch 3 batch 1/137 loss=0.070713
+[stat-arb:gat] epoch 3 batch 100/137 loss=0.080581
+[stat-arb:gat] epoch 3 batch 137/137 loss=0.137316
+[stat-arb:gat] epoch 3 done train_loss=0.075437 val_loss=1.408105 val_mae=1.0747 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=3 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 4/120 started
+[stat-arb:gat] epoch 4 batch 1/137 loss=0.090270
+[stat-arb:gat] epoch 4 batch 100/137 loss=0.074945
+[stat-arb:gat] epoch 4 batch 137/137 loss=0.048295
+[stat-arb:gat] epoch 4 done train_loss=0.073440 val_loss=1.508473 val_mae=1.1220 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=4 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 5/120 started
+[stat-arb:gat] epoch 5 batch 1/137 loss=0.061112
+[stat-arb:gat] epoch 5 batch 100/137 loss=0.077896
+[stat-arb:gat] epoch 5 batch 137/137 loss=0.064267
+[stat-arb:gat] epoch 5 done train_loss=0.073604 val_loss=1.539496 val_mae=1.1311 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=5 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 6/120 started
+[stat-arb:gat] epoch 6 batch 1/137 loss=0.082750
+[stat-arb:gat] epoch 6 batch 100/137 loss=0.095687
+[stat-arb:gat] epoch 6 batch 137/137 loss=0.074787
+[stat-arb:gat] epoch 6 done train_loss=0.072439 val_loss=1.539101 val_mae=1.1299 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=6 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 7/120 started
+[stat-arb:gat] epoch 7 batch 1/137 loss=0.074827
+[stat-arb:gat] epoch 7 batch 100/137 loss=0.064792
+[stat-arb:gat] epoch 7 batch 137/137 loss=0.098166
+[stat-arb:gat] epoch 7 done train_loss=0.071442 val_loss=1.473755 val_mae=1.1005 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=7 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 8/120 started
+[stat-arb:gat] epoch 8 batch 1/137 loss=0.071356
+[stat-arb:gat] epoch 8 batch 100/137 loss=0.081058
+[stat-arb:gat] epoch 8 batch 137/137 loss=0.089662
+[stat-arb:gat] epoch 8 done train_loss=0.071689 val_loss=1.392655 val_mae=1.0638 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=8 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 9/120 started
+[stat-arb:gat] epoch 9 batch 1/137 loss=0.076519
+[stat-arb:gat] epoch 9 batch 100/137 loss=0.059022
+[stat-arb:gat] epoch 9 batch 137/137 loss=0.052130
+[stat-arb:gat] epoch 9 done train_loss=0.070644 val_loss=1.463102 val_mae=1.0923 val_sharpe=6.2860 elapsed_s=6.6
+[stat-arb:gat] warning sharpe_frozen_epochs=9 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 10/120 started
+[stat-arb:gat] epoch 10 batch 1/137 loss=0.072909
+[stat-arb:gat] epoch 10 batch 100/137 loss=0.063611
+[stat-arb:gat] epoch 10 batch 137/137 loss=0.115788
+[stat-arb:gat] epoch 10 done train_loss=0.070658 val_loss=1.401108 val_mae=1.0652 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=10 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 11/120 started
+[stat-arb:gat] epoch 11 batch 1/137 loss=0.057925
+[stat-arb:gat] epoch 11 batch 100/137 loss=0.053167
+[stat-arb:gat] epoch 11 batch 137/137 loss=0.062238
+[stat-arb:gat] epoch 11 done train_loss=0.069986 val_loss=1.425360 val_mae=1.0801 val_sharpe=6.2860 elapsed_s=6.8
+[stat-arb:gat] warning sharpe_frozen_epochs=11 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 12/120 started
+[stat-arb:gat] epoch 12 batch 1/137 loss=0.061918
+[stat-arb:gat] epoch 12 batch 100/137 loss=0.073230
+[stat-arb:gat] epoch 12 batch 137/137 loss=0.036071
+[stat-arb:gat] epoch 12 done train_loss=0.069881 val_loss=1.361232 val_mae=1.0516 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=12 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 13/120 started
+[stat-arb:gat] epoch 13 batch 1/137 loss=0.047718
+[stat-arb:gat] epoch 13 batch 100/137 loss=0.063712
+[stat-arb:gat] epoch 13 batch 137/137 loss=0.058277
+[stat-arb:gat] epoch 13 done train_loss=0.069289 val_loss=1.396821 val_mae=1.0669 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=13 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 14/120 started
+[stat-arb:gat] epoch 14 batch 1/137 loss=0.061895
+[stat-arb:gat] epoch 14 batch 100/137 loss=0.061446
+[stat-arb:gat] epoch 14 batch 137/137 loss=0.098056
+[stat-arb:gat] epoch 14 done train_loss=0.069161 val_loss=1.449574 val_mae=1.0906 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=14 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 15/120 started
+[stat-arb:gat] epoch 15 batch 1/137 loss=0.065154
+[stat-arb:gat] epoch 15 batch 100/137 loss=0.068850
+[stat-arb:gat] epoch 15 batch 137/137 loss=0.086184
+[stat-arb:gat] epoch 15 done train_loss=0.069240 val_loss=1.474546 val_mae=1.1026 val_sharpe=6.2860 elapsed_s=6.6
+[stat-arb:gat] warning sharpe_frozen_epochs=15 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 16/120 started
+[stat-arb:gat] epoch 16 batch 1/137 loss=0.073773
+[stat-arb:gat] epoch 16 batch 100/137 loss=0.065864
+[stat-arb:gat] epoch 16 batch 137/137 loss=0.045345
+[stat-arb:gat] epoch 16 done train_loss=0.068852 val_loss=1.323735 val_mae=1.0321 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=16 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 17/120 started
+[stat-arb:gat] epoch 17 batch 1/137 loss=0.076509
+[stat-arb:gat] epoch 17 batch 100/137 loss=0.072329
+[stat-arb:gat] epoch 17 batch 137/137 loss=0.090362
+[stat-arb:gat] epoch 17 done train_loss=0.068697 val_loss=1.363071 val_mae=1.0540 val_sharpe=6.2860 elapsed_s=6.6
+[stat-arb:gat] warning sharpe_frozen_epochs=17 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 18/120 started
+[stat-arb:gat] epoch 18 batch 1/137 loss=0.082413
+[stat-arb:gat] epoch 18 batch 100/137 loss=0.068853
+[stat-arb:gat] epoch 18 batch 137/137 loss=0.054235
+[stat-arb:gat] epoch 18 done train_loss=0.068181 val_loss=1.502674 val_mae=1.1154 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=18 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 19/120 started
+[stat-arb:gat] epoch 19 batch 1/137 loss=0.066257
+[stat-arb:gat] epoch 19 batch 100/137 loss=0.077571
+[stat-arb:gat] epoch 19 batch 137/137 loss=0.108100
+[stat-arb:gat] epoch 19 done train_loss=0.068834 val_loss=1.596581 val_mae=1.1547 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=19 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 20/120 started
+[stat-arb:gat] epoch 20 batch 1/137 loss=0.061705
+[stat-arb:gat] epoch 20 batch 100/137 loss=0.058234
+[stat-arb:gat] epoch 20 batch 137/137 loss=0.062645
+[stat-arb:gat] epoch 20 done train_loss=0.068020 val_loss=1.336835 val_mae=1.0413 val_sharpe=6.2860 elapsed_s=6.6
+[stat-arb:gat] warning sharpe_frozen_epochs=20 last_val_sharpe=6.285983
+[stat-arb:gat] epoch 21/120 started
+[stat-arb:gat] epoch 21 batch 1/137 loss=0.066904
+[stat-arb:gat] epoch 21 batch 100/137 loss=0.070524
+[stat-arb:gat] epoch 21 batch 137/137 loss=0.062918
+[stat-arb:gat] epoch 21 done train_loss=0.068094 val_loss=1.408257 val_mae=1.0765 val_sharpe=6.2860 elapsed_s=6.7
+[stat-arb:gat] warning sharpe_frozen_epochs=21 last_val_sharpe=6.285983
+[stat-arb:gat] early-stop patience=20
+[stat-arb:gat] final val_mae=1.0151 test_mae=1.0312 test_sharpe=-2.8647
+trained=GAT_StatArb_v1 backend=cpu val_mae=1.0151 test_mae=1.0312 tracking_err=0.3492 is_valid=False
+[stat-arb-run] launching model=lstm
+[stat-arb:lstm] start backend=cpu device=cpu train=34872 val=7352 test=7352 batch_size=256 num_workers=0
+[stat-arb:lstm] sanity-check passed
+[stat-arb:lstm] epoch 1/120 started
+[stat-arb:lstm] epoch 1 batch 1/137 loss=0.943369
+[stat-arb:lstm] epoch 1 batch 100/137 loss=0.040706
+[stat-arb:lstm] epoch 1 batch 137/137 loss=0.057375
+[stat-arb:lstm] epoch 1 done train_loss=0.069735 val_loss=1.192793 val_mae=0.9366 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] checkpoint saved val_loss=1.192793
+[stat-arb:lstm] epoch 2/120 started
+[stat-arb:lstm] epoch 2 batch 1/137 loss=0.052781
+[stat-arb:lstm] epoch 2 batch 100/137 loss=0.040606
+[stat-arb:lstm] epoch 2 batch 137/137 loss=0.034433
+[stat-arb:lstm] epoch 2 done train_loss=0.043879 val_loss=1.051552 val_mae=0.8639 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] checkpoint saved val_loss=1.051552
+[stat-arb:lstm] epoch 3/120 started
+[stat-arb:lstm] epoch 3 batch 1/137 loss=0.037870
+[stat-arb:lstm] epoch 3 batch 100/137 loss=0.035583
+[stat-arb:lstm] epoch 3 batch 137/137 loss=0.023509
+[stat-arb:lstm] epoch 3 done train_loss=0.038765 val_loss=0.985578 val_mae=0.8306 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=3 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.985578
+[stat-arb:lstm] epoch 4/120 started
+[stat-arb:lstm] epoch 4 batch 1/137 loss=0.026833
+[stat-arb:lstm] epoch 4 batch 100/137 loss=0.028311
+[stat-arb:lstm] epoch 4 batch 137/137 loss=0.024003
+[stat-arb:lstm] epoch 4 done train_loss=0.037039 val_loss=1.088557 val_mae=0.8786 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=4 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 5/120 started
+[stat-arb:lstm] epoch 5 batch 1/137 loss=0.038736
+[stat-arb:lstm] epoch 5 batch 100/137 loss=0.036635
+[stat-arb:lstm] epoch 5 batch 137/137 loss=0.024494
+[stat-arb:lstm] epoch 5 done train_loss=0.034910 val_loss=1.103184 val_mae=0.8887 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=5 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 6/120 started
+[stat-arb:lstm] epoch 6 batch 1/137 loss=0.028835
+[stat-arb:lstm] epoch 6 batch 100/137 loss=0.027235
+[stat-arb:lstm] epoch 6 batch 137/137 loss=0.021613
+[stat-arb:lstm] epoch 6 done train_loss=0.033437 val_loss=1.045892 val_mae=0.8644 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=6 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 7/120 started
+[stat-arb:lstm] epoch 7 batch 1/137 loss=0.036904
+[stat-arb:lstm] epoch 7 batch 100/137 loss=0.048804
+[stat-arb:lstm] epoch 7 batch 137/137 loss=0.012944
+[stat-arb:lstm] epoch 7 done train_loss=0.032489 val_loss=1.111760 val_mae=0.9007 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=7 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 8/120 started
+[stat-arb:lstm] epoch 8 batch 1/137 loss=0.031046
+[stat-arb:lstm] epoch 8 batch 100/137 loss=0.029549
+[stat-arb:lstm] epoch 8 batch 137/137 loss=0.033448
+[stat-arb:lstm] epoch 8 done train_loss=0.032045 val_loss=1.105501 val_mae=0.9065 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=8 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 9/120 started
+[stat-arb:lstm] epoch 9 batch 1/137 loss=0.016920
+[stat-arb:lstm] epoch 9 batch 100/137 loss=0.030900
+[stat-arb:lstm] epoch 9 batch 137/137 loss=0.026901
+[stat-arb:lstm] epoch 9 done train_loss=0.031337 val_loss=0.975923 val_mae=0.8470 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=9 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.975923
+[stat-arb:lstm] epoch 10/120 started
+[stat-arb:lstm] epoch 10 batch 1/137 loss=0.030746
+[stat-arb:lstm] epoch 10 batch 100/137 loss=0.035623
+[stat-arb:lstm] epoch 10 batch 137/137 loss=0.018262
+[stat-arb:lstm] epoch 10 done train_loss=0.030292 val_loss=1.006498 val_mae=0.8621 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=10 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 11/120 started
+[stat-arb:lstm] epoch 11 batch 1/137 loss=0.030651
+[stat-arb:lstm] epoch 11 batch 100/137 loss=0.021329
+[stat-arb:lstm] epoch 11 batch 137/137 loss=0.025314
+[stat-arb:lstm] epoch 11 done train_loss=0.030518 val_loss=1.144613 val_mae=0.9302 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=11 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 12/120 started
+[stat-arb:lstm] epoch 12 batch 1/137 loss=0.041596
+[stat-arb:lstm] epoch 12 batch 100/137 loss=0.024557
+[stat-arb:lstm] epoch 12 batch 137/137 loss=0.019810
+[stat-arb:lstm] epoch 12 done train_loss=0.030415 val_loss=0.856183 val_mae=0.7867 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=12 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.856183
+[stat-arb:lstm] epoch 13/120 started
+[stat-arb:lstm] epoch 13 batch 1/137 loss=0.042212
+[stat-arb:lstm] epoch 13 batch 100/137 loss=0.027870
+[stat-arb:lstm] epoch 13 batch 137/137 loss=0.024935
+[stat-arb:lstm] epoch 13 done train_loss=0.029893 val_loss=1.012337 val_mae=0.8686 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=13 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 14/120 started
+[stat-arb:lstm] epoch 14 batch 1/137 loss=0.033274
+[stat-arb:lstm] epoch 14 batch 100/137 loss=0.031374
+[stat-arb:lstm] epoch 14 batch 137/137 loss=0.020050
+[stat-arb:lstm] epoch 14 done train_loss=0.029047 val_loss=0.937150 val_mae=0.8291 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=14 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 15/120 started
+[stat-arb:lstm] epoch 15 batch 1/137 loss=0.021823
+[stat-arb:lstm] epoch 15 batch 100/137 loss=0.021955
+[stat-arb:lstm] epoch 15 batch 137/137 loss=0.016222
+[stat-arb:lstm] epoch 15 done train_loss=0.029029 val_loss=1.026584 val_mae=0.8656 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=15 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 16/120 started
+[stat-arb:lstm] epoch 16 batch 1/137 loss=0.028205
+[stat-arb:lstm] epoch 16 batch 100/137 loss=0.019730
+[stat-arb:lstm] epoch 16 batch 137/137 loss=0.021443
+[stat-arb:lstm] epoch 16 done train_loss=0.028827 val_loss=0.998324 val_mae=0.8648 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=16 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 17/120 started
+[stat-arb:lstm] epoch 17 batch 1/137 loss=0.024947
+[stat-arb:lstm] epoch 17 batch 100/137 loss=0.027687
+[stat-arb:lstm] epoch 17 batch 137/137 loss=0.034343
+[stat-arb:lstm] epoch 17 done train_loss=0.028497 val_loss=0.972185 val_mae=0.8497 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=17 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 18/120 started
+[stat-arb:lstm] epoch 18 batch 1/137 loss=0.022125
+[stat-arb:lstm] epoch 18 batch 100/137 loss=0.030500
+[stat-arb:lstm] epoch 18 batch 137/137 loss=0.026103
+[stat-arb:lstm] epoch 18 done train_loss=0.028116 val_loss=0.931975 val_mae=0.8300 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=18 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 19/120 started
+[stat-arb:lstm] epoch 19 batch 1/137 loss=0.026695
+[stat-arb:lstm] epoch 19 batch 100/137 loss=0.024896
+[stat-arb:lstm] epoch 19 batch 137/137 loss=0.026595
+[stat-arb:lstm] epoch 19 done train_loss=0.028063 val_loss=0.946794 val_mae=0.8311 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=19 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 20/120 started
+[stat-arb:lstm] epoch 20 batch 1/137 loss=0.028587
+[stat-arb:lstm] epoch 20 batch 100/137 loss=0.019155
+[stat-arb:lstm] epoch 20 batch 137/137 loss=0.024098
+[stat-arb:lstm] epoch 20 done train_loss=0.028123 val_loss=0.892784 val_mae=0.8050 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=20 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 21/120 started
+[stat-arb:lstm] epoch 21 batch 1/137 loss=0.031010
+[stat-arb:lstm] epoch 21 batch 100/137 loss=0.034917
+[stat-arb:lstm] epoch 21 batch 137/137 loss=0.025962
+[stat-arb:lstm] epoch 21 done train_loss=0.027852 val_loss=0.924205 val_mae=0.8173 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=21 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 22/120 started
+[stat-arb:lstm] epoch 22 batch 1/137 loss=0.029305
+[stat-arb:lstm] epoch 22 batch 100/137 loss=0.026050
+[stat-arb:lstm] epoch 22 batch 137/137 loss=0.013412
+[stat-arb:lstm] epoch 22 done train_loss=0.027014 val_loss=0.885271 val_mae=0.8041 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=22 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 23/120 started
+[stat-arb:lstm] epoch 23 batch 1/137 loss=0.023208
+[stat-arb:lstm] epoch 23 batch 100/137 loss=0.026687
+[stat-arb:lstm] epoch 23 batch 137/137 loss=0.027007
+[stat-arb:lstm] epoch 23 done train_loss=0.027485 val_loss=0.951716 val_mae=0.8404 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=23 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 24/120 started
+[stat-arb:lstm] epoch 24 batch 1/137 loss=0.022118
+[stat-arb:lstm] epoch 24 batch 100/137 loss=0.022810
+[stat-arb:lstm] epoch 24 batch 137/137 loss=0.027451
+[stat-arb:lstm] epoch 24 done train_loss=0.027399 val_loss=0.989512 val_mae=0.8629 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=24 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 25/120 started
+[stat-arb:lstm] epoch 25 batch 1/137 loss=0.021412
+[stat-arb:lstm] epoch 25 batch 100/137 loss=0.023391
+[stat-arb:lstm] epoch 25 batch 137/137 loss=0.017006
+[stat-arb:lstm] epoch 25 done train_loss=0.027063 val_loss=0.884717 val_mae=0.8072 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=25 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 26/120 started
+[stat-arb:lstm] epoch 26 batch 1/137 loss=0.019278
+[stat-arb:lstm] epoch 26 batch 100/137 loss=0.024852
+[stat-arb:lstm] epoch 26 batch 137/137 loss=0.023302
+[stat-arb:lstm] epoch 26 done train_loss=0.026649 val_loss=0.910530 val_mae=0.8151 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=26 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 27/120 started
+[stat-arb:lstm] epoch 27 batch 1/137 loss=0.027970
+[stat-arb:lstm] epoch 27 batch 100/137 loss=0.022775
+[stat-arb:lstm] epoch 27 batch 137/137 loss=0.027755
+[stat-arb:lstm] epoch 27 done train_loss=0.026710 val_loss=0.966573 val_mae=0.8423 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=27 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 28/120 started
+[stat-arb:lstm] epoch 28 batch 1/137 loss=0.026929
+[stat-arb:lstm] epoch 28 batch 100/137 loss=0.025298
+[stat-arb:lstm] epoch 28 batch 137/137 loss=0.013422
+[stat-arb:lstm] epoch 28 done train_loss=0.026774 val_loss=0.864458 val_mae=0.7846 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=28 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 29/120 started
+[stat-arb:lstm] epoch 29 batch 1/137 loss=0.026689
+[stat-arb:lstm] epoch 29 batch 100/137 loss=0.018658
+[stat-arb:lstm] epoch 29 batch 137/137 loss=0.031224
+[stat-arb:lstm] epoch 29 done train_loss=0.026579 val_loss=0.835712 val_mae=0.7751 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=29 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.835712
+[stat-arb:lstm] epoch 30/120 started
+[stat-arb:lstm] epoch 30 batch 1/137 loss=0.030782
+[stat-arb:lstm] epoch 30 batch 100/137 loss=0.024736
+[stat-arb:lstm] epoch 30 batch 137/137 loss=0.035861
+[stat-arb:lstm] epoch 30 done train_loss=0.026741 val_loss=0.929418 val_mae=0.8235 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=30 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 31/120 started
+[stat-arb:lstm] epoch 31 batch 1/137 loss=0.024705
+[stat-arb:lstm] epoch 31 batch 100/137 loss=0.043898
+[stat-arb:lstm] epoch 31 batch 137/137 loss=0.013109
+[stat-arb:lstm] epoch 31 done train_loss=0.026265 val_loss=0.898482 val_mae=0.8121 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=31 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 32/120 started
+[stat-arb:lstm] epoch 32 batch 1/137 loss=0.036330
+[stat-arb:lstm] epoch 32 batch 100/137 loss=0.028495
+[stat-arb:lstm] epoch 32 batch 137/137 loss=0.033777
+[stat-arb:lstm] epoch 32 done train_loss=0.026419 val_loss=0.791071 val_mae=0.7453 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=32 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.791071
+[stat-arb:lstm] epoch 33/120 started
+[stat-arb:lstm] epoch 33 batch 1/137 loss=0.033306
+[stat-arb:lstm] epoch 33 batch 100/137 loss=0.026614
+[stat-arb:lstm] epoch 33 batch 137/137 loss=0.023168
+[stat-arb:lstm] epoch 33 done train_loss=0.026143 val_loss=0.820657 val_mae=0.7635 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=33 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 34/120 started
+[stat-arb:lstm] epoch 34 batch 1/137 loss=0.018976
+[stat-arb:lstm] epoch 34 batch 100/137 loss=0.024178
+[stat-arb:lstm] epoch 34 batch 137/137 loss=0.021051
+[stat-arb:lstm] epoch 34 done train_loss=0.026387 val_loss=0.876226 val_mae=0.8000 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=34 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 35/120 started
+[stat-arb:lstm] epoch 35 batch 1/137 loss=0.029721
+[stat-arb:lstm] epoch 35 batch 100/137 loss=0.039171
+[stat-arb:lstm] epoch 35 batch 137/137 loss=0.023964
+[stat-arb:lstm] epoch 35 done train_loss=0.026009 val_loss=0.819767 val_mae=0.7639 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=35 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 36/120 started
+[stat-arb:lstm] epoch 36 batch 1/137 loss=0.024154
+[stat-arb:lstm] epoch 36 batch 100/137 loss=0.030397
+[stat-arb:lstm] epoch 36 batch 137/137 loss=0.035803
+[stat-arb:lstm] epoch 36 done train_loss=0.025989 val_loss=0.765301 val_mae=0.7316 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=36 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.765301
+[stat-arb:lstm] epoch 37/120 started
+[stat-arb:lstm] epoch 37 batch 1/137 loss=0.025942
+[stat-arb:lstm] epoch 37 batch 100/137 loss=0.028204
+[stat-arb:lstm] epoch 37 batch 137/137 loss=0.045760
+[stat-arb:lstm] epoch 37 done train_loss=0.025830 val_loss=0.781237 val_mae=0.7348 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=37 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 38/120 started
+[stat-arb:lstm] epoch 38 batch 1/137 loss=0.028316
+[stat-arb:lstm] epoch 38 batch 100/137 loss=0.025343
+[stat-arb:lstm] epoch 38 batch 137/137 loss=0.026889
+[stat-arb:lstm] epoch 38 done train_loss=0.025645 val_loss=0.732808 val_mae=0.7087 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=38 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.732808
+[stat-arb:lstm] epoch 39/120 started
+[stat-arb:lstm] epoch 39 batch 1/137 loss=0.016532
+[stat-arb:lstm] epoch 39 batch 100/137 loss=0.022118
+[stat-arb:lstm] epoch 39 batch 137/137 loss=0.028917
+[stat-arb:lstm] epoch 39 done train_loss=0.025700 val_loss=0.802874 val_mae=0.7469 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=39 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 40/120 started
+[stat-arb:lstm] epoch 40 batch 1/137 loss=0.020837
+[stat-arb:lstm] epoch 40 batch 100/137 loss=0.025764
+[stat-arb:lstm] epoch 40 batch 137/137 loss=0.017822
+[stat-arb:lstm] epoch 40 done train_loss=0.025278 val_loss=0.865392 val_mae=0.7905 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=40 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 41/120 started
+[stat-arb:lstm] epoch 41 batch 1/137 loss=0.014681
+[stat-arb:lstm] epoch 41 batch 100/137 loss=0.036937
+[stat-arb:lstm] epoch 41 batch 137/137 loss=0.025662
+[stat-arb:lstm] epoch 41 done train_loss=0.025299 val_loss=0.805317 val_mae=0.7512 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=41 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 42/120 started
+[stat-arb:lstm] epoch 42 batch 1/137 loss=0.023577
+[stat-arb:lstm] epoch 42 batch 100/137 loss=0.023731
+[stat-arb:lstm] epoch 42 batch 137/137 loss=0.020480
+[stat-arb:lstm] epoch 42 done train_loss=0.025241 val_loss=0.732264 val_mae=0.7138 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=42 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.732264
+[stat-arb:lstm] epoch 43/120 started
+[stat-arb:lstm] epoch 43 batch 1/137 loss=0.020651
+[stat-arb:lstm] epoch 43 batch 100/137 loss=0.022283
+[stat-arb:lstm] epoch 43 batch 137/137 loss=0.022674
+[stat-arb:lstm] epoch 43 done train_loss=0.025470 val_loss=0.762986 val_mae=0.7340 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=43 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 44/120 started
+[stat-arb:lstm] epoch 44 batch 1/137 loss=0.019778
+[stat-arb:lstm] epoch 44 batch 100/137 loss=0.017483
+[stat-arb:lstm] epoch 44 batch 137/137 loss=0.013066
+[stat-arb:lstm] epoch 44 done train_loss=0.024916 val_loss=0.743813 val_mae=0.7148 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=44 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 45/120 started
+[stat-arb:lstm] epoch 45 batch 1/137 loss=0.024926
+[stat-arb:lstm] epoch 45 batch 100/137 loss=0.034595
+[stat-arb:lstm] epoch 45 batch 137/137 loss=0.036380
+[stat-arb:lstm] epoch 45 done train_loss=0.024939 val_loss=0.812800 val_mae=0.7571 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=45 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 46/120 started
+[stat-arb:lstm] epoch 46 batch 1/137 loss=0.019660
+[stat-arb:lstm] epoch 46 batch 100/137 loss=0.023254
+[stat-arb:lstm] epoch 46 batch 137/137 loss=0.034039
+[stat-arb:lstm] epoch 46 done train_loss=0.024877 val_loss=0.874118 val_mae=0.7964 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=46 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 47/120 started
+[stat-arb:lstm] epoch 47 batch 1/137 loss=0.028343
+[stat-arb:lstm] epoch 47 batch 100/137 loss=0.035023
+[stat-arb:lstm] epoch 47 batch 137/137 loss=0.028033
+[stat-arb:lstm] epoch 47 done train_loss=0.025110 val_loss=0.806063 val_mae=0.7540 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=47 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 48/120 started
+[stat-arb:lstm] epoch 48 batch 1/137 loss=0.028380
+[stat-arb:lstm] epoch 48 batch 100/137 loss=0.023910
+[stat-arb:lstm] epoch 48 batch 137/137 loss=0.022346
+[stat-arb:lstm] epoch 48 done train_loss=0.024665 val_loss=0.806047 val_mae=0.7532 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=48 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 49/120 started
+[stat-arb:lstm] epoch 49 batch 1/137 loss=0.022965
+[stat-arb:lstm] epoch 49 batch 100/137 loss=0.023485
+[stat-arb:lstm] epoch 49 batch 137/137 loss=0.038631
+[stat-arb:lstm] epoch 49 done train_loss=0.024891 val_loss=0.805044 val_mae=0.7504 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=49 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 50/120 started
+[stat-arb:lstm] epoch 50 batch 1/137 loss=0.022187
+[stat-arb:lstm] epoch 50 batch 100/137 loss=0.016402
+[stat-arb:lstm] epoch 50 batch 137/137 loss=0.047494
+[stat-arb:lstm] epoch 50 done train_loss=0.024927 val_loss=0.814403 val_mae=0.7616 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=50 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 51/120 started
+[stat-arb:lstm] epoch 51 batch 1/137 loss=0.019667
+[stat-arb:lstm] epoch 51 batch 100/137 loss=0.023467
+[stat-arb:lstm] epoch 51 batch 137/137 loss=0.026631
+[stat-arb:lstm] epoch 51 done train_loss=0.024515 val_loss=0.841117 val_mae=0.7761 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=51 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 52/120 started
+[stat-arb:lstm] epoch 52 batch 1/137 loss=0.020742
+[stat-arb:lstm] epoch 52 batch 100/137 loss=0.024832
+[stat-arb:lstm] epoch 52 batch 137/137 loss=0.010090
+[stat-arb:lstm] epoch 52 done train_loss=0.024457 val_loss=0.767817 val_mae=0.7395 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=52 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 53/120 started
+[stat-arb:lstm] epoch 53 batch 1/137 loss=0.024197
+[stat-arb:lstm] epoch 53 batch 100/137 loss=0.019818
+[stat-arb:lstm] epoch 53 batch 137/137 loss=0.025706
+[stat-arb:lstm] epoch 53 done train_loss=0.024231 val_loss=0.705309 val_mae=0.6945 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=53 last_val_sharpe=6.285983
+[stat-arb:lstm] checkpoint saved val_loss=0.705309
+[stat-arb:lstm] epoch 54/120 started
+[stat-arb:lstm] epoch 54 batch 1/137 loss=0.015772
+[stat-arb:lstm] epoch 54 batch 100/137 loss=0.023682
+[stat-arb:lstm] epoch 54 batch 137/137 loss=0.026302
+[stat-arb:lstm] epoch 54 done train_loss=0.024446 val_loss=0.879010 val_mae=0.7943 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=54 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 55/120 started
+[stat-arb:lstm] epoch 55 batch 1/137 loss=0.029949
+[stat-arb:lstm] epoch 55 batch 100/137 loss=0.021876
+[stat-arb:lstm] epoch 55 batch 137/137 loss=0.018451
+[stat-arb:lstm] epoch 55 done train_loss=0.024269 val_loss=0.775127 val_mae=0.7388 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=55 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 56/120 started
+[stat-arb:lstm] epoch 56 batch 1/137 loss=0.026918
+[stat-arb:lstm] epoch 56 batch 100/137 loss=0.023224
+[stat-arb:lstm] epoch 56 batch 137/137 loss=0.017402
+[stat-arb:lstm] epoch 56 done train_loss=0.024300 val_loss=0.742824 val_mae=0.7196 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=56 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 57/120 started
+[stat-arb:lstm] epoch 57 batch 1/137 loss=0.030873
+[stat-arb:lstm] epoch 57 batch 100/137 loss=0.025126
+[stat-arb:lstm] epoch 57 batch 137/137 loss=0.023122
+[stat-arb:lstm] epoch 57 done train_loss=0.024266 val_loss=0.742931 val_mae=0.7151 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=57 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 58/120 started
+[stat-arb:lstm] epoch 58 batch 1/137 loss=0.030659
+[stat-arb:lstm] epoch 58 batch 100/137 loss=0.029029
+[stat-arb:lstm] epoch 58 batch 137/137 loss=0.012789
+[stat-arb:lstm] epoch 58 done train_loss=0.023885 val_loss=0.820527 val_mae=0.7687 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=58 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 59/120 started
+[stat-arb:lstm] epoch 59 batch 1/137 loss=0.021413
+[stat-arb:lstm] epoch 59 batch 100/137 loss=0.022971
+[stat-arb:lstm] epoch 59 batch 137/137 loss=0.024834
+[stat-arb:lstm] epoch 59 done train_loss=0.023964 val_loss=0.767054 val_mae=0.7315 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=59 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 60/120 started
+[stat-arb:lstm] epoch 60 batch 1/137 loss=0.020015
+[stat-arb:lstm] epoch 60 batch 100/137 loss=0.022514
+[stat-arb:lstm] epoch 60 batch 137/137 loss=0.012292
+[stat-arb:lstm] epoch 60 done train_loss=0.023851 val_loss=0.826059 val_mae=0.7687 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=60 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 61/120 started
+[stat-arb:lstm] epoch 61 batch 1/137 loss=0.020543
+[stat-arb:lstm] epoch 61 batch 100/137 loss=0.022954
+[stat-arb:lstm] epoch 61 batch 137/137 loss=0.011705
+[stat-arb:lstm] epoch 61 done train_loss=0.023952 val_loss=0.791331 val_mae=0.7458 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=61 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 62/120 started
+[stat-arb:lstm] epoch 62 batch 1/137 loss=0.025238
+[stat-arb:lstm] epoch 62 batch 100/137 loss=0.028863
+[stat-arb:lstm] epoch 62 batch 137/137 loss=0.012521
+[stat-arb:lstm] epoch 62 done train_loss=0.023883 val_loss=0.786103 val_mae=0.7486 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=62 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 63/120 started
+[stat-arb:lstm] epoch 63 batch 1/137 loss=0.025915
+[stat-arb:lstm] epoch 63 batch 100/137 loss=0.025737
+[stat-arb:lstm] epoch 63 batch 137/137 loss=0.026268
+[stat-arb:lstm] epoch 63 done train_loss=0.023850 val_loss=0.747740 val_mae=0.7182 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=63 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 64/120 started
+[stat-arb:lstm] epoch 64 batch 1/137 loss=0.021641
+[stat-arb:lstm] epoch 64 batch 100/137 loss=0.034958
+[stat-arb:lstm] epoch 64 batch 137/137 loss=0.014607
+[stat-arb:lstm] epoch 64 done train_loss=0.023430 val_loss=0.793933 val_mae=0.7506 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=64 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 65/120 started
+[stat-arb:lstm] epoch 65 batch 1/137 loss=0.022810
+[stat-arb:lstm] epoch 65 batch 100/137 loss=0.029532
+[stat-arb:lstm] epoch 65 batch 137/137 loss=0.021759
+[stat-arb:lstm] epoch 65 done train_loss=0.023395 val_loss=0.797297 val_mae=0.7488 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=65 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 66/120 started
+[stat-arb:lstm] epoch 66 batch 1/137 loss=0.019445
+[stat-arb:lstm] epoch 66 batch 100/137 loss=0.021339
+[stat-arb:lstm] epoch 66 batch 137/137 loss=0.031421
+[stat-arb:lstm] epoch 66 done train_loss=0.023457 val_loss=0.807937 val_mae=0.7604 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=66 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 67/120 started
+[stat-arb:lstm] epoch 67 batch 1/137 loss=0.020664
+[stat-arb:lstm] epoch 67 batch 100/137 loss=0.032250
+[stat-arb:lstm] epoch 67 batch 137/137 loss=0.016476
+[stat-arb:lstm] epoch 67 done train_loss=0.023270 val_loss=0.733714 val_mae=0.7150 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=67 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 68/120 started
+[stat-arb:lstm] epoch 68 batch 1/137 loss=0.014215
+[stat-arb:lstm] epoch 68 batch 100/137 loss=0.016201
+[stat-arb:lstm] epoch 68 batch 137/137 loss=0.031108
+[stat-arb:lstm] epoch 68 done train_loss=0.023614 val_loss=0.758923 val_mae=0.7310 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=68 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 69/120 started
+[stat-arb:lstm] epoch 69 batch 1/137 loss=0.025375
+[stat-arb:lstm] epoch 69 batch 100/137 loss=0.020232
+[stat-arb:lstm] epoch 69 batch 137/137 loss=0.015340
+[stat-arb:lstm] epoch 69 done train_loss=0.023557 val_loss=0.753887 val_mae=0.7209 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=69 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 70/120 started
+[stat-arb:lstm] epoch 70 batch 1/137 loss=0.021157
+[stat-arb:lstm] epoch 70 batch 100/137 loss=0.024086
+[stat-arb:lstm] epoch 70 batch 137/137 loss=0.014297
+[stat-arb:lstm] epoch 70 done train_loss=0.023190 val_loss=0.743113 val_mae=0.7185 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=70 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 71/120 started
+[stat-arb:lstm] epoch 71 batch 1/137 loss=0.027402
+[stat-arb:lstm] epoch 71 batch 100/137 loss=0.018508
+[stat-arb:lstm] epoch 71 batch 137/137 loss=0.022867
+[stat-arb:lstm] epoch 71 done train_loss=0.023310 val_loss=0.758511 val_mae=0.7316 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=71 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 72/120 started
+[stat-arb:lstm] epoch 72 batch 1/137 loss=0.019668
+[stat-arb:lstm] epoch 72 batch 100/137 loss=0.016542
+[stat-arb:lstm] epoch 72 batch 137/137 loss=0.014968
+[stat-arb:lstm] epoch 72 done train_loss=0.023122 val_loss=0.747708 val_mae=0.7247 val_sharpe=6.2860 elapsed_s=6.4
+[stat-arb:lstm] warning sharpe_frozen_epochs=72 last_val_sharpe=6.285983
+[stat-arb:lstm] epoch 73/120 started
+[stat-arb:lstm] epoch 73 batch 1/137 loss=0.016823
+[stat-arb:lstm] epoch 73 batch 100/137 loss=0.023691
+[stat-arb:lstm] epoch 73 batch 137/137 loss=0.009889
+[stat-arb:lstm] epoch 73 done train_loss=0.023041 val_loss=0.821725 val_mae=0.7685 val_sharpe=6.2860 elapsed_s=6.5
+[stat-arb:lstm] warning sharpe_frozen_epochs=73 last_val_sharpe=6.285983
+[stat-arb:lstm] early-stop patience=20
+[stat-arb:lstm] final val_mae=0.6945 test_mae=0.6102 test_sharpe=-2.8647
+trained=LSTM_StatArb_v1 backend=cpu val_mae=0.6945 test_mae=0.6102 tracking_err=0.4612 is_valid=False
+registry=model_registry.json elapsed_s=5984.16
+
+# Exit code: 0
+# Finished: 2026-05-28 20:25:58

@@ -1,0 +1,52 @@
+# APV-PLN v2 + v3 only (v1 done at 10:05 PM)
+# CPU backend — avoids DirectML memory contention
+# batch_size reduced from 1024 → 128 (12.5%)
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 32
+  horizon: 5
+  num_bins: 51
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  seq_len: 32
+  horizon: 5
+  preferred_backend: cpu
+  batch_size: 128
+  directml_max_batch_size: 128
+  max_epochs: 80
+  patience: 15
+  lr: 0.001
+  weight_decay: 1e-4
+  num_workers: 0
+  num_workers_directml: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  distill_alpha: 0.5
+  distill_beta: 0.5
+  distill_temperature: 2.0
+  fast_fail_epoch: 20
+  fast_fail_min_sharpe: 0.1
+  overfit_alert_epoch: 20
+  overfit_loss_ratio_max: 0.85
+  checkpoint_root: models/checkpoints/apv_pln
+  tensorboard_root: models/tensorboard/apv_pln
+
+models:
+  v2:
+    cnn_channels: 128
+    nhead: 4
+    oracle_hidden: 128
+    dropout: 0.20
+  v3:
+    cnn_channels: 64
+    nhead: 8
+    oracle_hidden: 64
+    dropout: 0.25
+
+registry_path: model_registry.json

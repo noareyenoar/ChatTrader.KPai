@@ -1,0 +1,6 @@
+{
+  "epoch": 15,
+  "val_loss": 1.076415,
+  "checkpoint_file": "epoch_15.pt",
+  "timestamp": "2026-05-28T15:27:43.315585+00:00"
+}

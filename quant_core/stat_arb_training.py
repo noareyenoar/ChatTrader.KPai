@@ -100,9 +100,13 @@ def _evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> dic
 
     mae = float(np.mean(np.abs(pred_cat - y_cat)))
     tracking_error = float(np.std(pred_cat - y_cat))
-    # Use actual z-score return as PnL: sign(pred) * y - cost
+    # Spread-trading PnL proxy: hold position from predicted spread direction and
+    # charge costs on position changes only.
     ROUND_TRIP_COST = 0.0004
-    pnl = np.sign(pred_cat) * y_cat - ROUND_TRIP_COST
+    position = np.sign(pred_cat)
+    prev_position = np.concatenate(([position[0]], position[:-1]))
+    turnover = (position != prev_position).astype(np.float32)
+    pnl = position * y_cat - turnover * ROUND_TRIP_COST
     loss_val = float(nn.MSELoss()(torch.tensor(pred_cat), torch.tensor(y_cat)).item())
 
     return {

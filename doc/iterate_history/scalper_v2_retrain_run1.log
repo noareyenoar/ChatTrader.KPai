@@ -1,0 +1,580 @@
+# Training queue step 4: Scalper v2 (GRU/CNN/LinearAttn, horizon=10)
+# Started: 2026-05-28 15:04:49
+# Command: D:\kp_ai_agent\ChatTrader.KPai\.venv\Scripts\python.exe -m quant_core.train_scalper_phase4 --config configs/scalper_phase4_v2.yaml
+
+[scalper-run] config=configs/scalper_phase4_v2.yaml backend=cpu max_epochs=120
+[scalper-data] accepted_symbols=34 selected_symbols=34 seq_len=32 horizon=10
+[scalper-data] loading 1/34 symbol=AAVEUSDT
+[scalper-data] ready symbol=AAVEUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 2/34 symbol=ADAUSDT
+[scalper-data] ready symbol=ADAUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 3/34 symbol=APEUSDT
+[scalper-data] ready symbol=APEUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 4/34 symbol=API3USDT
+[scalper-data] ready symbol=API3USDT train=35000 val=7480 test=7480
+[scalper-data] loading 5/34 symbol=AXSUSDT
+[scalper-data] ready symbol=AXSUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 6/34 symbol=BARDUSDT
+[scalper-data] ready symbol=BARDUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 7/34 symbol=BIOUSDT
+[scalper-data] ready symbol=BIOUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 8/34 symbol=BNBUSDT
+[scalper-data] ready symbol=BNBUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 9/34 symbol=DOGEUSDT
+[scalper-data] ready symbol=DOGEUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 10/34 symbol=DUSDT
+[scalper-data] ready symbol=DUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 11/34 symbol=DYDXUSDT
+[scalper-data] ready symbol=DYDXUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 12/34 symbol=ENJUSDT
+[scalper-data] ready symbol=ENJUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 13/34 symbol=ETHUSDT
+[scalper-data] ready symbol=ETHUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 14/34 symbol=GIGGLEUSDT
+[scalper-data] ready symbol=GIGGLEUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 15/34 symbol=NEIROUSDT
+[scalper-data] ready symbol=NEIROUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 16/34 symbol=ORDIUSDT
+[scalper-data] ready symbol=ORDIUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 17/34 symbol=PAXGUSDT
+[scalper-data] ready symbol=PAXGUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 18/34 symbol=PENGUUSDT
+[scalper-data] ready symbol=PENGUUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 19/34 symbol=PEPEUSDT
+[scalper-data] ready symbol=PEPEUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 20/34 symbol=RUNEUSDT
+[scalper-data] ready symbol=RUNEUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 21/34 symbol=SIGNUSDT
+[scalper-data] ready symbol=SIGNUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 22/34 symbol=SOLUSDT
+[scalper-data] ready symbol=SOLUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 23/34 symbol=SPKUSDT
+[scalper-data] ready symbol=SPKUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 24/34 symbol=STOUSDT
+[scalper-data] ready symbol=STOUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 25/34 symbol=SUIUSDT
+[scalper-data] ready symbol=SUIUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 26/34 symbol=TAOUSDT
+[scalper-data] ready symbol=TAOUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 27/34 symbol=TONUSDT
+[scalper-data] ready symbol=TONUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 28/34 symbol=TRUMPUSDT
+[scalper-data] ready symbol=TRUMPUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 29/34 symbol=TRXUSDT
+[scalper-data] ready symbol=TRXUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 30/34 symbol=USD1USDT
+[scalper-data] ready symbol=USD1USDT train=35000 val=7480 test=7480
+[scalper-data] loading 31/34 symbol=WALUSDT
+[scalper-data] ready symbol=WALUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 32/34 symbol=WLFIUSDT
+[scalper-data] ready symbol=WLFIUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 33/34 symbol=XRPUSDT
+[scalper-data] ready symbol=XRPUSDT train=35000 val=7480 test=7480
+[scalper-data] loading 34/34 symbol=ZECUSDT
+[scalper-data] ready symbol=ZECUSDT train=35000 val=7480 test=7480
+D:\kp_ai_agent\ChatTrader.KPai\quant_core\scalper_data.py:144: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\torch\csrc\utils\tensor_numpy.cpp:212.)
+  self.target_list = [torch.from_numpy(np.ascontiguousarray(y, dtype=np.int64)) for y in target_list]
+[scalper-data] datasets complete train=1188946 val=253266 test=253266
+[scalper-run] datasets ready train=1188946 val=253266 test=253266 input_dim=13 seq_len=32
+[scalper-run] launching model=cnn
+[scalper:cnn] start backend=cpu device=cpu train=1188946 val=253266 test=253266 batch_size=2048 num_workers=0
+[scalper:cnn] sanity-check passed
+[scalper:cnn] class_counts=[424511.0, 369357.0, 396132.0] class_weights=[0.9313979148864746, 1.0704783201217651, 0.9981235265731812]
+[scalper:cnn] epoch 1/120 started
+[scalper:cnn] epoch 1 batch 1/581 loss=1.113538
+[scalper:cnn] epoch 1 batch 100/581 loss=1.057996
+[scalper:cnn] epoch 1 batch 200/581 loss=1.039527
+[scalper:cnn] epoch 1 batch 300/581 loss=1.041557
+[scalper:cnn] epoch 1 batch 400/581 loss=1.027062
+[scalper:cnn] epoch 1 batch 500/581 loss=1.024040
+[scalper:cnn] epoch 1 batch 581/581 loss=1.018978
+[scalper:cnn] epoch 1 done train_loss=1.040923 train_acc=0.4202 val_loss=1.039600 val_acc=0.4158 val_f1=0.4177 elapsed_s=91.0
+[scalper:cnn] checkpoint saved val_loss=1.039600
+[scalper:cnn] epoch 2/120 started
+[scalper:cnn] epoch 2 batch 1/581 loss=1.027856
+[scalper:cnn] epoch 2 batch 100/581 loss=1.024319
+[scalper:cnn] epoch 2 batch 200/581 loss=1.023347
+[scalper:cnn] epoch 2 batch 300/581 loss=1.018002
+[scalper:cnn] epoch 2 batch 400/581 loss=1.015073
+[scalper:cnn] epoch 2 batch 500/581 loss=1.013141
+[scalper:cnn] epoch 2 batch 581/581 loss=1.018250
+[scalper:cnn] epoch 2 done train_loss=1.023240 train_acc=0.4383 val_loss=1.046878 val_acc=0.4160 val_f1=0.4176 elapsed_s=89.7
+[scalper:cnn] epoch 3/120 started
+[scalper:cnn] epoch 3 batch 1/581 loss=1.009760
+[scalper:cnn] epoch 3 batch 100/581 loss=1.003411
+[scalper:cnn] epoch 3 batch 200/581 loss=1.025519
+[scalper:cnn] epoch 3 batch 300/581 loss=1.018720
+[scalper:cnn] epoch 3 batch 400/581 loss=1.015420
+[scalper:cnn] epoch 3 batch 500/581 loss=1.023428
+[scalper:cnn] epoch 3 batch 581/581 loss=1.029276
+[scalper:cnn] epoch 3 done train_loss=1.018617 train_acc=0.4452 val_loss=1.043097 val_acc=0.4145 val_f1=0.4136 elapsed_s=89.8
+[scalper:cnn] epoch 4/120 started
+[scalper:cnn] epoch 4 batch 1/581 loss=1.007755
+[scalper:cnn] epoch 4 batch 100/581 loss=1.012488
+[scalper:cnn] epoch 4 batch 200/581 loss=1.023251
+[scalper:cnn] epoch 4 batch 300/581 loss=1.011346
+[scalper:cnn] epoch 4 batch 400/581 loss=1.008686
+[scalper:cnn] epoch 4 batch 500/581 loss=0.993617
+[scalper:cnn] epoch 4 batch 581/581 loss=1.004716
+[scalper:cnn] epoch 4 done train_loss=1.015095 train_acc=0.4502 val_loss=1.043340 val_acc=0.4202 val_f1=0.4222 elapsed_s=90.4
+[scalper:cnn] epoch 5/120 started
+[scalper:cnn] epoch 5 batch 1/581 loss=1.027241
+[scalper:cnn] epoch 5 batch 100/581 loss=1.009525
+[scalper:cnn] epoch 5 batch 200/581 loss=1.005968
+[scalper:cnn] epoch 5 batch 300/581 loss=1.021065
+[scalper:cnn] epoch 5 batch 400/581 loss=1.016985
+[scalper:cnn] epoch 5 batch 500/581 loss=1.012192
+[scalper:cnn] epoch 5 batch 581/581 loss=1.000415
+[scalper:cnn] epoch 5 done train_loss=1.012037 train_acc=0.4545 val_loss=1.040542 val_acc=0.4189 val_f1=0.4206 elapsed_s=90.6
+[scalper:cnn] epoch 6/120 started
+[scalper:cnn] epoch 6 batch 1/581 loss=1.010540
+[scalper:cnn] epoch 6 batch 100/581 loss=1.012401
+[scalper:cnn] epoch 6 batch 200/581 loss=1.016813
+[scalper:cnn] epoch 6 batch 300/581 loss=1.007202
+[scalper:cnn] epoch 6 batch 400/581 loss=1.011201
+[scalper:cnn] epoch 6 batch 500/581 loss=1.006999
+[scalper:cnn] epoch 6 batch 581/581 loss=0.997069
+[scalper:cnn] epoch 6 done train_loss=1.009147 train_acc=0.4583 val_loss=1.043993 val_acc=0.4206 val_f1=0.4213 elapsed_s=90.9
+[scalper:cnn] epoch 7/120 started
+[scalper:cnn] epoch 7 batch 1/581 loss=1.009734
+[scalper:cnn] epoch 7 batch 100/581 loss=1.017238
+[scalper:cnn] epoch 7 batch 200/581 loss=1.012707
+[scalper:cnn] epoch 7 batch 300/581 loss=1.008514
+[scalper:cnn] epoch 7 batch 400/581 loss=1.001780
+[scalper:cnn] epoch 7 batch 500/581 loss=1.005041
+[scalper:cnn] epoch 7 batch 581/581 loss=1.011475
+[scalper:cnn] epoch 7 done train_loss=1.007543 train_acc=0.4604 val_loss=1.047149 val_acc=0.4180 val_f1=0.4182 elapsed_s=90.8
+[scalper:cnn] epoch 8/120 started
+[scalper:cnn] epoch 8 batch 1/581 loss=1.002447
+[scalper:cnn] epoch 8 batch 100/581 loss=1.013486
+[scalper:cnn] epoch 8 batch 200/581 loss=1.011402
+[scalper:cnn] epoch 8 batch 300/581 loss=1.003636
+[scalper:cnn] epoch 8 batch 400/581 loss=1.011048
+[scalper:cnn] epoch 8 batch 500/581 loss=1.014905
+[scalper:cnn] epoch 8 batch 581/581 loss=1.025735
+[scalper:cnn] epoch 8 done train_loss=1.005863 train_acc=0.4632 val_loss=1.040661 val_acc=0.4224 val_f1=0.4242 elapsed_s=91.0
+[scalper:cnn] epoch 9/120 started
+[scalper:cnn] epoch 9 batch 1/581 loss=0.998701
+[scalper:cnn] epoch 9 batch 100/581 loss=1.007991
+[scalper:cnn] epoch 9 batch 200/581 loss=0.999588
+[scalper:cnn] epoch 9 batch 300/581 loss=0.978240
+[scalper:cnn] epoch 9 batch 400/581 loss=1.007219
+[scalper:cnn] epoch 9 batch 500/581 loss=1.012508
+[scalper:cnn] epoch 9 batch 581/581 loss=1.001753
+[scalper:cnn] epoch 9 done train_loss=1.004387 train_acc=0.4654 val_loss=1.043709 val_acc=0.4243 val_f1=0.4267 elapsed_s=91.1
+[scalper:cnn] epoch 10/120 started
+[scalper:cnn] epoch 10 batch 1/581 loss=0.994129
+[scalper:cnn] epoch 10 batch 100/581 loss=0.992098
+[scalper:cnn] epoch 10 batch 200/581 loss=1.017127
+[scalper:cnn] epoch 10 batch 300/581 loss=1.000004
+[scalper:cnn] epoch 10 batch 400/581 loss=0.996863
+[scalper:cnn] epoch 10 batch 500/581 loss=0.998806
+[scalper:cnn] epoch 10 batch 581/581 loss=0.981768
+[scalper:cnn] epoch 10 done train_loss=1.002665 train_acc=0.4681 val_loss=1.056852 val_acc=0.4138 val_f1=0.4137 elapsed_s=91.0
+[scalper:cnn] epoch 11/120 started
+[scalper:cnn] epoch 11 batch 1/581 loss=0.985611
+[scalper:cnn] epoch 11 batch 100/581 loss=0.987955
+[scalper:cnn] epoch 11 batch 200/581 loss=1.000621
+[scalper:cnn] epoch 11 batch 300/581 loss=1.007520
+[scalper:cnn] epoch 11 batch 400/581 loss=1.011565
+[scalper:cnn] epoch 11 batch 500/581 loss=1.018746
+[scalper:cnn] epoch 11 batch 581/581 loss=1.012114
+[scalper:cnn] epoch 11 done train_loss=1.001670 train_acc=0.4687 val_loss=1.050416 val_acc=0.4196 val_f1=0.4213 elapsed_s=91.0
+[scalper:cnn] epoch 12/120 started
+[scalper:cnn] epoch 12 batch 1/581 loss=1.001767
+[scalper:cnn] epoch 12 batch 100/581 loss=1.006861
+[scalper:cnn] epoch 12 batch 200/581 loss=1.003542
+[scalper:cnn] epoch 12 batch 300/581 loss=0.996341
+[scalper:cnn] epoch 12 batch 400/581 loss=0.993391
+[scalper:cnn] epoch 12 batch 500/581 loss=1.001998
+[scalper:cnn] epoch 12 batch 581/581 loss=0.998003
+[scalper:cnn] epoch 12 done train_loss=1.000305 train_acc=0.4708 val_loss=1.048860 val_acc=0.4206 val_f1=0.4219 elapsed_s=91.2
+[scalper:cnn] epoch 13/120 started
+[scalper:cnn] epoch 13 batch 1/581 loss=1.005617
+[scalper:cnn] epoch 13 batch 100/581 loss=1.012498
+[scalper:cnn] epoch 13 batch 200/581 loss=0.980529
+[scalper:cnn] epoch 13 batch 300/581 loss=0.998346
+[scalper:cnn] epoch 13 batch 400/581 loss=0.986708
+[scalper:cnn] epoch 13 batch 500/581 loss=0.984111
+[scalper:cnn] epoch 13 batch 581/581 loss=1.004562
+[scalper:cnn] epoch 13 done train_loss=0.999230 train_acc=0.4721 val_loss=1.052061 val_acc=0.4229 val_f1=0.4256 elapsed_s=91.1
+[scalper:cnn] epoch 14/120 started
+[scalper:cnn] epoch 14 batch 1/581 loss=1.013320
+[scalper:cnn] epoch 14 batch 100/581 loss=1.001254
+[scalper:cnn] epoch 14 batch 200/581 loss=0.988321
+[scalper:cnn] epoch 14 batch 300/581 loss=1.015636
+[scalper:cnn] epoch 14 batch 400/581 loss=0.998440
+[scalper:cnn] epoch 14 batch 500/581 loss=0.992521
+[scalper:cnn] epoch 14 batch 581/581 loss=0.986190
+[scalper:cnn] epoch 14 done train_loss=0.998372 train_acc=0.4729 val_loss=1.062057 val_acc=0.4182 val_f1=0.4213 elapsed_s=91.5
+[scalper:cnn] epoch 15/120 started
+[scalper:cnn] epoch 15 batch 1/581 loss=1.012932
+[scalper:cnn] epoch 15 batch 100/581 loss=0.995911
+[scalper:cnn] epoch 15 batch 200/581 loss=0.995696
+[scalper:cnn] epoch 15 batch 300/581 loss=0.994521
+[scalper:cnn] epoch 15 batch 400/581 loss=0.996083
+[scalper:cnn] epoch 15 batch 500/581 loss=1.003601
+[scalper:cnn] epoch 15 batch 581/581 loss=0.986490
+[scalper:cnn] epoch 15 done train_loss=0.997552 train_acc=0.4737 val_loss=1.076415 val_acc=0.4150 val_f1=0.4163 elapsed_s=91.0
+[scalper:cnn] epoch 16/120 started
+[scalper:cnn] epoch 16 batch 1/581 loss=0.992413
+[scalper:cnn] epoch 16 batch 100/581 loss=0.984469
+[scalper:cnn] epoch 16 batch 200/581 loss=0.994966
+[scalper:cnn] epoch 16 batch 300/581 loss=0.994948
+[scalper:cnn] epoch 16 batch 400/581 loss=1.002413
+[scalper:cnn] epoch 16 batch 500/581 loss=1.009111
+[scalper:cnn] epoch 16 batch 581/581 loss=0.993989
+[scalper:cnn] epoch 16 done train_loss=0.996438 train_acc=0.4758 val_loss=1.055300 val_acc=0.4203 val_f1=0.4235 elapsed_s=91.4
+[scalper:cnn] early-stop patience=15
+[scalper:cnn] final test_acc=0.4240 test_f1=0.4233 latency_ms=0.81 test_sharpe=-6.3512
+trained=CNN_Scalper_v1 backend=cpu val_acc=0.4158 test_acc=0.4240 latency=0.81ms is_valid=False
+[scalper-data] scaler saved -> models\checkpoints\scalper_v2\CNN_Scalper_v1\feature_scaler.pkl
+[scalper-run] launching model=linear_attn
+[scalper:linear_attn] start backend=cpu device=cpu train=1188946 val=253266 test=253266 batch_size=2048 num_workers=0
+[scalper:linear_attn] sanity-check passed
+[scalper:linear_attn] class_counts=[424511.0, 369357.0, 396132.0] class_weights=[0.9313979148864746, 1.0704783201217651, 0.9981235265731812]
+[scalper:linear_attn] epoch 1/120 started
+[scalper:linear_attn] epoch 1 batch 1/581 loss=1.205031
+[scalper:linear_attn] epoch 1 batch 100/581 loss=1.056793
+[scalper:linear_attn] epoch 1 batch 200/581 loss=1.057467
+[scalper:linear_attn] epoch 1 batch 300/581 loss=1.050195
+[scalper:linear_attn] epoch 1 batch 400/581 loss=1.040503
+[scalper:linear_attn] epoch 1 batch 500/581 loss=1.031034
+[scalper:linear_attn] epoch 1 batch 581/581 loss=1.021865
+[scalper:linear_attn] epoch 1 done train_loss=1.045979 train_acc=0.4135 val_loss=1.047880 val_acc=0.4087 val_f1=0.4085 elapsed_s=166.1
+[scalper:linear_attn] checkpoint saved val_loss=1.047880
+[scalper:linear_attn] epoch 2/120 started
+[scalper:linear_attn] epoch 2 batch 1/581 loss=1.021843
+[scalper:linear_attn] epoch 2 batch 100/581 loss=1.032953
+[scalper:linear_attn] epoch 2 batch 200/581 loss=1.032178
+[scalper:linear_attn] epoch 2 batch 300/581 loss=1.036088
+[scalper:linear_attn] epoch 2 batch 400/581 loss=1.027354
+[scalper:linear_attn] epoch 2 batch 500/581 loss=1.015732
+[scalper:linear_attn] epoch 2 batch 581/581 loss=1.004353
+[scalper:linear_attn] epoch 2 done train_loss=1.024216 train_acc=0.4321 val_loss=1.035784 val_acc=0.4196 val_f1=0.4192 elapsed_s=166.0
+[scalper:linear_attn] checkpoint saved val_loss=1.035784
+[scalper:linear_attn] epoch 3/120 started
+[scalper:linear_attn] epoch 3 batch 1/581 loss=1.021144
+[scalper:linear_attn] epoch 3 batch 100/581 loss=1.036009
+[scalper:linear_attn] epoch 3 batch 200/581 loss=1.021264
+[scalper:linear_attn] epoch 3 batch 300/581 loss=1.028645
+[scalper:linear_attn] epoch 3 batch 400/581 loss=1.008039
+[scalper:linear_attn] epoch 3 batch 500/581 loss=1.029980
+[scalper:linear_attn] epoch 3 batch 581/581 loss=1.019122
+[scalper:linear_attn] epoch 3 done train_loss=1.015852 train_acc=0.4419 val_loss=1.039552 val_acc=0.4156 val_f1=0.4160 elapsed_s=165.9
+[scalper:linear_attn] epoch 4/120 started
+[scalper:linear_attn] epoch 4 batch 1/581 loss=1.022060
+[scalper:linear_attn] epoch 4 batch 100/581 loss=1.021558
+[scalper:linear_attn] epoch 4 batch 200/581 loss=1.004444
+[scalper:linear_attn] epoch 4 batch 300/581 loss=1.000815
+[scalper:linear_attn] epoch 4 batch 400/581 loss=1.017905
+[scalper:linear_attn] epoch 4 batch 500/581 loss=1.009851
+[scalper:linear_attn] epoch 4 batch 581/581 loss=0.990182
+[scalper:linear_attn] epoch 4 done train_loss=1.011349 train_acc=0.4478 val_loss=1.033918 val_acc=0.4164 val_f1=0.4098 elapsed_s=165.9
+[scalper:linear_attn] checkpoint saved val_loss=1.033918
+[scalper:linear_attn] epoch 5/120 started
+[scalper:linear_attn] epoch 5 batch 1/581 loss=1.014183
+[scalper:linear_attn] epoch 5 batch 100/581 loss=0.998556
+[scalper:linear_attn] epoch 5 batch 200/581 loss=1.011543
+[scalper:linear_attn] epoch 5 batch 300/581 loss=1.002002
+[scalper:linear_attn] epoch 5 batch 400/581 loss=0.999820
+[scalper:linear_attn] epoch 5 batch 500/581 loss=1.005432
+[scalper:linear_attn] epoch 5 batch 581/581 loss=0.998127
+[scalper:linear_attn] epoch 5 done train_loss=1.007959 train_acc=0.4528 val_loss=1.038819 val_acc=0.4179 val_f1=0.4168 elapsed_s=165.7
+[scalper:linear_attn] epoch 6/120 started
+[scalper:linear_attn] epoch 6 batch 1/581 loss=1.028964
+[scalper:linear_attn] epoch 6 batch 100/581 loss=1.000782
+[scalper:linear_attn] epoch 6 batch 200/581 loss=1.007467
+[scalper:linear_attn] epoch 6 batch 300/581 loss=1.000016
+[scalper:linear_attn] epoch 6 batch 400/581 loss=1.017177
+[scalper:linear_attn] epoch 6 batch 500/581 loss=1.012801
+[scalper:linear_attn] epoch 6 batch 581/581 loss=1.024916
+[scalper:linear_attn] epoch 6 done train_loss=1.005165 train_acc=0.4571 val_loss=1.035488 val_acc=0.4197 val_f1=0.4187 elapsed_s=166.0
+[scalper:linear_attn] epoch 7/120 started
+[scalper:linear_attn] epoch 7 batch 1/581 loss=1.002591
+[scalper:linear_attn] epoch 7 batch 100/581 loss=1.005506
+[scalper:linear_attn] epoch 7 batch 200/581 loss=1.010101
+[scalper:linear_attn] epoch 7 batch 300/581 loss=1.012363
+[scalper:linear_attn] epoch 7 batch 400/581 loss=0.993985
+[scalper:linear_attn] epoch 7 batch 500/581 loss=1.003273
+[scalper:linear_attn] epoch 7 batch 581/581 loss=1.001964
+[scalper:linear_attn] epoch 7 done train_loss=1.002395 train_acc=0.4609 val_loss=1.041966 val_acc=0.4191 val_f1=0.4205 elapsed_s=165.7
+[scalper:linear_attn] epoch 8/120 started
+[scalper:linear_attn] epoch 8 batch 1/581 loss=0.983511
+[scalper:linear_attn] epoch 8 batch 100/581 loss=1.007015
+[scalper:linear_attn] epoch 8 batch 200/581 loss=0.996092
+[scalper:linear_attn] epoch 8 batch 300/581 loss=1.011328
+[scalper:linear_attn] epoch 8 batch 400/581 loss=1.017690
+[scalper:linear_attn] epoch 8 batch 500/581 loss=0.997905
+[scalper:linear_attn] epoch 8 batch 581/581 loss=0.993073
+[scalper:linear_attn] epoch 8 done train_loss=1.000522 train_acc=0.4637 val_loss=1.052159 val_acc=0.4113 val_f1=0.4040 elapsed_s=165.5
+[scalper:linear_attn] epoch 9/120 started
+[scalper:linear_attn] epoch 9 batch 1/581 loss=0.999373
+[scalper:linear_attn] epoch 9 batch 100/581 loss=1.006565
+[scalper:linear_attn] epoch 9 batch 200/581 loss=0.994220
+[scalper:linear_attn] epoch 9 batch 300/581 loss=1.000322
+[scalper:linear_attn] epoch 9 batch 400/581 loss=0.990842
+[scalper:linear_attn] epoch 9 batch 500/581 loss=0.997106
+[scalper:linear_attn] epoch 9 batch 581/581 loss=0.990427
+[scalper:linear_attn] epoch 9 done train_loss=0.998416 train_acc=0.4670 val_loss=1.043367 val_acc=0.4169 val_f1=0.4175 elapsed_s=165.4
+[scalper:linear_attn] epoch 10/120 started
+[scalper:linear_attn] epoch 10 batch 1/581 loss=0.989944
+[scalper:linear_attn] epoch 10 batch 100/581 loss=0.984337
+[scalper:linear_attn] epoch 10 batch 200/581 loss=0.992159
+[scalper:linear_attn] epoch 10 batch 300/581 loss=0.995672
+[scalper:linear_attn] epoch 10 batch 400/581 loss=0.991183
+[scalper:linear_attn] epoch 10 batch 500/581 loss=1.012362
+[scalper:linear_attn] epoch 10 batch 581/581 loss=0.972770
+[scalper:linear_attn] epoch 10 done train_loss=0.996663 train_acc=0.4701 val_loss=1.045858 val_acc=0.4165 val_f1=0.4181 elapsed_s=165.6
+[scalper:linear_attn] epoch 11/120 started
+[scalper:linear_attn] epoch 11 batch 1/581 loss=1.007117
+[scalper:linear_attn] epoch 11 batch 100/581 loss=0.997192
+[scalper:linear_attn] epoch 11 batch 200/581 loss=1.002542
+[scalper:linear_attn] epoch 11 batch 300/581 loss=1.012760
+[scalper:linear_attn] epoch 11 batch 400/581 loss=1.004912
+[scalper:linear_attn] epoch 11 batch 500/581 loss=0.990480
+[scalper:linear_attn] epoch 11 batch 581/581 loss=0.986765
+[scalper:linear_attn] epoch 11 done train_loss=0.994435 train_acc=0.4727 val_loss=1.054529 val_acc=0.4151 val_f1=0.4178 elapsed_s=165.9
+[scalper:linear_attn] epoch 12/120 started
+[scalper:linear_attn] epoch 12 batch 1/581 loss=0.984989
+[scalper:linear_attn] epoch 12 batch 100/581 loss=0.994418
+[scalper:linear_attn] epoch 12 batch 200/581 loss=1.006252
+[scalper:linear_attn] epoch 12 batch 300/581 loss=0.989651
+[scalper:linear_attn] epoch 12 batch 400/581 loss=0.994001
+[scalper:linear_attn] epoch 12 batch 500/581 loss=0.998210
+[scalper:linear_attn] epoch 12 batch 581/581 loss=0.981151
+[scalper:linear_attn] epoch 12 done train_loss=0.992180 train_acc=0.4760 val_loss=1.051647 val_acc=0.4178 val_f1=0.4207 elapsed_s=166.0
+[scalper:linear_attn] epoch 13/120 started
+[scalper:linear_attn] epoch 13 batch 1/581 loss=0.983210
+[scalper:linear_attn] epoch 13 batch 100/581 loss=0.986553
+[scalper:linear_attn] epoch 13 batch 200/581 loss=1.006006
+[scalper:linear_attn] epoch 13 batch 300/581 loss=0.992492
+[scalper:linear_attn] epoch 13 batch 400/581 loss=0.993842
+[scalper:linear_attn] epoch 13 batch 500/581 loss=0.995524
+[scalper:linear_attn] epoch 13 batch 581/581 loss=0.989474
+[scalper:linear_attn] epoch 13 done train_loss=0.989919 train_acc=0.4786 val_loss=1.051952 val_acc=0.4192 val_f1=0.4215 elapsed_s=165.6
+[scalper:linear_attn] epoch 14/120 started
+[scalper:linear_attn] epoch 14 batch 1/581 loss=0.995299
+[scalper:linear_attn] epoch 14 batch 100/581 loss=1.004652
+[scalper:linear_attn] epoch 14 batch 200/581 loss=0.977686
+[scalper:linear_attn] epoch 14 batch 300/581 loss=0.992616
+[scalper:linear_attn] epoch 14 batch 400/581 loss=1.003317
+[scalper:linear_attn] epoch 14 batch 500/581 loss=0.982655
+[scalper:linear_attn] epoch 14 batch 581/581 loss=0.987806
+[scalper:linear_attn] epoch 14 done train_loss=0.987565 train_acc=0.4825 val_loss=1.053903 val_acc=0.4166 val_f1=0.4187 elapsed_s=166.0
+[scalper:linear_attn] epoch 15/120 started
+[scalper:linear_attn] epoch 15 batch 1/581 loss=0.985422
+[scalper:linear_attn] epoch 15 batch 100/581 loss=0.993390
+[scalper:linear_attn] epoch 15 batch 200/581 loss=0.983591
+[scalper:linear_attn] epoch 15 batch 300/581 loss=0.990647
+[scalper:linear_attn] epoch 15 batch 400/581 loss=0.967534
+[scalper:linear_attn] epoch 15 batch 500/581 loss=0.981196
+[scalper:linear_attn] epoch 15 batch 581/581 loss=0.985468
+[scalper:linear_attn] epoch 15 done train_loss=0.985235 train_acc=0.4850 val_loss=1.072459 val_acc=0.4150 val_f1=0.4172 elapsed_s=166.2
+[scalper:linear_attn] epoch 16/120 started
+[scalper:linear_attn] epoch 16 batch 1/581 loss=0.961143
+[scalper:linear_attn] epoch 16 batch 100/581 loss=0.993698
+[scalper:linear_attn] epoch 16 batch 200/581 loss=0.996457
+[scalper:linear_attn] epoch 16 batch 300/581 loss=1.006415
+[scalper:linear_attn] epoch 16 batch 400/581 loss=0.972899
+[scalper:linear_attn] epoch 16 batch 500/581 loss=0.995067
+[scalper:linear_attn] epoch 16 batch 581/581 loss=0.985352
+[scalper:linear_attn] epoch 16 done train_loss=0.982987 train_acc=0.4884 val_loss=1.068703 val_acc=0.4137 val_f1=0.4163 elapsed_s=166.4
+[scalper:linear_attn] epoch 17/120 started
+[scalper:linear_attn] epoch 17 batch 1/581 loss=0.992190
+[scalper:linear_attn] epoch 17 batch 100/581 loss=0.986766
+[scalper:linear_attn] epoch 17 batch 200/581 loss=0.976721
+[scalper:linear_attn] epoch 17 batch 300/581 loss=0.969475
+[scalper:linear_attn] epoch 17 batch 400/581 loss=0.980054
+[scalper:linear_attn] epoch 17 batch 500/581 loss=0.985333
+[scalper:linear_attn] epoch 17 batch 581/581 loss=0.976292
+[scalper:linear_attn] epoch 17 done train_loss=0.980756 train_acc=0.4909 val_loss=1.071002 val_acc=0.4144 val_f1=0.4174 elapsed_s=166.2
+[scalper:linear_attn] epoch 18/120 started
+[scalper:linear_attn] epoch 18 batch 1/581 loss=0.974534
+[scalper:linear_attn] epoch 18 batch 100/581 loss=0.969124
+[scalper:linear_attn] epoch 18 batch 200/581 loss=0.980313
+[scalper:linear_attn] epoch 18 batch 300/581 loss=0.974222
+[scalper:linear_attn] epoch 18 batch 400/581 loss=0.971435
+[scalper:linear_attn] epoch 18 batch 500/581 loss=0.960118
+[scalper:linear_attn] epoch 18 batch 581/581 loss=0.985653
+[scalper:linear_attn] epoch 18 done train_loss=0.978643 train_acc=0.4932 val_loss=1.064678 val_acc=0.4142 val_f1=0.4172 elapsed_s=166.3
+[scalper:linear_attn] epoch 19/120 started
+[scalper:linear_attn] epoch 19 batch 1/581 loss=0.964092
+[scalper:linear_attn] epoch 19 batch 100/581 loss=0.966599
+[scalper:linear_attn] epoch 19 batch 200/581 loss=0.980028
+[scalper:linear_attn] epoch 19 batch 300/581 loss=0.969189
+[scalper:linear_attn] epoch 19 batch 400/581 loss=0.967583
+[scalper:linear_attn] epoch 19 batch 500/581 loss=0.965666
+[scalper:linear_attn] epoch 19 batch 581/581 loss=0.964286
+[scalper:linear_attn] epoch 19 done train_loss=0.976463 train_acc=0.4964 val_loss=1.081932 val_acc=0.4140 val_f1=0.4165 elapsed_s=166.2
+[scalper:linear_attn] early-stop patience=15
+[scalper:linear_attn] final test_acc=0.4216 test_f1=0.4230 latency_ms=1.25 test_sharpe=-8.8960
+trained=LinearAttn_Scalper_v1 backend=cpu val_acc=0.4164 test_acc=0.4216 latency=1.25ms is_valid=False
+[scalper-data] scaler saved -> models\checkpoints\scalper_v2\LinearAttn_Scalper_v1\feature_scaler.pkl
+[scalper-run] launching model=gru
+[scalper:gru] start backend=cpu device=cpu train=1188946 val=253266 test=253266 batch_size=2048 num_workers=0
+[scalper:gru] sanity-check passed
+[scalper:gru] class_counts=[424511.0, 369357.0, 396132.0] class_weights=[0.9313979148864746, 1.0704783201217651, 0.9981235265731812]
+[scalper:gru] epoch 1/120 started
+[scalper:gru] epoch 1 batch 1/581 loss=1.129459
+[scalper:gru] epoch 1 batch 100/581 loss=1.079168
+[scalper:gru] epoch 1 batch 200/581 loss=1.057850
+[scalper:gru] epoch 1 batch 300/581 loss=1.044247
+[scalper:gru] epoch 1 batch 400/581 loss=1.030128
+[scalper:gru] epoch 1 batch 500/581 loss=1.045699
+[scalper:gru] epoch 1 batch 581/581 loss=1.033544
+[scalper:gru] epoch 1 done train_loss=1.048954 train_acc=0.4161 val_loss=1.045086 val_acc=0.3993 val_f1=0.3906 elapsed_s=502.3
+[scalper:gru] checkpoint saved val_loss=1.045086
+[scalper:gru] epoch 2/120 started
+[scalper:gru] epoch 2 batch 1/581 loss=1.027326
+[scalper:gru] epoch 2 batch 100/581 loss=1.027026
+[scalper:gru] epoch 2 batch 200/581 loss=1.032462
+[scalper:gru] epoch 2 batch 300/581 loss=1.023651
+[scalper:gru] epoch 2 batch 400/581 loss=1.022787
+[scalper:gru] epoch 2 batch 500/581 loss=1.032457
+[scalper:gru] epoch 2 batch 581/581 loss=1.026979
+[scalper:gru] epoch 2 done train_loss=1.025796 train_acc=0.4373 val_loss=1.035912 val_acc=0.4184 val_f1=0.4202 elapsed_s=502.9
+[scalper:gru] checkpoint saved val_loss=1.035912
+[scalper:gru] epoch 3/120 started
+[scalper:gru] epoch 3 batch 1/581 loss=1.020405
+[scalper:gru] epoch 3 batch 100/581 loss=1.027335
+[scalper:gru] epoch 3 batch 200/581 loss=1.023472
+[scalper:gru] epoch 3 batch 300/581 loss=1.008382
+[scalper:gru] epoch 3 batch 400/581 loss=1.022907
+[scalper:gru] epoch 3 batch 500/581 loss=1.008364
+[scalper:gru] epoch 3 batch 581/581 loss=1.015326
+[scalper:gru] epoch 3 done train_loss=1.019254 train_acc=0.4459 val_loss=1.038740 val_acc=0.4186 val_f1=0.4198 elapsed_s=504.3
+[scalper:gru] epoch 4/120 started
+[scalper:gru] epoch 4 batch 1/581 loss=1.021271
+[scalper:gru] epoch 4 batch 100/581 loss=1.020313
+[scalper:gru] epoch 4 batch 200/581 loss=1.012700
+[scalper:gru] epoch 4 batch 300/581 loss=1.029120
+[scalper:gru] epoch 4 batch 400/581 loss=1.015617
+[scalper:gru] epoch 4 batch 500/581 loss=1.005756
+[scalper:gru] epoch 4 batch 581/581 loss=1.010941
+[scalper:gru] epoch 4 done train_loss=1.013787 train_acc=0.4535 val_loss=1.044846 val_acc=0.4160 val_f1=0.4154 elapsed_s=505.9
+[scalper:gru] epoch 5/120 started
+[scalper:gru] epoch 5 batch 1/581 loss=1.011638
+[scalper:gru] epoch 5 batch 100/581 loss=1.011880
+[scalper:gru] epoch 5 batch 200/581 loss=1.004839
+[scalper:gru] epoch 5 batch 300/581 loss=1.013895
+[scalper:gru] epoch 5 batch 400/581 loss=0.998610
+[scalper:gru] epoch 5 batch 500/581 loss=1.011490
+[scalper:gru] epoch 5 batch 581/581 loss=1.000139
+[scalper:gru] epoch 5 done train_loss=1.008308 train_acc=0.4620 val_loss=1.051765 val_acc=0.4117 val_f1=0.4136 elapsed_s=505.5
+[scalper:gru] epoch 6/120 started
+[scalper:gru] epoch 6 batch 1/581 loss=1.014909
+[scalper:gru] epoch 6 batch 100/581 loss=0.995744
+[scalper:gru] epoch 6 batch 200/581 loss=1.000230
+[scalper:gru] epoch 6 batch 300/581 loss=1.004725
+[scalper:gru] epoch 6 batch 400/581 loss=0.991904
+[scalper:gru] epoch 6 batch 500/581 loss=1.002612
+[scalper:gru] epoch 6 batch 581/581 loss=1.001704
+[scalper:gru] epoch 6 done train_loss=1.002619 train_acc=0.4696 val_loss=1.049051 val_acc=0.4177 val_f1=0.4195 elapsed_s=505.8
+[scalper:gru] epoch 7/120 started
+[scalper:gru] epoch 7 batch 1/581 loss=1.013691
+[scalper:gru] epoch 7 batch 100/581 loss=1.006249
+[scalper:gru] epoch 7 batch 200/581 loss=1.008994
+[scalper:gru] epoch 7 batch 300/581 loss=0.999528
+[scalper:gru] epoch 7 batch 400/581 loss=0.982749
+[scalper:gru] epoch 7 batch 500/581 loss=1.013002
+[scalper:gru] epoch 7 batch 581/581 loss=1.005889
+[scalper:gru] epoch 7 done train_loss=0.997518 train_acc=0.4757 val_loss=1.059698 val_acc=0.4063 val_f1=0.4038 elapsed_s=502.4
+[scalper:gru] epoch 8/120 started
+[scalper:gru] epoch 8 batch 1/581 loss=0.998783
+[scalper:gru] epoch 8 batch 100/581 loss=0.985773
+[scalper:gru] epoch 8 batch 200/581 loss=0.981128
+[scalper:gru] epoch 8 batch 300/581 loss=0.981279
+[scalper:gru] epoch 8 batch 400/581 loss=0.984878
+[scalper:gru] epoch 8 batch 500/581 loss=0.984992
+[scalper:gru] epoch 8 batch 581/581 loss=0.962700
+[scalper:gru] epoch 8 done train_loss=0.992270 train_acc=0.4814 val_loss=1.057588 val_acc=0.4093 val_f1=0.4091 elapsed_s=504.2
+[scalper:gru] epoch 9/120 started
+[scalper:gru] epoch 9 batch 1/581 loss=0.983340
+[scalper:gru] epoch 9 batch 100/581 loss=0.990541
+[scalper:gru] epoch 9 batch 200/581 loss=0.987397
+[scalper:gru] epoch 9 batch 300/581 loss=0.984596
+[scalper:gru] epoch 9 batch 400/581 loss=0.987523
+[scalper:gru] epoch 9 batch 500/581 loss=0.991099
+[scalper:gru] epoch 9 batch 581/581 loss=0.975769
+[scalper:gru] epoch 9 done train_loss=0.987433 train_acc=0.4870 val_loss=1.061164 val_acc=0.4127 val_f1=0.4149 elapsed_s=505.5
+[scalper:gru] epoch 10/120 started
+[scalper:gru] epoch 10 batch 1/581 loss=1.000906
+[scalper:gru] epoch 10 batch 100/581 loss=0.998278
+[scalper:gru] epoch 10 batch 200/581 loss=0.991503
+[scalper:gru] epoch 10 batch 300/581 loss=0.976521
+[scalper:gru] epoch 10 batch 400/581 loss=0.983703
+[scalper:gru] epoch 10 batch 500/581 loss=0.978346
+[scalper:gru] epoch 10 batch 581/581 loss=0.984036
+[scalper:gru] epoch 10 done train_loss=0.982638 train_acc=0.4920 val_loss=1.064926 val_acc=0.4109 val_f1=0.4136 elapsed_s=505.3
+[scalper:gru] epoch 11/120 started
+[scalper:gru] epoch 11 batch 1/581 loss=0.995136
+[scalper:gru] epoch 11 batch 100/581 loss=0.980318
+[scalper:gru] epoch 11 batch 200/581 loss=0.973593
+[scalper:gru] epoch 11 batch 300/581 loss=0.984369
+[scalper:gru] epoch 11 batch 400/581 loss=0.966128
+[scalper:gru] epoch 11 batch 500/581 loss=0.977084
+[scalper:gru] epoch 11 batch 581/581 loss=0.986354
+[scalper:gru] epoch 11 done train_loss=0.978110 train_acc=0.4966 val_loss=1.081368 val_acc=0.4038 val_f1=0.4024 elapsed_s=503.8
+[scalper:gru] epoch 12/120 started
+[scalper:gru] epoch 12 batch 1/581 loss=0.972647
+[scalper:gru] epoch 12 batch 100/581 loss=0.974251
+[scalper:gru] epoch 12 batch 200/581 loss=0.969636
+[scalper:gru] epoch 12 batch 300/581 loss=0.979530
+[scalper:gru] epoch 12 batch 400/581 loss=0.973724
+[scalper:gru] epoch 12 batch 500/581 loss=0.974862
+[scalper:gru] epoch 12 batch 581/581 loss=0.977839
+[scalper:gru] epoch 12 done train_loss=0.973682 train_acc=0.5018 val_loss=1.074031 val_acc=0.4076 val_f1=0.4083 elapsed_s=502.8
+[scalper:gru] epoch 13/120 started
+[scalper:gru] epoch 13 batch 1/581 loss=0.965553
+[scalper:gru] epoch 13 batch 100/581 loss=0.982340
+[scalper:gru] epoch 13 batch 200/581 loss=0.979736
+[scalper:gru] epoch 13 batch 300/581 loss=0.975187
+[scalper:gru] epoch 13 batch 400/581 loss=0.983989
+[scalper:gru] epoch 13 batch 500/581 loss=0.986225
+[scalper:gru] epoch 13 batch 581/581 loss=0.983137
+[scalper:gru] epoch 13 done train_loss=0.969495 train_acc=0.5055 val_loss=1.088174 val_acc=0.4031 val_f1=0.4001 elapsed_s=504.8
+[scalper:gru] epoch 14/120 started
+[scalper:gru] epoch 14 batch 1/581 loss=0.961905
+[scalper:gru] epoch 14 batch 100/581 loss=0.976994
+[scalper:gru] epoch 14 batch 200/581 loss=0.965610
+[scalper:gru] epoch 14 batch 300/581 loss=0.981070
+[scalper:gru] epoch 14 batch 400/581 loss=0.966076
+[scalper:gru] epoch 14 batch 500/581 loss=0.962561
+[scalper:gru] epoch 14 batch 581/581 loss=0.968832
+[scalper:gru] epoch 14 done train_loss=0.965311 train_acc=0.5099 val_loss=1.086772 val_acc=0.4078 val_f1=0.4086 elapsed_s=507.4
+[scalper:gru] epoch 15/120 started
+[scalper:gru] epoch 15 batch 1/581 loss=0.960066
+[scalper:gru] epoch 15 batch 100/581 loss=0.973805
+[scalper:gru] epoch 15 batch 200/581 loss=0.946681
+[scalper:gru] epoch 15 batch 300/581 loss=0.972221
+[scalper:gru] epoch 15 batch 400/581 loss=0.940888
+[scalper:gru] epoch 15 batch 500/581 loss=0.972401
+[scalper:gru] epoch 15 batch 581/581 loss=0.962614
+[scalper:gru] epoch 15 done train_loss=0.961558 train_acc=0.5131 val_loss=1.088432 val_acc=0.4073 val_f1=0.4088 elapsed_s=507.0
+[scalper:gru] epoch 16/120 started
+[scalper:gru] epoch 16 batch 1/581 loss=0.970513
+[scalper:gru] epoch 16 batch 100/581 loss=0.953472
+[scalper:gru] epoch 16 batch 200/581 loss=0.976050
+[scalper:gru] epoch 16 batch 300/581 loss=0.949496
+[scalper:gru] epoch 16 batch 400/581 loss=0.953763
+[scalper:gru] epoch 16 batch 500/581 loss=0.959463
+[scalper:gru] epoch 16 batch 581/581 loss=0.950255
+[scalper:gru] epoch 16 done train_loss=0.957710 train_acc=0.5169 val_loss=1.100845 val_acc=0.4066 val_f1=0.4065 elapsed_s=504.8
+[scalper:gru] epoch 17/120 started
+[scalper:gru] epoch 17 batch 1/581 loss=0.965996
+[scalper:gru] epoch 17 batch 100/581 loss=0.959237
+[scalper:gru] epoch 17 batch 200/581 loss=0.957599
+[scalper:gru] epoch 17 batch 300/581 loss=0.957173
+[scalper:gru] epoch 17 batch 400/581 loss=0.941400
+[scalper:gru] epoch 17 batch 500/581 loss=0.955148
+[scalper:gru] epoch 17 batch 581/581 loss=0.952089
+[scalper:gru] epoch 17 done train_loss=0.953849 train_acc=0.5204 val_loss=1.088227 val_acc=0.4036 val_f1=0.4036 elapsed_s=504.0
+[scalper:gru] early-stop patience=15
+[scalper:gru] final test_acc=0.4311 test_f1=0.4334 latency_ms=8.00 test_sharpe=-4.0920
+trained=GRU_Scalper_v1 backend=cpu val_acc=0.4184 test_acc=0.4311 latency=8.00ms is_valid=False
+[scalper-data] scaler saved -> models\checkpoints\scalper_v2\GRU_Scalper_v1\feature_scaler.pkl
+registry=model_registry.json elapsed_s=13253.85
+
+# Exit code: 0
+# Finished: 2026-05-28 18:45:54

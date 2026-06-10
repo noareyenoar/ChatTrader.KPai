@@ -1,0 +1,38 @@
+# GAT + LSTM only (Autoencoder already done at 9:38 PM)
+# CPU backend — safe, no DirectML memory pressure
+# batch_size reduced from 256 → 64 (25%)
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 128
+  horizon: 10
+  max_assets: 34
+  max_rows_per_symbol: 50000
+
+training:
+  seed: 42
+  preferred_backend: cpu
+  batch_size: 64
+  max_epochs: 120
+  patience: 20
+  lr: 0.0008
+  weight_decay: 0.0002
+  recon_weight: 0.5
+  num_workers: 0
+  num_workers_non_cuda: 0
+  checkpoint_root: models/checkpoints/stat_arb
+  tensorboard_root: models/tensorboard/stat_arb
+
+models:
+  gat:
+    d_model: 32
+    num_layers: 2
+    dropout: 0.2
+  lstm:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.2
+
+registry_path: model_registry.json

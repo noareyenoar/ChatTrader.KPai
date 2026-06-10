@@ -1,19 +1,16 @@
 {
-  "ts": "2026-05-27 10:43:38",
-  "current_step": "discretionary",
-  "step_elapsed_s": 68709.4,
-  "sweep_elapsed_s": 128704.1,
+  "ts": "2026-05-28 14:47:08",
+  "current_step": "finalize",
+  "step_elapsed_s": 31.7,
+  "sweep_elapsed_s": 229713.8,
   "last_lines": [
-    "[disc:vit] epoch 181 batch 600/9289 loss=0.696516",
-    "[disc:vit] epoch 181 batch 700/9289 loss=0.774930",
-    "[disc:vit] epoch 181 batch 800/9289 loss=0.701830",
-    "[disc:vit] epoch 181 batch 900/9289 loss=0.874726",
-    "[disc:vit] epoch 181 batch 1000/9289 loss=0.849754",
-    "[disc:vit] epoch 181 batch 1100/9289 loss=0.808137",
-    "[disc:vit] epoch 181 batch 1200/9289 loss=0.877063",
-    "[disc:vit] epoch 181 batch 1300/9289 loss=0.697022",
-    "[disc:vit] epoch 181 batch 1400/9289 loss=0.722298",
-    "[disc:vit] epoch 181 batch 1500/9289 loss=0.744328"
+    "updated_registry=D:\\kp_ai_agent\\ChatTrader.KPai\\model_registry.json",
+    "written_summary=D:\\kp_ai_agent\\ChatTrader.KPai\\model_performance_summary.md"
   ],
-  "results": []
+  "results": [],
+  "sweep_complete": true,
+  "failed_steps": [
+    "mean_reversion",
+    "stat_arb"
+  ]
 }

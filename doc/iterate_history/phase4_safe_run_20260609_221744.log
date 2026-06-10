@@ -1,0 +1,10 @@
+[2026-06-09 22:17:44] ======================================================================
+[2026-06-09 22:17:44] Phase 4 Safe Sequential Orchestrator — starting
+[2026-06-09 22:17:44] Python: D:\kp_ai_agent\ChatTrader.KPai\.venv\Scripts\python.exe
+[2026-06-09 22:17:44] Root:   D:\kp_ai_agent\ChatTrader.KPai
+[2026-06-09 22:17:44] Log:    D:\kp_ai_agent\ChatTrader.KPai\doc\iterate_history\phase4_safe_run_20260609_221744.log
+[2026-06-09 22:17:44] ======================================================================
+[2026-06-09 22:17:44] START scalper-safe-no-cnn
+[2026-06-10 05:29:47] DONE  scalper-safe-no-cnn  exit=0  elapsed_s=25923.3
+[2026-06-10 05:29:47] Cooldown 30s after scalper-safe-no-cnn...
+[2026-06-10 05:30:17] START trend-tcn-only

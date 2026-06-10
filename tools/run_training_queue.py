@@ -54,10 +54,12 @@ QUEUE: list[dict] = [
     },
     {
         "step": 4,
-        "label": "Scalper (GRU/CNN/LinearAttn)",
+        # v2: horizon 2→10 (50-min window), flat_threshold 0.001→0.002, cpu backend
+        # v1 failed with test_sharpe=-8.7 due to 10-min microstructure noise
+        "label": "Scalper v2 (GRU/CNN/LinearAttn, horizon=10)",
         "module": "quant_core.train_scalper_phase4",
-        "config": "configs/scalper_phase4.yaml",
-        "log": "scalper_retrain_run1.log",
+        "config": "configs/scalper_phase4_v2.yaml",
+        "log": "scalper_v2_retrain_run1.log",
     },
     {
         "step": 5,
@@ -138,6 +140,8 @@ def _run_step(step: dict, dry_run: bool) -> int:
 
         # Stream output line-by-line to BOTH terminal and log file so the
         # user can see live progress and confirm the process is not hung.
+        import os as _os
+        _env = {**_os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
         proc = subprocess.Popen(
             cmd,
             cwd=Path(__file__).parent.parent,
@@ -146,6 +150,7 @@ def _run_step(step: dict, dry_run: bool) -> int:
             encoding="utf-8",
             errors="replace",
             bufsize=1,
+            env=_env,
         )
         for line in proc.stdout:
             line_stripped = line.rstrip("\n")
@@ -168,6 +173,9 @@ def main() -> None:
     parser.add_argument("--end-step", type=int, default=10, help="Stop after this step (inclusive)")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without running")
     parser.add_argument("--list", action="store_true", help="List all steps and exit")
+    parser.add_argument("--stop-on-failure", action="store_true",
+                        help="Halt the entire queue when any step fails (legacy behaviour). "
+                             "Default is continue-on-failure: log the error and advance to the next step.")
     args = parser.parse_args()
 
     if args.list:
@@ -194,9 +202,13 @@ def main() -> None:
 
         if rc != 0:
             failed_steps.append(sn)
-            print(f"\n[ERROR] Step {sn} failed with rc={rc}. Stopping queue.")
-            print(f"  Fix the issue and restart with: python {__file__} --start-step {sn}")
-            sys.exit(rc)
+            if args.stop_on_failure:
+                print(f"\n[ERROR] Step {sn} failed with rc={rc}. --stop-on-failure set, halting queue.")
+                print(f"  Fix the issue and restart with: python {__file__} --start-step {sn}")
+                sys.exit(rc)
+            else:
+                print(f"\n[WARN] Step {sn} failed with rc={rc}. Logging failure and advancing to next step.")
+                print(f"  To retry from this step: python {__file__} --start-step {sn}")
 
     print(f"\n{'='*70}")
     print(f"[{_ts()}] QUEUE COMPLETE -- steps {args.start_step}-{args.end_step}")

@@ -1,6 +1,6 @@
 {
-  "epoch": 120,
-  "val_loss": 1.077753,
-  "checkpoint_file": "epoch_120.pt",
-  "timestamp": "2026-05-26T08:37:17.651487+00:00"
+  "epoch": 103,
+  "val_loss": 1.042199,
+  "checkpoint_file": "epoch_103.pt",
+  "timestamp": "2026-06-09T22:25:33.301204+00:00"
 }

@@ -68,7 +68,9 @@ def _split_prices(
 
 
 def _check_result(mean_r: float, std_r: float, sharpe_r: float, max_dd: float) -> bool:
-    return mean_r > 0.0 and sharpe_r > 0.0 and max_dd < 0.15 and std_r < 1.0
+    # V2.0 tightened gate: require meaningful reward Sharpe (>0.5) not just >0
+    # Previous threshold (>0.0) accepted near-zero sharpe models as valid
+    return mean_r > 0.0 and sharpe_r > 0.5 and max_dd < 0.15 and std_r < 1.0
 
 
 def _make_env(prices: np.ndarray, cfg: dict[str, Any], seed: int) -> MarketMakingEnv:

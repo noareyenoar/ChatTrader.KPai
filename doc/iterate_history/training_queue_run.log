@@ -10,3 +10,19 @@
 # Queue started: 2026-05-19 04:06:52 steps=1-10
   step 1 Transformer+TCN (Trend): OK at 2026-05-19 10:30:33
   step 2 LSTM v2 (Trend): FAIL(rc=4294967295) at 2026-05-19 12:21:44
+
+# Queue started: 2026-05-28 14:11:35 steps=3-10
+  step 3 MR (GRN/ResNet/MLP): OK at 2026-05-28 14:11:35
+  step 4 Scalper v2 (GRU/CNN/LinearAttn, horizon=10): OK at 2026-05-28 14:11:35
+  step 5 StatArb (LSTM/GAT/Autoencoder): OK at 2026-05-28 14:11:35
+  step 6 MM SAC+DQN (PPO already passed gates -- skip to protect PASSED model): OK at 2026-05-28 14:11:35
+  step 7 Discretionary (CNNChart/Multimodal/ViT): OK at 2026-05-28 14:11:35
+  step 8 TG-MNN: OK at 2026-05-28 14:11:35
+  step 9 APV-PLN v1/v2/v3 (oracle teacher / LUPI): OK at 2026-05-28 14:11:35
+  step 10 evaluator_run5 (all models OOS evaluation): OK at 2026-05-28 14:11:35
+
+# Queue started: 2026-05-28 14:11:42 steps=3-10
+  step 3 MR (GRN/ResNet/MLP): OK at 2026-05-28 15:04:49
+  step 4 Scalper v2 (GRU/CNN/LinearAttn, horizon=10): OK at 2026-05-28 18:45:54
+  step 5 StatArb (LSTM/GAT/Autoencoder): OK at 2026-05-28 20:25:58
+  step 6 MM SAC+DQN (PPO already passed gates -- skip to protect PASSED model): OK at 2026-05-29 19:12:44

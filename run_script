@@ -1,0 +1,1 @@
+Get-Content doc\glass_tank_heartbeat.json -Encoding UTF8

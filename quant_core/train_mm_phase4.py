@@ -68,6 +68,13 @@ def load_config(path: Path) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Train Market Making RL models (Phase 4)")
     parser.add_argument("--config", type=str, default="configs/mm_phase4.yaml")
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="all",
+        choices=["all", "ppo", "sac", "dqn"],
+        help="Train one algorithm only, or all",
+    )
     args = parser.parse_args()
 
     cfg = load_config(Path(args.config))
@@ -86,7 +93,9 @@ def main() -> int:
     started = time.time()
     results: list[MMResult] = []
 
-    for algo in ("ppo", "sac", "dqn"):
+    algos = ("ppo", "sac", "dqn") if args.model == "all" else (args.model,)
+
+    for algo in algos:
         algo_cfg = {**common, **cfg["models"].get(algo, {})}
         print(f"[mm-run] launching algo={algo.upper()} backend={backend} device={device}", flush=True)
         if algo == "ppo":

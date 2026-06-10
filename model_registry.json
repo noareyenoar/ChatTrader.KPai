@@ -1,178 +1,17 @@
 [
   {
-    "architecture_name": "LSTM_Trend_v1",
+    "architecture_name": "TG_MNN_v1",
     "archetype": "trend_follower",
-    "weights_path": "models/checkpoints/trend/LSTM_Trend_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/trend/LSTM_Trend_v1/optimizer_state.pt",
-    "design_premise": "Trend regime modeling from sequential momentum features.",
-    "standard_interface": {
-      "outputs": [
-        "prediction",
-        "confidence"
-      ]
-    },
-    "validation": {
-      "val_loss": 0.7010359916151786,
-      "test_loss": 0.7062352390921846,
-      "val_directional_accuracy": 0.5212227702140808,
-      "test_directional_accuracy": 0.5153045058250427,
-      "val_sharpe": 4.135467052459717,
-      "test_sharpe": -0.6479225754737854,
-      "test_profit_factor": 0.9901910913900177,
-      "test_max_drawdown": 36.4704704284668,
-      "backend": "cpu",
-      "cuda_used": false,
-      "sanity_passed": true,
-      "is_valid": false
-    }
-  },
-  {
-    "architecture_name": "Transformer_Trend_v1",
-    "archetype": "trend_follower",
-    "weights_path": "models/checkpoints/trend/Transformer_Trend_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/trend/Transformer_Trend_v1/optimizer_state.pt",
-    "design_premise": "Trend regime modeling from sequential momentum features.",
-    "standard_interface": {
-      "outputs": [
-        "prediction",
-        "confidence"
-      ]
-    },
-    "validation": {
-      "val_loss": 0.6933747365766642,
-      "test_loss": 0.6911515836813011,
-      "val_directional_accuracy": 0.5136253833770752,
-      "test_directional_accuracy": 0.5295593738555908,
-      "val_sharpe": 2.9325973987579346,
-      "test_sharpe": -2.352431297302246,
-      "test_profit_factor": 0.9648412740161127,
-      "test_max_drawdown": 5.101246356964111,
-      "backend": "cpu",
-      "cuda_used": false,
-      "sanity_passed": true,
-      "is_valid": false
-    }
-  },
-  {
-    "architecture_name": "TCN_Trend_v1",
-    "archetype": "trend_follower",
-    "weights_path": "models/checkpoints/trend/TCN_Trend_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/trend/TCN_Trend_v1/optimizer_state.pt",
-    "design_premise": "Trend regime modeling from sequential momentum features.",
-    "standard_interface": {
-      "outputs": [
-        "prediction",
-        "confidence"
-      ]
-    },
-    "validation": {
-      "val_loss": 0.7022333461411145,
-      "test_loss": 0.6995367730150417,
-      "val_directional_accuracy": 0.5200831890106201,
-      "test_directional_accuracy": 0.5266603827476501,
-      "val_sharpe": 6.882405757904053,
-      "test_sharpe": 2.2660138607025146,
-      "test_profit_factor": 1.0350778307477546,
-      "test_max_drawdown": 23.91067886352539,
-      "backend": "cpu",
-      "cuda_used": false,
-      "sanity_passed": true,
-      "is_valid": false
-    }
-  },
-  {
-    "architecture_name": "MLP_MR_v1",
-    "archetype": "mean_reversion",
-    "weights_path": "models/checkpoints/mean_reversion/MLP_MR_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:42.731931+00:00",
+    "weights_path": "models/checkpoints/tg_mnn/model_best.pt",
+    "eval_timestamp": "2026-06-09T07:38:29.408031+00:00",
     "device": "directml",
     "validation": {
       "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.51885,
-      "sharpe": -1.673146,
-      "profit_factor": 0.626469,
-      "max_drawdown": 1.0,
-      "n_samples": 20000,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "ResNet_MR_v1",
-    "archetype": "mean_reversion",
-    "weights_path": "models/checkpoints/mean_reversion/ResNet_MR_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:44.093901+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.5214,
-      "sharpe": -1.647971,
-      "profit_factor": 0.630807,
-      "max_drawdown": 1.0,
-      "n_samples": 20000,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "GRN_MR_v1",
-    "archetype": "mean_reversion",
-    "weights_path": "models/checkpoints/mean_reversion/GRN_MR_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:45.527209+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.5266,
-      "sharpe": -1.503684,
-      "profit_factor": 0.657127,
-      "max_drawdown": 1.0,
-      "n_samples": 20000,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "CNN_Scalper_v1",
-    "archetype": "scalping_microstructure",
-    "weights_path": "models/checkpoints/scalper/CNN_Scalper_v1/model_best.pt",
-    "optimizer_state_path": "models/checkpoints/scalper/CNN_Scalper_v1/optimizer_state.pt",
-    "design_premise": "Short-horizon order-flow microstructure modeling for intraday scalping.",
-    "standard_interface": {
-      "outputs": [
-        "class_logits_3"
-      ]
-    },
-    "validation": {
-      "val_accuracy": 0.41234781923486075,
-      "test_accuracy": 0.4314644813049131,
-      "val_f1": 0.40302777712517024,
-      "test_f1": 0.4159364306874904,
-      "inference_ms": 0.3716139998869039,
-      "val_sharpe": -13.086052402701423,
-      "test_sharpe": -8.70305952423569,
-      "test_profit_factor": 0.8313363770110166,
-      "test_max_drawdown": 0.9999999800003329,
-      "backend": "directml",
-      "cuda_used": true,
-      "is_valid": false
+      "reason": "checkpoint_missing",
+      "directional_accuracy": null,
+      "sharpe": null,
+      "profit_factor": null,
+      "max_drawdown": null
     }
   },
   {
@@ -187,15 +26,15 @@
       ]
     },
     "validation": {
-      "val_accuracy": 0.41307277097041095,
-      "test_accuracy": 0.41782041684724797,
-      "val_f1": 0.4123832253011182,
-      "test_f1": 0.4150890935757092,
-      "inference_ms": 2.2441909997723997,
-      "val_sharpe": -14.359937795542596,
-      "test_sharpe": -10.271400278908843,
-      "test_profit_factor": 0.8079399163869456,
-      "test_max_drawdown": 0.9999999804012144,
+      "val_accuracy": 0.4172018438989796,
+      "test_accuracy": 0.4391158740790355,
+      "val_f1": 0.40865358071046015,
+      "test_f1": 0.42430336430135984,
+      "inference_ms": 1.462709000002178,
+      "val_sharpe": -10.53048957357525,
+      "test_sharpe": -7.449557292093382,
+      "test_profit_factor": 0.8476171247546838,
+      "test_max_drawdown": 0.9999999803074275,
       "backend": "directml",
       "cuda_used": true,
       "is_valid": false
@@ -213,258 +52,18 @@
       ]
     },
     "validation": {
-      "val_accuracy": 0.410149324297703,
-      "test_accuracy": 0.4092982939994484,
-      "val_f1": 0.40276600842725857,
-      "test_f1": 0.40010744158423045,
-      "inference_ms": 19.76822099997662,
-      "val_sharpe": -7.2909042448959624,
-      "test_sharpe": -8.063072202468707,
-      "test_profit_factor": 0.8396117351058172,
-      "test_max_drawdown": 0.999999980209404,
+      "val_accuracy": 0.43011701666601,
+      "test_accuracy": 0.4437492612584217,
+      "val_f1": 0.4290301009420305,
+      "test_f1": 0.43990028179614243,
+      "inference_ms": 23.16579599999386,
+      "val_sharpe": -10.80107118875776,
+      "test_sharpe": -8.741410816377384,
+      "test_profit_factor": 0.8386611590341569,
+      "test_max_drawdown": 0.999999980000924,
       "backend": "directml",
       "cuda_used": true,
       "is_valid": false
     }
-  },
-  {
-    "architecture_name": "Autoencoder_StatArb_v1",
-    "archetype": "statistical_arbitrage",
-    "weights_path": "models/checkpoints/stat_arb/Autoencoder_StatArb_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:53.991477+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.46386,
-      "sharpe": -5.848615,
-      "profit_factor": 0.279966,
-      "max_drawdown": 0.931859,
-      "n_samples": 2518,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "GAT_StatArb_v1",
-    "archetype": "statistical_arbitrage",
-    "weights_path": "models/checkpoints/stat_arb/GAT_StatArb_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:54.910598+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.467434,
-      "sharpe": -5.6846,
-      "profit_factor": 0.279825,
-      "max_drawdown": 0.92372,
-      "n_samples": 2518,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "LSTM_StatArb_v1",
-    "archetype": "statistical_arbitrage",
-    "weights_path": "models/checkpoints/stat_arb/LSTM_StatArb_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:55.237625+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.486497,
-      "sharpe": -4.276494,
-      "profit_factor": 0.398414,
-      "max_drawdown": 0.898245,
-      "n_samples": 2518,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "ViT_Disc_v1",
-    "archetype": "discretionary_multimodal",
-    "weights_path": "models/checkpoints/discretionary/ViT_Disc_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:55.458960+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.380615,
-      "sharpe": -2.850715,
-      "profit_factor": 0.53276,
-      "max_drawdown": 1.0,
-      "n_samples": 12556,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "Multimodal_Disc_v1",
-    "archetype": "discretionary_multimodal",
-    "weights_path": "models/checkpoints/discretionary/Multimodal_Disc_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:56.896991+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.38619,
-      "sharpe": -2.636887,
-      "profit_factor": 0.559046,
-      "max_drawdown": 1.0,
-      "n_samples": 12556,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "CNNChart_Disc_v1",
-    "archetype": "discretionary_multimodal",
-    "weights_path": "models/checkpoints/discretionary/CNNChart_Disc_v1/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:57.847814+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.38396,
-      "sharpe": -1.950172,
-      "profit_factor": 0.654193,
-      "max_drawdown": 0.999994,
-      "n_samples": 12556,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "PPO_MM_v1",
-    "archetype": "market_making_rl",
-    "weights_path": "models/checkpoints/market_maker/PPO_MM_v1/PPO_MM_v1_best.pt",
-    "eval_timestamp": "2026-05-15T14:46:58.971031+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "PASSED",
-      "directional_accuracy": 0.808081,
-      "sharpe": 8.773047,
-      "profit_factor": 3.287546,
-      "max_drawdown": 0.304178,
-      "n_samples": 200,
-      "device": "directml",
-      "eval_mode": "episodic_rl"
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "SAC_MM_v1",
-    "archetype": "market_making_rl",
-    "weights_path": "models/checkpoints/market_maker/SAC_MM_v1/SAC_MM_v1_best.pt",
-    "eval_timestamp": "2026-05-15T14:47:57.155925+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.585859,
-      "sharpe": -4.005288,
-      "profit_factor": 0.359998,
-      "max_drawdown": 1.0,
-      "n_samples": 200,
-      "device": "directml",
-      "eval_mode": "episodic_rl"
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "DQN_MM_v1",
-    "archetype": "market_making_rl",
-    "weights_path": "models/checkpoints/market_maker/DQN_MM_v1/DQN_MM_v1_best.pt",
-    "eval_timestamp": "2026-05-15T14:48:29.064457+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.575758,
-      "sharpe": -3.994059,
-      "profit_factor": 0.36083,
-      "max_drawdown": 1.0,
-      "n_samples": 200,
-      "device": "directml",
-      "eval_mode": "episodic_rl"
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "TG_MNN_v1",
-    "archetype": "trend_follower",
-    "weights_path": "models/checkpoints/tg_mnn/model_best.pt",
-    "eval_timestamp": "2026-05-15T14:49:06.031034+00:00",
-    "device": "directml",
-    "validation": {
-      "status": "RESUME_TRAINING_REQUIRED",
-      "directional_accuracy": 0.5193,
-      "sharpe": -1.724569,
-      "profit_factor": 0.615868,
-      "max_drawdown": 1.0,
-      "n_samples": 20000,
-      "device": "directml",
-      "strict_sharpe_gate": 1.2,
-      "strict_acc_gate": 0.55,
-      "strict_profit_factor_gate": 1.5,
-      "strict_max_drawdown_gate": 0.2
-    },
-    "is_valid": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
-  },
-  {
-    "architecture_name": "APV_PLN_v1",
-    "archetype": "apv_pln",
-    "backend": "cpu",
-    "val_loss": 3.2355540159976846,
-    "test_loss": 3.2460247820073906,
-    "val_directional_acc": 0.5389048991354467,
-    "test_directional_acc": 0.5302593659942363,
-    "val_sharpe": 12.956514787193282,
-    "test_sharpe": 7.448138788936825,
-    "test_profit_factor": 1.0881699139778058,
-    "test_max_drawdown": 0.35001682210035656,
-    "is_valid": false,
-    "checkpoint_dir": "models/checkpoints/apv_pln_smoke/APV_PLN_v1",
-    "divergence_alert": false,
-    "overfit_alert": false,
-    "training_epoch": "v1_legacy",
-    "notes": "V1 legacy checkpoint. Invalidated for V2.0 cold-start. Preserved as baseline archive."
   }
 ]

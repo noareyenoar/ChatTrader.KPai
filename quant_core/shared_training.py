@@ -11,7 +11,9 @@ from __future__ import annotations
 import json
 import gc
 import math
+import os
 import random
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -203,10 +205,35 @@ def append_working_log(
 # Checkpoint helpers (DirectML-safe)
 # ---------------------------------------------------------------------------
 
+def _safe_torch_save(payload: Any, target_path: Path, retries: int = 8, sleep_s: float = 0.5) -> None:
+    """Save torch payload with retry and atomic replace.
+
+    Long-running Windows jobs can occasionally hit transient file-open races.
+    """
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = target_path.with_suffix(target_path.suffix + ".tmp")
+    last_exc: Exception | None = None
+    for attempt in range(1, retries + 1):
+        try:
+            torch.save(payload, tmp_path)
+            os.replace(tmp_path, target_path)
+            return
+        except Exception as exc:
+            last_exc = exc
+            try:
+                if tmp_path.exists():
+                    tmp_path.unlink()
+            except OSError:
+                pass
+            if attempt < retries:
+                time.sleep(sleep_s * attempt)
+    if last_exc is not None:
+        raise last_exc
+
 def save_checkpoint(model: torch.nn.Module, optimizer: torch.optim.Optimizer, ckpt_dir: Path) -> None:
     cpu_state = {k: v.detach().cpu() for k, v in model.state_dict().items()}
-    torch.save(cpu_state, ckpt_dir / "model_best.pt")
-    torch.save(optimizer.state_dict(), ckpt_dir / "optimizer_state.pt")
+    _safe_torch_save(cpu_state, ckpt_dir / "model_best.pt")
+    _safe_torch_save(optimizer.state_dict(), ckpt_dir / "optimizer_state.pt")
 
 
 def save_epoch_checkpoint(
@@ -228,7 +255,7 @@ def save_epoch_checkpoint(
     ckpt_dir.mkdir(parents=True, exist_ok=True)
     epoch_path = ckpt_dir / f"epoch_{epoch}.pt"
     cpu_state = {k: v.detach().cpu() for k, v in model.state_dict().items()}
-    torch.save(
+    _safe_torch_save(
         {"epoch": epoch, "model_state_dict": cpu_state, "optimizer_state_dict": optimizer.state_dict()},
         epoch_path,
     )

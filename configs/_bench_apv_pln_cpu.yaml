@@ -1,0 +1,43 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 32
+  horizon: 5
+  num_bins: 51
+  max_symbols: 1
+  max_rows_per_symbol: 6000
+
+training:
+  seed: 42
+  seq_len: 32
+  horizon: 5
+  preferred_backend: cpu
+  batch_size: 128
+  max_epochs: 1
+  patience: 5
+  lr: 0.001
+  weight_decay: 0.0001
+  num_workers: 0
+  num_workers_directml: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  distill_alpha: 0.5
+  distill_beta: 0.5
+  distill_temperature: 2.0
+  fast_fail_epoch: 1
+  fast_fail_min_sharpe: -1.0
+  overfit_alert_epoch: 1
+  overfit_loss_ratio_max: 0.85
+  checkpoint_root: models/checkpoints/apv_pln
+  tensorboard_root: models/tensorboard/apv_pln
+
+models:
+  v1:
+    cnn_channels: 64
+    nhead: 4
+    oracle_hidden: 64
+    dropout: 0.15
+
+registry_path: model_registry.json

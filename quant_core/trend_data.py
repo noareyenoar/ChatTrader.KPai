@@ -13,7 +13,7 @@ from torch.utils.data import Dataset
 from data_pipeline.config import PipelineConfig
 from data_pipeline.features import FeatureFactory
 from data_pipeline.quality_gate import DataQualityGate
-from data_pipeline.splitter import IronWallSplitter
+from data_pipeline.splitter import IronWallSplitter, PurgedWalkForwardSplitter
 
 
 FEATURE_COLUMNS = [
@@ -168,6 +168,9 @@ def build_trend_datasets(config: dict[str, Any]) -> TrendDatasets:
     cap_rows = int(config.get("max_rows_per_symbol", 0))
     stride = max(1, int(config.get("stride", 1)))
     use_lupi: bool = bool(config.get("use_lupi", False))
+    walk_forward_enabled: bool = bool(config.get("walk_forward_enabled", False))
+    walk_forward_folds: int = int(config.get("walk_forward_folds", 5))
+    walk_forward_min_train_bars: int = int(config.get("walk_forward_min_train_bars", 500))
 
     # V2.0: Load BTC reference for beta neutralization
     btc_frame: pd.DataFrame | None = None
@@ -208,62 +211,114 @@ def build_trend_datasets(config: dict[str, Any]) -> TrendDatasets:
         if cap_rows > 0:
             feat = feat.iloc[-cap_rows:].copy()
 
-        split = splitter.split(feat, time_col="timestamp")
+        sym_x_tr: list[np.ndarray] = []
+        sym_y_tr: list[np.ndarray] = []
+        sym_r_tr: list[np.ndarray] = []
+        sym_f_tr: list[np.ndarray] = []
+        sym_x_va: list[np.ndarray] = []
+        sym_y_va: list[np.ndarray] = []
+        sym_r_va: list[np.ndarray] = []
+        sym_x_te: list[np.ndarray] = []
+        sym_y_te: list[np.ndarray] = []
+        sym_r_te: list[np.ndarray] = []
 
-        scaler = FeatureFactory.fit_scaler_train_only(split.train, active_cols)
-        train_scaled = FeatureFactory.transform_with_scaler(split.train, scaler)
-        val_scaled = FeatureFactory.transform_with_scaler(split.val, scaler)
-        test_scaled = FeatureFactory.transform_with_scaler(split.test, scaler)
+        if walk_forward_enabled:
+            wf = PurgedWalkForwardSplitter(
+                n_folds=walk_forward_folds,
+                purge_gap_bars=int(config["purge_gap_bars"]),
+                min_train_bars=walk_forward_min_train_bars,
+            )
+            folds = wf.split(feat, time_col="timestamp")
+            if len(folds) < 2:
+                raise RuntimeError("walk_forward_enabled requires at least 2 valid folds")
 
-        x_tr = train_scaled[active_cols].to_numpy(dtype=np.float32)
-        # Binary classification label (not scaled; scaler only touches active_cols)
-        y_tr = split.train["target_label"].to_numpy(dtype=np.float32)
-        r_tr = split.train["target_return"].to_numpy(dtype=np.float32)
-        x_va = val_scaled[active_cols].to_numpy(dtype=np.float32)
-        y_va = split.val["target_label"].to_numpy(dtype=np.float32)
-        r_va = split.val["target_return"].to_numpy(dtype=np.float32)
-        x_te = test_scaled[active_cols].to_numpy(dtype=np.float32)
-        y_te = split.test["target_label"].to_numpy(dtype=np.float32)
-        r_te = split.test["target_return"].to_numpy(dtype=np.float32)
+            for fold_idx, fold in enumerate(folds):
+                scaler = FeatureFactory.fit_scaler_train_only(fold.train, active_cols)
+                train_scaled = FeatureFactory.transform_with_scaler(fold.train, scaler)
+                test_scaled = FeatureFactory.transform_with_scaler(fold.test, scaler)
 
-        if len(x_tr) >= seq_len:
-            x_train_list.append(x_tr)
-            y_train_list.append(y_tr)
-            r_train_list.append(r_tr)
-            if use_lupi:
-                # V2.0 LUPI: privileged future signals for training Oracle Teacher.
-                # Signal 0: average log-return over the next `horizon` bars (smoothed trend).
-                # Signal 1: rolling std of next `horizon` returns (future volatility).
-                # These are ONLY computed on the training split; val/test datasets
-                # must NEVER receive future privileged data (Iron Wall Rule).
-                raw_log_ret = split.train["target_return"].to_numpy(dtype=np.float64)
-                future_avg = np.array(
-                    [raw_log_ret[i + 1: i + 1 + horizon].mean() if i + 1 + horizon <= len(raw_log_ret)
-                     else 0.0 for i in range(len(raw_log_ret))],
-                    dtype=np.float32,
-                )
-                future_vol = np.array(
-                    [raw_log_ret[i + 1: i + 1 + horizon].std() if i + 1 + horizon <= len(raw_log_ret)
-                     else 0.0 for i in range(len(raw_log_ret))],
-                    dtype=np.float32,
-                )
-                f_tr = np.stack([future_avg, future_vol], axis=1)  # (N, 2)
-                f_train_list.append(f_tr)
-        if len(x_va) >= seq_len:
-            x_val_list.append(x_va)
-            y_val_list.append(y_va)
-            r_val_list.append(r_va)
-        if len(x_te) >= seq_len:
-            x_test_list.append(x_te)
-            y_test_list.append(y_te)
-            r_test_list.append(r_te)
+                x_fold_tr = train_scaled[active_cols].to_numpy(dtype=np.float32)
+                y_fold_tr = fold.train["target_label"].to_numpy(dtype=np.float32)
+                r_fold_tr = fold.train["target_return"].to_numpy(dtype=np.float32)
+                x_fold_te = test_scaled[active_cols].to_numpy(dtype=np.float32)
+                y_fold_te = fold.test["target_label"].to_numpy(dtype=np.float32)
+                r_fold_te = fold.test["target_return"].to_numpy(dtype=np.float32)
+
+                if len(x_fold_tr) >= seq_len:
+                    sym_x_tr.append(x_fold_tr)
+                    sym_y_tr.append(y_fold_tr)
+                    sym_r_tr.append(r_fold_tr)
+                    if use_lupi:
+                        raw_log_ret = r_fold_tr.astype(np.float64)
+                        future_avg = np.array(
+                            [raw_log_ret[i + 1: i + 1 + horizon].mean() if i + 1 + horizon <= len(raw_log_ret)
+                             else 0.0 for i in range(len(raw_log_ret))],
+                            dtype=np.float32,
+                        )
+                        future_vol = np.array(
+                            [raw_log_ret[i + 1: i + 1 + horizon].std() if i + 1 + horizon <= len(raw_log_ret)
+                             else 0.0 for i in range(len(raw_log_ret))],
+                            dtype=np.float32,
+                        )
+                        sym_f_tr.append(np.stack([future_avg, future_vol], axis=1))
+
+                # Fold tests become walk-forward validation windows, except the
+                # final fold which is reserved as strict OOS test.
+                if fold_idx < len(folds) - 1:
+                    if len(x_fold_te) >= seq_len:
+                        sym_x_va.append(x_fold_te)
+                        sym_y_va.append(y_fold_te)
+                        sym_r_va.append(r_fold_te)
+                else:
+                    if len(x_fold_te) >= seq_len:
+                        sym_x_te.append(x_fold_te)
+                        sym_y_te.append(y_fold_te)
+                        sym_r_te.append(r_fold_te)
+        else:
+            split = splitter.split(feat, time_col="timestamp")
+
+            scaler = FeatureFactory.fit_scaler_train_only(split.train, active_cols)
+            train_scaled = FeatureFactory.transform_with_scaler(split.train, scaler)
+            val_scaled = FeatureFactory.transform_with_scaler(split.val, scaler)
+            test_scaled = FeatureFactory.transform_with_scaler(split.test, scaler)
+
+            sym_x_tr.append(train_scaled[active_cols].to_numpy(dtype=np.float32))
+            sym_y_tr.append(split.train["target_label"].to_numpy(dtype=np.float32))
+            sym_r_tr.append(split.train["target_return"].to_numpy(dtype=np.float32))
+            sym_x_va.append(val_scaled[active_cols].to_numpy(dtype=np.float32))
+            sym_y_va.append(split.val["target_label"].to_numpy(dtype=np.float32))
+            sym_r_va.append(split.val["target_return"].to_numpy(dtype=np.float32))
+            sym_x_te.append(test_scaled[active_cols].to_numpy(dtype=np.float32))
+            sym_y_te.append(split.test["target_label"].to_numpy(dtype=np.float32))
+            sym_r_te.append(split.test["target_return"].to_numpy(dtype=np.float32))
+
+        for _x, _y, _r in zip(sym_x_tr, sym_y_tr, sym_r_tr):
+            if len(_x) >= seq_len:
+                x_train_list.append(_x)
+                y_train_list.append(_y)
+                r_train_list.append(_r)
+        if use_lupi and sym_f_tr:
+            for _f in sym_f_tr:
+                if len(_f) >= seq_len:
+                    f_train_list.append(_f)
+        for _x, _y, _r in zip(sym_x_va, sym_y_va, sym_r_va):
+            if len(_x) >= seq_len:
+                x_val_list.append(_x)
+                y_val_list.append(_y)
+                r_val_list.append(_r)
+        for _x, _y, _r in zip(sym_x_te, sym_y_te, sym_r_te):
+            if len(_x) >= seq_len:
+                x_test_list.append(_x)
+                y_test_list.append(_y)
+                r_test_list.append(_r)
 
         _log(
             f"[trend-data] ready symbol={symbol} rows={len(feat)} "
             f"input_dim={len(active_cols)} btc_beta={'yes' if btc_frame is not None else 'no'} "
-            f"train_win={max(0, (len(x_tr) - seq_len) // stride + 1)} "
-            f"val_win={max(0, (len(x_va) - seq_len) // stride + 1)} "
-            f"test_win={max(0, (len(x_te) - seq_len) // stride + 1)}"
+            f"train_win={sum(max(0, (len(v) - seq_len) // stride + 1) for v in sym_x_tr)} "
+            f"val_win={sum(max(0, (len(v) - seq_len) // stride + 1) for v in sym_x_va)} "
+            f"test_win={sum(max(0, (len(v) - seq_len) // stride + 1) for v in sym_x_te)} "
+            f"walk_forward={'yes' if walk_forward_enabled else 'no'}"
         )
         final_input_dim = len(active_cols)  # capture after first symbol resolves
 

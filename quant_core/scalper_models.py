@@ -124,9 +124,10 @@ class _LinearAttnBlock(nn.Module):
     def _linear_attn(self, x: torch.Tensor) -> torch.Tensor:
         B, T, C = x.shape
         nh, dh = self.nhead, self.d_head
-        # elu(·)+1 keeps a strictly non-negative kernel map while avoiding dead ReLU regions.
-        Q = torch.nn.functional.elu(self.q(x)) + 1.0  # (B, T, C)
-        K = torch.nn.functional.elu(self.k(x)) + 1.0
+        # Softplus keeps a strictly non-negative kernel map without relying on ELU ops
+        # that can trigger CPU fallbacks on DirectML.
+        Q = torch.nn.functional.softplus(self.q(x)) + 1e-4  # (B, T, C)
+        K = torch.nn.functional.softplus(self.k(x)) + 1e-4
         V = self.v(x)
         Q = Q.view(B, T, nh, dh).permute(0, 2, 1, 3)  # (B, nh, T, dh)
         K = K.view(B, T, nh, dh).permute(0, 2, 1, 3)

@@ -57,7 +57,7 @@ loss:
 # ============================================================================
 training:
   max_epochs: 50
-  batch_size: 1024  # Increased from 32: efficient for ~3M total windows after capping
+  batch_size: 512            # CPU-safe; reduced from 1024 which could OOM on DirectML
   learning_rate: 1.0e-3
   weight_decay: 1.0e-4
   
@@ -75,7 +75,7 @@ training:
   use_mixed_precision: true
   
   # Hardware preference
-  preferred_backend: "auto"   # auto | cuda | directml | cpu
+  preferred_backend: cpu     # Force CPU: DirectML with batch_size=1024 may OOM on RX 6750 XT
   num_workers: 0              # DataLoader workers
 
 # ============================================================================

@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-06-09T07:37:32.128985+00:00",
+  "git": {
+    "commit": "4753b2f",
+    "dirty_tree": true
+  },
+  "environment": {
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "torch_version": "2.4.1+cpu",
+    "torch_directml_version": "INSTALLED_NO_VERSION",
+    "backend": "directml",
+    "cpu_count": 16
+  },
+  "seed": 42,
+  "dataset_manifest": {
+    "path": "D:\\kp_ai_agent\\ChatTrader.KPai\\Dataset\\binance_historical\\manifest.json",
+    "sha256": "50f6746d338b7136331d39aa0332b23770c6e15ca56f66a78ccc5fb9e63647cf",
+    "exists": true
+  },
+  "extra": {
+    "evaluator_version": "evaluate_all_checkpoints_v6",
+    "round_trip_cost": 0.001
+  }
+}

@@ -355,6 +355,7 @@ def write_disc_registry(results: list[DiscResult], registry_path: Path) -> None:
                 "backend": r.backend,
                 "cuda_used": r.cuda_used,
                 "is_valid": r.is_valid,
+                "oos_consistency_passed": r.is_valid,  # mirrors is_valid; set False when gates fail
             },
         }
         for r in results

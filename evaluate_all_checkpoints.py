@@ -22,6 +22,7 @@ Verified checkpoint dims (from torch.load introspection):
 """
 from __future__ import annotations
 
+import argparse
 import importlib
 import json
 import re
@@ -45,6 +46,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn.functional as F
+import yaml
 from torch.utils.data import DataLoader, TensorDataset
 
 from quant_core.validation_policy import PRODUCTION_GATES, passes_production_gates
@@ -112,6 +114,41 @@ def _release_memory(*objects: Any) -> None:
             torch.cuda.empty_cache()
         except Exception:
             pass
+
+
+def _load_yaml(path: Path) -> dict[str, Any] | None:
+    try:
+        if not path.exists():
+            return None
+        return yaml.safe_load(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def _resolve_discretionary_flat_threshold(default: float = 0.001) -> float:
+    """Resolve discretionary flat threshold from phase config files.
+
+    Priority:
+      1) configs/discretionary_phase4.yaml
+      2) configs/discretionary_phase4_smoke.yaml
+      3) fallback default
+    """
+    candidates = [
+        ROOT / "configs" / "discretionary_phase4.yaml",
+        ROOT / "configs" / "discretionary_phase4_smoke.yaml",
+    ]
+    for cfg_path in candidates:
+        cfg = _load_yaml(cfg_path)
+        if not isinstance(cfg, dict):
+            continue
+        data = cfg.get("data") if isinstance(cfg.get("data"), dict) else {}
+        thr = data.get("flat_threshold")
+        if thr is not None:
+            try:
+                return float(thr)
+            except Exception:
+                continue
+    return float(default)
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -581,7 +618,12 @@ def load_stat_arb_data(frames: list[pd.DataFrame], seq_len: int = 64, horizon: i
         return None
 
 
-def load_disc_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int = 5) -> TensorDataset | None:
+def load_disc_data(
+    frames: list[pd.DataFrame],
+    seq_len: int = 32,
+    horizon: int = 5,
+    flat_thr: float = 0.001,
+) -> TensorDataset | None:
     """Rasterize OHLCV windows into 4×32×32 chart images for Disc models.
 
     Uses _rasterize_window() from quant_core.discretionary_data to guarantee
@@ -593,7 +635,6 @@ def load_disc_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int =
     This replaces the previous vectorised renderer that used a completely different
     encoding (close price line / volume bars / log-return sparkline).
     """
-    FLAT_THR = 0.001
     try:
         from quant_core.discretionary_data import _rasterize_window
     except Exception as e:
@@ -613,8 +654,8 @@ def load_disc_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int =
 
             # 3-class target (same convention as training: 0=down, 1=flat, 2=up)
             future_ret = np.roll(close, -horizon) / (close + 1e-10) - 1.0
-            targets = np.where(future_ret > FLAT_THR, 2,
-                      np.where(future_ret < -FLAT_THR, 0, 1)).astype(np.int64)
+            targets = np.where(future_ret > flat_thr, 2,
+                      np.where(future_ret < -flat_thr, 0, 1)).astype(np.int64)
 
             ohlcv = np.stack([open_, high, low, close], axis=1)  # (N, 4)
 
@@ -649,13 +690,17 @@ def load_disc_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int =
     return TensorDataset(X_t, y_t, r_t)
 
 
-def load_disc_multimodal_data(frames: list[pd.DataFrame], seq_len: int = 32, horizon: int = 5) -> TensorDataset | None:
+def load_disc_multimodal_data(
+    frames: list[pd.DataFrame],
+    seq_len: int = 32,
+    horizon: int = 5,
+    flat_thr: float = 0.001,
+) -> TensorDataset | None:
     """Build (img, tab, y, ret) dataset for DiscretionaryMultimodal evaluation.
 
     tab features: [log_return, zscore_close_64, ema_spread, atr_14, price_slope_20]
     (same 5 DISC_TAB_FEATURES used during training)
     """
-    FLAT_THR = 0.001
     TAB_FEATURES = ["log_return", "zscore_close_64", "ema_spread", "atr_14", "price_slope_20"]
     try:
         from quant_core.discretionary_data import _rasterize_window
@@ -690,8 +735,8 @@ def load_disc_multimodal_data(frames: list[pd.DataFrame], seq_len: int = 32, hor
             tab_scaled = (tab_arr - means) / stds
 
             future_ret = np.roll(close, -horizon) / (close + 1e-10) - 1.0
-            targets = np.where(future_ret > FLAT_THR, 2,
-                      np.where(future_ret < -FLAT_THR, 0, 1)).astype(np.int64)
+            targets = np.where(future_ret > flat_thr, 2,
+                      np.where(future_ret < -flat_thr, 0, 1)).astype(np.int64)
 
             ohlcv = np.stack([open_, high, low, close], axis=1)
 
@@ -1344,11 +1389,25 @@ def run_inference(
 # ═════════════════════════════════════════════════════════════════════════════
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="Evaluate Phase-4 checkpoints")
+    parser.add_argument("--model", type=str, default="all", help="Single architecture to evaluate or 'all'")
+    parser.add_argument("--all", action="store_true", help="Force evaluate all architectures")
+    args = parser.parse_args()
+
     _banner("EVALUATE ALL CHECKPOINTS — Post-Outage Recovery Evaluation")
     _log(f"[eval] timestamp: {datetime.now(timezone.utc).isoformat()}")
     _log(f"[eval] device: {DEVICE_NAME}")
     _log(f"[eval] checkpoint root: {CHECKPOINT_ROOT}")
     _log(f"[eval] data root: {DATASET_DIR}")
+
+    selected_model = "all" if args.all else str(args.model).strip()
+    if selected_model != "all" and selected_model not in MODEL_MANIFEST:
+        _log(f"[eval] unknown --model value: {selected_model}")
+        _log(f"[eval] available models: {', '.join(sorted(MODEL_MANIFEST.keys()))}")
+        return 2
+
+    flat_thr_disc = _resolve_discretionary_flat_threshold(default=0.001)
+    _log(f"[eval] discretionary flat_threshold={flat_thr_disc}")
 
     # ── Reproducibility manifest ──────────────────────────────────────────
     try:
@@ -1359,7 +1418,7 @@ def main() -> int:
             _manifest_path,
             dataset_manifest_path=ROOT / "Dataset" / "binance_historical" / "manifest.json",
             seed=42,
-            extra={"evaluator_version": "evaluate_all_checkpoints_v5", "round_trip_cost": ROUND_TRIP_COST},
+            extra={"evaluator_version": "evaluate_all_checkpoints_v6", "round_trip_cost": ROUND_TRIP_COST},
         )
         _log(f"[eval] reproducibility manifest: {_manifest_path.name}")
     except Exception as _me:
@@ -1399,7 +1458,7 @@ def main() -> int:
          f"stat_arb_{_n_sym * 3}:{len(datasets[f'stat_arb_{_n_sym * 3}']) if datasets[f'stat_arb_{_n_sym * 3}'] else 'FAIL'} samples")
 
     _log("[eval] → building disc (chart image) dataset...")
-    datasets["disc"]     = load_disc_data(frames, seq_len=32, horizon=5)
+    datasets["disc"]     = load_disc_data(frames, seq_len=32, horizon=5, flat_thr=flat_thr_disc)
     _log(f"[eval]   disc:    {len(datasets['disc']) if datasets['disc'] else 'FAIL'} samples")
 
     _log("[eval] → building market_maker dataset...")
@@ -1413,7 +1472,7 @@ def main() -> int:
 
     # disc_multimodal: build real tabular features for DiscretionaryMultimodal
     _log("[eval] → building disc_multimodal dataset (img + tabular)...")
-    datasets["disc_multimodal"] = load_disc_multimodal_data(frames, seq_len=32, horizon=5)
+    datasets["disc_multimodal"] = load_disc_multimodal_data(frames, seq_len=32, horizon=5, flat_thr=flat_thr_disc)
     _log(f"[eval]   disc_multimodal: {len(datasets['disc_multimodal']) if datasets['disc_multimodal'] else 'FAIL'} samples")
 
     # apv_pln: dual-stream price+volume for Oracle Teacher / LUPI evaluation
@@ -1425,6 +1484,8 @@ def main() -> int:
     results: dict[str, dict[str, Any]] = {}
 
     for model_name, manifest in MODEL_MANIFEST.items():
+        if selected_model != "all" and model_name != selected_model:
+            continue
         _banner(f"Evaluating: {model_name}")
         _log(f"[eval] arch={manifest['cls']}  archetype={manifest['archetype']}")
         _log(f"[eval] checkpoint={manifest['ckpt']}")
@@ -1569,7 +1630,7 @@ def main() -> int:
             mdd     = metrics["max_drawdown"]
             # RL pass criteria: Sharpe>0 (positive mean reward), win_rate>50%, MDD<85%
             strict_pass = sharpe > 0.0 and dir_acc > 0.50 and mdd < 0.85
-            status = "PASSED" if strict_pass else "RESUME_TRAINING_REQUIRED"
+            status = "PASSED_PHASE4" if strict_pass else "RESUME_TRAINING_REQUIRED"
             gate_str = "✓ PASSED" if strict_pass else "✗ FAILED"
             _log(f"[eval] Episode Win Rate : {dir_acc:.4f}  (gate > 0.50)")
             _log(f"[eval] Episode Sharpe   : {sharpe:.4f}  (gate > 0.0)")
@@ -1645,7 +1706,7 @@ def main() -> int:
         mdd     = metrics["max_drawdown"]
 
         strict_pass = passes_production_gates(metrics, require_directional_accuracy=True)
-        status = "PASSED" if strict_pass else "RESUME_TRAINING_REQUIRED"
+        status = "PASSED_PHASE4" if strict_pass else "RESUME_TRAINING_REQUIRED"
 
         gate_str = "PASSED" if strict_pass else "FAILED"
         _log(f"[eval] Directional Accuracy : {dir_acc:.4f}  (gate > {PRODUCTION_GATES.directional_accuracy_min})")
@@ -1729,8 +1790,11 @@ def main() -> int:
     # ═════════════════════════════════════════════════════════════════════
     _banner("EVALUATION COMPLETE — TRUE HARDWARE METRICS SUMMARY")
 
-    passed   = [n for n, r in results.items() if r["validation"].get("status") == "PASSED"]
-    failed   = [n for n, r in results.items() if r["validation"].get("status") == "RESUME_TRAINING_REQUIRED"]
+    passed   = [n for n, r in results.items() if r["validation"].get("status") == "PASSED_PHASE4"]
+    failed   = [
+        n for n, r in results.items()
+        if r["validation"].get("status") in ("RESUME_TRAINING_REQUIRED", "DIVERGENCE_FAILED", "ROBUSTNESS_FAILED")
+    ]
     no_ckpt  = [n for n, r in results.items() if r["validation"].get("reason") == "checkpoint_missing"]
 
     print(f"\n{'Model':<35} {'Acc':>8} {'Sharpe':>10} {'PF':>8} {'MDD':>9}  Status")
@@ -1745,7 +1809,7 @@ def main() -> int:
         print(f"{name:<35} {acc} {sh} {pf_v} {mdd_v}  {stat}")
 
     print(f"\nTotal models evaluated : {len(results)}")
-    print(f"PASSED (strict gates)  : {len(passed)}")
+    print(f"PASSED_PHASE4          : {len(passed)}")
     print(f"RESUME_TRAINING_REQUIRED: {len(failed)}")
     print(f"Missing checkpoints    : {len(no_ckpt)}")
 

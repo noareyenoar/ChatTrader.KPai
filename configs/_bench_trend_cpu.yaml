@@ -7,6 +7,9 @@
   horizon: 20
   max_symbols: 1
   max_rows_per_symbol: 6000
+  walk_forward_enabled: true
+  walk_forward_folds: 3
+  walk_forward_min_train_bars: 300
 
 training:
   seed: 42
@@ -22,6 +25,8 @@ training:
   compile_model: false
   checkpoint_root: models/checkpoints/trend
   tensorboard_root: models/tensorboard/trend
+  regime_penalty_weight: 0.05
+  regime_penalty_volatility_index: 3
 
 models:
   lstm:

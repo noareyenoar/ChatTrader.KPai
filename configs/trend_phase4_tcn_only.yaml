@@ -1,0 +1,38 @@
+data:
+  dataset_dir: Dataset/binance_historical
+  manifest_path: Dataset/binance_historical/manifest.json
+  min_history_bars: 50000
+  purge_gap_bars: 20
+  seq_len: 96
+  horizon: 5
+  max_symbols: 34
+  max_rows_per_symbol: 50000
+  walk_forward_enabled: true
+  walk_forward_folds: 5
+  walk_forward_min_train_bars: 500
+
+training:
+  seed: 42
+  seq_len: 96
+  preferred_backend: directml
+  batch_size: 2048
+  directml_max_batch_size: 256
+  max_epochs: 150
+  patience: 20
+  lr: 0.0003
+  weight_decay: 0.001
+  num_workers: 0
+  num_workers_non_cuda: 0
+  compile_model: false
+  resume_from_checkpoint: false
+  checkpoint_root: models/checkpoints/trend
+  tensorboard_root: models/tensorboard/trend
+  regime_penalty_weight: 0.05
+  regime_penalty_volatility_index: 3
+
+models:
+  tcn:
+    channels: 128
+    dropout: 0.3
+
+registry_path: model_registry.json
